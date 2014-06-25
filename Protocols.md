@@ -17,7 +17,7 @@ FFSync Response codes:
 * **0** User doesn't exist
 * **1** User exists
 
-_This request is maybe not used in the later implementation._
+_This request is maybe not used in later implementations._
 
 ### Create User
 `PUT_Data = '{"captcha-challenge": null,"captcha-response": null,"email": "MAIL","password": "PLAINTEXT_PASS"}"`
@@ -30,3 +30,22 @@ _This request is maybe not used in the later implementation._
 The node is used for later requests instead the initial Server:Port combination. On this way we can get a simple way of load balancing.
 
 `NODE = http.get("http[s]://SERVER:PORT/user/1.0/ENCODED_USERNAME/node/weave")`
+
+## Default response codes
+[Source Document](https://docs.services.mozilla.com/respcodes.html)
+* **1** Illegal method/protocol
+* **2** Incorrect/missing CAPTCHA
+* **3** Invalid/missing username
+* **4** Attempt to overwrite data that can’t be overwritten (such as creating a user ID that already exists)
+* **5** User ID does not match account in path
+* **6** JSON parse failure
+* **7** Missing password field
+* **8** Invalid Weave Basic Object
+* **9** Requested password not strong enough
+* **10** Invalid/missing password reset code
+* **11** Unsupported function
+* **12** No email address on file
+* **13** Invalid collection
+* **14** (1.1 and up) User over quota
+* **15** The email does not match the username
+* **16** Client upgrade required
