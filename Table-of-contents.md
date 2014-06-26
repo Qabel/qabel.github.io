@@ -1,29 +1,29 @@
-* [Abstract](Abstract)
-* [Preamble](Preamble)
+* [[Abstract|Abstract]]
+* [[Preamble|Preamble]]
 
-1. [Introduction](Introduction)
-2. [Architectural Overview](Architectural Overview)
-2. [Components](Components)
-  1. [Bridgehead](Components/Bridgehead)
-  2. [API](Components/API)
-  3. [Contacts](Components/Contacts)
-  4. [Drop](Components/Drop)
-  5. [Storage](Components/Storage)
-  6. [Sync](Components/Sync)
-  7. [Browse](Components/Browse)
-  8. [Modules](Components/Modules)
-3. [Client](Client)
-  1. [Bridgehead](Client/Bridgehead)
+1. [[Introduction|Introduction]]
+2. [[Architectural Overview|Architectural Overview]]
+2. [[Components|Components]]
+  1. [[Bridgehead|Components-Bridgehead]]
+  2. [[API|Components-API]]
+  3. [[Contacts|Components-Contacts]]
+  4. [[Drop|Components-Drop]]
+  5. [[Storage|Components-Storage]]
+  6. [[Sync|Components-Sync]]
+  7. [[Browse|Components-Browse]]
+  8. [[Modules|Components-Modules]]
+3. [[Client|Client]]
+  1. [[Bridgehead|Client-Bridgehead]]
   2. TODO: Here be links to pages that explain drop, sync, storage and browse for client developers.
-4. [Protocols](Protocols)
-  1. [Qabel-Drop-Protocol](Protocols/Drop)
-  2. [Qabel-Storage-Protocol](Protocols/Storage)
-  3. [Qabel-Sync-Protocol](Protocols/Sync)
-  4. [Qabel-Browse-Protocol](Protocols/Browse)
-5. [Server](Server)
-  1. [Qabel-Drop-Server](Server/Drop)
-  2. [Qabel-Storage-Server](Server/Storage)
-  3. [Qabel-Sync-Server](Server/Sync)
-  4. [Qabel-Browse-Server](Server/Browse)
-6. [Appendix](Appendix)
-  1. [Glossary](Appendix/Glossary)
+4. [[Protocols|Protocols]]
+  1. [[Qabel-Drop-Protocol|Protocols-Drop]]
+  2. [[Qabel-Storage-Protocol|Protocols-Storage]]
+  3. [[Qabel-Sync-Protocol|Protocols-Sync]]
+  4. [[Qabel-Browse-Protocol|Protocols-Browse]]
+5. [[Server|Server]]
+  1. [[Qabel-Drop-Server|Server-Drop]]
+  2. [[Qabel-Storage-Server|Server-Storage]]
+  3. [[Qabel-Sync-Server|Server-Sync]]
+  4. [[Qabel-Browse-Server|Server-Browse]]
+6. [[Appendix|Appendix]]
+  1. [[Glossary|Appendix-Glossary]]
