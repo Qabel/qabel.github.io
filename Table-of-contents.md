@@ -14,7 +14,8 @@
   8. [[Modules|Components-Modules]]
 3. [[Client|Client]]
   1. [[Bridgehead|Client-Bridgehead]]
-  2. TODO: Here be links to pages that explain drop, sync, storage and browse for client developers.
+  2. [[Configuration|Client-Configuration]]
+  3. TODO: Here be links to pages that explain drop, sync, storage and browse for client developers.
 4. [[Protocols|Protocols]]
   1. [[Qabel-Drop-Protocol|Protocols-Drop]]
   2. [[Qabel-Storage-Protocol|Protocols-Storage]]
