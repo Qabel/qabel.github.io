@@ -1,2 +1,3 @@
 # 1. Abstract
-The configuration have two parts. One is the configuration which is the same on all clients one user have. This configuration will be shared using FFSync. The other part is for the local machine. It save i.e. the polling time, the window size and so one.
+
+The configuration has two parts. The first part is configuration data which is the same across all clients of this user. This configuration data will be shared using FFSync. The other part is for the local machine only. E.g. polling time, window sizes and alike.
