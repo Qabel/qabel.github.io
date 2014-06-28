@@ -4,20 +4,20 @@
 
 ## Core
 * Bridgehead
- * Is the interface between modules and Qabel server. It (and only this component) speaks the Qabel protocols.
+ * Interface between modules and Qabel servers. This is the only component implementing Qabel protocols.
 * API
- * Provides utility (which don't need network) functions like encoding / decoding messages.
+ * Utility functions (which don't need network), e.g. encoding / decoding messages.
 * Config
- * Holds the Qabel client configuration.
+ * Access to the Qabel client configuration, e.g. various user settings.
 * Contacts
- * Holds the contacts of the Qabel client user.
+ * Access to the Qabel client users address book.
 
 ## Modules
-Provide the functionality an end-user of the Qabel client wants. Can be anything from Mail to chat over XMPP.
-* FileSync
- * Like Dropbox(TM) aka an end-user defines a folder which will be synced across the user's devices.
+Provide the principal functionality end-users expect of the Qabel client. E.g. Mail, XMPP chat, file sync.
+* File sync
+ * Allows end-users to define folders which will be synced across their devices.
 * Mail
- * Provides a local SMTP and IMAP server so an end-user can send and receive mails - using his/her mail app - to/from it. The server (i.e. the module) transports the mails via Qabel.
+ * Local SMTP and IMAP server enabling the end-user to send and receive mails using a traditional mail application. The application data is transmitted using the Qabel protocols.
 
 # Server
 * Drop
