@@ -1,27 +1,20 @@
-# 1. Abstract
-
-The configuration has two parts. The first part is configuration data which is the same across all clients of this user. This configuration data will be shared using FFSync. The other part is for the local machine only. E.g. polling time, window sizes and alike.# Settings Client Notes
+# Settings Client Notes
 
 ## Abstract
-
 Notes on configuration settings stored on each client.
 
-## JSON structure
+The configuration has two parts. The first part is configuration data which is the same across all clients of this user. This configuration data will be shared using FFSync. The other part is for the local machine only. E.g. polling time, window sizes and alike.
 
+## JSON structure
 Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
 
 *Anmerkung:* Einzelne Kontakte, Ids, Server haben noch zusätzlich die Felder "created", "updated", "deleted". Bitte im Source nachsehen, muss noch eingearbeitet werden.
 
+### Local settings
+
         Settings        = "{"
                         'preferences' : preferences,
-                        'accounts' : accounts,
-                        'drop_servers' : drop_servers,
-                        'block_servers' : block_servers,
-                        'shares' : shares,
-                        'uploads' : uploads,
-                        'identities' : identities,
-                        'contacts' : contacts,
-                        'groups' : groups
+                        'ffsync_user' : ffsync_user
                         "}"
 
         preferences     = "{"
@@ -35,6 +28,34 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'desktop_width' : STR,
                         'desktop_height' : STR
                         "}"
+
+        ffsync_user     = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
+                        'username': STR,
+                        'mail': STR,
+                        'password': STR,
+                        'url': STR,
+                        'port': INT,
+                        'key': STR,
+                        'interval': INT,
+                        'modified': 1401731802.81
+                        "}"
+
+### Synced settings
+        Settings        = "{"
+                        'accounts' : accounts,
+                        'drop_servers' : drop_servers,
+                        'block_servers' : block_servers,
+                        'shares' : shares,
+                        'uploads' : uploads,
+                        'identities' : identities,
+                        'groups' : groups
+                        "}"
+
+
 
         accounts        = "["
                         account*
