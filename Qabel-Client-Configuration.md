@@ -11,12 +11,12 @@ The configuration has two parts. The first part is configuration data which is t
 
 The next setting are common and often use in the setting groups.
 
- * id: The id of the setting group. This shall be an unique id in the
+ * id: The id of the setting structure. This shall be an unique id in the
  application
- * updated: The timestamp when the setting group was updated last time
- * created: The timestamp when the setting group was created
+ * updated: The timestamp when the setting structure was updated last time
+ * created: The timestamp when the setting structure was created
  * deleted: The timestamp when the setting was deleted. After a time x this
- group will be deleted completed
+ structure will be deleted completed
 
 ### Local settings
 
@@ -93,6 +93,15 @@ FF sync server
 
 ### Synced settings
 
+The setting item have seven sub items
+ * accounts
+ * drop_servers
+ * block_servers
+ * shares
+ * uploads
+ * identities
+ * groups
+
         Settings        = "{"
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
@@ -103,9 +112,16 @@ FF sync server
                         'groups' : groups
                         "}"
 
+#### Accounts
+
+The item "accounts" include an array of account setting structure
+
         accounts        = "["
                         account*
                         "]"
+
+
+#### Account
 
         account         = "{"
                         'id': INT,
@@ -117,9 +133,15 @@ FF sync server
                         'auth' : STR
                         "}"
 
+#### Drop Servers
+
+The item "drop_servers" include an array of the drop server setting structure
+
         drop_servers    = "["
                         drop_server*
                         "]"
+
+#### Drop Server
 
         drop_server     = "{"
                         'id': INT,
@@ -133,9 +155,15 @@ FF sync server
                         'poll_interval' : NUM
                         "}"
 
+#### Block Servers
+
+The item "block_servers" include an array of the block server setting structure
+
         block_servers   = "["
                         block_server*
                         "]"
+
+#### Block Server
 
         block_server    = "{"
                         'id': INT,
@@ -148,9 +176,15 @@ FF sync server
                         'auth' : STR
                         "}"
 
+#### Uploads
+
+The item "uploads" include an array of the upload setting structure
+
         uploads         = "["
                         upload*
                         "]"
+
+#### Upload
 
         upload          = "{"
                         'id': INT,
@@ -163,9 +197,15 @@ FF sync server
                         'revoke_token': STR,
                         "}"
 
+#### Shares
+
+The item "shares" include an array of the share setting structure
+
         shares          = "["
                         share*
                         "]"
+
+#### Share
 
         share           = "{"
                         'id': INT,
@@ -179,9 +219,15 @@ FF sync server
                         'contacts' : [LIST OF IDS],
                         "}"
 
+#### Micro Blocks
+
+The item "micro_blocks" include an array of the mirco block setting structure
+
         micro_blogs     = "["
                          micro_blog*
                         "]"
+
+#### Micro Block
 
         micro_blog      = "{"
                         'id': INT,
@@ -194,26 +240,15 @@ FF sync server
                         'contacts' : [LIST OF IDS],
                         "}"
 
-        contacts        = "["
-                        contact*
-                        "]"
+#### Identities
 
-        contact         = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,                        
-                        'alias' : NAME,
-                        'public_key' : KEY,
-                        'inbox' : ID,
-                        'my_id' : ID,
-                        'forename' : STR,
-                        'surname' : STR
-                        "}"
+The item "identities" include an array of the identity setting structure
 
         identities      = "["
                         identity*
                         "]"
+
+#### Identity
 
         identity        = "{"
                         'id': INT,
@@ -226,9 +261,15 @@ FF sync server
                         'inbox' : ID
                         "}"
 
+#### Groups
+
+The item "groups" include an array of the group setting structure
+
         groups          = "["
                         group*
                         "]"
+
+#### Group
 
         group           = "{"
                         'id': INT,
@@ -375,23 +416,6 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'upload_id' : INT,
                         'alias_id' : INT,
                         'contacts' : [LIST OF IDS],
-                        "}"
-
-        contacts        = "["
-                        contact*
-                        "]"
-
-        contact         = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,                        
-                        'alias' : NAME,
-                        'public_key' : KEY,
-                        'inbox' : ID,
-                        'my_id' : ID,
-                        'forename' : STR,
-                        'surname' : STR
                         "}"
 
         identities      = "["
