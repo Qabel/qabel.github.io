@@ -236,9 +236,9 @@ The item "shares" include an array of the share setting structure
                         'contacts' : [LIST OF IDS],
                         "}"
 
-#### Micro Blocks
+#### Micro Blogs
 
-The item "micro_blocks" include an array of the mirco block setting structure
+The item "micro_blogs" include an array of the mirco blog setting structure
 
         micro_blogs     = "["
                          micro_blog*
@@ -267,9 +267,8 @@ The item "identities" include an array of the identity setting structure
 
 #### Identity
 
- * alias: Alias of the user. The user is known with that alias for other users
- * private_key: Private key for encrypt messages for others
- * public_key: Public key for decrypt messages received from other
+ * alias: Alias of the user. The user is known with that alias to other users
+ * private_key: Private key to decrypt messages to this identity
  * inbox: Inbox URL
 
         identity        = "{"
@@ -279,7 +278,6 @@ The item "identities" include an array of the identity setting structure
                         'deleted': INT,
                         'alias' : NAME,
                         'private_key' : KEY,
-                        'public_key' : KEY,
                         'inbox' : URL
                         "}"
 
@@ -292,172 +290,6 @@ The item "groups" include an array of the group setting structure
                         "]"
 
 #### Group
-
-        group           = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'alias' : NAME,
-                        'ps_key' : KEY,
-                        'inbox' : ID
-                        "}"
-
-## JSON structure
-Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
-
-### Local settings
-
-        Settings        = "{"
-                        'preferences' : preferences,
-                        'ffsync_user' : ffsync_user
-                        "}"
-
-        preferences     = "{"
-                        'use_websockets' : BOOL,
-                        'default_poll_inteval' : NUM,
-                        'default_poll_inteval_wlan' : NUM,
-                        'default_poll_inteval_mobile' : NUM,
-                        'start_minimized' : BOOL,
-                        'desktop_x' : STR,
-                        'desktop_y' : STR,
-                        'desktop_width' : STR,
-                        'desktop_height' : STR
-                        "}"
-
-        ffsync_user     = "{"
-                        'updated': INT,
-                        'username': STR,
-                        'mail': STR,
-                        'password': STR,
-                        'url': STR,
-                        'port': INT,
-                        'key': STR,
-                        'interval': INT,
-                        'modified': DOUBLE
-                        "}"
-
-### Synced settings
-
-        Settings        = "{"
-                        'accounts' : accounts,
-                        'drop_servers' : drop_servers,
-                        'block_servers' : block_servers,
-                        'shares' : shares,
-                        'uploads' : uploads,
-                        'identities' : identities,
-                        'groups' : groups
-                        "}"
-
-        accounts        = "["
-                        account*
-                        "]"
-
-        account         = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'provider' : STR,
-                        'user' : STR,
-                        'auth' : STR
-                        "}"
-
-        drop_servers    = "["
-                        drop_server*
-                        "]"
-
-        drop_server     = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'url' : URL,
-                        'auth' : STR,
-                        'active' : BOOL,
-                        'websockets' : BOOL,
-                        'poll_interval' : NUM
-                        "}"
-
-        block_servers   = "["
-                        block_server*
-                        "]"
-
-        block_server    = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'server' : STR,
-                        'port' : INT,
-                        'path' : STR,
-                        'auth' : STR
-                        "}"
-
-        uploads         = "["
-                        upload*
-                        "]"
-
-        upload          = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'block_server_id' : INT,
-                        'public' : STR,
-                        'token' : STR,
-                        'revoke_token': STR,
-                        "}"
-
-        shares          = "["
-                        share*
-                        "]"
-
-        share           = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'basedir' : PATH,
-                        'key': STR
-                        'upload_id' : INT,
-                        'alias_id' : INT,
-                        'contacts' : [LIST OF IDS],
-                        "}"
-
-        micro_blogs     = "["
-                         micro_blog*
-                        "]"
-
-        micro_blog      = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'basedir' : PATH,
-                        'upload_id' : INT,
-                        'alias_id' : INT,
-                        'contacts' : [LIST OF IDS],
-                        "}"
-
-        identities      = "["
-                        identity*
-                        "]"
-
-        identity        = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'alias' : NAME,
-                        'private_key' : KEY,
-                        'public_key' : KEY,
-                        'inbox' : URL
-                        "}"
-
-        groups          = "["
-                        group*
-                        "]"
 
         group           = "{"
                         'id': INT,
