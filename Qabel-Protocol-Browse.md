@@ -2,29 +2,28 @@
 
 ## Abstract
 
-An open directory to facilitate search and lookup of public key data.
+An open directory to facilitate search and look-up of public key data.
 Search is opt-in and data is sealed with public key scheme.
 
 ## Scheme
 
-Zum Kennenlernen der Clients untereinander:
+Concerning the Get To Know between the clients:
 
-* Es werden in einem Server ein Public-Key und Drop-Adresse unter einem Namen hinterlegt.
-* Der Eintrag ist gesichert mit Fingerprint.
-* Abrufbar z.B. als http://qabel.me/chrzuck#ab4c2x2yz3
+* A public key and a drop address will be placed on a server.
+* The entry is secured by a fingerprint.
+* For example it is accessible under http://qabel.me/chrzuck#ab4c2x2yz3
 
-Der Drop und der Public-Key werden nur lesend vom Besitzer verwendet. Es soll keine weitere Verfolgung der Kommunikation möglich sein.
+The drop and the public key can just be used read-only by their owner. It should not be possible to further follow the communication.
 
-Vorgehen zum Adden: Ein Client ruft Public-Key und Drop-Adresse aus der Lookup-URL ab. Dann prüft er den Fingerprint (wird nie an Server übermittelt!).
-Client schickt eine Kontakt-Nachricht, verschlüsselt mit diesem Key an diesen Drop.
-Die Nachricht beinhaltet seine Parameter wie Public-Key, Drop, persönlicher Nachricht oder eine Visitenkarten-URL.
+How to Add: A client accesses public key and drop address from the lookup URL. It then checks the fingerprint. (The fingerprint never gets transmitted to the server!)
+The client sends a with this key encrypted contact message to the drop. The message contains its parameters like public key, drop, personal message or a business card URL.
 
 ## Server
 
-* Der Server soll Abfrage sowie Erstellen / Update mit Passwort anbieten.
-* Das Datenformat der Einträge ist JSON.
-* Wenn ein Browser die Adresse anfragt (und kein JSON will) dann eine hübsche "Der User 'X' verwendet Qabel / hier runterladen" Seite zeigen.
+* The server should offer retrieval as well as creation / update with password.
+* The data format of the entries is JSON.
+* If a browser accesses the address (and doesn't accept JSON), show a nice page with the message "User 'X' is using Qabel / download here".
 
-## Verzeichnis-Server
+## Directory Server
 
-Es kann (für Business-Variante) eine Suchfunktion zu Stichwörter möglich sein. Aber dann fehlt die Sicherung durch Fingerprint.
+For the Business Version a search function for keywords should be optional. In this case there will be no protection by fingerprint. 
