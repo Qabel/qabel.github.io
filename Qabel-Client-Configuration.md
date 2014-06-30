@@ -6,9 +6,7 @@ Notes on configuration settings stored on each client.
 The configuration has two parts. The first part is configuration data which is the same across all clients of this user. This configuration data will be shared using FFSync. The other part is for the local machine only. E.g. polling time, window sizes and alike.
 
 ## JSON structure
-Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
-
-*Anmerkung:* Einzelne Kontakte, Ids, Server haben noch zusätzlich die Felder "created", "updated", "deleted". Bitte im Source nachsehen, muss noch eingearbeitet werden.
+Note: this is no true (E)BNF. Add quoting (") and lists (,) where needed.
 
 ### Local settings
 
@@ -59,7 +57,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'provider' : STR,
                         'user' : STR,
                         'auth' : STR
@@ -73,7 +71,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'url' : URL,
                         'auth' : STR,
                         'active' : BOOL,
@@ -89,7 +87,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'server' : STR,
                         'port' : INT,
                         'path' : STR,
@@ -104,7 +102,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'block_server_id' : INT,
                         'public' : STR,
                         'token' : STR,
@@ -119,7 +117,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'basedir' : PATH,
                         'key': STR
                         'upload_id' : INT,
@@ -135,7 +133,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'basedir' : PATH,
                         'upload_id' : INT,
                         'alias_id' : INT,
@@ -150,7 +148,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'alias' : NAME,
                         'public_key' : KEY,
                         'inbox' : ID,
@@ -167,7 +165,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'alias' : NAME,
                         'private_key' : KEY,
                         'public_key' : KEY,
@@ -182,7 +180,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'id': INT,
                         'updated': INT,
                         'created': INT,
-                        'deleted': INT,                        
+                        'deleted': INT,
                         'alias' : NAME,
                         'ps_key' : KEY,
                         'inbox' : ID
