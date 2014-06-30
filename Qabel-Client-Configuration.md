@@ -165,6 +165,11 @@ The item "block_servers" include an array of the block server setting structure
 
 #### Block Server
 
+ * server: Name of the server
+ * port: Port to use
+ * path: Path on the server
+ * auth: Authentification have to use to get or set data
+
         block_server    = "{"
                         'id': INT,
                         'updated': INT,
@@ -186,6 +191,11 @@ The item "uploads" include an array of the upload setting structure
 
 #### Upload
 
+ * block_server_id: Id of the block server setting structure
+ * public: Public unique id of the data storage on the server
+ * token: Token to upload data to storage
+ * revoke_token: Token to delete data storage
+
         upload          = "{"
                         'id': INT,
                         'updated': INT,
@@ -206,6 +216,13 @@ The item "shares" include an array of the share setting structure
                         "]"
 
 #### Share
+
+ * basedir: Base dir of the share on the locale device
+ * key: Encryption key of the share
+ * upload_id: Id of the upload setting structure
+ * alias_id: Id of the identity. All contact of this identity can read the
+ shared data
+ * contacts: Array of the contact ids which can read the shared data
 
         share           = "{"
                         'id': INT,
@@ -250,6 +267,11 @@ The item "identities" include an array of the identity setting structure
 
 #### Identity
 
+ * alias: Alias of the user. The user is known with that alias for other users
+ * private_key: Private key for encrypt messages for others
+ * public_key: Public key for decrypt messages received from other
+ * inbox: Inbox URL
+
         identity        = "{"
                         'id': INT,
                         'updated': INT,
@@ -258,7 +280,7 @@ The item "identities" include an array of the identity setting structure
                         'alias' : NAME,
                         'private_key' : KEY,
                         'public_key' : KEY,
-                        'inbox' : ID
+                        'inbox' : URL
                         "}"
 
 #### Groups
@@ -430,7 +452,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'alias' : NAME,
                         'private_key' : KEY,
                         'public_key' : KEY,
-                        'inbox' : ID
+                        'inbox' : URL
                         "}"
 
         groups          = "["
