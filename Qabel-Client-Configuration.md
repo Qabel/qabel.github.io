@@ -21,8 +21,6 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'use_websockets' : BOOL,
                         'default_poll_inteval' : NUM,
                         'start_minimized' : BOOL,
-                        'ffsync_url' : URL,
-                        'ffsync_auth' : STR,
                         'desktop_x' : STR,
                         'desktop_y' : STR,
                         'desktop_width' : STR,
@@ -30,10 +28,7 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "}"
 
         ffsync_user     = "{"
-                        'id': INT,
                         'updated': INT,
-                        'created': INT,
-                        'deleted': INT,                        
                         'username': STR,
                         'mail': STR,
                         'password': STR,
@@ -61,6 +56,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         account         = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'provider' : STR,
                         'user' : STR,
                         'auth' : STR
@@ -71,6 +70,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         drop_server     = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'url' : URL,
                         'auth' : STR,
                         'active' : BOOL,
@@ -83,7 +86,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         block_server    = "{"
-                        'uuid': INT,
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'server' : STR,
                         'port' : INT,
                         'path' : STR,
@@ -95,7 +101,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         upload          = "{"
-                        'uuid' : INT,
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'block_server_id' : INT,
                         'public' : STR,
                         'token' : STR,
@@ -107,7 +116,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         share           = "{"
-                        'uuid' : INT,
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'basedir' : PATH,
                         'key': STR
                         'upload_id' : INT,
@@ -115,12 +127,15 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'contacts' : [LIST OF IDS],
                         "}"
 
-        micro_blogs    = "["
-                        micro_blog*
+        micro_blogs     = "["
+                         micro_blog*
                         "]"
 
-        micro_blog     = "{"
-                        'uuid' : INT,
+        micro_blog      = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'basedir' : PATH,
                         'upload_id' : INT,
                         'alias_id' : INT,
@@ -132,6 +147,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         contact         = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'alias' : NAME,
                         'public_key' : KEY,
                         'inbox' : ID,
@@ -145,6 +164,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         identity        = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'alias' : NAME,
                         'private_key' : KEY,
                         'public_key' : KEY,
@@ -156,6 +179,10 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         "]"
 
         group           = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,                        
                         'alias' : NAME,
                         'ps_key' : KEY,
                         'inbox' : ID
