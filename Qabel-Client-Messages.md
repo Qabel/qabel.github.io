@@ -55,5 +55,4 @@ JSON
 
 ### Encryption ###
 
-The JSON field containing the message body is encrypted with the
-receipients public key.
+The serialized JSON string containing the message body is encrypted using AES with a random key of 256 bits. The AES key is encrypted with RSA OAEP Encryption Scheme using the receipients public key and prepended.
