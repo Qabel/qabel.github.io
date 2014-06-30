@@ -4,7 +4,7 @@ Client                                                          Server
 |cYEL                                       |                   +-------+
 +--------+ +--------+ +--------+ +----------+                            
 |        | |        | |        | |          |  Qabel protocols  +-------+
-|Contacts| |Config  | |API     | |Bridgehead|<--------------->  |Storage|
+|Contacts| |Config  | |Util    | |Bridgehead|<--------------->  |Storage|
 +--------+-+--------+-+--------+-+----------+                   +-------+
 |Modules^               ^            ^      |                            
 |cBLU   |               |            |      |                   +-------+

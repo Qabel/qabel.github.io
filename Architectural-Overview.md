@@ -5,7 +5,7 @@
 ## Core
 * Bridgehead
  * Interface between modules and Qabel servers. This is the only component implementing Qabel protocols.
-* API
+* Util
  * Utility functions (which don't need network), e.g. encoding / decoding messages.
 * Config
  * Access to the Qabel client configuration, e.g. various user settings.
