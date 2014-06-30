@@ -41,10 +41,11 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'port': INT,
                         'key': STR,
                         'interval': INT,
-                        'modified': 1401731802.81
+                        'modified': DOUBLE
                         "}"
 
 ### Synced settings
+
         Settings        = "{"
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
@@ -54,8 +55,6 @@ Achtung: kein echtes (E)BNF. Quoting (") und Listen (,) valid ergänzen.
                         'identities' : identities,
                         'groups' : groups
                         "}"
-
-
 
         accounts        = "["
                         account*
