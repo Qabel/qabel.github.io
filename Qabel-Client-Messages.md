@@ -1,31 +1,32 @@
-# Qabel Drop
-## This is the intern documentation of the Qabel Drop
+# Qabel client messages
+## The structure and encryption of Qabel messages, transported using the Qabel Drop protocol.
 
-### Words ###
+### Terminology ###
 
-address = qabel address
+address = qabel drop address as URL
 
-user 	= person that uses qabel to drop message(s); sender of the message
+sender 	= person or system creating and sending qabel messages
 
-message = json object that a user wants to drop on the server
+recipient = person or system receiving qabel messages
 
-client	= qabel client (what the user is using)
+client	= qabel client (software the sender is using)
 
-server 	= qabel server (its the drop server in this case)
+server 	= qabel server (drop server referred by the address)
 
-message body = content for the reader
+message payload = data the sender intents to deliver to the recipient
+
+message = json object the client sends to the server
 
 
 ### Attendees ###
 
-* User
+* Sender
 * Server
 
 ### Use cases:
 
 #### Send message ####
-Alice wants to write a message to Bob. Alice has Bobs address, therefor Bob
-has an inbox.
+Alice (sender) wants to write a message to Bob (recipient). Alice has Bobs address and public key, therefor Bob has a valid inbox.
 The client will send the message to the server.
 
 **On sending succes:**
@@ -49,10 +50,13 @@ JSON
 * Timestamp
 * UUID
 * User
-* Message
+* Message payload
 *TODO*
 
 
 ### Encryption ###
 
-The serialized JSON string containing the message body is encrypted using AES with a random key of 256 bits. The AES key is encrypted with RSA OAEP Encryption Scheme using the receipients public key and prepended.
+The final JSON object is serialized as string and compressed with zlib forming the cryptographic plaintext.
+The plaintext is encrypted using AES with a random key of 256 bits forming the ciphertext.
+The AES key is encrypted with RSA OAEP Encryption Scheme using the recipients public key.
+The final data is formed by concatenating, without delimiter, three fields: the encrypted AES key, the AES IV, and the ciphertext. E.g. with 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
