@@ -8,4 +8,5 @@ This includes:
 * Announcement of an removed share
 * Microblogging messages
 * Chat messages
+
 This list can be extended as needed.
