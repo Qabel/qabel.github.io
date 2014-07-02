@@ -38,7 +38,7 @@ The server will return the specific [response](https://github.com/Qabel/intern-d
 User will be informed. Client will retry to send it.
 
 #### Get message ####
-Alice (receiver) wants to receive actual messages from her message inbox. Alice has a RSA key pair and an address, therefor a valid inbox.
+Alice (receiver) wants to receive new messages. Alice has a private key and an address, therefor a valid inbox.
 The client will request new messages from the server.
 
 **On receiving success:**
@@ -69,7 +69,7 @@ The timestamp describes the date of generation of a message.
 **Message-type:**
 
 The message-type is used for the identification of the message and thus describes its function, e.g. if it announces an upload of a new share or if it is a simple chat message. Via the message-type the message can be assigned after receipt to the dedicated component where it will be processed.
-* type = INT
+* type = STRING
 
 **Message:**
 
@@ -79,7 +79,7 @@ The message field contains the payload of the message.
 **Sender:**
 
 The sender contains an ID of the sender of the message.
-* type = not yet defined  *TODO*
+* type = maybe the senders public key?
 
 ### Encryption ###
 
