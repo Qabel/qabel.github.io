@@ -1,11 +1,11 @@
 # The drop component
 ## Abstract
-The drop component is one of the core components of Qabel. It serves the main communication between the clients.
+The drop component is a core component of Qabel. It serves as general communication between clients.
 
 This includes:
-* Announcement of an uploaded share (link of the upload and the associated AES key)
-* Announcement of an actualized share
-* Announcement of an removed share
+* Establishing contact and notification to update contact info
+* Announcement of an uploaded file
+* Announcement of an created/updated/removed share
 * Microblogging messages
 * Chat messages
 
