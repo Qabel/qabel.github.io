@@ -82,8 +82,12 @@ The sender contains an ID of the sender of the message.
 * type = maybe the senders public key?
 
 ### Sequence diagrams ###
+
 **Send message:**
 ![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_send.png)
+
+**Receive messages:**
+![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_receive.png)
 
 ### Encryption ###
 
