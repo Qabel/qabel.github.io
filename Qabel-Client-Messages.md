@@ -81,6 +81,10 @@ The message field contains the payload of the message.
 The sender contains an ID of the sender of the message.
 * type = maybe the senders public key?
 
+### Sequence diagrams ###
+**Send message:**
+![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_send.png)
+
 ### Encryption ###
 
 The final JSON object is serialized as string and compressed with zlib forming the cryptographic plaintext.
