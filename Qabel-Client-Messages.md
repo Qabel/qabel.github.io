@@ -57,22 +57,27 @@ A message is packed into JSON format containing the following fields:
 * sender
 
 **UUID:**
+
 The uuid is created during the generation of a message and is used to uniquely identify the message.
 * type = INT
 
 **Timestamp:**
+
 The timestamp describes the date of generation of a message.
 * type = INT
 
 **Message-type:**
+
 The message-type is used for the identification of the message and thus describes its function, e.g. if it announces an upload of a new share or if it is a simple chat message. Via the message-type the message can be assigned after receipt to the dedicated component where it will be processed.
 * type = INT
 
 **Message:**
+
 The message field contains the payload of the message.
 * type = STRING
 
 **Sender:**
+
 The sender contains an ID of the sender of the message.
 * type = not yet defined  *TODO*
 
