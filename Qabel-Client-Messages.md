@@ -95,3 +95,7 @@ The final JSON object is serialized as string and compressed with zlib forming t
 The plaintext is encrypted using AES with a random key of 256 bits forming the ciphertext.
 The AES key is encrypted with RSA OAEP Encryption Scheme using the recipients public key.
 The final data is formed by concatenating, without delimiter, three fields: the encrypted AES key, the AES IV, and the ciphertext. E.g. with 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
+
+### Open issues ###
+
+* How to sync sent messages between clients of the same user/identity?
