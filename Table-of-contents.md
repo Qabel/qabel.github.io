@@ -3,7 +3,7 @@
 
 1. [[Introduction|Introduction]]
 2. [[Architectural Overview|Architectural Overview]]
-2. [[Components|Components]] (this shortly describes the component, i.e. "why" we have it and "for what". No implementation details are given in this chapter. This is for ppl w/o knowledge of the architecture.)
+2. [[Components|Components]] (this briefly describes components, i.e. "why" we have each and "what for". No implementation details are given in this chapter. For people without knowledge of the architecture.)
   1. [[Bridgehead|Components-Bridgehead]]
   2. [[API|Components-API]]
   3. [[Contacts|Components-Contacts]]
