@@ -26,3 +26,6 @@ Provide the principal functionality end-users expect of the Qabel client. E.g. M
  * Will be used to find contacts (similar to PGP keyserver)
 * Sync
  * Provides syncing Qabel contacts and Qabel config between an end-user's devices.
+
+# Further reading
+For a more comprehensive description of the components mentioned above please see the [[table of contents|Table-of-contents]] and pick your desired topic.
