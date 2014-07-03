@@ -1,7 +1,7 @@
 # Qabel client messages
 ## The structure and encryption of Qabel messages, transported using the Qabel Drop protocol.
 
-### Terminology ###
+### Terminology
 
 address = qabel drop address as URL
 
@@ -18,14 +18,14 @@ message payload = data the sender intents to deliver to the recipient
 message = json object the client sends to the server
 
 
-### Attendees ###
+### Attendees
 
 * Sender
 * Server
 
 ### Use cases:
 
-#### Send message ####
+#### Send message
 Alice (sender) wants to write a message to Bob (recipient). Alice has Bobs address and public key, therefor Bob has a valid inbox.
 The client will send the message to the server.
 
@@ -37,7 +37,7 @@ Message will be put into history.
 The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#r%C3%BCckgabewerte).
 User will be informed. Client will retry to send it.
 
-#### Get message ####
+#### Get message
 Alice (receiver) wants to receive new messages. Alice has a private key and an address, therefor a valid inbox.
 The client will request new messages from the server.
 
@@ -48,7 +48,7 @@ The server will return a specific [response] (https://github.com/Qabel/intern-do
 The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#r%C3%BCckgabewerte).
 User will be informed and the client will retry to receive the messages.
 
-### Format and buildup/structure of a message ###
+### Format and buildup/structure of a message
 A message is packed into JSON format containing the following fields:
 * uuid
 * timestamp
@@ -81,7 +81,7 @@ The message field contains the payload of the message.
 The sender contains an ID of the sender of the message.
 * type = maybe the senders public key?
 
-### Sequence diagrams ###
+### Sequence diagrams
 
 **Send message:**
 ![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_send.png)
@@ -89,13 +89,15 @@ The sender contains an ID of the sender of the message.
 **Receive messages:**
 ![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_receive.png)
 
-### Encryption ###
+### Encryption
 
 The final JSON object is serialized as string and compressed with zlib forming the cryptographic plaintext.
 The plaintext is encrypted using AES with a random key of 256 bits forming the ciphertext.
 The AES key is encrypted with RSA OAEP Encryption Scheme using the recipients public key.
 The final data is formed by concatenating, without delimiter, three fields: the encrypted AES key, the AES IV, and the ciphertext. E.g. with 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
 
-### Open issues ###
+### History / Persistence
 
-* How to sync sent messages between clients of the same user/identity?
+All messages that need to be tracked will be persisted with or alongside the configuration.
+Messages that are relevant to all devices of the user are stored on the Firefox Sync server.
+
