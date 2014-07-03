@@ -3,7 +3,7 @@
 
 1. [[Introduction|Introduction]]
 2. [[Architectural Overview|Architectural Overview]]
-2. [[Components|Components]]
+2. [[Components|Components]] (this shortly describes the component, i.e. "why" we have it and "for what". No implementation details are given in this chapter. This is for ppl w/o knowledge of the architecture.)
   1. [[Bridgehead|Components-Bridgehead]]
   2. [[API|Components-API]]
   3. [[Contacts|Components-Contacts]]
@@ -12,7 +12,7 @@
   6. [[Sync|Components-Sync]]
   7. [[Browse|Components-Browse]]
   8. [[Modules|Components-Modules]]
-3. [[Client|Client]] (this is the "inside" view on communication and maybe some implementation specific notes)
+3. [[Client|Client]] (this is the "inside" view on communication and maybe some implementation specific notes. This chapter is written for client -- core and maybe module -- developers.)
   1. [[Bridgehead|Client-Bridgehead]]
   2. [[Configuration|Qabel-Client-Configuration]]
   3. [[Sync|Qabel-Client-Sync]]
