@@ -24,6 +24,8 @@ The setting item have two sub items
 * preferences
 * ffsync_user
 
+Summary
+
         Settings        = "{"
                         'preferences' : preferences,
                         'ffsync_user' : ffsync_user
@@ -52,6 +54,8 @@ for the library and the UI.
  * desktop_width: The width of the GUI
  * desktop_height: The height of the GUI
 
+Summary
+
         preferences     = "{"
                         'use_websockets' : BOOL,
                         'default_poll_inteval' : NUM,
@@ -79,6 +83,8 @@ FF sync server
  * interval:
  * modified:
 
+Summary
+
         ffsync_user     = "{"
                         'updated': INT,
                         'username': STR,
@@ -102,6 +108,8 @@ The setting item have seven sub items
  * identities
  * groups
 
+Summary
+
         Settings        = "{"
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
@@ -116,12 +124,16 @@ The setting item have seven sub items
 
 The item "accounts" include an array of account setting structure
 
+Summary
+
         accounts        = "["
                         account*
                         "]"
 
 
 #### Account
+
+Summary
 
         account         = "{"
                         'id': INT,
@@ -137,11 +149,15 @@ The item "accounts" include an array of account setting structure
 
 The item "drop_servers" include an array of the drop server setting structure
 
+Summary
+
         drop_servers    = "["
                         drop_server*
                         "]"
 
 #### Drop Server
+
+Summary
 
         drop_server     = "{"
                         'id': INT,
@@ -159,6 +175,8 @@ The item "drop_servers" include an array of the drop server setting structure
 
 The item "block_servers" include an array of the block server setting structure
 
+Summary
+
         block_servers   = "["
                         block_server*
                         "]"
@@ -169,6 +187,8 @@ The item "block_servers" include an array of the block server setting structure
  * port: Port to use
  * path: Path on the server
  * auth: Authentification have to use to get or set data
+
+Summary
 
         block_server    = "{"
                         'id': INT,
@@ -185,6 +205,8 @@ The item "block_servers" include an array of the block server setting structure
 
 The item "uploads" include an array of the upload setting structure
 
+Summary
+
         uploads         = "["
                         upload*
                         "]"
@@ -195,6 +217,8 @@ The item "uploads" include an array of the upload setting structure
  * public: Public unique id of the data storage on the server
  * token: Token to upload data to storage
  * revoke_token: Token to delete data storage
+
+Summary
 
         upload          = "{"
                         'id': INT,
@@ -211,6 +235,8 @@ The item "uploads" include an array of the upload setting structure
 
 The item "shares" include an array of the share setting structure
 
+Summary
+
         shares          = "["
                         share*
                         "]"
@@ -223,6 +249,8 @@ The item "shares" include an array of the share setting structure
  * alias_id: Id of the identity. All contact of this identity can read the
  shared data
  * contacts: Array of the contact ids which can read the shared data
+
+Summary
 
         share           = "{"
                         'id': INT,
@@ -240,11 +268,15 @@ The item "shares" include an array of the share setting structure
 
 The item "micro_blogs" include an array of the mirco blog setting structure
 
+Summary
+
         micro_blogs     = "["
                          micro_blog*
                         "]"
 
 #### Micro Block
+
+Summary
 
         micro_blog      = "{"
                         'id': INT,
@@ -261,6 +293,8 @@ The item "micro_blogs" include an array of the mirco blog setting structure
 
 The item "identities" include an array of the identity setting structure
 
+Summary
+
         identities      = "["
                         identity*
                         "]"
@@ -270,6 +304,8 @@ The item "identities" include an array of the identity setting structure
  * alias: Alias of the user. The user is known with that alias to other users
  * private_key: Private key to decrypt messages to this identity
  * inbox: Inbox URL
+
+Summary
 
         identity        = "{"
                         'id': INT,
@@ -285,11 +321,15 @@ The item "identities" include an array of the identity setting structure
 
 The item "groups" include an array of the group setting structure
 
+Summary
+
         groups          = "["
                         group*
                         "]"
 
 #### Group
+
+Summary
 
         group           = "{"
                         'id': INT,
