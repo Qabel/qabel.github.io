@@ -18,7 +18,7 @@
   3. [[Sync|Qabel-Client-Sync]]
   4. [[Contact for messages|Qabel-Client-Contact-Messages]]
 5. [[Client Exchange|Qabel-Client-Exchange]] (this is the "inside" view on communication and maybe some implementation specific notes.)
-  5. [[Contact for address book|Qabel-Client-Contact]]
+  5. [[Contact Exchange|Qabel-Client-Contact]]
   6. [[Shares|Qabel-Client-Shares]]
   7. [[Access-Lists|Qabel-Client-AccessLists]]
   8. [[Blocks|Qabel-Client-Blocks]] / [[Notes|Qabel-Client-Blocks-Notes]]
