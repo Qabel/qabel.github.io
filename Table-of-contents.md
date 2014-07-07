@@ -3,7 +3,7 @@
 
 1. [[Introduction|Introduction]]
 2. [[Architectural Overview|Architectural Overview]]
-2. [[Components|Components]] (this briefly describes components, i.e. "why" we have each and "what for". No implementation details are given in this chapter. For people without knowledge of the architecture.)
+3. [[Components|Components]] (this briefly describes components, i.e. "why" we have each and "what for". No implementation details are given in this chapter. For people without knowledge of the architecture.)
   1. [[Bridgehead|Components-Bridgehead]]
   2. [[API|Components-API]]
   3. [[Contacts|Components-Contacts]]
@@ -12,26 +12,27 @@
   6. [[Sync|Components-Sync]]
   7. [[Browse|Components-Browse]]
   8. [[Modules|Components-Modules]]
-3. [[Client|Client]] (this is the "inside" view on communication and maybe some implementation specific notes. This chapter is written for client -- core and maybe module -- developers.)
+4. [[Client Data|Qabel-Client-Data]] (this is the internal state and data of the client as seen by core and maybe module developers.)
   1. [[Bridgehead|Client-Bridgehead]]
   2. [[Configuration|Qabel-Client-Configuration]]
   3. [[Sync|Qabel-Client-Sync]]
   4. [[Contact for messages|Qabel-Client-Contact-Messages]]
+5. [[Client Exchange|Qabel-Client-Exchange]] (this is the "inside" view on communication and maybe some implementation specific notes.)
   5. [[Contact for address book|Qabel-Client-Contact]]
   6. [[Shares|Qabel-Client-Shares]]
   7. [[Access-Lists|Qabel-Client-AccessLists]]
-  8. [[Blocks|Qabel-Client-Blocks]] [[Notes|Qabel-Client-Blocks-Notes]]
+  8. [[Blocks|Qabel-Client-Blocks]] / [[Notes|Qabel-Client-Blocks-Notes]]
   9. [[Messages|Qabel-Client-Messages]]
-4. [[Server Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
+6. [[Server Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
   1. [[Qabel-Drop-Protocol|Qabel-Protocol-Drop]]
   2. [[Qabel-Storage-Protocol|Qabel-Protocol-Storage]]
   3. [[Qabel-Sync-Protocol|Qabel-Protocol-Sync]]
   4. [[Qabel-Browse-Protocol|Qabel-Protocol-Browse]]
   5. [[Qabel-ProofOfWork-Protocol|Qabel-Protocol-ProofOfWork]]
-5. [[Server|Server]] (these are implementation specific notes on the servers)
+7. [[Server|Server]] (these are implementation specific notes on the servers)
   1. [[Qabel-Drop-Server|Server-Drop]]
   2. [[Qabel-Storage-Server|Server-Storage]]
   3. [[Qabel-Sync-Server|Server-Sync]]
   4. [[Qabel-Browse-Server|Server-Browse]]
-6. [[Appendix|Appendix]]
+8. [[Appendix|Appendix]]
   1. [[Glossary|Appendix-Glossary]]
