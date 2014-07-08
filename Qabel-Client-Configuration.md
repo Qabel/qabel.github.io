@@ -1,5 +1,7 @@
 # Settings Client Notes
 
+**Warum ist Shares doppelt? Müssen wir dafür einen anderen Namen finden?**
+
 ## Abstract
 Notes on configuration settings stored on each client.
 
@@ -20,9 +22,11 @@ The next settings are common and often used in the settings group.
 
 ### Local settings
 
-The settings item has two sub items
+The settings item has these sub items
 * preferences
 * ffsync_user
+* shares?
+* micro_blogs?
 
 Summary
 
@@ -30,7 +34,7 @@ Summary
                         'preferences' : preferences,
                         'ffsync_user' : ffsync_user,
                         'shares' : shares,
-                        'micro_blocks' : micro_blocks
+                        'micro_blogs' : micro_blogs
                         "}"
 
 #### Preferences
@@ -72,10 +76,10 @@ Summary
 
 #### FF Sync User
 
-The preferences are a collection of settings which is used to communicate with the
+The "ffsync_user" item is a collection of settings which is used to communicate with the
 FF sync server
 
- * updated: As decribed in common settings
+ * updated: As described in common settings
  * username:
  * mail:
  * password:
@@ -133,7 +137,7 @@ Summary
                          micro_blog*
                         "]"
 
-#### Micro Block
+#### Micro Blog
 
 Summary
 
@@ -163,7 +167,7 @@ Summary
                         'drop_servers' : drop_servers,
                         'block_servers' : block_servers,
                         'shares' : shares,
-                        'micro_blocks' : micro_blocks,
+                        'micro_blogs' : micro_blogs,
                         'uploads' : uploads,
                         'identities' : identities,
                         'groups' : groups
@@ -321,7 +325,7 @@ Summary
                          micro_blog*
                         "]"
 
-#### Micro Block
+#### Micro Blog
 
 Summary
 
