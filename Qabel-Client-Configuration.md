@@ -80,14 +80,14 @@ The "ffsync_user" item is a collection of settings which is used to communicate 
 FF sync server
 
  * updated: As described in common settings
- * username:
- * mail:
- * password:
- * url:
- * port:
- * key:
- * interval:
- * modified:
+ * username: base32 encoded sha1 checksum of mail address
+ * mail: mail address for the username
+ * password: password to authenticate for requests
+ * url: ffsync server url
+ * port: ffsync server port
+ * key: key to de- and encrypt sync data
+ * interval: time for sync interval in seconds
+ * modified: unix timestamp for last sync
 
 Summary
 
