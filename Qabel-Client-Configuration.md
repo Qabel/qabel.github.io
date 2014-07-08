@@ -1,7 +1,5 @@
 # Settings Client Notes
 
-**Warum ist Shares doppelt? Müssen wir dafür einen anderen Namen finden?**
-
 ## Abstract
 Notes on configuration settings stored on each client.
 
@@ -25,7 +23,7 @@ The next settings are common and often used in the settings group.
 The settings item has these sub items
 * preferences
 * ffsync_user
-* shares?
+* local_shares
 * micro_blogs?
 
 Summary
@@ -33,7 +31,7 @@ Summary
         Local_Settings        = "{"
                         'preferences' : preferences,
                         'ffsync_user' : ffsync_user,
-                        'shares' : shares,
+                        'local_shares' : local_shares,
                         'micro_blogs' : micro_blogs
                         "}"
 
@@ -103,23 +101,23 @@ Summary
                         'modified': DOUBLE
                         "}"
 
-#### Shares
+#### Local Shares
 
-The item "shares" includes an array of share settings structures
+The item "local_shares" includes an array of local share settings structures
 
 Summary
 
-        shares          = "["
-                        share*
+        local_shares          = "["
+                        local_share*
                         "]"
 
-#### Share
+#### Local Share
 
  * basedir: Base dir of the share on the locale device
 
 Summary
 
-        share           = "{"
+        local_share           = "{"
                         'id': INT,
                         'updated': INT,
                         'created': INT,
