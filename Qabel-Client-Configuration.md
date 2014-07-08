@@ -9,18 +9,18 @@ The configuration has two parts. The first part is configuration data which is t
 
 ### Common Settings
 
-The next setting are common and often use in the setting groups.
+The next settings are common and often used in the settings group.
 
- * id: The id of the setting structure. This shall be an unique id in the
+ * id: The id of the setting structure. This shall be a unique id in the
  application
- * updated: The timestamp when the setting structure was updated last time
- * created: The timestamp when the setting structure was created
- * deleted: The timestamp when the setting was deleted. After a time x this
- structure will be deleted completed
+ * updated: The timestamp when the settings structure was updated last time
+ * created: The timestamp when the settings structure was created
+ * deleted: The timestamp when the settings structure was deleted. After a time x this
+ structure will be deleted completely
 
 ### Local settings
 
-The setting item have two sub items
+The settings item has two sub items
 * preferences
 * ffsync_user
 
@@ -33,24 +33,24 @@ Summary
 
 #### Preferences
 
-The preferences are a collection of setting which describe some common setting
+The preferences are a collection of settings which describes some common settings
 for the library and the UI.
 
  * use_websockets: The library shall use web sockets for the communication
  with the qabel server
  default: true
- * default_poll_inteval: This setting describe the default poll interval on
+ * default_poll_interval: This setting describes the default polling interval on
  desktop machine
- * default_poll_inteval_wlan: This setting describe the default poll interval
- when the machine using wireless connection. This parameter is for mobile
+ * default_poll_interval_wlan: This setting describes the default polling interval
+ when the machine is using wireless connection. This parameter is for mobile
  devices
- * default_poll_inteval_mobile: This setting describe the default poll interval
- when the machine using mobile connection. This parameter is only for mobile
+ * default_poll_interval_mobile: This setting describes the default polling interval
+ when the machine is using mobile connection. This parameter is only for mobile
  connection
- * start_minimized: When this parameter is set the application started in
+ * start_minimized: When this parameter is set the application is started in
  background
- * desktop_x: The start point of the GUI in x direction
- * desktop_y: The start point of the GUI in y direction
+ * desktop_x: The start position of the GUI in x direction
+ * desktop_y: The start position of the GUI in y direction
  * desktop_width: The width of the GUI
  * desktop_height: The height of the GUI
 
@@ -58,9 +58,9 @@ Summary
 
         preferences     = "{"
                         'use_websockets' : BOOL,
-                        'default_poll_inteval' : NUM,
-                        'default_poll_inteval_wlan' : NUM,
-                        'default_poll_inteval_mobile' : NUM,
+                        'default_poll_interval' : NUM,
+                        'default_poll_interval_wlan' : NUM,
+                        'default_poll_interval_mobile' : NUM,
                         'start_minimized' : BOOL,
                         'desktop_x' : STR,
                         'desktop_y' : STR,
@@ -70,10 +70,10 @@ Summary
 
 #### FF Sync User
 
-The preferences are a collection of setting which used to communicate with the
+The preferences are a collection of settings which is used to communicate with the
 FF sync server
 
- * updated: As decripted in common settings
+ * updated: As decribed in common settings
  * username:
  * mail:
  * password:
@@ -99,7 +99,7 @@ Summary
 
 ### Synced settings
 
-The setting item have seven sub items
+This settings items has seven sub items
  * accounts
  * drop_servers
  * block_servers
@@ -122,7 +122,7 @@ Summary
 
 #### Accounts
 
-The item "accounts" include an array of account setting structure
+The item "accounts" includes an array of account settings structures
 
 Summary
 
@@ -147,7 +147,7 @@ Summary
 
 #### Drop Servers
 
-The item "drop_servers" include an array of the drop server setting structure
+The item "drop_servers" includes an array of drop server settings structures
 
 Summary
 
@@ -173,7 +173,7 @@ Summary
 
 #### Block Servers
 
-The item "block_servers" include an array of the block server setting structure
+The item "block_servers" includes an array of block server settings structures
 
 Summary
 
@@ -186,7 +186,7 @@ Summary
  * server: Name of the server
  * port: Port to use
  * path: Path on the server
- * auth: Authentification have to use to get or set data
+ * auth: Authentification to use to get or set data
 
 Summary
 
@@ -203,7 +203,7 @@ Summary
 
 #### Uploads
 
-The item "uploads" include an array of the upload setting structure
+The item "uploads" includes an array of upload settings structures
 
 Summary
 
@@ -213,10 +213,10 @@ Summary
 
 #### Upload
 
- * block_server_id: Id of the block server setting structure
+ * block_server_id: Id of the block server settings structure
  * public: Public unique id of the data storage on the server
  * token: Token to upload data to storage
- * revoke_token: Token to delete data storage
+ * revoke_token: Token to delete data from storage
 
 Summary
 
@@ -233,7 +233,7 @@ Summary
 
 #### Shares
 
-The item "shares" include an array of the share setting structure
+The item "shares" includes an array of share settings structures
 
 Summary
 
@@ -266,7 +266,7 @@ Summary
 
 #### Micro Blogs
 
-The item "micro_blogs" include an array of the mirco blog setting structure
+The item "micro_blogs" includes an array of micro blog settings structures
 
 Summary
 
@@ -291,7 +291,7 @@ Summary
 
 #### Identities
 
-The item "identities" include an array of the identity setting structure
+The item "identities" includes an array of identity settings structures
 
 Summary
 
@@ -319,7 +319,7 @@ Summary
 
 #### Groups
 
-The item "groups" include an array of the group setting structure
+The item "groups" includes an array of group settings structures
 
 Summary
 
