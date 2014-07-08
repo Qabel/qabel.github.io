@@ -10,6 +10,29 @@ Um Kontaktdaten zu weiterzugeben und auf dem Laufenden zu halten werden Contact-
 
 Die Karten sind ein JSON String von Einträgen und Listen.
 
+### Contacs Settings
+
+The settings item has one sub items
+* contacts
+
+Summary
+
+    Contacts        = "{"
+                    'contacts' : contacts
+                    "}"
+
+#### Contacts
+
+The item "contacts" includes an array of contact settings structures
+
+Summary
+
+    contacts        = "["
+                    contact*
+                    "]"
+
+#### Contact
+
 The following items are fixed for all contacts and will be handled from the core
 
 * id (id of the contact (random number))
@@ -27,15 +50,7 @@ Other items can be added but will not be handled from the core but needed from t
 
 The name of the file in the config and the record name in the contact collection on the FFsync are the id of the identity.
 
-## JSON structure
-
-    Contacts        = "{"
-                    'contacts' : contacts
-                    "}"
-
-    contacts        = "["
-                    contact*
-                    "]"
+Summary
 
     contact         = "{"
                     'id': INT,
