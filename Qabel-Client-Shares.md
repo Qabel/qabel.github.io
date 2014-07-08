@@ -2,7 +2,7 @@
 
 ## Abstract
 
-A structured format for file data.
+A concept to backup and share file data.
 
 ## Terminology
 
