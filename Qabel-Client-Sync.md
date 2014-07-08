@@ -58,6 +58,7 @@ https://docs.services.mozilla.com/sync/index.html
 * Only one collection is used (the collection is named "collection")
 * Key Bundles are not used (the crypto key, wich is used in the collection is saved in the local Qabel config)
 * Every config section is saved in a different record
+
 ## New Qabel version
 * Every config section wich contains objects gets an own collection (eg. accounts, drop servers)
 * Key bundles are used (the crypto key is saved in the Qabel Config)
