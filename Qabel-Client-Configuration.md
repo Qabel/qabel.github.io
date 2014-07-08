@@ -30,7 +30,7 @@ The settings item has these sub items
 
 Summary
 
-        Settings        = "{"
+        Local_Settings        = "{"
                         'preferences' : preferences,
                         'ffsync_user' : ffsync_user,
                         'shares' : shares,
