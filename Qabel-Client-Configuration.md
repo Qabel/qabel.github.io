@@ -28,7 +28,9 @@ Summary
 
         Settings        = "{"
                         'preferences' : preferences,
-                        'ffsync_user' : ffsync_user
+                        'ffsync_user' : ffsync_user,
+                        'shares' : shares,
+                        'micro_blocks' : micro_blocks
                         "}"
 
 #### Preferences
@@ -97,6 +99,52 @@ Summary
                         'modified': DOUBLE
                         "}"
 
+#### Shares
+
+The item "shares" includes an array of share settings structures
+
+Summary
+
+        shares          = "["
+                        share*
+                        "]"
+
+#### Share
+
+ * basedir: Base dir of the share on the locale device
+
+Summary
+
+        share           = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,
+                        'basedir' : PATH,
+                        "}"
+
+#### Micro Blogs
+
+The item "micro_blogs" includes an array of micro blog settings structures
+
+Summary
+
+        micro_blogs     = "["
+                         micro_blog*
+                        "]"
+
+#### Micro Block
+
+Summary
+
+        micro_blog      = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,
+                        'basedir' : PATH,
+                        "}"
+
 ### Synced settings
 
 This settings items has seven sub items
@@ -115,6 +163,7 @@ Summary
                         'drop_servers' : drop_servers,
                         'block_servers' : block_servers,
                         'shares' : shares,
+                        'micro_blocks' : micro_blocks,
                         'uploads' : uploads,
                         'identities' : identities,
                         'groups' : groups
@@ -243,7 +292,6 @@ Summary
 
 #### Share
 
- * basedir: Base dir of the share on the locale device
  * key: Encryption key of the share
  * upload_id: Id of the upload setting structure
  * alias_id: Id of the identity. All contact of this identity can read the
@@ -257,7 +305,6 @@ Summary
                         'updated': INT,
                         'created': INT,
                         'deleted': INT,
-                        'basedir' : PATH,
                         'key': STR
                         'upload_id' : INT,
                         'alias_id' : INT,
