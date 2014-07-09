@@ -20,6 +20,8 @@ The list a JSON-Object with the following members:
 
 ### Gegenvorschlag
 
+Als ID für die Teilnehmer sehe ich nur ihren jew. Public-Key (resp. Fingerprint davon). Das könnte aber auch so als Lookup in deinen Vorschlag passen.
+
 Anstatt einer Liste mit Arrays, auf denen wir Linear Suchen müssen, definieren wir ein Object, welches als Keys die benutzerID und als Wert ein membership objekt definiert. Also wie folgt:
 
 ```javascript
