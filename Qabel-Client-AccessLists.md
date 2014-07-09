@@ -15,6 +15,37 @@ The list a JSON-Object with the following members:
 
 * an array of members with admin access: those members can define new members of this group.
 
+***
+
+
+### Gegenvorschlag
+
+Anstatt einer Liste mit Arrays, auf denen wir Linear Suchen müssen, definieren wir ein Object, welches als Keys die benutzerID und als Wert ein membership objekt definiert. Also wie folgt:
+
+```javascript
+{
+  "members": {
+    "550e8400-e29b-11d4-a716-446655440000": {
+      can_read: true,
+      can_write: true,
+      is_admin: false,
+      ...
+    }
+  }
+}
+```
+
+Vorteile:
+* Statt einer Linearsuche bei normalen Arrays können wir hier bei Objekten mit O(1) zugreifen
+* Zusätzliche Metainformationen, nämlich in welcher Reihenfolge die Benutzer sich anmelden, müssen nicht verschleiert künstlich durch ein shuffle verschleiert werden, sondern sind der Datenstruktur schon inherent.
+* Menschenlesbar
+* Bei Bedarf ist dieses Format einfacher zu erweitern.
+
+Nachteile:
+* höherer Speicherverbrauch
+
+***
+
 Weiterhin noch:
 
 * Ersteller der Liste
