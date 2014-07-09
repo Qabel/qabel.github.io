@@ -37,7 +37,7 @@ Anstatt einer Liste mit Arrays, auf denen wir Linear Suchen müssen, definieren 
 
 Vorteile:
 * Statt einer Linearsuche bei normalen Arrays können wir hier bei Objekten mit O(1) zugreifen
-* Zusätzliche Metainformationen, nämlich in welcher Reihenfolge die Benutzer sich anmelden, müssen nicht verschleiert künstlich durch ein shuffle verschleiert werden, sondern sind der Datenstruktur schon inherent.
+* Zusätzliche Metainformationen, nämlich in welcher Reihenfolge die Benutzer sich anmelden, müssen nicht künstlich durch ein shuffle verschleiert werden, sondern sind der Datenstruktur schon inherent.
 * Menschenlesbar
 * Bei Bedarf ist dieses Format einfacher zu erweitern.
 
