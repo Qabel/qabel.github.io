@@ -163,9 +163,9 @@ The GET method asks for a complete drop or a defined part of the newest entries.
 
 Delivers HTTP 400 if the drop ID is missing or invalid.
 
-Delivers HTTP 404 is the drop is empty.
+Delivers HTTP 404 if the drop is empty.
 
-Delivers HTTP 200 isthe drop contains messages.
+Delivers HTTP 200 if the drop contains messages.
 
 Optional with if-modified-since header:
 
