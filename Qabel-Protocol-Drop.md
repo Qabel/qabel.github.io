@@ -2,7 +2,7 @@
 
 ## Abstract
 
-The dead drop (drops protocol enables participants to *anonymously* and *asynchronously* exchange short *encrypted* messages.
+The dead drop (drops protocol) enables participants to *anonymously* and *asynchronously* exchange short *encrypted* messages.
 Encrypted messages get send to a Drop server where they will be stored for a certain time for arbitrary recipients.
 Right now this principle can generally as well be implemented with established services, like public IMAP mail boxes.
 This protocol shown here however and the explicitly limited amount of operations allow additionally to set up drop servers and to safely maintain them.
