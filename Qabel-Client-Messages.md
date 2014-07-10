@@ -50,13 +50,28 @@ User will be informed and the client will retry to receive the messages.
 
 ### Format and buildup/structure of a message
 A message is packed into JSON format containing the following fields:
-* uuid
+* id
+* created
+* deleted
+* updated
 * timestamp
 * message-type
 * message
 * sender
+* message_date
+* send
+* yes_no
+* key
+* file_name
+* file
+* server
+* port
+* path
+* public
+* id_to_send
+* mac
 
-**UUID:**
+**ID:**
 
 The uuid is created during the generation of a message and is used to uniquely identify the message.
 * type = INT
