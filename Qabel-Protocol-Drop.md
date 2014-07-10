@@ -1,142 +1,142 @@
-# Deaddrop Specification
+# Dead Drop Specification
 
 ## Abstract
 
-Das Deaddrop (Drops)-Protokoll ermöglicht es Teilnehmern, *anonym* und *asynchron* kurze *verschlüsselte* Benachrichtigungen auszutauschen.
-Verschlüsselte Nachrichten werden an einen Drop-Server gesendet und dort eine Zeit lang für beliebige Empfänger bereitgehalten.
-Dieses Prinzip kann derzeit prinzipiell auch mit etablierten Diensten, wie öffentlichen IMAP-Postfächern, bereitgestellt werden.
-Das hier gezeigte Protokoll und der klar begrenzte Umfang an Operationen ermöglicht es jedoch darüber hinaus, Drop-Server einfach einzurichten und sicher zu betreiben.
+The dead drop (drops protocol enables participants to *anonymously* and *asynchronously* exchange short *encrypted* messages.
+Encrypted messages get send to a Drop server where they will be stored for a certain time for arbitrary recipients.
+Right now this principle can generally as well be implemented with established services, like public IMAP mail boxes.
+This protocol shown here however and the explicitly limited amount of operations allow additionally to set up drop servers and to safely maintain them.
 
-Nachfolgend wird ein kurzer Überblick über die Ziele und Strategien gegeben und anschließend werden Details zum Protokoll spezifiziert.
-
-
-## Idee
-
-Ein Dead Drop (Toter Briefkasten) dient zur verschleierten Übermittlung geheimer Nachrichten.
-Üblicherweise sind dies physische Gegenstände, die speziell präpariert sind, um Nachrichten zu beinhalten. Nur dem Sender und Empfänger ist der Ort und die spezielle Charakteristik des Gegenstands bekannt. Der Sender hinterläßt eine Nachricht und wird dann entweder dem Empfänger an anderer Stelle den Eingang einer neuen Nachricht signalisieren oder der Empfänger prüft regelmäßig den Briefkasten. Gegebenenfalls kann ebenfalls an anderer Stelle eine Empfangsbestätigung gegeben werden.
-
-Siehe "Wikipedia":http://de.wikipedia.org/wiki/Toter_Briefkasten
-
-Für das hier beschriebene Protokoll bietet sich eine leicht abgewandelte Metapher an:
-Es ist möglich, wenn auch etwas aufwendig, kodierte Botschaften über Kleinanzeigen in Zeitungen auszutauschen. Diese können von allen gelesen werden, jedoch soll möglichst nur der beabsichtigte Empfänger mit der Nachricht etwas anfangen können.
-Der Sender muß die Nachricht einliefern (und gibt dabei ein wenig seiner Anonymität auf).
-Es kann u.U. von außen klarwerden, daß eine Kommunikation stattfindet, die Teilnehmer sind jedoch schwer zu identifizieren.
-Nachrichten können nicht gelöscht oder verändert werden, sie verfallen jedoch nach einiger Zeit.
+In the following text a short overview of the goals and strategies will be given. Afterwards details of the protocol will be specified.
 
 
-WICHTIG: Nachrichten im Protokoll sind nicht notwendigerweise persistent, sondern existieren nur temporär mit verzögertem Verfall. Das tatsächliche Verfallsdatum hängt von Speicherplatz und anderen Konfigurationen ab, die später definiert werden.
+## Idea
+
+A dead drop is used for an obscure transmission of secret messages.
+It usually is a physical object, which is especially prepared to contain messages. Only sender and recipient know the place and the specific characteristics of the object. The sender leaves a message. Then he either signals the recipient at a different place that a message has been left or the recipient checks regularly for new messages. If need be a conformation of receipt can be left at a different place.
+
+See "Wikipedia":http://en.wikipedia.org/wiki/Dead_drop
 
 
-## Ziele und Prinzipien
+For the here described protocol a slightly different metaphor could be applied:
+It is possible, but a bit laborious, to exchange encrypted messages via classifieds in newspapers. Those can be read by everybody, but only the intended recipient is supposed to be able to make use of them.
+The sender has to deliver the message (while giving up a little bit of his anonymity).
+It might be possible to detect that a communication is happening, but it is difficult to identify the participants.
+Messages cannot be deleted or changed, but they expire after some time.
 
-Die Kommunikation soll anonym erfolgen.
-Optimalerweise sollen keine Teilnehmer der Kommunikation identifizierbar sein.
-Innerhalb des Protokolls werden Benutzer des Systems nicht identifiziert; es gibt keine Benutzerverwaltung, das System ist offen und öffentlich.
+IMPORTANT: Messages in the protocoll are not necessarily persistent. They exist only temporarily with delayed expiration. The actual expiration date is depended upon disk space and other configurations, which will be defined later on.
 
-Auf Netzwerkebene und je nachdem, wieviel Zugang ein potentieller Angreifer hat, ist vollständige Anonymität schwer umzusetzen. Zumindest am Server selbst landet die Kommunikation an und ist identifizierbar.
-Die Tatsache des Stattfindens von Kommunikation ist nicht verbergbar, aber verschleierbar.
-Da die notwendigen IP-Verbindungen prinzipiell sichtbar sind, ist vollständige Anonymität innerhalb des Protokolls nicht machbar.
-Zusätzliche Schichten wie z.B. Tor können die Verbindungen jedoch zusätzlich sichern.
+## Goals and Principles
 
-Abgeschwächt ist unsere Forderung, daß zumindest keine zwei (oder n) Teilnehmer einer Kommunikation identifiziert werden, also die Anonymität der Existenz einer Kommunikation zwischen Personen, nicht die Anonymität aller Teilnehmer des Systems.
+The communication shall be anonymous.
+Ideally no participant of the communication is identifiable.
+Within the protocol users of the system will not be identified; there is no user administration, the system is open and public.
 
-Die Anonymität der Teilnehmer untereinander ist im System selbst gegeben, kann jedoch abhängig von der Identifizierung der Nachrichten innerhalb der Verschlüsselung je nach Anwendungsfall bewußt wieder aufgehoben werden.
+On network level, and depending on the amount of access a potential attacker is having, total anonymity is hard to reach.
+At least at the server the communication is coming in and is identifiable.
+The fact of communication happening cannot be totally hidden, but obscured.
+Because the necessary IP connections are visible in pricipal, total anonymity isn't reachable within the borders of this protocol.
+Additional layers like for example Tor can make a contribution to securing the connections.
 
+Therefor our weakened demand is, that at least no two (or n) participants of a communication can be identified. So the anonymity of the existence of a communication between persons is given, but not the anonymity of all users of the system.
 
-Plausible Deniability eines Kommunikationsvorgangs
-Es kann zwar auf das Vorhandensein einer Kommunikation geschlossen werden, die Teilnehmer können jedoch nicht vollständig identifiziert werden.
-Es gibt keine direkte Adressierung von Nachrichten.
-Eine Möglichkeit der Anonymität der Kommunikationsbeziehung ist die Nutzung eines gemeinsamen Pools von Nachrichten, aus dem alle Teilnehmer alle Nachrichten lesen und erst dann auf den richtigen Empfänger testen können.
-
-Server sind universell und leichtgewichtig
-Einfacher Server per HTTP/REST
-
-Die Kommunikation ist standardkonformes HTTP, läuft ideal über die standardmäßigen IANA-Ports und ist so von außen nicht direkt von anderem HTTP-Verkehr (Web) zu unterscheiden.
-Es ist zudem sichergestellt, dass die Kommunikation über beliebige Proxies und Proxy-Kaskaden abgewickelt werden kann.
-Die einzelnen Teilnehmer dürfen nicht unterscheidbar sein. Es sind keine individualisierten Header-Daten wie z.B. Cookies erlaubt.
-Es darf keine individuelle Authentifikation der Clients vorgenommen werden. Der Zugang ist idealerweise öffentlich, alternativ über ein Authorisierungs-Verfahren, das die Clients nicht identifiziert (gemeinsames Token, z.B. pre-shared key).
+The anonymity of all participants among each other is given in the system itself. But depending on the identification of the messages within the encryption and on the use case it can be intentionally abolished. 
 
 
-Das Protokoll baut auf HTTP auf. Es wird ein knapper Satz von HTTP-Methoden und Standard Header-Feldern unterstützt.
-Der Server kann eigenständig laufen, ggf. hinter einem Reverse-Proxy oder auch in einer vorhandenen HTTP Umgebung (z.B. PHP, Rails, ...).
-Das Protokoll kann jedoch auch auf beliebigen Ports laufen oder, in einer bestehenden Umgebung, in einem beliebigen Pfad installiert werden.
+Plausible Deniability of a communication activity
+It is possible to conclude the existence of a communication. But the participants cannot be completely identified.
+There is no direct addressing of messages.
+One possibility of anonymity of the communication relation is the usage of a common pool of messages, out of which all participants read all messages and only then test for the right recipient.
 
-Durch die Verwendung von HTTP auf Standardports werden eventuelle Einschränkungen wie z.B. geblockte SMTP-Ports umgangen.
-Das Protokoll ist dadurch generell schwer zu blocken, etwas schwerer zu selektieren/analysieren, und es fallen weniger Metadaten an.
+Servers are universal and lightweight.
+Simple server via HTTP/REST.
 
-Bestehende Lösung wie das flexible XMPP (z.B. Chrome-Sync) sind zu umfangreich und zu komplex, eine Analyse der Kommunikation würde erleichtert.
+The communication is standard compliant HTTP, running ideally over standard IANA ports. Therefor from outside it is not distinguishable from other HTTP traffic (web).
+Moreover it is ensured, that the communication can be operated over arbitrary proxies and proxy cascades.
+The single participants must not be distinguishable. No individualized header data like cookies is allowed.
+There must not be an individual authentication of the clients. Ideally the access is public, alternatively with an authorization procedure, which does not identify the clients (common token, e.g. a pre-shared key).
 
-Das Protokoll ist von außen nicht von normalem HTTP-Traffic (Browsing, Download, Webservices) zu unterscheiden. Eine Deep-Packet-Inspection würde zwar die Verwendung des Protokolls selbst zeigen und damit einen Deaddrop-Server identifizierbar machen, tatsächliche Inhaltsanalysen sind jedoch nicht möglich.
+The protocol is building upon HTTP. A tight set of HTTP methods and standard header fields is supported.
+The server can run on its own, where indicated behind a reverse proxy or in a existing http environment (e.g. PHP, Rails, ...).
+The protocol however can run on arbitrary ports or, in an existing environment, be installed in an arbitrary path.
 
+Because of the usage of HTTP on standard ports potential constrictions like blocked SMTP ports can be circumvented.
+Therefor the protocol is hard to block, a little bit more difficult to select/analyze and less meta data is accumulated.
 
-Die Nachrichten und direkte Meta-Daten sind verschlüsselt.
+Existing solutions like the flexible XMPP (e.g. Chrome Sync) are too extensive and too complex. An analysis of the communication would be made easier.
 
-Der Inhalt der Kommunikation soll nicht nach außen dringen.
-Die zwischen den Clients ausgetauschten Nachrichten sind komplett verschlüsselt. Direkt zugehörige Meta-Daten wie z.B. Empfängerlisten, Verschlüsselungsverfahren und -parameter sind im verschlüsselten Block opak. Der Server kann keine Annahmen über die Struktur oder gar den Inhalt machen.
-Eine mögliche Authentifizierung des Senders geschieht innerhalb der verschlüsselten Nachricht.
-
-Die Details der Verschlüsselung sind den Client-Anwendungen überlassen, hier gehen wir von einem Public-Key-Verfahren aus, dessen Aushandlung außerhalb des Deaddrop-Protokolls stattfindet. Daher ist der eigentliche Inhalt der Nachrichten reiner Cyphertext.
-Das Protokoll kann dies jedoch nicht erzwingen, es können im Prinzip beliebige Nachrichten getauscht werden, dies ist Aufgabe einer höheren Protokollschicht.
-
-Einziges vom Server genutztes Meta-Datum ist der Zeitpunkt der Einlieferung einer Nachricht und der verwendete Kanal. Dieser Schlüssel wird zum Abfragen neuer Nachrichten verwendet (Als neue-Nachrichten-seit-Datum).
-
-Es ist aber zu beachten das weitere Metadaten bei der Kommunikation anfallen: Länge der Nachrichten, Sender oder letzter Proxy/ Ausgang einer Kaskade.
-
-
-Nachrichten sind asynchron
-
-Der Server puffert eingehende Nachrichten für einen späteren Abruf durch Empfänger.
-Der Umfang des Puffers ist dabei in Länge und Dauer begrenzt.
-Sender und Empfänger müssen somit keinen direkten Datenaustausch vollziehen und sich auch nicht weiter bekannt sein.
-Dies ist nicht notwendigerweise für den Schlüsselaustausch oder ersten Kontakt der Kommunikationspartner anwendbar. Hier ist ein weiterer Kanal vorzusehen (Out-of-Band)
+From the outside the protocol is not distinguishable from normal HTTP traffic (browsing, download, webservices). A deep packet inspection would show the usage of the protocol itself and identify a dead drop server, but actual content analysis is not possible.
 
 
-## Ablauf der Kommunikation
+The messages and direct meta data are encrypted.
 
-Zu einem gegebnen Kommunikationspartern ermittelt der Sender einen Drop, bestehend aus Drop-Server und Drop-ID, welche der Empfänger regelmässig abfragt.
-Diese Information, wie auch verwendete Verschlüsselungsverfahren und Schlüssel hat der Empfänger dem Sender vorab mitgeteilt.
-Zum Einliefern einer Mitteilung verschlüsselt ein Sender den Klartext und legt die verschlüsselte Nachricht (Chiffrat) in einen Drop ab.
-
-Um sicherzustellen, daß die eigentliche Kommunikation zwischen Alice und Bob nicht nachvollzogen werden kann, enthält die Nachricht auf dem Server keine Metadaten über Sender oder Empfänger. Diese werden innerhalb der verschlüsselten Nachricht abgelegt.
-Damit ist zwar keine Zuordnung der Kommunikationspartner möglich, die Empfänger können jedoch auch nicht die für sie bestimmten Nachrichten selektieren.
-Das Protokoll sieht vor, daß stattdessen alle Empfänger regelmäßig gewählte Drops abfragen und jeweils alle neuen Nachrichten empfangen. Erst durch die Entschlüsselung kann dann festgestellt werden, ob eine Nachricht erfolgreich entschlüsselt werden kann und damit an den Empfänger gerichtet ist.
-Es handelt sich also um ein Subscribe to Broadcasts per Pollingverfahren, analog der Kleinanzeigenmetapher oben.
-
-Genauer: Ein Client muß *alle* Nachrichten eines Kanals (Drop) lesen, um die für ihn bestimmten herauszufiltern.
-Dies erzeugt zwar einen Kommunikationsoverhead, stellt aber damit die Anonymität der Kommunikation an sich sicher.
-Es kann daher nur festgestellt werden, daß jemand Teilnehmer des gesamten Systems ist, nicht jedoch die individuellen Kommunikationspartner.
+The content of the communication should not reach the outside.
+The between the clients exchanged messages are completely encrypted. Corresponding meta data like lists of recipients, encryption methods and parameter are opaque in the encrypted block. The server cannot make assumptions over the structure or even the content.
+A possible authentication of the sender is happening inside of the encrypted message.
 
 
-## Zugangsberechtigung
+The details of the encryption lie with the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the dead drop protocol. Hence the actual content of the messages is pure cypher text.
+The protocol cannot enforce this, in principle any message can be exchanged. This is the task a a higher protocol level.
 
-Der Zugang zum Lesen und Schreiben (Erzeugen neuer Nachrichten) ist frei und anonym. Clients können Nachrichten weder löschen noch ändern.
-Optional können Drop-Server auf einen bestimmten Teilnehmerkreis begrenzt werden (z.B. firmenintern, ...).
-Diese privaten Drop-Server definieren ein geteiltes Passwort, das gemeinsam von allen Clients verwendet wird.
+The only meta data used by the server is the incoming time of a message and the used channel. This key is used for polling for new messages (as new-messages-since-date).
 
-
-## ID der Drops
-
-Drops sind mit einem Bitwert gewisser Länge als IDs identifiziert. Codierung ist "URL Friendly Base64", s. "RFC 4648":http://www.ietf.org/rfc/rfc4648.txt "Base 64 Encoding with URL and Filename Safe Alphabet".
-Vorgeschlagen sind 256 Bit (32 Byte) sicherer Zufallswert. (Dies entspricht 43 Ascii-Bytes.)
+It is to bear in mind that additional meta data accumulates during the communication: Length of the messages, sender or the last proxy/exit of a cascade.
 
 
-## Speicher-/Datenmodell für Drop
+Messages are asynchronous
 
-Ein Server enthält alle möglichen (evtl. nicht-manifestierten) Drop-IDs, diese jeweils enthalten die einzelnen Nachrichten als FIFO geordnet nach Einlieferungsdatum.
+The server is buffering the incoming messages for a later call from the recipient.
+The size of the buffer is unlimited in space and duration.
+The sender and the recipient therefor don't need to exchange data directly and don't need to know each other either.
+This isn't necessarily usable for the key exchange or a first contact of the communication partners. For this a additional channel is required. (Out-of-band)
 
-Die Nachrichten werden dabei gesondert nach Drop verwaltet.
+
+## Flow of the Communication
+
+For a given partner of the communication the sender uses a drop, consisting of drop server and drop ID, the recipient is checking on a regular basis.
+This information, as well as used encryption methods and keys, has been given beforehand to the sender by the recipient.
+To consign a message the sender encrypts the plain text and puts the encrypted message (ciphertext) into a drop.
+
+In order to make sure that the actual communication between Alice and Bob cannot be retraced, the message on the server neither contains meta data of the sender nor of the recipient. Those are inside of the encrypted message.
+With this no correlation of the communication partners is possible. On the other hand the recipients cannot select the messages send to them.
+The protocol stipulates, that all recipients poll selected drops on a regular basis and receive all new messages. Only a successful decryption determines that s message is actually for the recipient. 
+It is a Subscribe to Broadcasts via polling - like in the classifieds analogy we used above.
+
+To be more concrete: A client has to read *all* messages of a channel (drop), in order to filter out the ones meant for him.
+This is producing a communication overhead, but is ensuring the anonymity of the communication itself.
+So it can only be determined that somebody is participant in the whole ystem, but not which his communication partners are.
 
 
-## Aufbau der Endpoint URL
+## Access rights
 
-Die Drop-URLs setzen sich aus Protokoll, Server-Adresse (inkl. Port), Service-Pfad und Drop-ID zusammen:
+The access for reading and writing (generation of new messages) is free and anonymous. Clients cannot delete or change messages.
+Optionally drop servers can be limited to a certain circle of participants (company in-house, etc.).
+Those private drop servers define a shared password used by all clients.
 
-- Protokoll ist https oder http.
-- Server-Adresse ist eine IP (IPv4 od. IPv6) oder DNS Host-Adresse. Für nicht-standard Ports wird die Port-Nummer angehängt.
-- Der Service-Pfad ist der Basis-Pfad des Servers (z.B. URL des PHP-Skripts oder Mapping im Reverse-Proxy). Der Pfad schließt den führenden Schrägstrich ("/") ein.
-- Die einzigen gültige vollen URLs eines Drops schließen mit der Drop-ID ab.
 
-In "BNF":http://www.w3.org/Addressing/URL/5_BNF.html "Notation":http://www.w3.org/Notation.html des W3C:
+## Drop IDs
+
+Drops are identifief by a bit value of a certain length as ID. Coding is "URL friendly Base64".
+See "RFC 4648": http://www.ietf.org/rfc/rfc4648.txt "Base 64 Encoding with URL and Filename Safe Alphabet".
+Proposed is 256 bit (32 byte) secure random number. (This is on par with 43 ASCII bytes.)
+
+
+## Memory / Data Model for Drop
+
+A server contains all possible (possibly not manifested= drop IDs. Each of these contain the single messages as a FIFO ordered by the time of their arrival.
+
+The messages get managed separatedly by drop.
+
+## Structur of the Endpoint URL
+
+The Drop URLs are composed of protocol, server address (incl. port), service path and drop ID:
+
+- Protocol is http or https.
+- Server address is an IP (IPv4 or IPv6) or a DNS host address. For non-standard ports, the port number gets appended.
+- The service path is the basis path of the server (e.g. URL of the PHP script or mapping in the reverse proxy). The path includes the leading slash ("/").
+- Valid full URLs of a drop always and with the drop ID.
+
+In "BNF":http://www.w3.org/Addressing/URL/5_BNF.html "Notation":http://www.w3.org/Notation.html of the W3C:
 
 dropurl ::= protocol "://" serviceaddress servicepath "/" dropid
 protocol ::= "https" | "http"
@@ -147,68 +147,67 @@ servicepath ::= "/" [ URLChars, "/" ] *
 friendlybase64char ::= [ "A" - "Z", "a" - "z", "0" - "9", "-", "_" ]
 dropid ::= <43>*friendlybase64char
 
-Beispiel: http://d.example:1234/tools/drop/xzjall...aatr42
+Example: http://d.example:1234/tools/drop/xzjall...aatr42
 
-## Methoden
 
-Es stehen die REST-Methoden GET, HEAD, POST zur Verfügung:
+## Methods
+
+Available are the REST methods GET, HEAD and POST:
 
 ### GET
 
-Die GET-Methode fragt einen kompletten Drop oder einen definierten Teil der neuesten Einträge an.
+The GET method asks for a complete drop or a defined part of the newest entries.
 
 
-#### Rückgabewerte
+#### Return values
 
-Liefert HTTP 400 falls die Drop-ID fehlt oder ungültig ist.
+Delivers HTTP 400 if the drop ID is missing or invalid.
 
-Liefert HTTP 404 falls der Drop leer ist.
+Delivers HTTP 404 is the drop is empty.
 
-Liefert HTTP 200 falls der Drop Nachrichten enthält.
+Delivers HTTP 200 isthe drop contains messages.
 
-Optional mit If-Modified-Since Header:
+Optional with if-modified-since header:
 
-Liefert HTTP 404 falls der Drop leer ist.
-Liefert HTTP 304 falls der Drop keine Nachrichten seit 'If-Modified-Since' enthält.
-Liefert HTTP 200 falls der Drop neue Nachrichten seit 'If-Modified-Since' enthält.
+Delivers HTTP 404 if the drop is empty.
+Delivers HTTP 304 if the drop doesn't contain any messages since 'if-modified-since'.
+Delivers HTTP 200 if the drop contains new messages since 'if-modified-since'.
 
-Der HTTP-Body wird als MIME-Multipart der einzelnen Nachrichten zurückgegeben.
+The HTTP body gets returned as MIME multipart of the single messages.
 
-MIME-Multipart:
-Der 'Content-Type' ist 'multipart/mixed'.
-Jeder einzelne Part hat einen 'Content-Type' von 'application/octet-stream' und einen 'Date'-Header.
-Die Nachrichten sind unkodierte 8 Bit Streams.
+MIME Multipart:
+The 'Content-Type' is 'multipart/mixed'.
+Each individual part has a 'Content-Type' of 'application/octet-stream' and a 'Date' header.
+The messages are uncoded 8-bit streams.
 
 ### HEAD
 
-Die HEAD-Methode ermittelt, ob ein Drop gefüllt ist oder eine neue Nachricht eingetroffen ist.
+The HEAD method determines if a drop is filled or if a new message has arrived.
 
-#### Rückgabewerte
+#### Return values
 
-Liefert HTTP 400 falls die Drop-ID fehlt oder ungültig ist.
+Delivers HTTP 400 if the drop ID is missing or invalid.
+Delivers HTTP 404 if the drop is empty.
+Delivers HTTP 200 if the drop contains messages.
 
-Liefert HTTP 404 falls der Drop leer ist.
-Liefert HTTP 200 falls der Drop Nachrichten enthält.
+Optional with if-modified-since header:
 
-Optional mit If-Modified-Since Header:
+Delivers HTTP 404 if the drop is empty.
+Delivers HTTP 304 if the drop doesn't contain any messages since 'if-modified-since'.
+Delivers HTTP 200 if the drop contains new messages since 'if-modified-since'.
 
-Liefert HTTP 404 falls der Drop leer ist.
-Liefert HTTP 304 falls der Drop keine Nachrichten seit 'If-Modified-Since' enthält.
-Liefert HTTP 200 falls der Drop neue Nachrichten seit 'If-Modified-Since' enthält.
-
-Es wird kein HTTP-Body zurückgegeben.
+No HTTP body gets returned.
 
 ### POST
 
-Mit der POST-Methode wird eine neue Nachricht zu einem Drop hinzugefügt.
-Der Drop kann bereits Nachrichten enthalten oder leer/ungenutzt sein.
+With the POST method a new message gets added to a drop.
+The drop can already contain messages or be empty/unused.
 
-#### Rückgabewerte
+#### Return values
 
-Liefert HTTP 400 falls die Drop-ID fehlt oder ungültig ist.
-Bei Erfolg: liefert HTTP 200 und fügt die Nachricht dem Drop hinzu.
-Die Nachricht muss als HTTP-Body übergeben werden.
-Der HTTP-Body ist ein unkodierter 8 Bit Stream.
+Delivers HTTP 400 if the drop ID is missing or invalid.
+On success: delivers HTTP 200 and adds the message to the drop.
+The message has to be transmitted as HTTP body.
+The HTTP body is a uncoded 8-bit stream.
 
-Es wird kein HTTP-Body zurückgegeben.
-
+No HTTP body gets returned.
