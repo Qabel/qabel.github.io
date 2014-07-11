@@ -50,14 +50,20 @@ User will be informed and the client will retry to receive the messages.
 
 ### Format and buildup/structure of a message
 A message is packed into JSON format containing the following fields:
+
+The common fields from the QblJsonObject class
+
 * id
 * created
 * deleted
 * updated
-* timestamp
-* message-type
-* message
+
+The common fields from the QblJsonChat class. They are mandatory
 * sender
+* message-type
+
+The next are also available but sometimes mandatory for differnt kind of messages
+* message
 * message_date
 * send
 * yes_no
@@ -78,23 +84,43 @@ The uuid is created during the generation of a message and is used to uniquely i
 
 **Timestamp:**
 
-The timestamp describes the date of generation of a message.
+There are some timestamp available. 'created' are always set describes the date of generation of a message. 'update' also always set and describe the last change of the message. On initialisation it is the same as created. 'deleted' is 0 at initialisation and describe the deletation of the message. This item is set that all devices of an user know that this message is deleted.
+* type = INT
+
+**Sender:**
+
+The sender contains an ID of the sender of the message.
 * type = INT
 
 **Message-type:**
 
 The message-type is used for the identification of the message and thus describes its function, e.g. if it announces an upload of a new share or if it is a simple chat message. Via the message-type the message can be assigned after receipt to the dedicated component where it will be processed.
-* type = STRING
+The following types are known:
+
+ * NO_TYPE: No type is set
+ * CHAT: Normal chat message
+ * CHAT_RECEIVED: Other side received message
+ * CHAT_READED: Other side read message
+ * CHAT_KNOCKING: Other side is knocking
+ * CHAT_FILE_NEW: Other side wants to send a file
+ * CHAT_FILE_ACCEPTED: Other side accept file or not
+ * CHAT_FILE_RECEIVED: Other side received the file -> delete from storage
+ * CONTACT: Received a new contact request
+ * CONTACT_IMAGE: Contact send its image
+ * UPLOAD:
+ * UPLOAD_LINK: Share upload link with other
+ * UPLOAD_LINK_ACCEPTED: Other side is accepted share upload link
+ * UPLOAD_NEW_VERSION: Uploaded archive is changed
+ * UPLOAD_NEW_VERSION_MAC: Uploaded archive is changed. This message is for the uploader that its other devices now that archive is updated
+ * UPLOAD_LINK_REMOVED: Other is not longer allowed to see data
+ * UPLOAD_REMOVED: Uploaded archive is deleted
+
+* type = INT
 
 **Message:**
 
 The message field contains the payload of the message.
 * type = STRING
-
-**Sender:**
-
-The sender contains an ID of the sender of the message.
-* type = maybe the senders public key?
 
 ### Sequence diagrams
 
