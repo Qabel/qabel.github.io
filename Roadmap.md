@@ -22,3 +22,16 @@
     * Klasse für (de-)serialisierung der Kontakte schreiben. (Lade Kontakte aus Datei, übernehme sie ins singleton, speichere singleton in Datei)
     * später: Datenbankanbindung
  * utils -> write on demand
+* Android Applikation
+   * TODO
+* Desktop Applikation
+   * TODO
+* Modules (Desktop/Android)
+  * Mail
+      * TODO
+  * FileSync
+      * TODO
+  * Sync
+      * TODO
+  * Filesharing
+      * TODO
