@@ -1,5 +1,5 @@
-# Qabel client messages
-## The structure and encryption of Qabel messages, transported using the Qabel Drop protocol.
+# Qabel client drop
+## The structure and encryption of Qabel drops, transported using the Qabel Drop protocol.
 
 ### Terminology
 
