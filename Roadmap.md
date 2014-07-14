@@ -12,12 +12,12 @@
        * Implementieren des Filedownloads
  * config - Verhalten des Clients abspeichern
     * Zugriff über Singleton
-    * Datenstruktur aus [[Qabel-Client-Configuration]] in Java Source im Package de.qabel.config
+    * Datenstruktur aus [[Qabel-Client-Configuration]] in Java Source im Package de.qabel.config definieren.
     * Annotations für GSON hinzufügen
     * Klasse für (de-)serialisierung der Konfiguration schreiben. (Lade Config aus Datei, übernehme sie ins singleton, speichere singleton in Datei)
  * contacts 
     * Zugriff über Singleton
-    * Datenstruktur aus [[Qabel-Client-Contact-Messages]] in Java Source im Package de.qabel.contact
+    * Datenstruktur aus [[Qabel-Client-Contact-Messages]] in Java Source im Package de.qabel.contact definieren.
     * Annotations für GSON hinzufügen
     * Klasse für (de-)serialisierung der Kontakte schreiben. (Lade Kontakte aus Datei, übernehme sie ins singleton, speichere singleton in Datei)
     * später: Datenbankanbindung
