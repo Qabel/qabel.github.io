@@ -1,7 +1,15 @@
 * core
+ * modulemanager
+    * lädt module
+    * empfängt Nachrichten von drop und gibt sie an modul weiter
  * bridgehead
-    * API für Drop (Event System, encryption)
-    * API für Storage (File Up/Download, chunking, encryption, compression)
+    * API für Drop (Definitionen fehlen: Wie sieht ein Drop aus?)
+       * Definieren eines Listener-Interfaces.
+       * Implementieren des Nachrichtenempfangens.
+       * Implementieren des Nachrichtensendens.
+    * API für Storage
+       * Implementieren des Fileuploads
+       * Implementieren des Filedownloads
  * config - Verhalten des Clients abspeichern
     * Zugriff über Singleton
     * Datenstruktur aus [[Qabel-Client-Configuration]] in Java Source im Package de.qabel.config
