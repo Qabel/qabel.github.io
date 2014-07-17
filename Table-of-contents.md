@@ -22,7 +22,7 @@
   6. [[Shares|Qabel-Client-Shares]]
   7. [[Access-Lists|Qabel-Client-AccessLists]]
   8. [[Blocks|Qabel-Client-Blocks]] / [[Notes|Qabel-Client-Blocks-Notes]]
-  9. [[Drops|Qabel-Client-Drop]]
+  9. [[Qabel-Drop-Message|Qabel-Client-Drop]]
 6. [[Server Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
   1. [[Qabel-Drop-Protocol|Qabel-Protocol-Drop]]
   2. [[Qabel-Storage-Protocol|Qabel-Protocol-Storage]]
