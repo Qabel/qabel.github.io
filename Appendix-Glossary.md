@@ -1,3 +1,7 @@
+# Terminology
+* $Foo, $Bar and $Baz (and compositions of Foo, Bar and Baz prefixed with a "$") are used as placeholder. Prefer to use them in the order given here.
+
+# Definitions
 * **Qabel-$Foo-Protocol**: Can also be (Qabel) $Foo protocol. It means the protocol itself (e.g. in a network point of view for a network protocol).
 
 * **Qabel-$Foo-Server**: Can also be (Qabel) $Foo server. It means the server - the thing which has to be implemented. The thing the $Foo client component communicates with.
