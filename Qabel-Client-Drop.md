@@ -1,5 +1,5 @@
-# Qabel client drop
-## The structure and encryption of Qabel drops, transported using the Qabel Drop protocol.
+# Qabel client messages
+## The structure and encryption of Qabel messages, transported using the Qabel Drop protocol.
 
 ### Terminology
 
@@ -51,76 +51,97 @@ User will be informed and the client will retry to receive the messages.
 ### Format and buildup/structure of a message
 A message is packed into JSON format containing the following fields:
 
-The common fields from the QblJsonObject class
+**Key 'id'**
 
-* id
-* created
-* deleted
-* updated
-
-The common fields from the QblJsonChat class. They are mandatory
-* sender
-* message-type
-
-The next are also available but sometimes mandatory for differnt kind of messages
-* message
-* message_date
-* send
-* yes_no
-* key
-* file_name
-* file
-* server
-* port
-* path
-* public
-* id_to_send
-* mac
-
-**ID:**
-
-The uuid is created during the generation of a message and is used to uniquely identify the message.
+The id is created during the generation of a message and is used to uniquely identify the message.
 * type = INT
 
-**Timestamp:**
+**Key 'time_stamp'**
 
-There are some timestamp available. 'created' are always set describes the date of generation of a message. 'update' also always set and describe the last change of the message. On initialisation it is the same as created. 'deleted' is 0 at initialisation and describe the deletation of the message. This item is set that all devices of an user know that this message is deleted.
+This key describes the date of generation of a message.
 * type = INT
 
-**Sender:**
+**Key 'sender'**
 
 The sender contains an ID of the sender of the message.
 * type = INT
 
-**Message-type:**
+**Key 'module'**
+The name of the module which handle this message.
+* type = STR / INT
 
-The message-type is used for the identification of the message and thus describes its function, e.g. if it announces an upload of a new share or if it is a simple chat message. Via the message-type the message can be assigned after receipt to the dedicated component where it will be processed.
-The following types are known:
-
- * NO_TYPE: No type is set
- * CHAT: Normal chat message
- * CHAT_RECEIVED: Other side received message
- * CHAT_READED: Other side read message
- * CHAT_KNOCKING: Other side is knocking
- * CHAT_FILE_NEW: Other side wants to send a file
- * CHAT_FILE_ACCEPTED: Other side accept file or not
- * CHAT_FILE_RECEIVED: Other side received the file -> delete from storage
- * CONTACT: Received a new contact request
- * CONTACT_IMAGE: Contact send its image
- * UPLOAD:
- * UPLOAD_LINK: Share upload link with other
- * UPLOAD_LINK_ACCEPTED: Other side is accepted share upload link
- * UPLOAD_NEW_VERSION: Uploaded archive is changed
- * UPLOAD_NEW_VERSION_MAC: Uploaded archive is changed. This message is for the uploader that its other devices now that archive is updated
- * UPLOAD_LINK_REMOVED: Other is not longer allowed to see data
- * UPLOAD_REMOVED: Uploaded archive is deleted
-
+<a name="key-type"></a>**Key 'type'**
+This key is for the module which handle the message. This key is set that the module can easily parse the data. The id 0 to 255 are reservated for common message like sending only a boolean
 * type = INT
 
-**Message:**
+**Key 'version'**
+This key describe the version of the module. It shall avoid incompatibilities.
+* type = INT
 
-The message field contains the payload of the message.
-* type = STRING
+**Key 'data'**
+The real data of the message
+* Type = JSON object
+
+**Summary**
+
+    drop_message    = "{"
+                    'id' : ID,
+                    'time_stamp' : INT,
+                    'sender' : INT,
+                    'module' : STR / INT,
+					'type' : INT,
+					'version' : INT,
+					'data' : { ... }
+                    "}"
+
+### Reserved Drop Messages
+
+**Predefined Message Types**
+
+The following message types (key 'type') are predefined:
+* SEND_BOOLEAN
+* SEND_NUMBER
+* SEND_STRING
+* SEND_DOUBLE
+* SEND_BIGDECIMAL
+* SEND_BIGINTEGER
+* SEND_FLOAT
+* SEND_LONG
+* SEND_SHORT
+* SEND_INT
+* SEND_BYTE
+* SEND_CHARACTER
+* SEND_BOOLEAN_ARRAY
+* SEND_NUMBER_ARRAY
+* SEND_STRING_ARRAY
+* SEND_DOUBLE_ARRAY
+* SEND_BIGDECIMAL_ARRAY
+* SEND_BIGINTEGER_ARRAY
+* SEND_FLOAT_ARRAY
+* SEND_LONG_ARRAY
+* SEND_SHORT_ARRAY
+* SEND_INT_ARRAY
+* SEND_BYTE_ARRAY
+* SEND_CHARACTER_ARRAY
+
+The data JSON object have the following keys:
+
+**Key 'id'**
+
+The information which normally is in the [key 'type'](#key-type) moved to this key.
+This key is for the module which handle the message. This key is set that the module can easily parse the data.
+* type = INT
+
+**Key 'value'**
+
+Here are the real data of this message
+
+**Summary**
+
+    data            = "{"
+                    'id' : ID,
+                    'value' : ...,
+                    "}"
 
 ### Sequence diagrams
 
