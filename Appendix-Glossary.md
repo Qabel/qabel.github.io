@@ -1,3 +1,21 @@
+* **Qabel-$Foo-Protocol**: Can also be (Qabel) $Foo protocol. It means the protocol itself (e.g. in a network point of view for a network protocol).
+
+* **Qabel-$Foo-Server**: Can also be (Qabel) $Foo server. It means the server - the thing which has to be implemented. The thing the $Foo client component communicates with.
+
+* **Qabel-$Foo-Client**: Can also be (Qabel) $Foo client. It means the $Foo component in the client - the thing which has to be implemented. The thing which communicates with the $Foo server _iff_ there is a $Foo server.
+
+* **(Qabel) component**: Anything is a component. Anything in the client - whether it belongs to the core or it is a module - is a component. The client itself, the $Foo server and a Qabel app also is a component. **TODO**: Decide whether or not the $Foo protocol is also a component.
+
+* **(Qabel) module**: A (Qabel) module is a client-component which does not belong to the core and which is not a Qabel app.
+
+* **(Qabel) core**: The (Qabel) core is the collection of client-components which are not modules and which is not a Qabel app. The core provides the Qabel functionality. The core and only the core - or at least one component of it - communicates with the Qabel server.
+
+* **(Qabel) client**: The (Qabel) client consists of the core, the modules and is wrapped inside an Qabel app.
+
+* **Qabel app**: Can also be Qabel application. It is everything which is additionally - besides the core and the modules - needed to run the client (on a specific platform). It uses the core and - technically optional - a collection of modules.
+
+* **(Qabel) server**: Since there is no such thing as **the** (Qabel) server the term (Qabel) server refers to all (plural) or one specific (singular) Qabel server.
+
 * **Drop protocol**: Transport protocol for the announcement and/or key transmission (and/or other necessary information) of modules to other clients
 
 * **Drop message**: Message specified by the drop protocol which encapsulates module messages for the communication between the clients
