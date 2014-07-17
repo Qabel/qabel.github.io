@@ -16,7 +16,7 @@
   1. [[Bridgehead|Client-Bridgehead]]
   2. [[Configuration|Qabel-Client-Configuration]]
   3. [[Sync|Qabel-Client-Sync]]
-  4. [[Contact for messages|Qabel-Client-Contact-Messages]]
+  4. [[Contact for drop messages|Qabel-Client-Contact-Drop-Messages]]
 5. [[Client Exchange|Qabel-Client-Exchange]] (this is the "inside" view on communication and maybe some implementation specific notes.)
   5. [[Contact Exchange|Qabel-Client-Contact]]
   6. [[Shares|Qabel-Client-Shares]]
