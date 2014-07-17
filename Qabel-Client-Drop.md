@@ -94,7 +94,8 @@ The real data of the message
 					'data' : { ... }
                     "}"
 
-<a name="reserved-drop-messages"></a>### Reserved Drop Messages
+<a name="reserved-drop-messages"></a>
+### Reserved Drop Messages
 
 **Predefined Message Types**
 
