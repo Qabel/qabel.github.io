@@ -26,4 +26,4 @@
 
 * **Drop**: The dead drop box on the drop server identified by the drop id where the drop messages are pushed to, stored and fetched from
 
-
+* **Share**: Adapted from the Windows-term 'Share' (German: Freigabe). A shared directory/file/blob that resides on the (Qabel) client(?) so other clients may access it(?) - so the file is not required to be uploaded on to the (Qabel) server yet to be called a Share.
