@@ -2,7 +2,7 @@
 ## Nahe Zukunft
 * 30.07. Layout der Dokumentation so fertig haben das Pages angelegt sind und klar ist was wo steht bzw. stehen wird. Nötig für MZs BA.
 * 04.08. Willkommens-Meeting für die Neuen. Anschließend zwei Wochen einleben / einarbeiten / einlesen.
-* 11.08. Dokumentation soweit haben das man sie MZs Prof. zur Verfügung stellen kann.
+* 08.08. Dokumentation soweit haben das man sie MZs Prof. zur Verfügung stellen kann.
 * 18.08. Kick-off-Meeting und start der Implementation der ersten Arbeitspakete
   * Dazu müssen diese Arbeitspakete und das Softwaredesign dazu stehen. Die Idee muss den Entwicklern klar werden. Also Abhängigkeiten zwischen Klassen. Konzept mit GSON. Konzept mit Modulmanager.
 
