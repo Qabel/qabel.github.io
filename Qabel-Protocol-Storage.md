@@ -4,37 +4,39 @@
 
 A protocol for read, write and delete access to bulk (cloud) storage.
 
-## Client-Zugriff (Storage)
+## Protocol
 
-### Lesen
+### URLs
 
-Über HTTP-GET. Soweit nötig mit Token / Basic-Auth oder entsprechend.
+The URL to access a qabel storage server can be split into four parts. Consider this URL for example:
 
-Als application/octect-stream.
+https://qabelserver:8000/qabel-storage/8043810841
 
-Dateisystem ist hier nicht nötig, alle Operationen sind isoliert und ohne Zusammenhang.
-Es werden *alle* User ihre Dateien zerstueckelt und verschluesselt auf den Server werfen und dieser wird keine Listen oder Aehliches erstellen.
-Der Client weisz welche Datei er sich runterladen muss um die Daten wieder zusammenzusetzen. Zum Beispiel über enthaltene Header/Indexe.
+This URL consists of the following parts:
 
-Dateien sind *write-once* und *immutable*.
+* https:// - the transport protocol, https and http are supported. https is the recommended protocol. In the following documentation this part will be referenced by "https://"
+* qabelserver:8000 - the host-spec, it consists of the servers name and servers port. In the following documentation this part will be referenced by "server"
+* /qabel-storage - the prefix: This is a static prefix for all qabel related URLs on this server. This way a qabel-storage can share its http-port with other http-services. Empty string as prefix are explicitly allowed. In the following documentation this part will be referenced by "/prefix".
+* /8043810841 - the qabel-specific URL. This represents the actual path for qabel-storage functionality.
 
-* Authentifizierung per OAuth oder Standard Basic access Authentication
-OAuth.
-Token requesten.
-Bekommen oder auch nicht.
-Infos holen.
+### Create a new Storage
 
-Ich dachte an OAuth da man Tokens die User1 fuer User2 erzeugt fuers sharing nutzen kann.
-Mit der Pointer auf Pointer Indexdateimethode werden Tokens wohl sinnlos.
-Es gibt kein Sharing auf Cloud-Storage Ebene. Keine Berechtigungsverwaltung, keine Versionen.
+* HTTP-Method: POST or PUT
+* URL Example: https://server/prefix/_new
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/_new
 
-Antworten kommen auch optional per JSON (wofür nötig? evtl. Quota?)
+This creates a new Qabel Storage Volume with it's own write- and revoke-tokens. These values are returned to the user by a JSON document sent back to this request:
 
-### Schreiben
+```
+{
+"public": String,       // public token for read access
+"revoke_token": String, // private token for deleting the storage
+"token": String         // secret token to allow write access
+}
+```
+The fields are described as follows:
 
-Über HTTP-POST. Mit Token / Basic-Auth oder entsprechend.
+* ```public```: the public token which is sent as part of the URL. so if your public token is ```123456790```, the URL to access this token will be ```http://server/prefix/1234567890```
+* ```revoke_token```: this token is needed to delete a Qabel Storage Volume with all it's contents. This token should never be public or given to any untrustworthy authority. See section deletion.
+* ```token```: this token is needed to do any updates on the Qabel Storage Volume. See section upload.
 
-Als application/octect-stream.
-
-* Auth
-Siehe Lesen.
