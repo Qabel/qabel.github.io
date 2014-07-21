@@ -51,15 +51,10 @@ User will be informed and the client will retry to receive the messages.
 ### Format and buildup/structure of a message
 A message is packed into JSON format containing the following fields:
 
-**Key 'id'**
-
-The id is created during the generation of a message and is used to uniquely identify the message.
-* type = INT
-
 **Key 'time_stamp'**
 
 This key describes the date of generation of a message.
-* type = INT
+* type = UNIX_TIMESTAMP
 
 **Key 'sender'**
 
@@ -68,14 +63,10 @@ The sender contains an ID of the sender of the message.
 
 **Key 'module'**
 The name of the module which handle this message.
-* type = STR / INT
-
-<a name="key-type"></a>**Key 'type'**
-This key is for the module which handle the message. This key is set that the module can easily parse the data. The id 0 to 255 are reservated for common message like sending only a boolean
-* type = INT
+* type = STR
 
 **Key 'version'**
-This key describe the version of the module. It shall avoid incompatibilities.
+This key describe the version of the drop protocol Qabel use. It shall avoid incompatibilities.
 * type = INT
 
 **Key 'data'**
@@ -85,64 +76,14 @@ The real data of the message
 **Summary**
 
     drop_message    = "{"
-                    'id' : ID,
-                    'time_stamp' : INT,
+                    'time_stamp' : UNIX_TIMESTAMP,
                     'sender' : INT,
-                    'module' : STR / INT,
-					'type' : INT,
+                    'module' : STR
 					'version' : INT,
 					'data' : { ... }
                     "}"
 
-<a name="reserved-drop-messages"></a>
-### Reserved Drop Messages
-
-**Predefined Message Types**
-
-The following message types (key 'type') are predefined:
-* SEND_BOOLEAN
-* SEND_NUMBER
-* SEND_STRING
-* SEND_DOUBLE
-* SEND_BIGDECIMAL
-* SEND_BIGINTEGER
-* SEND_FLOAT
-* SEND_LONG
-* SEND_SHORT
-* SEND_INT
-* SEND_BYTE
-* SEND_CHARACTER
-* SEND_BOOLEAN_ARRAY
-* SEND_NUMBER_ARRAY
-* SEND_STRING_ARRAY
-* SEND_DOUBLE_ARRAY
-* SEND_BIGDECIMAL_ARRAY
-* SEND_BIGINTEGER_ARRAY
-* SEND_FLOAT_ARRAY
-* SEND_LONG_ARRAY
-* SEND_SHORT_ARRAY
-* SEND_INT_ARRAY
-* SEND_BYTE_ARRAY
-* SEND_CHARACTER_ARRAY
-
-The data JSON object have the following keys:
-
-**Key 'id'**
-
-The information which normally is in the [key 'type'](#key-type) moved to this key.
-This key is for the module which handle the message. This key is set that the module can easily parse the data.
-* type = INT
-
-**Key 'value'**
-
-Here are the real data of this message
-
-**Summary**
-
-    data            = "{"
-                    'id' : ID,
-                    'value' : ...,
-                    "}"
+<a name="reserved-drop-messages"></a>### Reserved Drop Messages
 
 ### Sequence diagrams
 
@@ -162,5 +103,4 @@ The final data is formed by concatenating, without delimiter, three fields: the 
 ### History / Persistence
 
 All messages that need to be tracked will be persisted with or alongside the configuration.
-Messages that are relevant to all devices of the user are stored on the Firefox Sync server.
-
+Messages that are relevant to all devices of the user shall be shared on all devices. They exact way have to be defined.
