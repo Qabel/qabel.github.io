@@ -52,21 +52,19 @@ User will be informed and the client will retry to receive the messages.
 A message is packed into JSON format containing the following fields:
 
 **Key 'time_stamp'**
-
-This key describes the date of generation of a message.
-* type = UNIX_TIMESTAMP
+Date of message generation.
+* type = INT
 
 **Key 'sender'**
-
-The sender contains an ID of the sender of the message.
+The ID of the sender.
 * type = INT
 
 **Key 'module'**
-The name of the module which handle this message.
+The name of the module that handles this message.
 * type = STR
 
 **Key 'version'**
-This key describe the version of the drop protocol Qabel use. It shall avoid incompatibilities.
+This key describes the version of the drop protocol.
 * type = INT
 
 **Key 'data'**
@@ -102,4 +100,4 @@ The final data is formed by concatenating, without delimiter, three fields: the 
 ### History / Persistence
 
 All messages that need to be tracked will be persisted with or alongside the configuration.
-Messages that are relevant to all devices of the user shall be shared on all devices. They exact way have to be defined.
+Messages that are relevant to all devices of the user shall be shared on all devices. They exact way has to be defined.
