@@ -13,7 +13,6 @@
   7. [[Browse|Components-Browse]]
   8. [[Modules|Components-Modules]]
 4. [[Client Data|Qabel-Client-Data]] (this is the internal state and data of the client as seen by core and maybe module developers.)
-  1. [[Bridgehead|Client-Bridgehead]]
   2. [[Configuration|Qabel-Client-Configuration]]
   3. [[Sync|Qabel-Client-Sync]]
   4. [[Contact for drop messages|Qabel-Client-Contact-Drop-Messages]]
