@@ -20,3 +20,5 @@ This list can be extended as needed.
 5. The drop component of the recipient's client fetches the new message(s) from its inbox.
 6. After interpreting the drop message of Alice the drop component extracts the drop message payload (the message packed by the chat module) and passes it to the module specified in the message.
 7. The chat component processes this message to the actual message written by Alice.
+
+![example diagram for sending a chat message via drop](https://github.com/Qabel/intern-doc/wiki/images/example_drop_sending-chat-message.png)
