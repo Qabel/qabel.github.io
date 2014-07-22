@@ -74,7 +74,7 @@ The real data of the message
 **Summary**
 
     drop_message    = "{"
-                    'time_stamp' : UNIX_TIMESTAMP,
+                    'time_stamp' : INT,
                     'sender' : INT,
                     'module' : STR
 					'version' : INT,
