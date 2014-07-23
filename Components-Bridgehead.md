@@ -5,8 +5,8 @@ The bridgehead component is a core component of Qabel. It bundles and provides t
 
 * Drop component
 * Storage component
-(* Browse component -  not in beta)
-(* Sync component - not in beta)
+* ( Browse component -  not in beta)
+* ( Sync component - not in beta)
 
 So the bridgehead works as interface between modules and the Qabel communication layer (Qabel protocols).
 
