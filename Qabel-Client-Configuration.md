@@ -81,6 +81,7 @@ Summary
 #### Local Share
 
  * basedir: Base dir of the share on the locale device
+ * share_id: id of the share associated with this local share
 
 Summary
 
@@ -90,6 +91,7 @@ Summary
                         'created': INT,
                         'deleted': INT,
                         'basedir' : PATH,
+                        'share_id': INT
                         "}"
 
 
