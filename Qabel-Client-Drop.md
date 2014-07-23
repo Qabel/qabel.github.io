@@ -30,11 +30,11 @@ Alice (sender) wants to write a message to Bob (recipient). Alice has Bobs addre
 The client will send the message to the server.
 
 **On sending success:**
-The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#r%C3%BCckgabewerte).
+The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
 Message will be put into history.
 
 **On sending failure:**
-The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#r%C3%BCckgabewerte).
+The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
 User will be informed. Client will retry to send it.
 
 #### Get message
@@ -42,10 +42,10 @@ Alice (receiver) wants to receive new messages. Alice has a private key and an a
 The client will request new messages from the server.
 
 **On receiving success:**
-The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#r%C3%BCckgabewerte) including the new messages.
+The server will return a specific [response] (hhttps://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods) including the new messages.
 
 **On receiving failure:**
-The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#r%C3%BCckgabewerte).
+The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
 User will be informed and the client will retry to receive the messages.
 
 ### Format and buildup/structure of a message
@@ -64,7 +64,7 @@ The name of the module that handles this message.
 * type = STR
 
 **Key 'version'**
-This key describes the version of the drop protocol.
+This key describes the version of the Qabel Drop Message protocol.
 * type = INT
 
 **Key 'data'**
@@ -99,5 +99,4 @@ The final data is formed by concatenating, without delimiter, three fields: the 
 
 ### History / Persistence
 
-All messages that need to be tracked will be persisted with or alongside the configuration.
-Messages that are relevant to all devices of the user shall be shared on all devices. They exact way has to be defined.
+**TODO**: Messages which are needed across all devices of an identity must be shared across all devices. They exact way has to be defined."
