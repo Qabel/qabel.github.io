@@ -1,4 +1,4 @@
-# Sync
+# The Sync component
 ## Abstract
 Sync is a core component of Qabel.
 It handles synchronizing both [[Contacts|Components-Contact]] and [[Config|Components-Config]] information between multiple clients.
