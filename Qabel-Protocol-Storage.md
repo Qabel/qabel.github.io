@@ -19,7 +19,7 @@ This URL consists of the following parts:
 * /qabel-storage - the prefix: This is a static prefix for all qabel related URLs on this server. This way a qabel-storage can share its http-port with other http-services. Empty string as prefix are explicitly allowed. In the following documentation this part will be referenced by "/prefix".
 * /8043810841 - the qabel-specific URL. This represents the actual path for qabel-storage functionality.
 
-### Create a new Storage
+### Create a new Qabel Storage Volume
 
 * HTTP-Method: POST or PUT
 * URL Example: https://server/prefix/_new
@@ -40,3 +40,18 @@ The fields are described as follows:
 * ```revoke_token```: this token is needed to delete a Qabel Storage Volume with all it's contents. This token should never be public or given to any untrustworthy authority. See section deletion.
 * ```token```: this token is needed to do any updates on the Qabel Storage Volume. See section upload.
 
+### Uploading new Blobs
+
+* HTTP-Method: POST or PUT
+* URL Example: https://server/prefix/123456789
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]
+
+TODO
+
+### Deleting a QSV
+
+* HTTP-Method: DELETE
+* URL Example: https://server/prefix/123456789
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]
+
+TODO
