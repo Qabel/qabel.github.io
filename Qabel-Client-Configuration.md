@@ -22,6 +22,7 @@ The next settings are common and often used in the settings group.
 
 The settings item has these sub items
 * preferences
+* ffsync_user
 * local_shares
 * micro_blogs?
 
@@ -29,6 +30,7 @@ Summary
 
         Local_Settings        = "{"
                         'preferences' : preferences,
+                        'ffsync_user' : ffsync_user,
                         'local_shares' : local_shares,
                         'micro_blogs' : micro_blogs
                         "}"
@@ -68,6 +70,35 @@ Summary
                         'desktop_y' : STR,
                         'desktop_width' : STR,
                         'desktop_height' : STR
+                        "}"
+
+#### FF Sync User
+
+The "ffsync_user" item is a collection of settings which is used to communicate with the
+FF sync server
+
+ * updated: As described in common settings
+ * username: base32 encoded sha1 checksum of mail address
+ * mail: mail address for the username
+ * password: password to authenticate for requests
+ * url: ffsync server url
+ * port: ffsync server port
+ * key: key to de- and encrypt sync data
+ * interval: time for sync interval in seconds
+ * modified: unix timestamp for last sync
+
+Summary
+
+        ffsync_user     = "{"
+                        'updated': INT,
+                        'username': STR,
+                        'mail': STR,
+                        'password': STR,
+                        'url': STR,
+                        'port': INT,
+                        'key': STR,
+                        'interval': INT,
+                        'modified': DOUBLE
                         "}"
 
 #### Local Shares
@@ -333,4 +364,28 @@ Summary
                         'alias' : NAME,
                         'private_key' : KEY,
                         'inbox' : URL
+                        "}"
+
+#### Groups
+
+The item "groups" includes an array of group settings structures
+
+Summary
+
+        groups          = "["
+                        group*
+                        "]"
+
+#### Group
+
+Summary
+
+        group           = "{"
+                        'id': INT,
+                        'updated': INT,
+                        'created': INT,
+                        'deleted': INT,
+                        'alias' : NAME,
+                        'ps_key' : KEY,
+                        'inbox' : ID
                         "}"
