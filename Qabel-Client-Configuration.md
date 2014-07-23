@@ -23,14 +23,12 @@ The next settings are common and often used in the settings group.
 The settings item has these sub items
 * preferences
 * local_shares
-* micro_blogs?
 
 Summary
 
         Local_Settings        = "{"
                         'preferences' : preferences,
-                        'local_shares' : local_shares,
-                        'micro_blogs' : micro_blogs
+                        'local_shares' : local_shares
                         "}"
 
 #### Preferences
@@ -94,27 +92,7 @@ Summary
                         'basedir' : PATH,
                         "}"
 
-#### Micro Blogs
 
-The item "micro_blogs" includes an array of micro blog settings structures
-
-Summary
-
-        micro_blogs     = "["
-                         micro_blog*
-                        "]"
-
-#### Micro Blog
-
-Summary
-
-        micro_blog      = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'basedir' : PATH,
-                        "}"
 
 ### Synced settings
 
@@ -133,7 +111,6 @@ Summary
                         'drop_servers' : drop_servers,
                         'block_servers' : block_servers,
                         'shares' : shares,
-                        'micro_blogs' : micro_blogs,
                         'uploads' : uploads,
                         'identities' : identities
                         "}"
@@ -275,31 +252,6 @@ Summary
                         'created': INT,
                         'deleted': INT,
                         'key': STR
-                        'upload_id' : INT,
-                        'alias_id' : INT,
-                        'contacts' : [LIST OF IDS],
-                        "}"
-
-#### Micro Blogs
-
-The item "micro_blogs" includes an array of micro blog settings structures
-
-Summary
-
-        micro_blogs     = "["
-                         micro_blog*
-                        "]"
-
-#### Micro Blog
-
-Summary
-
-        micro_blog      = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'basedir' : PATH,
                         'upload_id' : INT,
                         'alias_id' : INT,
                         'contacts' : [LIST OF IDS],
