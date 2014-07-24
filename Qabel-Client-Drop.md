@@ -99,4 +99,4 @@ The final data is formed by concatenating, without delimiter, three fields: the 
 
 ### History / Persistence
 
-**TODO**: Messages which are needed across all devices of an identity must be shared across all devices. They exact way has to be defined."
+**TODO**: Messages which are needed across all devices of an identity must be shared across all devices. The exact way has to be defined."
