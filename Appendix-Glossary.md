@@ -30,4 +30,4 @@
 
 * **Qabel Storage**: Server which provides Services to store data according to the [[Storage Protocol|Qabel-Protocol-Storage]]
 
-* **Qabel Storage Volume** (QSV): A dedicated Volume on a Qabel Storage Volume. It is identified by a public token, provides write access by a secret token and can be deleted by a revoke_token.
+* **Qabel Storage Volume** (QSV): A dedicated Volume on a Qabel Storage. It is identified by a public token, provides write access by a secret token and can be deleted by a revoke token.
