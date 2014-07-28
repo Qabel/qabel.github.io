@@ -5,7 +5,6 @@
 2. [[Architectural Overview|Architectural Overview]]
 3. [[Components|Components]] (this briefly describes components, i.e. "why" we have each and "what for". No implementation details are given in this chapter. For people without knowledge of the architecture.)
   1. [[Bridgehead|Components-Bridgehead]]
-  2. [[API|Components-API]]
   3. [[Contacts|Components-Contacts]]
   4. [[Drop|Components-Drop]]
   5. [[Storage|Components-Storage]]
