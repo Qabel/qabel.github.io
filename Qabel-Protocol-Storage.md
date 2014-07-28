@@ -43,15 +43,17 @@ The fields are described as follows:
 ### Uploading new Blobs
 
 * HTTP-Method: POST or PUT
-* URL Example: https://server/prefix/123456789
-* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]
+* URL Example: https://foo:abcdef012346789@server/prefix/1223456789/CHUNK
+* URL Scheme: http[s]?://.*:[:TOKEN:]@[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
 
-TODO
+This method requires autorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
+
+The body of the http request will be safed to the chunkname and can later be accessed via a get request under this URL
 
 ### Deleting a QSV
 
 * HTTP-Method: DELETE
-* URL Example: https://server/prefix/123456789
-* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]
+* URL Example: https://foo:abcdef012346789@server/prefix/1223456789
+* URL Scheme: http[s]?://.*:[:REVERT_TOKEN:]@[:SERVER:][:PREFIX:]/[:PUBLIC:]/
 
-TODO
+This method requires autorization through the revert_token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
