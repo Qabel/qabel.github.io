@@ -38,3 +38,14 @@ Summary
                     'drop_urls' : [STR],
                     'module_data' : { STR : { ... }, ... }
                     "}"
+
+Example
+
+```json
+{
+"public_key" : "asd",
+"my_identity" : "fgh",
+"drop_urls" : ["example.org/jkl"],
+"module_data" : { "person" : { "mail_address" : "example@example.org" } }
+}
+```
