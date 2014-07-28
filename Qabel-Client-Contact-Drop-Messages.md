@@ -34,7 +34,7 @@ Summary
 
     contact         = "{"
                     'public_key' : KEY,
-                    'my_id' : ID,
+                    'my_identity' : KEY,
                     'drop_urls' : [STR],
                     'module_data' : { STR : { ... }, ... }
                     "}"
