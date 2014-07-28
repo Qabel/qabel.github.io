@@ -15,8 +15,8 @@ Concerning the Get To Know between the clients:
 
 The drop and the public key can just be used read-only by their owner. It should not be possible to further follow the communication.
 
-How to Add: A client accesses public key and drop address from the lookup URL. It then checks the fingerprint. (The fingerprint never gets transmitted to the server!)
-The client sends a with this key encrypted contact message to the drop. The message contains its parameters like public key, drop, personal message or a business card URL.
+How to Add: A client accesses public key and drop address from the lookup URL. Then it checks the fingerprint. (The fingerprint never gets transmitted to the server!)
+The client sends a contact message to the drop, encrypted with this key. The message contains its parameters like public key, drop, personal message or a business card URL.
 
 ## Server
 
