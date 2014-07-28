@@ -36,65 +36,24 @@ Summary
 The preferences are a collection of settings which describes some common settings
 for the library and the UI.
 
- * use_websockets: The library shall use web sockets for the communication
  with the qabel server
  default: true
- * default_poll_interval: This setting describes the default polling interval on
+ * poll_interval: This setting describes the default polling interval on
  desktop machine
- * default_poll_interval_wlan: This setting describes the default polling interval
+ * poll_interval_wlan: This setting describes the default polling interval
  when the machine is using wireless connection. This parameter is for mobile
  devices
- * default_poll_interval_mobile: This setting describes the default polling interval
+ * poll_interval_mobile: This setting describes the default polling interval
  when the machine is using mobile connection. This parameter is only for mobile
  connection
- * start_minimized: When this parameter is set the application is started in
- background
- * desktop_x: The start position of the GUI in x direction
- * desktop_y: The start position of the GUI in y direction
- * desktop_width: The width of the GUI
- * desktop_height: The height of the GUI
 
 Summary
 
         preferences     = "{"
-                        'use_websockets' : BOOL,
-                        'default_poll_interval' : NUM,
-                        'default_poll_interval_wlan' : NUM,
-                        'default_poll_interval_mobile' : NUM,
-                        'start_minimized' : BOOL,
-                        'desktop_x' : STR,
-                        'desktop_y' : STR,
-                        'desktop_width' : STR,
-                        'desktop_height' : STR
+                        'poll_interval' : NUM,
+                        'poll_interval_wlan' : NUM,
+                        'poll_interval_mobile' : NUM,
                         "}"
-
-#### Local Shares
-
-The item "local_shares" includes an array of local share settings structures
-
-Summary
-
-        local_shares          = "["
-                        local_share*
-                        "]"
-
-#### Local Share
-
- * basedir: Base dir of the share on the locale device
- * share_id: id of the share associated with this local share
-
-Summary
-
-        local_share           = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'basedir' : PATH,
-                        'share_id': INT
-                        "}"
-
-
 
 ### Synced settings
 
@@ -226,37 +185,6 @@ Summary
                         'public' : STR,
                         'token' : STR,
                         'revoke_token': STR,
-                        "}"
-
-#### Shares
-
-The item "shares" includes an array of share settings structures
-
-Summary
-
-        shares          = "["
-                        share*
-                        "]"
-
-#### Share
-
- * key: Encryption key of the share
- * upload_id: Id of the upload setting structure
- * alias_id: Id of the identity. All contact of this identity can read the
- shared data
- * contacts: Array of the contact ids which can read the shared data
-
-Summary
-
-        share           = "{"
-                        'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
-                        'key': STR
-                        'upload_id' : INT,
-                        'alias_id' : INT,
-                        'contacts' : [LIST OF IDS],
                         "}"
 
 #### Identities
