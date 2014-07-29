@@ -15,11 +15,6 @@
   2. [[Configuration|Qabel-Client-Configuration]]
   3. [[Sync|Qabel-Client-Sync]]
   4. [[Contact for drop messages|Qabel-Client-Contact-Drop-Messages]]
-5. [[Client Exchange|Qabel-Client-Exchange]] (this is the "inside" view on communication and maybe some implementation specific notes.)
-  5. [[Contact Exchange|Qabel-Client-Contact]]
-  6. [[Shares|Qabel-Client-Shares]]
-  7. [[Access-Lists|Qabel-Client-AccessLists]]
-  8. [[Blocks|Qabel-Client-Blocks]] / [[Notes|Qabel-Client-Blocks-Notes]]
   9. [[Qabel-Drop-Message|Qabel-Client-Drop]]
 6. [[Server Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
   1. [[Qabel-Drop-Protocol|Qabel-Protocol-Drop]]
