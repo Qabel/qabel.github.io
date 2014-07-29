@@ -22,13 +22,11 @@ The next settings are common and often used in the settings group.
 
 The settings item has these sub items
 * preferences
-* local_shares
 
 Summary
 
         Local_Settings        = "{"
-                        'preferences' : preferences,
-                        'local_shares' : local_shares
+                        'preferences' : preferences
                         "}"
 
 #### Preferences
@@ -61,7 +59,6 @@ This settings items has seven sub items
  * accounts
  * drop_servers
  * block_servers
- * shares
  * uploads
  * identities
 
@@ -71,7 +68,6 @@ Summary
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
                         'block_servers' : block_servers,
-                        'shares' : shares,
                         'uploads' : uploads,
                         'identities' : identities
                         "}"
