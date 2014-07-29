@@ -22,11 +22,13 @@ The next settings are common and often used in the settings group.
 
 The settings item has these sub items
 * preferences
+* modules
 
 Summary
 
-        Local_Settings        = "{"
+        Local_Settings  = "{"
                         'preferences' : preferences
+						'modules' : { KEY : { ... }, ... }
                         "}"
 
 #### Preferences
@@ -53,6 +55,10 @@ Summary
                         'poll_interval_mobile' : NUM,
                         "}"
 
+#### Modules
+
+Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
+
 ### Synced settings
 
 This settings items has seven sub items
@@ -61,6 +67,7 @@ This settings items has seven sub items
  * block_servers
  * uploads
  * identities
+ * modules
 
 Summary
 
@@ -70,6 +77,7 @@ Summary
                         'block_servers' : block_servers,
                         'uploads' : uploads,
                         'identities' : identities
+						'modules' : { KEY : { ... }, ... }
                         "}"
 
 #### Accounts
@@ -210,3 +218,7 @@ Summary
                         'private_key' : KEY,
                         'inbox' : URL
                         "}"
+
+#### Modules
+
+Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
