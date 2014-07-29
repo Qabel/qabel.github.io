@@ -20,9 +20,9 @@
 
 * **(Qabel) server**: Since there is no such thing as **the** (Qabel) server the term (Qabel) server refers to all (plural) or one specific (singular) Qabel server.
 
-* **Drop protocol**: Transport protocol for the announcement and/or key transmission (and/or other necessary information) of modules to other clients
+* **Drop protocol**: Transport protocol for e.g. Drop messages.
 
-* **Drop message**: Message specified by the drop protocol which encapsulates module messages for the communication between the clients
+* **Drop message**: Message exchange between clients. E.g. announcements, key transmission, and other module-specific data.
 
 * **Drop**: The dead drop box on the drop server identified by the drop id where the drop messages are pushed to, stored and fetched from
 
