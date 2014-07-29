@@ -31,3 +31,9 @@
 * **Qabel Storage**: Server which provides Services to store data according to the [[Storage Protocol|Qabel-Protocol-Storage]]
 
 * **Qabel Storage Volume** (QSV): A dedicated Volume on a Qabel Storage. It is identified by a public token, provides write access by a secret token and can be deleted by a revoke token.
+
+* **Identity**: Easy: Who am I? An identity is the collection of a nick name, a public and a private key and belongs to the locaL user of Qabel
+
+* **Contact**: Easy: Which people do I know? An contact is collection of information about an other user of Qabel which added from the identity to its system. It contains the public key and the drop URLs of the contact and specific data from modules
+
+* **Person**: Easy: Describe the contact. It save personal information about a person like name, mail address. Some keys are fixed defined in the person module.  
