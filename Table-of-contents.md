@@ -16,7 +16,7 @@
   3. [[Sync|Qabel-Client-Sync]]
   4. [[Contact for drop messages|Qabel-Client-Contact-Drop-Messages]]
   9. [[Qabel-Drop-Message|Qabel-Client-Drop]]
-6. [[Server Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
+6. [[Communication Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
   1. [[Qabel-Drop-Protocol|Qabel-Protocol-Drop]]
   2. [[Qabel-Storage-Protocol|Qabel-Protocol-Storage]]
   3. [[Qabel-Sync-Protocol|Qabel-Protocol-Sync]]
