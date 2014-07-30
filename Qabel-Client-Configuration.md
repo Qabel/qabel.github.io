@@ -7,17 +7,6 @@ The configuration has two parts. The first part is configuration data which is t
 
 ## Description of the items
 
-### Common Settings
-
-The next settings are common and often used in the settings group.
-
- * id: The id of the setting structure. This shall be a unique id in the
- application
- * updated: The timestamp when the settings structure was updated last time
- * created: The timestamp when the settings structure was created
- * deleted: The timestamp when the settings structure was deleted. After a time x this
- structure will be deleted completely
-
 ### Local settings
 
 The settings item has these sub items
@@ -28,7 +17,7 @@ Summary
 
         Local_Settings  = "{"
                         'preferences' : preferences
-						'modules' : { KEY : { ... }, ... }
+                        'modules' : { KEY : { ... }, ... }
                         "}"
 
 #### Preferences
@@ -77,7 +66,7 @@ Summary
                         'block_servers' : block_servers,
                         'uploads' : uploads,
                         'identities' : identities
-						'modules' : { KEY : { ... }, ... }
+                        'modules' : { KEY : { ... }, ... }
                         "}"
 
 #### Accounts
