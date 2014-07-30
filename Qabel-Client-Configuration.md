@@ -35,6 +35,7 @@ for the library and the UI.
  * poll_interval_mobile: This setting describes the default polling interval
  when the machine is using mobile connection. This parameter is only for mobile
  connection
+ * last_update : when the core asked the last time messages from the drop servers
 
 Summary
 
@@ -42,6 +43,7 @@ Summary
                         'poll_interval' : NUM,
                         'poll_interval_wlan' : NUM,
                         'poll_interval_mobile' : NUM,
+                        'last_update' : STR,
                         "}"
 
 #### Modules
