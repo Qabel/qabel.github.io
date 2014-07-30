@@ -5,22 +5,7 @@ Notes on configuration settings stored on each client.
 
 The configuration has two parts. The first part is configuration data which is the same across all clients of this user. This configuration data will be synchronized later (in beta only basic sync). The other part is for the local machine only. E.g. polling time, window sizes and alike. These two parts are stored in individual files.
 
-## Description of the items
-
-### Local settings
-
-The settings item has these sub items
-* preferences
-* modules
-
-Summary
-
-        Local_Settings  = "{"
-                        'preferences' : preferences
-                        'modules' : { KEY : { ... }, ... }
-                        "}"
-
-#### Preferences
+## Local settings
 
 The preferences are a collection of settings which describes some common settings
 for the library and the UI.
@@ -36,6 +21,7 @@ for the library and the UI.
  when the machine is using mobile connection. This parameter is only for mobile
  connection
  * drop_last_update : when the core asked the last time messages from the drop servers. It save the time stamp string as received from the Drop Message
+ * modules : Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
 
 Summary
 
@@ -44,13 +30,21 @@ Summary
                         'poll_interval_wlan' : NUM,
                         'poll_interval_mobile' : NUM,
                         'drop_last_update' : STR,
+                        'modules' : { KEY : { ... }, ... }
                         "}"
 
-#### Modules
+## Synced settings
 
-Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
+### Common Settings
 
-### Synced settings
+The next settings are common and often used in the settings group.
+
+ * id: The id of the setting structure. This shall be a unique id in the application
+ * updated: The timestamp when the settings structure was updated last time
+ * created: The timestamp when the settings structure was created
+ * deleted: The timestamp when the settings structure was deleted. After a time x this structure will be deleted completely
+
+### Settings
 
 This settings items has seven sub items
  * accounts
