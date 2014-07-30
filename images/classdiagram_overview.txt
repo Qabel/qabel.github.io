@@ -1,0 +1,51 @@
+@startuml
+
+class Qabel
+
+class Drop {
+	register(Class<? extends DropMessage>, DropMessageListener)
+	unregister(DropMessageListener)
+	send(DropMessage, Contact)
+}
+
+interface DropMessageListener {
+	onDropMessage(DropMessage)
+}
+
+abstract DropMessage {
+}
+
+Drop o-- DropMessageListener
+
+class Config
+
+class DropMessage
+
+class ModuleManager {
+	load(String)
+}
+
+abstract BaseModule {
+	{abstract} void init(ModuleManager)
+}
+
+class Contact {
+	public_key : String
+	my_identity : Identity
+}
+
+class Identity {
+	private_key : String
+	public_key : String
+	storage_url : String[]
+}
+
+abstract BaseDropMessage
+
+ModuleManager *-- BaseModule
+
+Qabel -- Drop
+Qabel -- ModuleManager
+Qabel -- Config
+
+@enduml
