@@ -28,7 +28,7 @@ The following items define a contact item:
 * public_key (public key to encrypt drop message)
 * my_id (the id of the identity which owns this entry)
 * drop_urls (array of drop urls)
-* module_data (object of objects of module-defined data structures)
+* <a name="module_data"> </a> module_data (object of objects of module-defined data structures)
 
 Summary
 
@@ -39,7 +39,7 @@ Summary
                     'module_data' : { STR : { ... }, ... }
                     "}"
 
-Example
+### Example
 
 ```json
 {
