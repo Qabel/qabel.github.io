@@ -1,0 +1,89 @@
+@startuml
+package model {
+	abstract AbstractModuleSettings {
+
+	}
+	abstract LocalModuleSettings {
+
+	}
+	abstract SyncedModuleSettings {
+
+	}
+
+	class LocalSettings {
+		poll_interval : long
+		poll_interval_wlan : long
+		poll_interval_mobile : long
+		last_update : Date
+	}
+	class SyncedSettings {
+		uploads : uploads
+		identities : identities
+	}
+
+	LocalSettings *-- LocalModuleSettings
+	SyncedSettings *-- SyncedModuleSettings
+	AbstractModuleSettings <-- LocalModuleSettings
+	AbstractModuleSettings <-- SyncedModuleSettings
+
+
+	class Account {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		provider : String
+		user : String
+		auth : String
+	}
+	SyncedSettings *-- Account
+
+	class DropServer {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		url : URL
+		auth : String
+		active : bool
+		websockets : bool
+		poll_interval : long
+	}
+	SyncedSettings *-- DropServer
+
+	class StorageVolume {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		server : String
+		port : int
+		path : String
+		auth : String
+	}
+	SyncedSettings *-- StorageVolume
+
+	class Upload {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		block_server_id : int
+		public : String
+		token : String
+		revoke_token: String
+	}
+	SyncedSettings *-- Upload
+
+	class Identity {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		alias : String
+		private_key : String
+		inbox : String
+	}
+	SyncedSettings *-- Identity
+}
+@enduml
