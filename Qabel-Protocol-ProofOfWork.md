@@ -6,16 +6,16 @@ A Spam and Denial of Service countermeasure. Reduce the capability of each singl
 
 ## Scheme
 
-* Nach stochastischem Verfahren oder wenn der Server verdächtige Verbindungen erkennt eine Flood-Control durchführen.
-* Client könnte auch bei jeder Anfrage eine Berechnung basierende auf Parametern und Datum/Zeit liefern.
+* Run a Flood Control using stochastical techniques or if the server detects a suspicious connection.
+* Additionally the client could send a calculation based on parameters and date/time with each query.
 
 ##  Protocol
 
-* Server schickt "X-Proof-Of-Work-Required"-Header mit Liste unterstützter Verfahren und Parametern
-* Client rechnet Hash zu Collision zurück und fragt mit Ergebnis als "X-Proof-Of-Work"-Header neu an.
+* The server sends "X-Proof-Of-Work-Required" header with a list of supported methods and parameters.
+* The client calculates the Hash back to Collision and makes a new request with the result as "X-Proof-Of-Work" header
 
 ## Current Implemention
 
-* Verfahren ist PBKDF2.
-** Algorithmus ist recht einfach z.B. auf SHA1 aufgebaut.
-** Ähnlich als "Hashcash":https://en.wikipedia.org/wiki/Hashcash in Bitcoin
+* Method is PBKDF2.
+** Algorithm is simple. For example based on SHA1.
+** Similar to "Hashcash":https://en.wikipedia.org/wiki/Hashcash in Bitcoin
