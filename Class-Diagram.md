@@ -1,1 +1,1 @@
-![classdiagram_overview.png](images/classdiagram_overview.png)
+[![classdiagram_overview.png](images/classdiagram_overview.png)](images/classdiagram_overview.png)
