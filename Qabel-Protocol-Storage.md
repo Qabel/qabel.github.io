@@ -15,8 +15,8 @@ https://qabelserver:8000/qabel-storage/8043810841
 This URL consists of the following parts:
 
 * https:// - the transport protocol, https and http are supported. https is the recommended protocol. In the following documentation this part will be referenced by "https://"
-* qabelserver:8000 - the host-spec, it consists of the servers name and servers port. In the following documentation this part will be referenced by "server"
-* /qabel-storage - the prefix: This is a static prefix for all qabel related URLs on this server. This way a qabel-storage can share its http-port with other http-services. Empty string as prefix are explicitly allowed. In the following documentation this part will be referenced by "/prefix".
+* qabelserver:8000 - the host-spec, it consists of the server's name and server's port. In the following documentation this part will be referenced by "server"
+* /qabel-storage - the prefix: This is a static prefix for all qabel related URLs on this server. This way a qabel-storage can share its http-port with other http-services. An empty string as prefix is explicitly allowed. In the following documentation this part will be referenced by "/prefix".
 * /8043810841 - the qabel-specific URL. This represents the actual path for qabel-storage functionality.
 
 ### Create a new Qabel Storage Volume
@@ -48,7 +48,7 @@ The fields are described as follows:
 
 This method requires autorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
 
-The body of the http request will be safed to the chunkname and can later be accessed via a get request under this URL
+The body of the http request will be safed to the chunkname and can later be accessed via a get request under this URL.
 
 ### Deleting a QSV
 
