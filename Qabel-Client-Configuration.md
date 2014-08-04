@@ -50,7 +50,7 @@ This settings items has seven sub items
  * accounts
  * drop_servers
  * storage_servers
- * uploads
+ * storage_volumes
  * identities
  * modules
 
@@ -60,7 +60,7 @@ Summary
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
                         'storage_servers' : storage_servers,
-                        'uploads' : uploads,
+                        'storage_volumes' : storage_volumes,
                         'identities' : identities
                         'modules' : { KEY : { ... }, ... }
                         "}"
@@ -146,17 +146,17 @@ Summary
                         'auth' : STR
                         "}"
 
-#### Uploads
+#### Storage Volumes
 
-The item "uploads" includes an array of upload settings structures
+The item "storage_volumes" includes an array of storage volume settings
 
 Summary
 
-        uploads         = "["
-                        upload*
+        storage_volumes = "["
+                        storage_volumes*
                         "]"
 
-#### Upload
+#### Storage Volume
 
  * storage_server_id: Id of the block server settings structure
  * public: Public unique id of the data storage on the server
@@ -165,7 +165,7 @@ Summary
 
 Summary
 
-        upload          = "{"
+        storage_volume   = "{"
                         'id': INT,
                         'updated': INT,
                         'created': INT,
