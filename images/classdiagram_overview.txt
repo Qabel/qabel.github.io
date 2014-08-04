@@ -40,7 +40,9 @@ package config {
 		user : String
 		auth : String
 	}
-	class Accounts { }
+	class Accounts {
+
+	}
 	Accounts *-- Account
 	SyncedSettings --- Accounts
 
@@ -68,7 +70,9 @@ package config {
 		path : String
 		auth : String
 	}
-	class StorageVolumes { }
+	class StorageVolumes {
+
+	}
 	StorageVolumes --- StorageVolume
 	SyncedSettings *-- StorageVolumes
 
@@ -82,7 +86,9 @@ package config {
 		token : String
 		revoke_token: String
 	}
-	Class StorageVolumes { }
+	Class StorageVolumes {
+
+	}
 	StorageVolumes *-- StorageVolumes
 	SyncedSettings --- StorageVolumes
 
@@ -95,7 +101,9 @@ package config {
 		private_key : String
 		inbox : String
 	}
-	class Identities { }
+	class Identities {
+
+	}
 	Identities *-- Identity
 	SyncedSettings *-- Identities
 }
