@@ -81,7 +81,7 @@ package config {
 		updated: int
 		created: int
 		deleted: int
-		block_server_id : int
+		storage_server_id : int
 		public : String
 		token : String
 		revoke_token: String
