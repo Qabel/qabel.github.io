@@ -122,14 +122,15 @@ package model {
 }
 package controller {
 	class DropController {
-		registerListener(ModelObject.class, DropServerListener)
-		unregisterListener(DropServerListener)
+		registerListener(ModelObject.class, DropListener)
+		unregisterListener(DropListener)
 	}
-	DropServerController --- ModelObject
+	DropController --- DropServers
+	DropController --- ModelObject
 	interface DropListener {
 
 	}
-	DropServerListener *-- DropServerController
+	DropListener *-- DropController
 	StorageController --- StorageVolumes
 	class StorageController {
 		
