@@ -49,7 +49,7 @@ The next settings are common and often used in the settings group.
 This settings items has seven sub items
  * accounts
  * drop_servers
- * block_servers
+ * storage_servers
  * uploads
  * identities
  * modules
@@ -59,7 +59,7 @@ Summary
         Settings        = "{"
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
-                        'block_servers' : block_servers,
+                        'storage_servers' : storage_servers,
                         'uploads' : uploads,
                         'identities' : identities
                         'modules' : { KEY : { ... }, ... }
@@ -118,12 +118,12 @@ Summary
 
 #### Block Servers
 
-The item "block_servers" includes an array of block server settings structures
+The item "storage_servers" includes an array of block server settings structures
 
 Summary
 
-        block_servers   = "["
-                        block_server*
+        storage_servers   = "["
+                        storage_server*
                         "]"
 
 #### Block Server
@@ -135,7 +135,7 @@ Summary
 
 Summary
 
-        block_server    = "{"
+        storage_server    = "{"
                         'id': INT,
                         'updated': INT,
                         'created': INT,
@@ -158,7 +158,7 @@ Summary
 
 #### Upload
 
- * block_server_id: Id of the block server settings structure
+ * storage_server_id: Id of the block server settings structure
  * public: Public unique id of the data storage on the server
  * token: Token to upload data to storage
  * revoke_token: Token to delete data from storage
@@ -170,7 +170,7 @@ Summary
                         'updated': INT,
                         'created': INT,
                         'deleted': INT,
-                        'block_server_id' : INT,
+                        'storage_server_id' : INT,
                         'public' : STR,
                         'token' : STR,
                         'revoke_token': STR,
