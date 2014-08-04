@@ -116,9 +116,9 @@ Summary
                         'poll_interval' : NUM
                         "}"
 
-#### Block Servers
+#### Storage Servers
 
-The item "storage_servers" includes an array of block server settings structures
+The item "storage_servers" includes an array of storage server settings
 
 Summary
 
@@ -126,7 +126,7 @@ Summary
                         storage_server*
                         "]"
 
-#### Block Server
+#### Storage Server
 
  * server: Name of the server
  * port: Port to use
@@ -158,7 +158,7 @@ Summary
 
 #### Storage Volume
 
- * storage_server_id: Id of the block server settings structure
+ * storage_server_id: Id of the storage server settings
  * public: Public unique id of the data storage on the server
  * token: Token to upload data to storage
  * revoke_token: Token to delete data from storage
