@@ -21,7 +21,7 @@ for the library and the UI.
  when the machine is using mobile connection. This parameter is only for mobile
  connection
  * drop_last_update : when the core asked the last time messages from the drop servers. It save the time stamp string as received from the Drop Message
- * modules : Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
+ * module_data : Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
 
 Summary
 
@@ -30,7 +30,7 @@ Summary
                         'poll_interval_wlan' : NUM,
                         'poll_interval_mobile' : NUM,
                         'drop_last_update' : STR,
-                        'modules' : { KEY : { ... }, ... }
+                        'module_data' : { KEY : { ... }, ... }
                         "}"
 
 ## Synced settings
@@ -52,7 +52,7 @@ This settings items has seven sub items
  * storage_servers
  * storage_volumes
  * identities
- * modules
+ * module_data
 
 Summary
 
@@ -62,7 +62,7 @@ Summary
                         'storage_servers' : storage_servers,
                         'storage_volumes' : storage_volumes,
                         'identities' : identities
-                        'modules' : { KEY : { ... }, ... }
+                        'module_data' : { KEY : { ... }, ... }
                         "}"
 
 #### Accounts
@@ -204,6 +204,6 @@ Summary
                         'inbox' : URL
                         "}"
 
-#### Modules
+#### Module Data
 
-Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
+Each module shall save there configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. We only provide this version of saving the configuration (for example the sync module will only sync this configuration). 
