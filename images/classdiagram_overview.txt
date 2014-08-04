@@ -22,7 +22,6 @@ package config {
 		last_update : Date
 	}
 	class SyncedSettings {
-		uploads : uploads
 		identities : identities
 	}
 
@@ -60,7 +59,7 @@ package config {
 	DropServers *-- DropServer
 	SyncedSettings --- DropServers
 
-	class StorageVolume {
+	class StorageServer {
 		id: int
 		updated: int
 		created: int
@@ -70,13 +69,13 @@ package config {
 		path : String
 		auth : String
 	}
-	class StorageVolumes {
+	class StorageServers {
 
 	}
-	StorageVolumes --- StorageVolume
-	SyncedSettings *-- StorageVolumes
+	StorageServers --- StorageServer
+	SyncedSettings *-- StorageServers
 
-	class StorageVolumes {
+	class StorageVolume {
 		id: int
 		updated: int
 		created: int
@@ -86,10 +85,11 @@ package config {
 		token : String
 		revoke_token: String
 	}
+	StorageServer <-- StorageVolume
 	Class StorageVolumes {
 
 	}
-	StorageVolumes *-- StorageVolumes
+	StorageVolumes *-- StorageVolume
 	SyncedSettings --- StorageVolumes
 
 	class Identity {
