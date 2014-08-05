@@ -18,7 +18,7 @@ A server contains all possible (possibly not manifested drop IDs. Each of these 
 
 The messages get managed separatedly by drop.
 
-## Structur of the Endpoint URL
+## Structure of the Endpoint URL
 
 The Drop URLs are composed of protocol, server address (incl. port), service path and drop ID:
 
