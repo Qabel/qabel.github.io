@@ -1,22 +1,17 @@
 # Dead Drop Specification
+## Abstract
+
+A protocol to write and read from a Qabel drop server.
 
 ## Protocol
-### URLs
 
-## Drop IDs
-
-Drops are identified by a bit value of a certain length as ID. Coding is "URL friendly Base64".
-See "RFC 4648": http://www.ietf.org/rfc/rfc4648.txt "Base 64 Encoding with URL and Filename Safe Alphabet".
-Proposed is 256 bit (32 byte) secure random number. (This is on par with 43 ASCII bytes.)
-
-## Structure of the Endpoint URL
-
-The Drop URLs are composed of protocol, server address (incl. port), service path and drop ID:
+### Structure of the Endpoint URL
+The URL to access a drop on a qabel drop server can be split into four parts, protocol, server address (incl. port), service path and drop ID:
 
 - Protocol is http or https.
 - Server address is an IP (IPv4 or IPv6) or a DNS host address. For non-standard ports, the port number gets appended.
-- The service path is the basis path of the server (e.g. URL of the PHP script or mapping in the reverse proxy). The path includes the leading slash ("/").
-- Valid full URLs of a drop always and with the drop ID.
+- The service path is the base path of the server (e.g. URL of the PHP script or mapping in the reverse proxy). The path includes the leading slash ("/").
+- a valid URL of a drop always contains the drop ID.
 
 In "BNF":http://www.w3.org/Addressing/URL/5_BNF.html "Notation":http://www.w3.org/Notation.html of the W3C:
 
@@ -31,6 +26,11 @@ dropid ::= <43>*friendlybase64char
 
 Example: http://d.example:1234/tools/drop/xzjall...aatr42
 
+## Drop IDs
+
+Drops are identified by a bit value of a certain length as ID. Coding is "URL friendly Base64".
+See "RFC 4648": http://www.ietf.org/rfc/rfc4648.txt "Base 64 Encoding with URL and Filename Safe Alphabet".
+Proposed is 256 bit (32 byte) secure random number. (This is on par with 43 ASCII bytes.)
 
 ## Methods
 
