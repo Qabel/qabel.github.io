@@ -133,12 +133,12 @@ So it can only be determined that somebody is participant in the whole system, b
 
 ## Access rights
 
-The access for reading and writing (generation of new messages) is free and anonymous. Clients cannot delete or change messages.
-Optionally drop servers can be limited to a certain circle of participants (company in-house, etc.).
-Those private drop servers define a shared password used by all clients.
+The access for reading and writing (creation of new messages) is free and anonymous. Clients cannot delete or change messages.
+Drop servers can optionally be limited to a certain circle of participants (company in-house, etc.).
+Access to those private drop servers is granted by using a shared secret for all clients.
 
 ## Memory / Data Model for Drop
 
 A server contains all possible (possibly not manifested drop IDs. Each of these contain the single message as a FIFO ordered by the time of their arrival.
 
-The messages get managed separatedly by drop.
+The messages get managed separately by drop.
