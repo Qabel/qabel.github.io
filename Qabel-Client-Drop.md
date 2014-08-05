@@ -31,11 +31,11 @@ The client will send the message to the server.
 
 **On sending success:**
 The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
-Message will be put into history.
+The message will be added to the history.
 
 **On sending failure:**
 The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
-User will be informed. Client will retry to send it.
+The user will be informed and the client will try to resend the message.
 
 #### Get message
 Alice (receiver) wants to receive new messages. Alice has a private key and an address, therefor a valid inbox.
@@ -46,10 +46,10 @@ The server will return a specific [response] (hhttps://github.com/Qabel/intern-d
 
 **On receiving failure:**
 The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
-User will be informed and the client will retry to receive the messages.
+The user will be informed and the client will retry to receive the messages.
 
 ### Format and buildup/structure of a message
-A message is packed into JSON format containing the following fields:
+A message is packed into JSON containing the following fields:
 
 **Key 'time_stamp'**
 Date of message generation.
@@ -92,9 +92,9 @@ The payload of the message
 
 ### Encryption
 
-The final JSON object is serialized as string and compressed with zlib forming the cryptographic plaintext.
+The final JSON object is serialized to a string and compressed with zlib forming the cryptographic plaintext.
 The plaintext is encrypted using AES with a random key of 256 bits forming the ciphertext.
-The AES key is encrypted with RSA OAEP Encryption Scheme using the recipients public key.
+The AES key is encrypted with RSA OAEP encryption scheme using the recipients public key.
 The final data is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the ciphertext. E.g. with a 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
 
 ### History / Persistence
