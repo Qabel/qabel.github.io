@@ -68,7 +68,7 @@ This key describes the version of the Qabel Drop Message protocol.
 * type = INT
 
 **Key 'data'**
-The real data of the message
+The payload of the message
 * Type = JSON object
 
 **Summary**
