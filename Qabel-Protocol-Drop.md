@@ -13,7 +13,9 @@ In the following text a short overview of the goals and strategies will be given
 ## Idea
 
 A dead drop is used for an obscure transmission of secret messages.
-It usually is a physical object, which is especially prepared to contain messages. Only sender and recipient know the place and the specific characteristics of the object. The sender leaves a message. Then he either signals the recipient at a different place that a message has been left or the recipient checks regularly for new messages. If need be a conformation of receipt can be left at a different place.
+It usually is a physical object, which is especially prepared to contain messages. Only sender and recipient know the place and the specific characteristics of the object.
+The sender leaves a message. Then he either signals the recipient at a different place that a message has been left or the recipient checks regularly for new messages.
+If needed a conformation of reception can be left at a different place.
 
 See "Wikipedia":http://en.wikipedia.org/wiki/Dead_drop
 
@@ -35,10 +37,10 @@ Within the protocol users of the system will not be identified; there is no user
 On network level, and depending on the amount of access a potential attacker is having, total anonymity is hard to reach.
 At least at the server the communication is coming in and is identifiable.
 The fact of communication happening cannot be totally hidden, but obscured.
-Because the necessary IP connections are visible in pricipal, total anonymity isn't reachable within the borders of this protocol.
+Because the necessary IP connections are visible in principal, total anonymity isn't reachable within the borders of this protocol.
 Additional layers like for example Tor can make a contribution to securing the connections.
 
-Therefor our weakened demand is, that at least no two (or n) participants of a communication can be identified. So the anonymity of the existence of a communication between persons is given, but not the anonymity of all users of the system.
+Therefor our weakened demand is, that at least not two (or n) participants of a communication can be identified. So the anonymity of the existence of a communication between persons is given, but not the anonymity of all users of the system.
 
 The anonymity of all participants among each other is given in the system itself. But depending on the identification of the messages within the encryption and on the use case it can be intentionally abolished. 
 
@@ -65,18 +67,20 @@ Therefor the protocol is hard to block, a little bit more difficult to select/an
 
 Existing solutions like the flexible XMPP (e.g. Chrome Sync) are too extensive and too complex. An analysis of the communication would be made easier.
 
-From the outside the protocol is not distinguishable from normal HTTP traffic (browsing, download, webservices). A deep packet inspection would show the usage of the protocol itself and identify a dead drop server, but actual content analysis is not possible.
+From the outside the protocol is not distinguishable from normal HTTP traffic (browsing, download, webservices).
+A deep packet inspection would show the usage of the protocol itself and identify a dead drop server, but actual content analysis is not possible.
 
 
 The messages and direct meta data are encrypted.
 
 The content of the communication should not reach the outside.
-The between the clients exchanged messages are completely encrypted. Corresponding meta data like lists of recipients, encryption methods and parameter are opaque in the encrypted block. The server cannot make assumptions over the structure or even the content.
+The between the clients exchanged messages are completely encrypted. Corresponding meta data like lists of recipients, encryption methods and parameter are opaque in the encrypted block.
+The server cannot make assumptions over the structure or even the content.
 A possible authentication of the sender is happening inside of the encrypted message.
 
 
-The details of the encryption lie with the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the dead drop protocol. Hence the actual content of the messages is pure cypher text.
-The protocol cannot enforce this, in principle any message can be exchanged. This is the task a a higher protocol level.
+The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the dead drop protocol. Hence the actual content of the messages is pure cypher text.
+The protocol cannot enforce this, in principle any message can be exchanged. This is the task of a higher protocol level.
 
 The only meta data used by the server is the incoming time of a message and the used channel. This key is used for polling for new messages (as new-messages-since-date).
 
@@ -99,12 +103,12 @@ To consign a message the sender encrypts the plain text and puts the encrypted m
 
 In order to make sure that the actual communication between Alice and Bob cannot be retraced, the message on the server neither contains meta data of the sender nor of the recipient. Those are inside of the encrypted message.
 With this no correlation of the communication partners is possible. On the other hand the recipients cannot select the messages send to them.
-The protocol stipulates, that all recipients poll selected drops on a regular basis and receive all new messages. Only a successful decryption determines that s message is actually for the recipient. 
+The protocol stipulates, that all recipients poll selected drops on a regular basis and receive all new messages. Only a successful decryption determines that the message is actually for the recipient.
 It is a Subscribe to Broadcasts via polling - like in the classifieds analogy we used above.
 
 To be more concrete: A client has to read *all* messages of a channel (drop), in order to filter out the ones meant for him.
 This is producing a communication overhead, but is ensuring the anonymity of the communication itself.
-So it can only be determined that somebody is participant in the whole ystem, but not which his communication partners are.
+So it can only be determined that somebody is participant in the whole system, but not which his communication partners are.
 
 
 ## Access rights
@@ -116,14 +120,13 @@ Those private drop servers define a shared password used by all clients.
 
 ## Drop IDs
 
-Drops are identifief by a bit value of a certain length as ID. Coding is "URL friendly Base64".
+Drops are identified by a bit value of a certain length as ID. Coding is "URL friendly Base64".
 See "RFC 4648": http://www.ietf.org/rfc/rfc4648.txt "Base 64 Encoding with URL and Filename Safe Alphabet".
 Proposed is 256 bit (32 byte) secure random number. (This is on par with 43 ASCII bytes.)
 
-
 ## Memory / Data Model for Drop
 
-A server contains all possible (possibly not manifested= drop IDs. Each of these contain the single messages as a FIFO ordered by the time of their arrival.
+A server contains all possible (possibly not manifested drop IDs. Each of these contain the single message as a FIFO ordered by the time of their arrival.
 
 The messages get managed separatedly by drop.
 
@@ -152,7 +155,7 @@ Example: http://d.example:1234/tools/drop/xzjall...aatr42
 
 ## Methods
 
-Available are the REST methods GET, HEAD and POST:
+Available are the REST methods GET, HEAD and POST.
 
 ### GET
 
