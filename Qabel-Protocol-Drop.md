@@ -26,22 +26,22 @@ dropid ::= <43>*friendlybase64char
 
 Example: http://d.example:1234/tools/drop/xzjall...aatr42
 
-## Drop IDs
+### Drop IDs
 
 Drops are identified by a bit value of a certain length as ID. Coding is "URL friendly Base64".
 See "RFC 4648": http://www.ietf.org/rfc/rfc4648.txt "Base 64 Encoding with URL and Filename Safe Alphabet".
 Proposed is 256 bit (32 byte) secure random number. (This is on par with 43 ASCII bytes.)
 
-## Methods
+### Methods
 
 Available are the REST methods GET, HEAD and POST.
 
-### GET
+#### GET
 
 The GET method asks for a complete drop or a defined part of the newest entries.
 
 
-#### Return values
+##### Return values
 
 Delivers HTTP 400 if the drop ID is missing or invalid.
 
@@ -62,11 +62,11 @@ The 'Content-Type' is 'multipart/mixed'.
 Each individual part has a 'Content-Type' of 'application/octet-stream' and a 'Date' header.
 The messages are uncoded 8-bit streams.
 
-### HEAD
+#### HEAD
 
 The HEAD method determines if a drop is filled or if a new message has arrived.
 
-#### Return values
+##### Return values
 
 Delivers HTTP 400 if the drop ID is missing or invalid.
 Delivers HTTP 404 if the drop is empty.
@@ -80,12 +80,12 @@ Delivers HTTP 200 if the drop contains new messages since 'if-modified-since'.
 
 No HTTP body gets returned.
 
-### POST
+#### POST
 
 With the POST method a new message gets added to a drop.
 The drop can already contain messages or be empty/unused.
 
-#### Return values
+##### Return values
 
 Delivers HTTP 400 if the drop ID is missing or invalid.
 On success: delivers HTTP 200 and adds the message to the drop.
