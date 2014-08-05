@@ -1,22 +1,13 @@
 # Dead Drop Specification
-## Access rights
 
-The access for reading and writing (generation of new messages) is free and anonymous. Clients cannot delete or change messages.
-Optionally drop servers can be limited to a certain circle of participants (company in-house, etc.).
-Those private drop servers define a shared password used by all clients.
-
+## Protocol
+### URLs
 
 ## Drop IDs
 
 Drops are identified by a bit value of a certain length as ID. Coding is "URL friendly Base64".
 See "RFC 4648": http://www.ietf.org/rfc/rfc4648.txt "Base 64 Encoding with URL and Filename Safe Alphabet".
 Proposed is 256 bit (32 byte) secure random number. (This is on par with 43 ASCII bytes.)
-
-## Memory / Data Model for Drop
-
-A server contains all possible (possibly not manifested drop IDs. Each of these contain the single message as a FIFO ordered by the time of their arrival.
-
-The messages get managed separatedly by drop.
 
 ## Structure of the Endpoint URL
 
