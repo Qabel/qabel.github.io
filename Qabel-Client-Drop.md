@@ -90,16 +90,12 @@ The payload of the message
 **Receive messages:**
 ![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_receive.png)
 
-### Encryption
+### Proposal: Authenticated Encryption
 
 The JSON object 'drop_message' is serialized to JSON text (string) without unneeded whitespace characters forming the cryptographic plaintext.
-The plaintext is encrypted using AES with a random key of 256 bits forming the ciphertext.
+The plaintext is encrypted using AES-GCM with a random key of 256 bits and authentication data derived from the private key, forming the authenticated ciphertext.
 The AES key is encrypted with RSA OAEP encryption scheme using the recipients public key.
-The final data is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the ciphertext. E.g. with a 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
-
-#### Signature
-
-The whole drop_message will be signed by the sender. **TODO**: To be defined.
+The final data is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the authenticated ciphertext. E.g. with a 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
 
 ### History / Persistence
 
