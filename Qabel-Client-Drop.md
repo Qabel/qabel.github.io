@@ -1,5 +1,5 @@
-# Qabel client messages
-## The structure and encryption of Qabel messages, transported using the Qabel Drop protocol.
+# Qabel drop messages
+## The structure and encryption of Qabel drop messages, transported using the Qabel Drop protocol.
 
 ### Terminology
 
@@ -26,59 +26,59 @@ message = json object the client sends to the server
 ### Use cases:
 
 #### Send message
-Alice (sender) wants to write a message to Bob (recipient). Alice has Bobs address and public key, therefor Bob has a valid inbox.
+Alice (sender) wants to write a message to Bob (recipient). Alice has Bobs address and public key, therefore Bob has a valid inbox.
 The client will send the message to the server.
 
 **On sending success:**
 The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
-The message will be added to the history.
+The message will be added to the history if this is wanted.
 
 **On sending failure:**
 The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
-The user will be informed and the client will try to resend the message.
+The user will be informed and/or the client will try to resend the message.
 
 #### Get message
-Alice (receiver) wants to receive new messages. Alice has a private key and an address, therefor a valid inbox.
+Alice (receiver) wants to receive new messages. Alice has a private key and an address, therefore a valid inbox.
 The client will request new messages from the server.
 
 **On receiving success:**
-The server will return a specific [response] (hhttps://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods) including the new messages.
+The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods) including the new messages.
 
 **On receiving failure:**
 The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
-The user will be informed and the client will retry to receive the messages.
+The user will be informed and/or the client will retry to receive the messages.
 
-### Format and buildup/structure of a message
+### Format and structure of a message
 A message is packed into JSON containing the following fields:
+
+**Key 'version'**
+This key describes the version of the Qabel Drop Message protocol.
+* type = INT
 
 **Key 'time_stamp'**
 Date of message generation.
 * type = INT
 
 **Key 'sender'**
-The ID of the sender.
+The key id of the PGP key of sender.
 * type = INT
 
-**Key 'module'**
-The name of the module that handles this message.
+**Key 'model_object'**
+The name of the model object that handles this message.
 * type = STR
-
-**Key 'version'**
-This key describes the version of the Qabel Drop Message protocol.
-* type = INT
 
 **Key 'data'**
 The payload of the message
 * Type = JSON object
 
-**Summary**
+#### Summary
 
     drop_message    = "{"
+                    'version' : INT,
                     'time_stamp' : INT,
                     'sender' : INT,
-                    'module' : STR
-					'version' : INT,
-					'data' : { ... }
+                    'model_object' : STR,
+                    'data' : { ... }
                     "}"
 
 
@@ -92,10 +92,14 @@ The payload of the message
 
 ### Encryption
 
-The final JSON object is serialized to a string and compressed with zlib forming the cryptographic plaintext.
+The JSON object 'drop_message' is serialized to JSON text (string) without unneeded whitespace characters forming the cryptographic plaintext.
 The plaintext is encrypted using AES with a random key of 256 bits forming the ciphertext.
 The AES key is encrypted with RSA OAEP encryption scheme using the recipients public key.
 The final data is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the ciphertext. E.g. with a 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
+
+#### Signature
+
+The whole drop_message will be signed by the sender. **TODO**: To be defined.
 
 ### History / Persistence
 
