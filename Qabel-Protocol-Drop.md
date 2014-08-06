@@ -91,5 +91,6 @@ Delivers HTTP 400 if the drop ID is missing or invalid.
 On success: delivers HTTP 200 and adds the message to the drop.
 The message has to be transmitted as HTTP body.
 The HTTP body is a uncoded 8-bit stream.
+If the sent message exceeds the maximum message size of (2KB(?)), then the server responds with HTTP 413 (Request Entity Too Large).
 
 No HTTP body gets returned.
