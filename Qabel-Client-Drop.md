@@ -60,7 +60,7 @@ Date of message generation.
 * type = INT
 
 **Key 'sender'**
-The key id of the PGP key of sender.
+The key id of the key of sender.
 * type = INT
 
 **Key 'model_object'**
