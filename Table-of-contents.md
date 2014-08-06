@@ -12,7 +12,7 @@
   8. [[Modules|Components-Modules]]
 4. [[Client Data|Qabel-Client-Data]] (this is the internal state and data of the client as seen by core and maybe module developers.)
   2. [[Configuration|Qabel-Client-Configuration]]
-  4. [[Contact for drop messages|Qabel-Client-Contact-Drop-Messages]]
+  4. [[Contact|Qabel-Client-Contact-Drop-Messages]]
   9. [[Qabel-Drop-Message|Qabel-Client-Drop]]
 6. [[Communication Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
   1. [[Qabel-Drop-Protocol|Qabel-Protocol-Drop]]
