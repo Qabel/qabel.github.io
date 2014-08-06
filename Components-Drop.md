@@ -50,7 +50,8 @@ Messages cannot be deleted or changed, but they expire after some time.
 
 IMPORTANT: Messages in the protocol are not necessarily persistent. They exist only temporarily with delayed expiration. The actual expiration date is depended upon disk space and other configurations, which will be defined later on.
 
-### New analogyIn contrast to a classic dead drop, this protocol does not intent to
+### New analogy
+In contrast to a classic dead drop, this protocol does not intent to
 keep the drop location secret.
 It is more like an openly visible and publicly accessible array of
 mail boxes where everyone can put messages in a box or can observe the
