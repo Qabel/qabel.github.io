@@ -168,13 +168,21 @@ To consign a message the sender encrypts the plain text and puts the encrypted m
 
 In order to make sure that the actual communication between Alice and Bob cannot be retraced, the message on the server neither contains meta data of the sender nor of the recipient. Those are inside of the encrypted message.
 With this no correlation of the communication partners is possible. On the other hand the recipients cannot select the messages send to them.
-The protocol stipulates, that all recipients poll selected drops on a regular basis and receive all new messages. Only a successful decryption determines that the message is actually for the recipient.
+The protocol stipulates, that all recipients poll selected and additionally random drops on a regular basis and receive all new messages. Only a successful decryption determines that the message is actually for the recipient.
 It is a Subscribe to Broadcasts via polling - like in the classifieds analogy we used above.
 
-To be more concrete: A client has to read *all* messages of a channel (drop), in order to filter out the ones meant for him.
-This produces a communication overhead, but ensures the anonymity of the communication itself.
+To be more concrete: A client has to read *all* messages of a channel (drop), in order to filter out the ones meant for him. Further, a client has to read *all* messages from other drops which it doens't use for valid communication. This produces a communication overhead, but ensures the anonymity of the communication itself if these drops are also used by other valid clients.
 So it can only be determined that somebody is participant in the whole system, but not who his communication partners are.
 
+Random drop messages into actually used and additionally chosen random drop ID are used to further obfuscate real communication.
+
+It is crucial that a drop is used by more than two clients in order to obfuscate these communication partners. If only two valid clients are using a drop, these communication partners could be identified by the server. A client has no possibility to detect if other messages in a drop are communications between real clients or forged by a malicious server. A malicious server might place forged messages into a drop and the valid clients using this drop would assume that other valid clients are using this drop. The server could filter the forged drop messages and detect the identities of the valid client communicating in this drop.
+
+## Collisions of drop IDs and scalability
+
+It is crucial that different clients are using the same drop ID for their communication. However, not too many clients should use the same drop ID in order to keep the amount of messages addressed to other recipients on a reasonable level. Finding a way to force colliding drop IDs, while keeping the system scalable is a challenging tasks which isn't completely solved yet. Some kind of smart algorithm has to be developed which relies its scaling choices only on trustworthy data.
+
+To fully obfuscate a communication, clients should leave drop messages in randomly chosen drops and also check random drops for new messages. Of course these randomly chosen drops have to collide with randomly chosen drops of other clients.
 ## Access rights
 
 The access for reading and writing (creation of new messages) is free and anonymous. Clients cannot delete or change messages.
