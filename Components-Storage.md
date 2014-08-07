@@ -30,4 +30,6 @@ The server provides four different keys to provide different levels of access:
 
 ## Sharing
 
-TODO
+### Example
+
+Alice want to share a file to Bob. Alice provides the public information and the cipher_key of this file to Bob through a third party (mostly, this will be the DropServer). Bob can use this information to access the file readonly. If Bob wants to make changes to the file, he clones it to a storage which he has write access to. Then Bob makes his changes and shares the file back to Alice.
