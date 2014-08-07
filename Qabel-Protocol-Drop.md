@@ -105,3 +105,11 @@ The drop can already contain messages or be empty/unused.
 The message has to be transmitted as HTTP body.
 The HTTP body is an encoded 8-bit stream.
 No HTTP body gets returned.
+
+## Messages
+
+### Lifetime
+A message MAY be deleted by the drop server after 24 hours.
+
+### Size
+A message MUST NOT be larger than 2KB.
