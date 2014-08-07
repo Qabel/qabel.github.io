@@ -84,11 +84,11 @@ The payload of the message
 
 ### Sequence diagrams
 
-**Send message:**
-![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_send.png)
+#### Send message:
+![Sequence diagram send message](https://github.com/Qabel/intern-doc/wiki/images/sequencediagram_send_messages.png)
 
-**Receive messages:**
-![](https://github.com/Qabel/intern-doc/wiki/images/sequence_diagram_qabel_messages_receive.png)
+#### Receive messages:
+![Sequence diagram receive messages](https://github.com/Qabel/intern-doc/wiki/images/sequencediagram_receive_messages.png)
 
 ### Encryption
 
