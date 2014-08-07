@@ -1,0 +1,37 @@
+@startuml
+
+Akteur -> MessageClass: receiveMessages()
+activate MessageClass
+
+MessageClass -> Inbox: httpGET()
+activate Inbox
+Inbox --> MessageClass: http-OK (200) & Messages
+deactivate Inbox
+
+loop Messages
+
+	MessageClass -> Crypto: decryptMessage(Message)
+	activate Crypto
+	Crypto -> Crypto: verifySignature(Message)
+
+	alt Signature is valid	
+
+		Crypto --> MessageClass: DecMessage
+		deactivate Crypto
+
+		MessageClass -> JSON: parseMessage(DecMessage)
+		activate JSON
+		JSON --> MessageClass: ParsedMessage
+		deactivate JSON		
+
+		MessageClass -> MessageClass: verifyMessage(ParsedMessage)
+		MessageClass -> MessageClass: handleMessage(ParsedMessage)
+	
+	end
+
+end
+
+MessageClass --> Akteur: messagesReceived
+deactivate MessageClass
+
+@enduml
