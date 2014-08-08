@@ -3,19 +3,15 @@
 
 ### Terminology
 
-address = qabel drop address as URL
-
-sender 	= person or system creating and sending qabel messages
-
-recipient = person or system receiving qabel messages
-
-client	= qabel client (software the sender is using)
-
-server 	= qabel server (drop server referred by the address)
-
-message payload = data the sender intents to deliver to the recipient
-
-message = json object the client sends to the server
+| Term | Meaning |
+| ---- | ------- |
+| address | qabel drop address as URL |
+| sender | person or system creating and sending qabel messages |
+| recipient | person or system receiving qabel messages |
+| client | qabel client (software the sender is using) |
+| server | qabel server (drop server referred by the address) |
+| message payload | data the sender intents to deliver to the recipient |
+| message | json object the client sends to the server |
 
 
 ### Attendees
@@ -51,25 +47,13 @@ The user will be informed and/or the client will retry to receive the messages.
 ### Format and structure of a message
 A message is packed into JSON containing the following fields:
 
-**Key 'version'**
-This key describes the version of the Qabel Drop Message protocol.
-* type = INT
-
-**Key 'time_stamp'**
-Date of message generation.
-* type = INT
-
-**Key 'sender'**
-The key id of the key of sender.
-* type = INT
-
-**Key 'model_object'**
-The name of the model object that handles this message.
-* type = STR
-
-**Key 'data'**
-The payload of the message
-* Type = JSON object
+| Key | Type | Description |
+| --- | ---- | ----------- |
+| **version** | INT | This key describes the version of the Qabel Drop Message protocol. |
+| **time_stamp** | INT | Date of message generation. |
+| **sender** | INT | The key id of the key of sender. |
+| **model_object** | STR | The name of the model object that handles this message. |
+| **data** | JSON object | The payload of the message. |
 
 #### Summary
 
