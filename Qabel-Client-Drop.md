@@ -88,8 +88,8 @@ A digest of the final encrypted message payload including the encrypted AES key,
 ### Transport format
 After applying confidentiality and authenticity mechanisms, the resulting message looks like this:
 
-| Message part | field | Description | Length (in Byte) |
-| ------------ | - | ----------- | -----: |
+| Message part | Field | Description | Length (in Byte) |
+| ------------ | ----- | ----------- | ---------------: |
 | **Header** (unencrypted) | Version? | Version of the Qabel drop message format | 2 |
 |            | Cipher suite | Identifier of the used cipher suite (symmetric cipher, hash function, public key algorithm?) | 2 |
 | **Data** (encrypted with symmetric block cypher) | Payload | Original Qabel drop message | *variable* |
