@@ -85,7 +85,22 @@ The encrypted message is created by concatenating three fields without any delim
 
 A digest of the final encrypted message payload including the encrypted AES key, IV, and the ciphertext is created via a hash function like SHA1 or SHA512. The digest is signed with the senders private key. Digest and signature are appended to the previously created encrypted message, forming the authenticated encrypted message.
 
+### Transport format
+After applying confidentiality and authenticity mechanisms, the resulting message looks like this:
+
+| Message part | field | Description | Length (in Byte) |
+| ------------ | - | ----------- | -----: |
+| **Header** (unencrypted) | Version? | Version of the Qabel drop message format | 2 |
+|            | Cipher suite | Identifier of the used cipher suite (symmetric cipher, hash function, public key algorithm?) | 2 |
+| **Data** (encrypted with symmetric block cypher) | Payload | Original Qabel drop message | *variable* |
+|                | Signature | Digital signature of the payload made with sender's private key | *variable* |
+| **Key** (encrypted with the public key of the recipient) | Key | Newly generated key used with the symmetric block cypher to encrypt the data | *variable* (256/512 Bit) |
+|         | Initialisation data | Data to initialize a symmetric block cypher (e.g. an IV) | ? |
+
+
 ### History / Persistence
 
 The core will handle the drop history but this functionality is not yet defined.
 **TODO**: Messages which are needed across all devices of an identity must be shared across all devices. The exact way has to be defined.
+
+
