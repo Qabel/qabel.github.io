@@ -111,13 +111,26 @@ package model {
 	abstract ModelObject {
 
 	}
+	ModelObject <-- DropDataObject
+
+	abstract DropDataObject {
+
+	}
 
 	class DropMessage {
 
 	}
 
+	ModelObject --- DropMessage
+
 	class StorageBlob {
 
+	}
+	ModelObject <-- StorageBlob
+}
+package module {
+	abstract Module {
+		init()
 	}
 }
 package controller {
@@ -126,11 +139,12 @@ package controller {
 		unregisterListener(DropListener)
 	}
 	DropController --- DropServers
-	DropController --- ModelObject
+	DropController --- DropDataObject
 	interface DropListener {
-
+		onDropMessage(DropMessage)
 	}
-	DropListener *-- DropController
+	DropMessage --- DropDataObject
+	DropController *-- DropListener
 	StorageController --- StorageVolumes
 	class StorageController {
 		
