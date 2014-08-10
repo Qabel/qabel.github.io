@@ -1,5 +1,5 @@
 @startuml
-package config {
+package de.qabel.core.config {
 	class Settings {
 
 	}
@@ -27,8 +27,8 @@ package config {
 
 	LocalSettings *-- LocalModuleSettings
 	SyncedSettings *-- SyncedModuleSettings
-	AbstractModuleSettings <-- LocalModuleSettings
-	AbstractModuleSettings <-- SyncedModuleSettings
+	AbstractModuleSettings <|-- LocalModuleSettings
+	AbstractModuleSettings <|-- SyncedModuleSettings
 
 	class Account {
 		id: int
@@ -72,8 +72,8 @@ package config {
 	class StorageServers {
 
 	}
-	StorageServers --- StorageServer
-	SyncedSettings *-- StorageServers
+	StorageServers *-- StorageServer
+	SyncedSettings --- StorageServers
 
 	class StorageVolume {
 		id: int
@@ -85,7 +85,7 @@ package config {
 		token : String
 		revoke_token: String
 	}
-	StorageServer <-- StorageVolume
+	StorageServer <|-- StorageVolume
 	Class StorageVolumes {
 
 	}
@@ -105,58 +105,54 @@ package config {
 
 	}
 	Identities *-- Identity
-	SyncedSettings *-- Identities
+	SyncedSettings --- Identities
 }
-package model {
-	abstract ModelObject {
+package de.qabel.core.drop {
+	class DropController {
+		registerListener(DropData.class, DropListener)
+		unregisterListener(DropListener)
+	}
+	DropController --> DropListener
+	interface DropListener {
+		onDropMessage(DropData)
+	}
+	DropListener --> DropData
+	abstract DropData {
 
 	}
-	ModelObject <-- DropDataObject
+}
+package de.qabel.core.storage {
+	class StorageController {
+	}
 
-	abstract DropDataObject {
+	StorageController --> StorageConnection
+	StorageConnection --> StorageBlob
+	class StorageConnection {
 
 	}
 
-	class DropMessage {
+	StorageConnection --> StorageResponseListener
 
+	interface StorageResponseListener {
+		onResponse(StorageConnection, StorageBlob)
 	}
-
-	ModelObject --- DropMessage
 
 	class StorageBlob {
 
 	}
-	ModelObject <-- StorageBlob
 }
-package module {
+package de.qabel.core.module {
 	abstract Module {
 		init()
 	}
-}
-package controller {
-	class DropController {
-		registerListener(ModelObject.class, DropListener)
-		unregisterListener(DropListener)
+	Module --- LocalModuleSettings
+	Module --- SyncedModuleSettings
+	Module --> DropController
+	Module --> StorageController
+	ModuleManager *-- Module
+	class ModuleManager {
+		load(String)
+		unload(String)
 	}
-	DropController --- DropServers
-	DropController --- DropDataObject
-	interface DropListener {
-		onDropMessage(DropMessage)
-	}
-	DropMessage --- DropDataObject
-	DropController *-- DropListener
-	StorageController --- StorageVolumes
-	class StorageController {
-		
-	}
-	class StorageConnection {
-
-	}
-	interface StorageResponseListener {
-		onResponse(StorageConnection, StorageBlob)
-	}
-	StorageConnection --- StorageResponseListener
-	StorageController *-- StorageConnection
-	StorageBlob --- StorageConnection
 }
 @enduml
