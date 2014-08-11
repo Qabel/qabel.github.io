@@ -31,7 +31,7 @@ Example:
 
 ### Create a new Qabel Storage Volume
 
-* HTTP-Method: POST or PUT
+* HTTP-Method: POST
 * URL Example: https://server/prefix/_new
 * URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/_new
 
