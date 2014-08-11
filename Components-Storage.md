@@ -30,6 +30,10 @@ The server provides four different keys to provide different levels of access:
 
 ## Sharing
 
-### Example
+### Example 1
 
-Alice wants to share a file with Bob. Alice provides the public information and the cipher_key of this file to Bob through a third party (mostly, this will be the drop server). Bob can use this information to access the file read-only. If Bob wants to make changes to the file, he clones it to a storage to which he has write access. Then Bob makes his changes and shares the file back to Alice.
+Alice wants to share a file with Bob. Alice provides the public information and the cipher_key of this file to Bob through a third party (mostly, this will be the drop server). Bob can use this information to access the file read-only. If Bob wants to make changes to the file, he modifies his local copy and re-uploads the result to a new storage volume. Bob then grants access to Alice by sending her the public and the cipher_key of the newly created storage volume.
+
+### Example 2
+Alice again wants to share a file with Bob and this time wants direct write permissions for Bob. Therefore, Alice not only sends Bob the public and cipher_key for
+her storage volume but also the secret token. Possessing this token, Bob can modify the storage volume just as Alice can do.
