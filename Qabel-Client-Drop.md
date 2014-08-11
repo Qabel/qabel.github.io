@@ -83,7 +83,7 @@ The encrypted message is created by concatenating three fields without any delim
 
 ### Signature
 
-A digest of the final encrypted message payload including the encrypted AES key, IV, and the ciphertext is created via a hash function like SHA1 or SHA512. The digest is encrypted with the senders private key. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
+A digest of the final encrypted message including header, the encrypted AES key, IV, and the ciphertext is created via a hash function like SHA1 or SHA512. The digest is encrypted with the senders private key. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
 
 ### Transport format
 After applying confidentiality and authenticity mechanisms, the resulting message looks like this:
