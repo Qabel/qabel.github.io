@@ -8,16 +8,26 @@ A protocol for read, write and delete access to bulk (cloud) storage.
 
 ### URLs
 
-The URL to access a qabel storage server can be split into four parts. Consider this URL for example:
+The URL to access a Qabel Storage Volume can be split into four parts:
+* the transport protocol: https and http are supported. https is the recommended protocol.
+* the service address: Host and port specification of the service. In the following SERVER.
+* the service prefix: This is a prefix for all Qabel related URLs on this server. This way to multiplex services sharing the same service address. In the following PREFIX.
+* identifier of a Storage Volume (in the following PUBLIC) or "_new" for a creation request.
 
-https://qabelserver:8000/qabel-storage/8043810841
+In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.org/Notation.html) of the W3C:
 
-This URL consists of the following parts:
+`dropurl ::= protocol "://" serviceaddress servicepath "/" id`
 
-* https:// - the transport protocol, https and http are supported. https is the recommended protocol. In the following documentation this part will be referenced by "https://"
-* qabelserver:8000 - the host-spec, it consists of the server's name and server's port. In the following documentation this part will be referenced by "server"
-* /qabel-storage - the prefix: This is a static prefix for all qabel related URLs on this server. This way a qabel-storage can share its http-port with other http-services. An empty string as prefix is explicitly allowed. In the following documentation this part will be referenced by "/prefix".
-* /8043810841 - the qabel-specific URL. This represents the actual path for qabel-storage functionality.
+1. protocol ::= "https" | "http"
+2. serviceaddress ::= serveraddress ( ":" serverport ) ?
+   1. serveraddress ::= IPv4 | IPv6 | DNSName
+   2. serverport ::= "1" - "65535"
+3. servicepath ::= "/" [ URLChars, "/" ] *
+4. public ::= *friendlybase64char
+   1. friendlybase64char ::= [ "A" - "Z", "a" - "z", "0" - "9", "-", "_" ]
+
+Example:
+`https://qabelserver:8000/qabel-storage/8043810841`
 
 ### Create a new Qabel Storage Volume
 
