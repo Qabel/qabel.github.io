@@ -50,6 +50,13 @@ The fields are described as follows:
 * ```revoke_token```: this token is needed to delete a Qabel Storage Volume with all it's contents. This token should never be public or given to any untrustworthy authority. See section deletion.
 * ```token```: this token is needed to do any updates on the Qabel Storage Volume. See section upload.
 
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 200 | Storage Volume successfully created |
+
+
 ### Uploading new Blobs
 
 * HTTP-Method: POST or PUT
@@ -60,10 +67,25 @@ This method requires autorization through the token which is returned by the req
 
 The body of the http request will be safed to the chunkname and can later be accessed via a get request under this URL.
 
-### Deleting a QSV
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 400 | Storage Volume ID is missing or invalid |
+| 200 | Chunk successfully uploaded |
+
+
+### Deleting a Qabel Storage Volume
 
 * HTTP-Method: DELETE
 * URL Example: https://foo:abcdef012346789@server/prefix/1223456789
 * URL Scheme: http[s]?://.*:[:REVERT_TOKEN:]@[:SERVER:][:PREFIX:]/[:PUBLIC:]/
 
 This method requires autorization through the revert_token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 400 | Storage Volume ID is missing or invalid |
+| 200 | Storage Volume successfully deleted |
