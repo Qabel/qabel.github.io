@@ -46,7 +46,7 @@ This creates a new Qabel Storage Volume with it's own write- and revoke-tokens. 
 ```
 The fields are described as follows:
 
-* ```public```: the public token which is sent as part of the URL. so if your public token is ```123456790```, the URL to access this token will be ```http://server/prefix/1234567890```
+* ```public```: the public token which is sent as part of the URL. If the public token is ```123456790```, the URL to access this Qabel Storage Volume will be ```http://server/prefix/1234567890```
 * ```revoke_token```: this token is needed to delete a Qabel Storage Volume with all it's contents. This token should never be public or given to any untrustworthy authority. See section deletion.
 * ```token```: this token is needed to do any updates on the Qabel Storage Volume. See section upload.
 
