@@ -54,7 +54,8 @@ The fields are described as follows:
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 200 | Storage Volume successfully created |
+| 201 | Storage Volume successfully created (*Created*) |
+| 503 | Failed to create volume, because of overloading. |
 
 
 ### Uploading new Blobs
@@ -71,7 +72,8 @@ The body of the http request will be safed to the chunkname and can later be acc
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 400 | Storage Volume ID is missing or invalid |
+| 400 | Storage Volume ID is missing or syntactically invalid |
+| 404 | Storage Volume ID does not exist or TOKEN is missing or invalid |
 | 200 | Chunk successfully uploaded |
 
 
@@ -87,5 +89,6 @@ This method requires authorization through the revoke_token which is returned by
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 400 | Storage Volume ID is missing or invalid |
-| 200 | Storage Volume successfully deleted |
+| 400 | Storage Volume ID is missing or syntactically invalid |
+| 404 | Storage Volume ID does not exist or REVOKE_TOKEN is missing or invalid |
+| 204 | Storage Volume successfully deleted (*No content*) |
