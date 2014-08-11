@@ -90,13 +90,12 @@ After applying confidentiality and authenticity mechanisms, the resulting messag
 
 | Message part | Field | Description | Length (in Byte) |
 | ------------ | ----- | ----------- | ---------------: |
-| **Header** (unencrypted) | Version? | Version of the Qabel drop message format | 2 |
-|            | Cipher suite | Identifier of the used cipher suite (symmetric cipher, hash function, public key algorithm?) | 2 |
-| **Data** (encrypted with symmetric block cipher) | Payload | Original Qabel drop message | *variable* |
-|                | Signature | Digital signature of the payload made with sender's private key | *variable* |
+| **Header** (unencrypted) | Version? | Version of the Qabel drop message format | total header lenght **N** bytes (to-be-defined!) |
+|            | Cipher suite? | Identifier of the used cipher suite (symmetric cipher, hash function, public key algorithm) | 2 |
 | **Key** (encrypted with the public key of the recipient) | Key | Newly generated key used with the symmetric block cipher to encrypt the data | *variable* (256/512 Bit) |
 |         | Initialisation data | Data to initialize a symmetric block cipher (e.g. an IV) | ? |
-
+| **Data** (encrypted with symmetric block cipher) | Payload | Original Qabel drop message | *variable* |
+| **Signature** | Digital signature of Header, Key and Data made with sender's private key | *variable* |
 
 ### History / Persistence
 
