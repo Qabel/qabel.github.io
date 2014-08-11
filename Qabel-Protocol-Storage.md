@@ -79,9 +79,9 @@ The body of the http request will be safed to the chunkname and can later be acc
 
 * HTTP-Method: DELETE
 * URL Example: https://foo:abcdef012346789@server/prefix/1223456789
-* URL Scheme: http[s]?://.*:[:REVERT_TOKEN:]@[:SERVER:][:PREFIX:]/[:PUBLIC:]/
+* URL Scheme: http[s]?://.*:[:REVOKE_TOKEN:]@[:SERVER:][:PREFIX:]/[:PUBLIC:]/
 
-This method requires autorization through the revoke_token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
+This method requires authorization through the revoke_token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
 
 #### Return values
 
