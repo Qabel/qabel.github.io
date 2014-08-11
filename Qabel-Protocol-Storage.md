@@ -61,8 +61,9 @@ The fields are described as follows:
 ### Uploading new Blobs
 
 * HTTP-Method: POST or PUT
-* URL Example: https://foo:abcdef012346789@server/prefix/1223456789/CHUNK
-* URL Scheme: http[s]?://.*:[:TOKEN:]@[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
+* URL Example: https://erver/prefix/1223456789/CHUNK
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
+* Required HTTP header field: `X-Qabel-Token` containing the secret token
 
 This method requires autorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
 
@@ -80,8 +81,9 @@ The body of the http request will be safed to the chunkname and can later be acc
 ### Deleting a Qabel Storage Volume
 
 * HTTP-Method: DELETE
-* URL Example: https://foo:abcdef012346789@server/prefix/1223456789
-* URL Scheme: http[s]?://.*:[:REVOKE_TOKEN:]@[:SERVER:][:PREFIX:]/[:PUBLIC:]/
+* URL Example: https://server/prefix/1223456789
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/
+* Required HTTP header field: `X-Qabel-Token` containing the secret revoke_token
 
 This method requires authorization through the revoke_token which is returned by the request described in "Create a new Qabel Storage Volume". The server supports HTTP-basic auth. https is strongly encouraged (most servers should not accept http here anyway.)
 
