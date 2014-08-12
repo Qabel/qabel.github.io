@@ -105,13 +105,13 @@ The communication is standard compliant HTTP, running ideally over standard IANA
 Moreover it is ensured, that the communication can be operated over arbitrary proxies and proxy cascades.
 The single participants must not be distinguishable. No individualized header data like cookies is allowed.
 
-#### Authentication
-There must not be an individual authentication of the clients. Ideally the access is public, alternatively with an authorization procedure, which does not identify the clients (common token, e.g. a pre-shared key).
-
 #### Why HTTP?
 The protocol is built upon HTTP. A tight set of HTTP methods and standard header fields is supported.
 The server can run on its own, where indicated behind a reverse proxy or in a existing http environment (e.g. PHP, Rails, ...).
 The protocol however can run on arbitrary ports or, in an existing environment, be installed in an arbitrary path.
+
+#### Authentication
+There must not be an individual authentication of the clients. Ideally the access is public, alternatively with an authorization procedure, which does not identify the clients (common token, e.g. a pre-shared key).
 
 Because of the usage of HTTP on standard ports potential constrictions like blocked SMTP ports can be circumvented.
 Therefore the protocol is hard to block, a little bit more difficult to select/analyze and less meta data is accumulated.
