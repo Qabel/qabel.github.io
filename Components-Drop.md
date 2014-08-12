@@ -12,7 +12,7 @@ This could include:
 This list can be extended as needed.
 
 
-The dead drop (drops protocol) enables participants to *anonymously* and *asynchronously* exchange short *encrypted* messages.
+The drop protocol enables participants to *anonymously* and *asynchronously* exchange short *encrypted* messages.
 Encrypted messages are sent to a Drop server where they will be stored for a certain time for arbitrary recipients.
 Right now this principle can generally as well be implemented with established services, like public IMAP mail boxes.
 The protocol shown here with its explicitly limited amount of operations allows to set up drop servers and maintain them safely.
@@ -23,7 +23,7 @@ In the following text a short overview of the goals and strategies will be given
 1. Alice (sender) writes a message to Bob (recipient).
 2. The chat module packs this message into its format - whatever this will be - and passes it to the drop component (including transmission information like sender, recipient and module).
 3. The drop component creates a new drop message encapsulating the chat message and containing the transmission information.
-4. The drop component pushes the drop message to the dead drop box (inbox) of the recipient.
+4. The drop component pushes the drop message to the drop box (inbox) of the recipient.
 5. The drop component of the recipient's client fetches the new message(s) from its inbox.
 6. After interpreting the drop message of Alice the drop component extracts the drop message payload (the message packed by the chat module) and passes it to the module specified in the message.
 7. The chat component processes this message to the actual message written by Alice.
@@ -33,27 +33,7 @@ In the following text a short overview of the goals and strategies will be given
 
 
 ## Idea
-
-A dead drop is used for an obscure transmission of secret messages.
-It usually is a physical object, which is especially prepared to contain messages. Only sender and recipient know the place and the specific characteristics of the object.
-The sender leaves a message. Then he either notifies the recipient of the deposition via a separate communication channel or the recipient checks for new depositions from time to time.
-If needed, a conformation of reception can be left at a different place.
-
-See "Wikipedia":http://en.wikipedia.org/wiki/Dead_drop
-
-
-For the here described protocol a slightly different metaphor could be applied:
-It is possible, but a bit laborious, to exchange encrypted messages via classifieds in newspapers. Those can be read by everybody, but only the intended recipient is supposed to be able to make use of them.
-The sender has to deliver the message (while giving up a little bit of his anonymity).
-It might be possible to detect that a communication is happening, but it is difficult to identify the participants.
-Messages cannot be deleted or changed, but they expire after some time.
-
-IMPORTANT: Messages in the protocol are not necessarily persistent. They exist only temporarily with delayed expiration. The actual expiration date is depended upon disk space and other configurations, which will be defined later on.
-
-### New analogy
-In contrast to a classic dead drop, this protocol does not intent to
-keep the drop location secret.
-It is more like an openly visible and publicly accessible array of
+Qabel Drop is like an openly visible and publicly accessible array of
 mail boxes where everyone can put messages in a box or can observe the
 present content of a box.
 
@@ -62,16 +42,16 @@ conspire and choose one box as well as an encryption that only they will
 understand.
 The possessor of the information puts his encrypted message in the
 chosen box.  Later on, the other conspiracy members visit the chosen
-box and read the left message.
+box and read the deposited message.
 
-Up to now, every outsider can watch the conspiracy, see the
+So far, every outsider can watch the conspiracy, see the
 disposition of the message as well as the visits of the other members.
 He might even go to the box himself and try to decrypt the deposited
 message (which is unlikely to succeed if the encryption is good).
-Imagine other independent groups choosing boxes for disposition of
+Imagine other, independent groups choosing boxes for disposition of
 encrypt messages. By chance, two groups may choose the same box so
 that two differently encrypted messages are in the box. Observing their
-box, the members of both groups might me irritated by the foreign,
+box, the members of both groups might be irritated by the foreign,
 unreadable message, but are nevertheless able to read their own
 message.
 Now, an outsider can not tell to which visitor of the box belongs to
@@ -133,7 +113,7 @@ Therefore the protocol is hard to block, a little bit more difficult to select/a
 Existing solutions like the flexible XMPP (e.g. Chrome Sync) are too extensive and too complex. An analysis of the communication would be made easier.
 
 From the outside the protocol is not distinguishable from normal HTTP traffic (browsing, download, webservices).
-A deep packet inspection would show the usage of the protocol itself and identify a dead drop server, but actual content analysis is not possible.
+A deep packet inspection would show the usage of the protocol itself and identify a drop server, but actual content analysis is not possible.
 
 ### Encryption
 The messages and direct meta data are encrypted.
@@ -144,7 +124,7 @@ The server cannot make assumptions over the structure or even the content.
 A possible authentication of the sender is happening inside of the encrypted message.
 
 
-The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the dead drop protocol. Hence the actual content of the messages is pure cypher text.
+The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the drop protocol. Hence the actual content of the messages is pure cypher text.
 The protocol cannot enforce this, in principle any message can be exchanged. This is the task of a higher protocol level.
 
 ### Collected data
