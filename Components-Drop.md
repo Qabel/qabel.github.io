@@ -85,9 +85,15 @@ The anonymity of all participants among each other is given in the system itself
 
 
 #### Plausible Deniability of a communication activity
-It is possible to conclude the existence of a communication. But the participants cannot be completely identified.
-There is no direct addressing of messages.
-One possibility of anonymity of the communication relation is the usage of a common pool of messages, out of which all participants read all messages and only then test for the right recipient.
+A drop user cannot deny that he accessed a drop server, read or deposited messages unless he takes
+further actions to prevent the identifiability of his communication endpoint. By default, an attacker
+(e.g. Man-in-the-Middle, corrupted server) could observe the IP address of the users.
+
+What he can deny, his relation to other users. The mere fact, that two users accessed the same drop
+does not necessarily imply, that they communicated with each other.
+Each user can plausibly argue, that his access to the drop was not deliberately, but caused by message and
+access faking of his Qabel Drop Client.
+
 
 ### Server and Protocol Design
 #### Paradigm
