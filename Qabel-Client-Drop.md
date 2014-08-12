@@ -79,7 +79,9 @@ A message is packed into JSON containing the following fields:
 The JSON object 'drop_message' is serialized to JSON text (string) without unneeded whitespace characters forming the cryptographic plaintext.
 The plaintext is encrypted using AES with a random key of 256 bits forming the ciphertext.
 The AES key is encrypted with RSA OAEP encryption scheme using the recipients public key.
-The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the ciphertext. E.g. with a 2048 bit RSA key: [256 byte encrypted AES key][16 bytes AES IV][n bytes AES ciphertext].
+The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the ciphertext.
+For example, with a 2048 bit RSA key the encrypted message looks like this: 
+`RSA_encrypt([256 byte AES key][16 bytes AES IV])[n bytes AES ciphertext]`
 
 ### Signature
 
