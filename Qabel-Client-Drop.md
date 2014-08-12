@@ -99,6 +99,7 @@ After applying confidentiality and authenticity mechanisms, the resulting messag
 
 #### Header
 The header is unencrypted and has a size of 32 bytes. This size may be subject to future changes.
+The actual content of the header is also under discussion.
 
 ### History / Persistence
 
