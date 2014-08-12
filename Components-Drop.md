@@ -123,7 +123,7 @@ The single participants must not be distinguishable. No individualized header da
 There must not be an individual authentication of the clients. Ideally the access is public, alternatively with an authorization procedure, which does not identify the clients (common token, e.g. a pre-shared key).
 
 #### Why HTTP?
-The protocol is building upon HTTP. A tight set of HTTP methods and standard header fields is supported.
+The protocol is built upon HTTP. A tight set of HTTP methods and standard header fields is supported.
 The server can run on its own, where indicated behind a reverse proxy or in a existing http environment (e.g. PHP, Rails, ...).
 The protocol however can run on arbitrary ports or, in an existing environment, be installed in an arbitrary path.
 
