@@ -19,6 +19,10 @@ The messages and direct meta data are encrypted by the client. The client has fu
 
 The content of the communication should not reach the outside. Blobs that are uploaded and stored are completely encrypted. The server cannot make assumptions over the structure or even the content.
 
+In order to share uploaded data with other people, the uploading user has to provide the necessary
+decryption information (e.g. a shared secret) for the recipients. However, this is expected to happen
+outside of the storage protocol and is therefore not part of this documentation.
+
 ## Authentication
 
 After [[creating a new Storage Volume|Qabel-Protocol-Storage]], the server provides three different tokens to regulate access:
@@ -26,9 +30,6 @@ After [[creating a new Storage Volume|Qabel-Protocol-Storage]], the server provi
 * ```public```: A token to identify the Storage Volume on the Storage Server. This data can be safely published as it only allows read access to the encrypted information.
 * ```token```: This token is stored by the server and all clients which are allowed to write to the Storage Volume. The server checks whether the token provided by the client matches the token of a Storage Volume. If both token match, the client is allowed to upload data to the Storage Volume.
 * ```revoke_token```: This token is only stored by clients which are allowed to delete the Storage Volume. These clients are usually owners of the storage volume.
-
-Tokens provided by the uploading user: (TODO Remove this?)
-* ```cipher_key```: This information is required to read the data one has received using the ```public``` key. The format of this data is determined by the used cipher. Neither the used cipher nor the cipher_key must ever be sent to the server.
 
 
 ## Sharing
