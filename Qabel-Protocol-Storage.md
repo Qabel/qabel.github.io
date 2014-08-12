@@ -32,7 +32,7 @@ Example:
 ### Create a new Qabel Storage Volume
 
 * HTTP-Method: POST
-* URL Example: https://server/prefix/_new
+* URL Example: https://example.com/qabel-storage/_new
 * URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/_new
 
 This creates a new Qabel Storage Volume with it's own write- and revoke-tokens. These values are returned to the user by a JSON document sent back to this request:
@@ -58,6 +58,22 @@ The fields are described as follows:
 | 503 | Failed to create volume, because of overloading. |
 
 
+### Probe an existing Qabel Storage Volume
+
+* HTTP-Method: GET
+* URL Example: https://example.com/qabel-storage/1223456789/
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/
+
+This method checks if the Qabel Storage Volume identified by the given PUBLIC
+exists and is ready for use.
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 400 | Storage Volume ID is missing or syntactically invalid |
+| 404 | Storage Volume ID does not exist |
+| 200 | Storage Volume ID does exist |
+
+
 ### Uploading new Blobs
 
 * HTTP-Method: POST or PUT
@@ -76,6 +92,23 @@ The body of the http request will be safed to the chunkname and can later be acc
 | 400 | Storage Volume ID is missing or syntactically invalid |
 | 404 | Storage Volume ID does not exist or TOKEN is missing or invalid |
 | 200 | Chunk successfully uploaded |
+
+
+### Retrieving a Blob
+
+* HTTP-Method: GET
+* URL Example: https://example.com/qabel-storage/1223456789/foobar
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
+
+This method retrieves the chunk CHUNKNAME from the Qabel Storage Volume identified by PUBLIC.
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 400 | Storage Volume ID is missing or syntactically invalid |
+| 404 | Storage Volume ID or chunk does not exist |
+| 200 | Chunk successfully retrieved |
 
 
 ### Deleting a Qabel Storage Volume
