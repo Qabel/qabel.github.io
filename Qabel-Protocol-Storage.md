@@ -81,10 +81,10 @@ exists and is ready for use.
 * URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
 * Required HTTP header field: `X-Qabel-Token` containing the secret token
 
-This method requires autorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The token has to be submitted within the HTTP header.
+This method requires authorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The token has to be submitted within the HTTP header.
 https is strongly encouraged (most servers should not accept http here anyway.)
 
-The body of the http request will be safed to the chunkname and can later be accessed via a get request under this URL (see below).
+The body of the http request will be saved to the chunkname and can later be accessed via a get request under this URL (see below).
 
 #### Return values
 
