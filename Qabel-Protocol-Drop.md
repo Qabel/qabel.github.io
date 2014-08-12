@@ -1,4 +1,5 @@
- Dead Drop Specification
+# Drop Specification
+
 ## Abstract
 
 A protocol to write and read from a Qabel drop server.
