@@ -95,6 +95,26 @@ Each user can plausibly argue, that his access to the drop was not deliberately,
 access faking of his Qabel Drop Client.
 
 
+### Confidentiality
+The messages and direct meta data are encrypted.
+
+The content of the communication should not reach the outside.
+Messages that are exchanged between clients are completely encrypted. Corresponding meta data like lists of recipients, encryption methods and parameter are opaque in the encrypted block.
+The server cannot make assumptions over the structure or even the content.
+A possible authentication of the sender is happening inside of the encrypted message.
+
+
+The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the drop protocol. Hence the actual content of the messages is pure cypher text.
+The protocol cannot enforce this, in principle any message can be exchanged. This is the task of a higher protocol level.
+
+### Data Avoidance
+Qabel Drop avoids the collection of unnecessary data.
+The only meta data used by the server is the arrival time of a message and the used drop.
+This time is used for differential polling for new messages (as new-messages-since-date).
+
+It is to bear in mind that additional meta data accumulates during the communication: Length of the messages, sender or the last proxy/exit of a cascade.
+
+
 ### Server and Protocol Design
 #### Paradigm
 * Servers are universal and lightweight.
@@ -120,23 +140,6 @@ Existing solutions like the flexible XMPP (e.g. Chrome Sync) are too extensive a
 
 From the outside the protocol is not distinguishable from normal HTTP traffic (browsing, download, webservices).
 A deep packet inspection would show the usage of the protocol itself and identify a drop server, but actual content analysis is not possible.
-
-### Encryption
-The messages and direct meta data are encrypted.
-
-The content of the communication should not reach the outside.
-Messages that are exchanged between clients are completely encrypted. Corresponding meta data like lists of recipients, encryption methods and parameter are opaque in the encrypted block.
-The server cannot make assumptions over the structure or even the content.
-A possible authentication of the sender is happening inside of the encrypted message.
-
-
-The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the drop protocol. Hence the actual content of the messages is pure cypher text.
-The protocol cannot enforce this, in principle any message can be exchanged. This is the task of a higher protocol level.
-
-### Collected data
-The only meta data used by the server is the incoming time of a message and the used channel. This key is used for polling for new messages (as new-messages-since-date).
-
-It is to bear in mind that additional meta data accumulates during the communication: Length of the messages, sender or the last proxy/exit of a cascade.
 
 
 ### Messages are asynchronous
