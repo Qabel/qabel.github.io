@@ -12,7 +12,7 @@ This could include:
 This list can be extended as needed.
 
 
-The dead drop (drops protocol) enables participants to *anonymously* and *asynchronously* exchange short *encrypted* messages.
+The drop protocol enables participants to *anonymously* and *asynchronously* exchange short *encrypted* messages.
 Encrypted messages are sent to a Drop server where they will be stored for a certain time for arbitrary recipients.
 Right now this principle can generally as well be implemented with established services, like public IMAP mail boxes.
 The protocol shown here with its explicitly limited amount of operations allows to set up drop servers and maintain them safely.
@@ -23,7 +23,7 @@ In the following text a short overview of the goals and strategies will be given
 1. Alice (sender) writes a message to Bob (recipient).
 2. The chat module packs this message into its format - whatever this will be - and passes it to the drop component (including transmission information like sender, recipient and module).
 3. The drop component creates a new drop message encapsulating the chat message and containing the transmission information.
-4. The drop component pushes the drop message to the dead drop box (inbox) of the recipient.
+4. The drop component pushes the drop message to the drop box (inbox) of the recipient.
 5. The drop component of the recipient's client fetches the new message(s) from its inbox.
 6. After interpreting the drop message of Alice the drop component extracts the drop message payload (the message packed by the chat module) and passes it to the module specified in the message.
 7. The chat component processes this message to the actual message written by Alice.
@@ -133,7 +133,7 @@ Therefore the protocol is hard to block, a little bit more difficult to select/a
 Existing solutions like the flexible XMPP (e.g. Chrome Sync) are too extensive and too complex. An analysis of the communication would be made easier.
 
 From the outside the protocol is not distinguishable from normal HTTP traffic (browsing, download, webservices).
-A deep packet inspection would show the usage of the protocol itself and identify a dead drop server, but actual content analysis is not possible.
+A deep packet inspection would show the usage of the protocol itself and identify a drop server, but actual content analysis is not possible.
 
 ### Encryption
 The messages and direct meta data are encrypted.
@@ -144,7 +144,7 @@ The server cannot make assumptions over the structure or even the content.
 A possible authentication of the sender is happening inside of the encrypted message.
 
 
-The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the dead drop protocol. Hence the actual content of the messages is pure cypher text.
+The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the drop protocol. Hence the actual content of the messages is pure cypher text.
 The protocol cannot enforce this, in principle any message can be exchanged. This is the task of a higher protocol level.
 
 ### Collected data
