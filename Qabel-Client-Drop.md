@@ -95,7 +95,7 @@ After applying confidentiality and authenticity mechanisms, the resulting messag
 | **Key** (encrypted with the public key of the recipient) | Key | Newly generated key used with the symmetric block cipher to encrypt the data | *variable* (256/512 Bit) |
 |         | Initialisation data | Data to initialize a symmetric block cipher (e.g. an IV) | ? |
 | **Data** (encrypted with symmetric block cipher) | Payload | Original Qabel drop message | *variable* |
-| **Signature** | Digital signature of Header, Key and Data made with sender's private key | *variable* |
+| **Signature** | Signature | Digital signature of Header, Key and Data made with sender's private key | *variable* |
 
 ### History / Persistence
 
