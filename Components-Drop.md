@@ -130,9 +130,6 @@ The protocol is built upon HTTP. A tight set of HTTP methods and standard header
 The server can run on its own, where indicated behind a reverse proxy or in a existing http environment (e.g. PHP, Rails, ...).
 The protocol however can run on arbitrary ports or, in an existing environment, be installed in an arbitrary path.
 
-#### Authentication
-There must not be an individual authentication of the clients. Ideally the access is public, alternatively with an authorization procedure, which does not identify the clients (common token, e.g. a pre-shared key).
-
 Because of the usage of HTTP on standard ports potential constrictions like blocked SMTP ports can be circumvented.
 Therefore the protocol is hard to block, a little bit more difficult to select/analyze and less meta data is accumulated.
 
@@ -141,6 +138,8 @@ Existing solutions like the flexible XMPP (e.g. Chrome Sync) are too extensive a
 From the outside the protocol is not distinguishable from normal HTTP traffic (browsing, download, webservices).
 A deep packet inspection would show the usage of the protocol itself and identify a drop server, but actual content analysis is not possible.
 
+#### Authentication
+There must not be an individual authentication of the clients. Ideally the access is public, alternatively with an authorization procedure, which does not identify the clients (common token, e.g. a pre-shared key).
 
 ### Messages are asynchronous
 
