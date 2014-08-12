@@ -175,8 +175,3 @@ The access for reading and writing (creation of new messages) is free and anonym
 Drop servers can optionally be limited to a certain circle of participants (company in-house, etc.).
 Access to those private drop servers is granted by using a shared secret for all clients.
 
-## Memory / Data Model for Drop
-
-A server contains all possible (possibly not manifested drop IDs. Each of these contain the single message as a FIFO ordered by the time of their arrival.
-
-The messages get managed separately by drop.
