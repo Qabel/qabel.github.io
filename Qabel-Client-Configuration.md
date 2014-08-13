@@ -14,12 +14,6 @@ for the library and the UI.
  default: true
  * poll_interval: This setting describes the default polling interval on
  desktop machine
- * poll_interval_wlan: This setting describes the default polling interval
- when the machine is using wireless connection. This parameter is for mobile
- devices
- * poll_interval_mobile: This setting describes the default polling interval
- when the machine is using mobile connection. This parameter is only for mobile
- connection
  * drop_last_update : when the core asked the last time messages from the drop servers. It save the time stamp string as received from the Drop Message
  * module_data : Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
 
@@ -111,9 +105,7 @@ Summary
                         'deleted': INT,
                         'url' : URL,
                         'auth' : STR,
-                        'active' : BOOL,
-                        'websockets' : BOOL,
-                        'poll_interval' : NUM
+                        'active' : BOOL
                         "}"
 
 #### Storage Servers
