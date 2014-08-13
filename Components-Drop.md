@@ -114,6 +114,16 @@ A possible authentication of the sender is happening inside of the encrypted mes
 The details of the encryption lie within the clients. Here we assume a public key procedure, whose negotiation process is happening outside of the drop protocol. Hence the actual content of the messages is pure cypher text.
 The protocol cannot enforce this, in principle any message can be exchanged. This is the task of a higher protocol level.
 
+
+### Unrestricted Access
+The access for reading and writing (deposition of new messages) is unrestricted.
+However, clients cannot delete or change messages.
+
+Access to Drop servers can optionally be limited to a closed user group (company in-house, etc.).
+Those private drop servers should authenticate users based on shared secrets rather than individual
+credentials in order to avoid identifiability.
+
+
 ### Data Avoidance
 Qabel Drop avoids the collection of unnecessary data.
 The only meta data used by the server is the arrival time of a message and the used drop.
@@ -172,11 +182,4 @@ So it can only be determined that somebody is participant in the whole system, b
 Random drop messages into actually used and additionally chosen random drop ID are used to further obfuscate real communication.
 
 It is crucial that a drop is used by more than two clients in order to obfuscate these communication partners. If only two valid clients are using a drop, these communication partners could be identified by the server. A client has no possibility to detect if other messages in a drop are communications between real clients or forged by a malicious server. A malicious server might place forged messages into a drop and the valid clients using this drop would assume that other valid clients are using this drop. The server could filter the forged drop messages and detect the identities of the valid client communicating in this drop.
-
-
-## Access rights
-
-The access for reading and writing (creation of new messages) is free and anonymous. Clients cannot delete or change messages.
-Drop servers can optionally be limited to a certain circle of participants (company in-house, etc.).
-Access to those private drop servers is granted by using a shared secret for all clients.
 
