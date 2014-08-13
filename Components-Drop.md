@@ -95,6 +95,13 @@ Each user can plausibly argue, that his access to the drop was not deliberately,
 access faking of his Qabel Drop Client.
 
 
+#### Collisions of drop IDs and scalability
+
+It is crucial that different clients are using the same drop ID for their communication. However, not too many clients should use the same drop ID in order to keep the amount of messages addressed to other recipients on a reasonable level. Finding a way to force colliding drop IDs, while keeping the system scalable is a challenging tasks which isn't completely solved yet. Some kind of smart algorithm has to be developed which relies its scaling choices only on trustworthy data.
+
+To fully obfuscate a communication, clients should leave drop messages in randomly chosen drops and also check random drops for new messages. Of course these randomly chosen drops have to collide with randomly chosen drops of other clients.
+
+
 ### Confidentiality
 The messages and direct meta data are encrypted.
 
@@ -167,11 +174,7 @@ Random drop messages into actually used and additionally chosen random drop ID a
 
 It is crucial that a drop is used by more than two clients in order to obfuscate these communication partners. If only two valid clients are using a drop, these communication partners could be identified by the server. A client has no possibility to detect if other messages in a drop are communications between real clients or forged by a malicious server. A malicious server might place forged messages into a drop and the valid clients using this drop would assume that other valid clients are using this drop. The server could filter the forged drop messages and detect the identities of the valid client communicating in this drop.
 
-## Collisions of drop IDs and scalability
 
-It is crucial that different clients are using the same drop ID for their communication. However, not too many clients should use the same drop ID in order to keep the amount of messages addressed to other recipients on a reasonable level. Finding a way to force colliding drop IDs, while keeping the system scalable is a challenging tasks which isn't completely solved yet. Some kind of smart algorithm has to be developed which relies its scaling choices only on trustworthy data.
-
-To fully obfuscate a communication, clients should leave drop messages in randomly chosen drops and also check random drops for new messages. Of course these randomly chosen drops have to collide with randomly chosen drops of other clients.
 ## Access rights
 
 The access for reading and writing (creation of new messages) is free and anonymous. Clients cannot delete or change messages.
