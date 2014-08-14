@@ -93,7 +93,7 @@ The body of the http request will be saved to the chunkname and can later be acc
 | 400 | Storage Volume ID is missing or syntactically invalid |
 | 401 | No token has been submitted |
 | 403 | Token is invalid |
-| 404 | Storage Volume ID does not |
+| 404 | Storage Volume ID does not exist |
 | 200 | Chunk successfully uploaded |
 
 
