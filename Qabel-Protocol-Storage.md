@@ -92,7 +92,8 @@ The body of the http request will be saved to the chunkname and can later be acc
 |:----------------:|------|
 | 400 | Storage Volume ID is missing or syntactically invalid |
 | 401 | No token has been submitted |
-| 404 | Storage Volume ID does not exist or TOKEN is invalid |
+| 403 | Token is invalid |
+| 404 | Storage Volume ID does not |
 | 200 | Chunk successfully uploaded |
 
 
@@ -129,5 +130,6 @@ https is strongly encouraged (most servers should not accept http here anyway.)
 |:----------------:|------|
 | 400 | Storage Volume ID is missing or syntactically invalid |
 | 401 | No REVOKE_TOKEN has been submitted |
-| 404 | Storage Volume ID does not exist or REVOKE_TOKEN is invalid |
+| 403 | REVOKE_TOKEN is invalid |
+| 404 | Storage Volume ID does not exist |
 | 204 | Storage Volume successfully deleted (*No content*) |
