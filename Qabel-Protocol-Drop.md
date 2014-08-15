@@ -100,7 +100,7 @@ The drop can already contain messages or be empty/unused.
 |HTTP status code|reason|
 |:----------------:|------|
 | 200 | message was added |
-| 400 | drop ID is missing or invalid. |
+| 400 | drop ID is missing or invalid or no message has been submitted at all |
 | 413 | message exceeds the maximum size of (2KB(?)) |
 
 The message has to be transmitted as HTTP body.
