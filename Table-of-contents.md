@@ -19,9 +19,5 @@
   2. [[Qabel-Storage-Protocol|Qabel-Protocol-Storage]]
   4. [[Qabel-Browse-Protocol|Qabel-Protocol-Browse]]
   5. [[Qabel-ProofOfWork-Protocol|Qabel-Protocol-ProofOfWork]]
-7. [[Server|Server]] (these are implementation specific notes on the servers)
-  1. [[Qabel-Drop-Server|Server-Drop]]
-  2. [[Qabel-Storage-Server|Server-Storage]]
-  4. [[Qabel-Browse-Server|Server-Browse]]
-8. [[Appendix|Appendix]]
+7. [[Appendix|Appendix]]
   1. [[Glossary|Appendix-Glossary]]
