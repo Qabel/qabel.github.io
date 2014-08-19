@@ -133,3 +133,24 @@ https is strongly encouraged (most servers should not accept http here anyway.)
 | 403 | REVOKE_TOKEN is invalid |
 | 404 | Storage Volume ID does not exist |
 | 204 | Storage Volume successfully deleted (*No content*) |
+
+
+### Deleting a Qabel Storage Blob
+
+* HTTP-Method: DELETE
+* URL Example: https://example.com/qabel-storage/1223456789/foo
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
+* Required HTTP header field: `X-Qabel-Token` containing the secret token
+
+This method requires authorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The token has to be submitted within the HTTP header.
+https is strongly encouraged (most servers should not accept http here anyway.)
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 400 | Storage Volume ID is missing or syntactically invalid |
+| 401 | No TOKEN has been submitted |
+| 403 | TOKEN is invalid |
+| 404 | Storage Volume ID or chunk name does not exist |
+| 204 | Storage Volume blob successfully deleted (*No content*) |
