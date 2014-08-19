@@ -20,8 +20,8 @@ Provide the principal functionality end-users expect of the Qabel client. E.g. M
  * Local SMTP and IMAP server enabling the end-user to send and receive mails using a traditional mail application. The application data is transmitted using the Qabel protocols.
 
 # Server
-* [[Drop|Components-Drop]]
-* [[Storage|Qabel-Protocol-Storage]]
+* [Qabel Drop Server](https://github.com/Qabel/qabel-drop/wiki)
+* [Qabel Storage Server](https://github.com/Qabel/qabel-storage/wiki)
 * Browse
  * Will be used to find contacts (similar to PGP keyserver)
 * [[Sync|Qabel-Client-Sync]]
