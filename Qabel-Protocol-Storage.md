@@ -16,7 +16,7 @@ The URL to access a Qabel Storage Volume can be split into four parts:
 
 In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.org/Notation.html) of the W3C:
 
-`dropurl ::= protocol "://" serviceaddress servicepath "/" public`
+`volumeurl ::= protocol "://" serviceaddress servicepath "/" public`
 
 1. protocol ::= "https" | "http"
 2. serviceaddress ::= serveraddress ( ":" serverport ) ?
