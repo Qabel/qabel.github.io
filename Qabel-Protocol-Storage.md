@@ -78,13 +78,13 @@ exists and is ready for use.
 
 * HTTP-Method: POST or PUT
 * URL Example: https://example.com/qabel-storage/1223456789/foobar
-* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:BLOBNAME:]
 * Required HTTP header field: `X-Qabel-Token` containing the secret token
 
 This method requires authorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The token has to be submitted within the HTTP header.
 https is strongly encouraged (most servers should not accept http here anyway.)
 
-The body of the http request will be saved to the chunkname and can later be accessed via a get request under this URL (see below).
+The body of the http request will be saved to the blobname and can later be accessed via a get request under this URL (see below).
 
 #### Return values
 
@@ -94,24 +94,24 @@ The body of the http request will be saved to the chunkname and can later be acc
 | 401 | No token has been submitted |
 | 403 | Token is invalid |
 | 404 | Storage Volume ID does not exist |
-| 200 | Chunk successfully uploaded |
+| 200 | Blob successfully uploaded |
 
 
 ### Retrieving a Blob
 
 * HTTP-Method: GET
 * URL Example: https://example.com/qabel-storage/1223456789/foobar
-* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:BLOBNAME:]
 
-This method retrieves the chunk CHUNKNAME from the Qabel Storage Volume identified by PUBLIC.
+This method retrieves the blob BLOBNAME from the Qabel Storage Volume identified by PUBLIC.
 
 #### Return values
 
 |HTTP status code|reason|
 |:----------------:|------|
 | 400 | Storage Volume ID is missing or syntactically invalid |
-| 404 | Storage Volume ID or chunk does not exist |
-| 200 | Chunk successfully retrieved |
+| 404 | Storage Volume ID or blob does not exist |
+| 200 | Blob successfully retrieved |
 
 
 ### Deleting a Qabel Storage Volume
@@ -139,7 +139,7 @@ https is strongly encouraged (most servers should not accept http here anyway.)
 
 * HTTP-Method: DELETE
 * URL Example: https://example.com/qabel-storage/1223456789/foo
-* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:CHUNKNAME:]
+* URL Scheme: http[s]?://[:SERVER:][:PREFIX:]/[:PUBLIC:]/[:BLOBNAME:]
 * Required HTTP header field: `X-Qabel-Token` containing the secret token
 
 This method requires authorization through the token which is returned by the request described in "Create a new Qabel Storage Volume". The token has to be submitted within the HTTP header.
@@ -152,5 +152,5 @@ https is strongly encouraged (most servers should not accept http here anyway.)
 | 400 | Storage Volume ID is missing or syntactically invalid |
 | 401 | No TOKEN has been submitted |
 | 403 | TOKEN is invalid |
-| 404 | Storage Volume ID or chunk name does not exist |
+| 404 | Storage Volume ID or blob name does not exist |
 | 204 | Storage Volume blob successfully deleted (*No content*) |
