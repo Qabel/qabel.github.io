@@ -36,4 +36,6 @@
 
 * **Contact**: Easy: Which people do I know? A contact is a collection of informations about another user. It contains the public key, the drop URLs and specific data from modules.
 
-* **Person**: Easy: Describes the contact. It saves personal information about a contact like the name and e-mail address(es). Some fixed keys are defined in the person module.  
+* **Person**: Easy: Describes the contact. It saves personal information about a contact like the name and e-mail address(es). Some fixed keys are defined in the person module.
+
+* **Blob**: Binary large object. Name of the objects which get uploaded to a Qabel Storage Volume.
