@@ -62,6 +62,9 @@ Summary
 
 #### Accounts
 
+Accounts are meant for paid service accounting.
+Accounts are not part of the Qabel Client's beta release.
+
 The item `accounts` includes an array of account settings structures
 
 Summary
