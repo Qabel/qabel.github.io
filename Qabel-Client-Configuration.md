@@ -214,6 +214,7 @@ Summary
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
 | alias | Textual, user-defined label identifying this identity (also to other users) |
 | private_key | Private, secret part of the key pair used for (de-)encryption |
+| public_key | Public part of the key pair used for (de-)encryption |
 | inbox | [url](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#url) of the drop where the identity expects to receive messages |
 
 
@@ -226,6 +227,7 @@ Summary
                         'deleted': INT,
                         'alias' : NAME,
                         'private_key' : KEY,
+                        'public_key' : KEY,
                         'inbox' : URL
                         "}"
 
