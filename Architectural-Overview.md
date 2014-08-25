@@ -3,7 +3,7 @@
 # Client
 
 ## Core
-* Bridgehead
+* [[Bridgehead|Components-Brigdehead]]
  * Interface between modules and Qabel servers. This is the only component implementing Qabel protocols.
 * Util
  * Utility functions (which don't need network), e.g. encoding / decoding messages.
