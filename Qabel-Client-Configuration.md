@@ -32,6 +32,7 @@ Summary
 ### Common Settings
 
 The next settings are common and often used in the settings group.
+The timestamps are in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15).
 
  * id: The id of the setting structure. This shall be a unique id in the application
  * updated: The timestamp when the settings structure was updated last time
@@ -61,7 +62,7 @@ Summary
 
 #### Accounts
 
-The item "accounts" includes an array of account settings structures
+The item `accounts` includes an array of account settings structures
 
 Summary
 
@@ -71,6 +72,15 @@ Summary
 
 
 #### Account
+
+| Key | Description |
+| --- | ----------- |
+| id | Unique identifier |
+| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
+| provider | TODO |
+| user | TODO |
+| auth | TODO |
+
 
 Summary
 
@@ -86,7 +96,7 @@ Summary
 
 #### Drop Servers
 
-The item "drop_servers" includes an array of drop server settings structures
+The item `drop_servers` includes an array of drop server settings structures
 
 Summary
 
@@ -133,6 +143,14 @@ Summary
  * path: Path on the server
  * auth: Authentification to use to get or set data
 
+| Key | Description |
+| --- | ----------- |
+| id | Unique identifier |
+| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
+| url | URL of the [storage server](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Storage#url), excluding `public` which identifies a single Storage Volume on the server |
+| auth | Optional credential (see [drop server](#drop-server) |
+
+
 Summary
 
         storage_server    = "{"
@@ -140,15 +158,13 @@ Summary
                         'updated': INT,
                         'created': INT,
                         'deleted': INT,
-                        'server' : STR,
-                        'port' : INT,
-                        'path' : STR,
+                        'url' : STR,
                         'auth' : STR
                         "}"
 
 #### Storage Volumes
 
-The item "storage_volumes" includes an array of storage volume settings
+The item `storage_volumes` includes an array of storage volume settings
 
 Summary
 
@@ -158,10 +174,14 @@ Summary
 
 #### Storage Volume
 
- * storage_server_id: Id of the storage server settings
- * public: Public unique id of the data storage on the server
- * token: Token to upload data to storage
- * revoke_token: Token to delete data from storage
+| Key | Description |
+| --- | ----------- |
+| id | Unique identifier |
+| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
+| storage_server_id | Id of the storage server |
+| public | identifier of the Storage Volume on the server |
+| token | Credential granting write permission to the Storage Volume |
+| revoke_token | Credential granting the permission to delete the whole Storage Volume |
 
 Summary
 
@@ -178,7 +198,7 @@ Summary
 
 #### Identities
 
-The item "identities" includes an array of identity settings structures
+The item `identities` includes an array of identity settings structures
 
 Summary
 
@@ -188,9 +208,14 @@ Summary
 
 #### Identity
 
- * alias: Alias of the user. The user is known with that alias to other users
- * private_key: Private key to decrypt messages to this identity
- * inbox: Inbox URL
+| Key | Description |
+| --- | ----------- |
+| id | Unique identifier |
+| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
+| alias | Textual, user-defined label identifying this identity (also to other users) |
+| private_key | Private, secret part of the key pair used for (de-)encryption |
+| inbox | [url](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#url) of the drop where the identity expects to receive messages |
+
 
 Summary
 
