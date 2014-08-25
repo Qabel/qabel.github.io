@@ -96,6 +96,14 @@ Summary
 
 #### Drop Server
 
+| Key | Description |
+| --- | ----------- |
+| id | Unique identifier |
+| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
+| url | URL of the [drop](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#url) |
+| auth | Credential for optional, additional [access regulation](https://github.com/Qabel/intern-doc/wiki/Components-Drop#unrestricted-access) (e.g. a group password). |
+| active | Status flag |
+
 Summary
 
         drop_server     = "{"
