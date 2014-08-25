@@ -14,6 +14,7 @@ The URL to access a Qabel Storage Volume can be split into four parts:
 * the service prefix: This is a prefix for all Qabel related URLs on this server. This way to multiplex services sharing the same service address. In the following PREFIX.
 * identifier of a Storage Volume (in the following PUBLIC) or "_new" for a creation request.
 
+<a name="url"></a>
 In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.org/Notation.html) of the W3C:
 
 `volumeurl ::= protocol "://" serviceaddress servicepath "/" public`
