@@ -14,6 +14,7 @@ The URL to access a drop on a qabel drop server can be split into four parts, pr
 - The service path is the base path of the server (e.g. URL of the PHP script or mapping in the reverse proxy). The path includes the leading slash ("/").
 - a valid URL of a drop always contains the drop ID.
 
+<a name="url"></a>
 In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.org/Notation.html) of the W3C:
 
 `dropurl ::= protocol "://" serviceaddress servicepath "/" dropid`
