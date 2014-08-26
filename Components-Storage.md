@@ -31,6 +31,15 @@ After [[creating a new Storage Volume|Qabel-Protocol-Storage]], the server provi
 * ```token```: This token is stored by the server and all clients which are allowed to write to the Storage Volume. The server checks whether the token provided by the client matches the token of a Storage Volume. If both token match, the client is allowed to upload data to the Storage Volume.
 * ```revoke_token```: This token is only stored by clients which are allowed to delete the Storage Volume. These clients are usually owners of the storage volume.
 
+## More Things which have this module to do
+
+This is only a list which have defined exactly
+
+* The size of a blob has to define. All uploads have to have this size. This component fill it with dummy data.
+* Storage module has to create the name of the blob and give it to the module which upload a blob
+* Not for the first beta: Storage has to handle the webspace. It have to handle the order of new.
+* Not for the first beta: Component has to handle different spaces if the user want it.
+* Writeable only on its own storage. If other user allowed to edit data it has to upload on its own space.
 
 ## Sharing
 
