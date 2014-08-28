@@ -1,7 +1,9 @@
 # Contact Specification
 
-## Abstract
+**THIS PAGE IS OBSOLETE** - https://github.com/Qabel/intern-doc/issues/42
+***
 
+## Abstract
 A common exchange format for rich contact data.
 
 **This is NOT about the data stored in the client but about an EXCHANGE format i.e. "business cards"**
