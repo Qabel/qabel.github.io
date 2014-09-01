@@ -6,6 +6,7 @@
 | Term | Meaning |
 | ---- | ------- |
 | address | qabel drop address as URL |
+| acknowledge id | identifier which is used to acknowledge the recipience of a drop message |
 | sender | person or system creating and sending qabel messages |
 | recipient | person or system receiving qabel messages |
 | client | qabel client (software the sender is using) |
