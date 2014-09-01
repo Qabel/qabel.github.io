@@ -1,9 +1,10 @@
 @startuml
 
-Akteur -> MessageClass: sendMessage(Message)
+actor Sender
+Sender -> MessageClass: sendMessage(Message)
 activate MessageClass
 
-MessageClass -> JSON: createJSON(version, time_stamp, sender, model_object, data) 
+MessageClass -> JSON: createJSON(version, time_stamp, sender, model_object, data)
 activate JSON
 JSON --> MessageClass: JSON_Message
 deactivate JSON
@@ -23,7 +24,7 @@ activate Inbox
 Inbox --> MessageClass: http-OK (200)
 deactivate Inbox
 
-MessageClass --> Akteur: messageSent
+MessageClass --> Sender: messageSent
 deactivate MessageClass
 
 @enduml

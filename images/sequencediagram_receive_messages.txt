@@ -1,6 +1,7 @@
 @startuml
 
-Akteur -> MessageClass: receiveMessages()
+actor Receiver
+Receiver -> MessageClass: receiveMessages()
 activate MessageClass
 
 MessageClass -> Inbox: httpGET()
@@ -14,7 +15,7 @@ loop Messages
 	activate Crypto
 	Crypto -> Crypto: verifySignature(Message)
 
-	alt Signature is valid	
+	alt Signature is valid
 
 		Crypto --> MessageClass: DecMessage
 		deactivate Crypto
@@ -22,16 +23,16 @@ loop Messages
 		MessageClass -> JSON: parseMessage(DecMessage)
 		activate JSON
 		JSON --> MessageClass: ParsedMessage
-		deactivate JSON		
+		deactivate JSON
 
 		MessageClass -> MessageClass: verifyMessage(ParsedMessage)
 		MessageClass -> MessageClass: handleMessage(ParsedMessage)
-	
+
 	end
 
 end
 
-MessageClass --> Akteur: messagesReceived
+MessageClass --> Receiver: messagesReceived
 deactivate MessageClass
 
 @enduml
