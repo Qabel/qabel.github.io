@@ -111,7 +111,7 @@ No HTTP body gets returned.
 ## Messages
 
 ### Lifetime
-A message MAY be deleted by the drop server after 24 hours.
+The maximum lifetime of a drop message is 1 week. If the quota for drop messages is full, the globally oldest message of a dropserver will be deleted
 
 ### Size
 A message MUST NOT be larger than 2KB.
