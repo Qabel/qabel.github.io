@@ -71,14 +71,14 @@ A message is packed into JSON containing the following fields:
 
 #### Special messages
 Special drop messages are defined for message acknowledgement and error notification.
-Special messages have the `model_object` `drop`.
+Special messages have the `model_object` set to `drop`.
 Other models MUST NOT use the model object `drop`.
 
 **Acknowledging**
 The drop client automatically acknowledges each incoming drop message.
 In order to acknowledge message `N`, the client generates a drop messages where
-`acknowledge_id` is `N`  the `data` field of a acknowledge message is undefined.
-Messages with the `acknowledge_id` `0` (zero) are not acknowledged.
+`acknowledge_id` is `N`. The `data` field of an acknowledge message is undefined.
+Messages with the `acknowledge_id` set to `0` (zero) are not acknowledged.
 
 **Error notification**
 If the drop client caught an error while handling drop message with `acknowledge_id` `N`,
@@ -92,6 +92,7 @@ The `data` field contains error descriptions:
                     "}"
 
 The following error types:
+
 | Type | Description |
 | ---- | ----------- |
 | UNKNOWN_MODULE | Given `module_object` is unknown |
