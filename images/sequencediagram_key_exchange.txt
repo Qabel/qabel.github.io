@@ -1,0 +1,32 @@
+@startuml
+actor Alice
+actor Bob
+group Beim ersten Mal
+	Alice -> SignUp: Account erstellen
+	SignUp -> SignUp: Storage bereitstellen ..
+	SignUp -> SignUp: Drop-Url bereitstellen ..
+	SignUp --> Alice: Storage-Url und Drop-Url
+end
+group Für jede Identität
+	Alice -> Crypto: Private und Public Key erstellen
+	Crypto --> Alice: Private und Public Key
+	Alice -> Crypto: echte Drop + public Key (= Kontaktdaten) mit schwachem Verfahren verschlüsseln
+	Crypto --> Alice: verschlüsselte Kontaktdaten
+	Alice -> "File/Storage": verschlüsselte Kontaktdaten hochladen (Kontaktblob)
+end
+Alice -> Util: QR-Code aus Kontaktblob + private schwacher Key
+Util --> Alice: QR-Code anzeigen
+group Kontakt hinzufügen
+	Bob -> Bob.Person: Neuen Kontakt anlegen
+	Alice <- Bob: Scannt QR-Code
+	Bob.Person -> Util: QR-Code
+	Util -> File: Besucht Drop-Url und lädt Inhalt herunter
+	File --> Util: Inhalt der Drop-Url
+	Util -> Crypto: Inhalt + private schwacher Key aus QR-Code
+	Crypto --> Util: entschlüsselte Kontaktdaten
+	Util --> Bob.Person: fügt Kontaktdaten in Kontaktformular ein
+	Bob.Person -->  Bob:
+	Bob -> Bob.Person: Speichert Kontakt
+	Bob -> Drop: "Text", Eigene Drop, Eigener Public Key an Drop-Url.Alice verschlüsselt mit Alice Pub-Key
+end
+@enduml
