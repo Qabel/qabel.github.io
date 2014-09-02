@@ -1,0 +1,12 @@
+@startuml
+actor Alice
+title Creating identities
+group For every identity
+	Alice -> Crypto: createPrivateAndPublicKey()
+	Crypto --> Alice: Private and Public Key
+	Alice -> Crypto: encryptForContacting(realDropUrl, public Key)
+	Crypto --> Alice: encrypted contact data
+	Alice -> "Browsw/\nStorage": uploadContactingData(encrypted contact data)
+	"Browsw/\nStorage" --> Alice: successful
+end
+@enduml
