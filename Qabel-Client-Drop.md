@@ -74,13 +74,13 @@ Special drop messages are defined for message acknowledgement and error notifica
 Special messages have the `model_object` set to `drop`.
 Other models MUST NOT use the model object `drop`.
 
-**Acknowledging**
+##### Acknowledging
 The drop client automatically acknowledges each incoming drop message.
 In order to acknowledge message `N`, the client generates a drop messages where
 `acknowledge_id` is `N`. The `data` field of an acknowledge message is undefined.
 Messages with the `acknowledge_id` set to `0` (zero) are not acknowledged.
 
-**Error notification**
+##### Error notification
 If the drop client caught an error while handling drop message with `acknowledge_id` `N`,
 the client generates a drop message to notify the original sender about the error.
 The `acknowledge_id` of this notification is `N`.
