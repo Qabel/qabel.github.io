@@ -30,6 +30,12 @@ loop Messages
 
 	end
 
+	alt acknowledge_id is not zero
+
+		MessageClass -> MessageClass: acknowledgeMessage(acknowledge_id)
+
+	end
+
 end
 
 MessageClass --> Receiver: messagesReceived
