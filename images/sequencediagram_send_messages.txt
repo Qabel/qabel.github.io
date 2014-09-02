@@ -4,6 +4,12 @@ actor Sender
 Sender -> MessageClass: sendMessage(Message)
 activate MessageClass
 
+alt acknowledging requested
+
+	MessageClass -> MessageClass: generateAcknowledgeId()
+
+end
+
 MessageClass -> JSON: createJSON(version, time_stamp, sender, model_object, data)
 activate JSON
 JSON --> MessageClass: JSON_Message
