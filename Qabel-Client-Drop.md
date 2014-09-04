@@ -117,7 +117,7 @@ For example, with a 2048 bit RSA key the encrypted message looks like this:
 
 ### Signature
 
-A digest of the final encrypted message including header, the encrypted AES key, IV, and the ciphertext is created via a hash function like SHA1 or SHA512. The digest is encrypted with the senders private key. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
+A digest of the final encrypted message including header, the encrypted AES key, IV, and the ciphertext is created via the SHA512 hash function. The digest is encrypted with the senders private key. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
 
 ### Transport format
 After applying confidentiality and authenticity mechanisms, the resulting message looks like this:
