@@ -24,7 +24,7 @@ Provide the principal functionality end-users expect of the Qabel client. E.g. M
 * [Qabel Storage Server](https://github.com/Qabel/qabel-storage/wiki)
 * Browse
  * Will be used to find contacts (similar to PGP keyserver)
-* [[Sync|Qabel-Client-Sync]]
+* Sync
  * Provides syncing Qabel contacts and Qabel config between an end-user's devices.
 
 # Further reading
