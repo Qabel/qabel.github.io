@@ -9,7 +9,7 @@
  * Utility functions (which don't need network), e.g. encoding / decoding messages.
 * Config
  * Access to the Qabel client configuration, e.g. various user settings.
-* [[Contacts|Qabel-Client-Contact]]
+* [[Contacts|Components-Contacts]]
  * Access to the Qabel client users address book.
 
 ## Modules
