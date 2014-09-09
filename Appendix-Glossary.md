@@ -34,7 +34,7 @@
 
 * **Identity**: Easy: Who am I? An identity is a collection of a label (nickname) and a public and private key pair. It belongs to the local user of Qabel.
 
-* **Contact**: Easy: Which people do I know? A contact is a collection of informations about another user. It contains the public key, the drop URLs and specific data from modules.
+* **Contact**: Easy: Which people do I know? A contact is a collection of informations about another user. It contains public keys for encryption and signature verification, the drop URLs and specific data from modules.
 
 * **Person**: Easy: Describes the contact. It saves personal information about a contact like the name and e-mail address(es). Some fixed keys are defined in the person module.
 
