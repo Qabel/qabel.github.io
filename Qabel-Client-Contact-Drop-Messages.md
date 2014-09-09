@@ -25,7 +25,8 @@ Summary
 
 The following items define a contact item:
 
-* public_key (public key to encrypt drop message)
+* public_enc_key (public key to encrypt drop message)
+* public_sign_key (public key to verify drop message signatures)
 * my_id (the id of the identity which owns this entry)
 * drop_urls (array of drop urls)
 * <a name="module_data"> </a> module_data (object of objects of module-defined data structures)
@@ -33,7 +34,8 @@ The following items define a contact item:
 Summary
 
     contact         = "{"
-                    'public_key' : KEY,
+                    'public_enc_key' : KEY,
+                    'public_sign_key' : KEY,
                     'my_identity' : KEY,
                     'drop_urls' : [STR],
                     'module_data' : { STR : { ... }, ... }
@@ -43,7 +45,8 @@ Summary
 
 ```json
 {
-"public_key" : "asd",
+"public_enc_key" : "asd",
+"public_sign_key" : "yxc",
 "my_identity" : "fgh",
 "drop_urls" : ["example.org/jkl"],
 "module_data" : { "person" : { "mail_address" : "example@example.org" } }
