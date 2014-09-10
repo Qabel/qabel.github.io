@@ -7,7 +7,7 @@
   1. [[Bridgehead|Components-Bridgehead]]
   3. [[Contacts|Components-Contacts]]
   4. [[Drop|Components-Drop]]
-  5. [[Storage|Components-Storage]]
+  5. [[Storage|Components-Storage]] ([[API|Components-Storage-API]])
   8. [[Modules|Components-Modules]]
 4. [[Client Data|Qabel-Client-Data]] (this is the internal state and data of the client as seen by core and maybe module developers.)
   2. [[Configuration|Qabel-Client-Configuration]]
