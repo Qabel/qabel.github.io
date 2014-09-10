@@ -11,3 +11,5 @@
 
           public void sendAndForget(JSON payload, Collection<Contact> recipients)
 
+## Used objects
+* [[Contact|Qabel-Client-Contact-Drop-Messages]]
