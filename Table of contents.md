@@ -6,7 +6,7 @@
 3. [[Components|Components]] (this briefly describes components, i.e. "why" we have each and "what for". No implementation details are given in this chapter. For people without knowledge of the architecture.)
   1. [[Bridgehead|Components-Bridgehead]]
   3. [[Contacts|Components-Contacts]]
-  4. [[Drop|Components-Drop]]
+  4. [[Drop|Components-Drop]] ([[API|Components-Drop-API]])
   5. [[Storage|Components-Storage]] ([[API|Components-Storage-API]])
   8. [[Modules|Components-Modules]]
 4. [[Client Data|Qabel-Client-Data]] (this is the internal state and data of the client as seen by core and maybe module developers.)
