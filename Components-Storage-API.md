@@ -9,7 +9,8 @@
     * write key/blob url to blob objects (and crypto object if new key was generated)
     * throw specified exception (TODO: specify exceptions)
 
-    upload (collection of StorageBlob blobCollection, CryptoObject crypto) throws ...exception
+          public void upload (collection of StorageBlob blobCollection,
+              CryptoObject crypto) throws ...exception
     
 5. Download method:
     * download collection of blobs (identified by blob urls)
@@ -17,17 +18,23 @@
     * write blob data to blob objects
     * throw specified exception (TODO: specify exceptions)
     
-    download (collection of StorageBlob blobCollection, CryptoObject crypto) throws ...exception
+          public void download (collection of StorageBlob blobCollection,
+              CryptoObject crypto) throws ...exception
     
 7. Delete method:
     * delete a collection of blobs from specified urls
+    * throw specified exception (TODO: specify exceptions)
     
-## Objects
+          public void delete (collection of StorageBlob blobCollection) 
+              throws ...exception  
+    
+    
+## Used Objects
 
     class CryptoObject {
 
       private enum EncryptionMethod;
-      private ... Keys;
+      private ... Keys; //TBD
       
       public CryptoObject (enum EncryptionMethod); //for new key generation
       public CryptoObject (enum EncryptionMethod, ... Keys); //for importing key
