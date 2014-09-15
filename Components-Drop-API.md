@@ -7,9 +7,9 @@
     * sign each message
     * upload messages to the respective drops
 
-          public void send(JSON payload, Collection<Contact> recipients)
+          * public void send(JSON payload, Collection<Contact> recipients)
 
-          public void sendAndForget(JSON payload, Collection<Contact> recipients)
+          * public void sendAndForget(JSON payload, Collection<Contact> recipients)
 
 ## Used objects
 * [[Contact|Qabel-Client-Contact-Drop-Messages]]
