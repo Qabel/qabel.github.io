@@ -7,26 +7,22 @@
     * generate blob urls
     * upload collection of blobs
     * write key/blob url to blob objects (and crypto object if new key was generated)
-    * throw specified exception (TODO: specify exceptions)
 
           public void upload (collection of StorageBlob blobCollection,
-              CryptoObject crypto) throws ...exception
+              CryptoObject crypto)
     
 5. Download method:
     * download collection of blobs (identified by blob urls)
     * authenticate and decrypt this collection
     * write blob data to blob objects
-    * throw specified exception (TODO: specify exceptions)
     
           public void download (collection of StorageBlob blobCollection,
-              CryptoObject crypto) throws ...exception
+              CryptoObject crypto)
     
 7. Delete method:
     * delete a collection of blobs from specified urls
-    * throw specified exception (TODO: specify exceptions)
     
-          public void delete (collection of StorageBlob blobCollection) 
-              throws ...exception  
+          public void delete (collection of StorageBlob blobCollection)  
     
     
 ## Used Objects
