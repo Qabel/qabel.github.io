@@ -21,8 +21,6 @@ Summary
 
         preferences     = "{"
                         'poll_interval' : NUM,
-                        'poll_interval_wlan' : NUM,
-                        'poll_interval_mobile' : NUM,
                         'drop_last_update' : STR,
                         'module_data' : { KEY : { ... }, ... }
                         "}"
@@ -151,7 +149,7 @@ Summary
 | id | Unique identifier |
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
 | url | URL of the [storage server](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Storage#url), excluding `public` which identifies a single Storage Volume on the server |
-| auth | Optional credential (see [drop server](#drop-server) |
+| auth | Optional credential (see [drop server](#drop-server)) |
 
 
 Summary
@@ -161,7 +159,7 @@ Summary
                         'updated': INT,
                         'created': INT,
                         'deleted': INT,
-                        'url' : STR,
+                        'url' : URL,
                         'auth' : STR
                         "}"
 
@@ -182,7 +180,7 @@ Summary
 | id | Unique identifier |
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
 | storage_server_id | Id of the storage server |
-| public | identifier of the Storage Volume on the server |
+| public_identifier | identifier of the Storage Volume on the server |
 | token | Credential granting write permission to the Storage Volume |
 | revoke_token | Credential granting the permission to delete the whole Storage Volume |
 
@@ -194,7 +192,7 @@ Summary
                         'created': INT,
                         'deleted': INT,
                         'storage_server_id' : INT,
-                        'public' : STR,
+                        'public_identifier' : STR,
                         'token' : STR,
                         'revoke_token': STR,
                         "}"
