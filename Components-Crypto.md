@@ -8,7 +8,8 @@ The default key size is 256 bit.
 The nonce has 16 bytes.
 
 ### Asymmetric Cipher
-For asymmetric, public key encryption we use RSA OASP
+For asymmetric, public key encryption we use RSA OAEP.
+For signatures we use RSASSA-PSS.
 
 ### Hash Algorithms
 The default hash algorithm is SHA512.
