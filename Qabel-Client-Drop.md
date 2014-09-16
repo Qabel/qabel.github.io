@@ -125,7 +125,7 @@ After applying confidentiality and authenticity mechanisms, the resulting messag
 | Message part | Field | Description | Length (in Byte) |
 | ------------ | ----- | ----------- | ---------------: |
 | **Header** (unencrypted) | Version | Version of the Qabel drop message format | 1 |
-| **Key** (encrypted with the public key of the recipient) | Key | Newly generated key used with the symmetric block cipher to encrypt the data | *variable* (256/512 Bit) |
+| **Key** (encrypted with the public key of the recipient) | Key | Newly generated key used with the symmetric block cipher to encrypt the data | 32 (256 Bit) |
 |         | Initialisation data | Data to initialize a symmetric block cipher (e.g. an IV) | ? |
 | **Data** (encrypted with symmetric block cipher) | Payload | Original Qabel drop message | *variable* |
 | **Signature** | Signature | Digital signature of Header, Key and Data made with sender's private key | *variable* |
