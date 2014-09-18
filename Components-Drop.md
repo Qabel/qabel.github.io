@@ -105,6 +105,9 @@ To fully obfuscate a communication, clients should leave drop messages in random
 #### Uncertain Degree of Anonymity
 A client has no possibility whatsoever to detect if other messages in a drop are communications between real clients or instead forged by a malicious server. A malicious server might place forged messages into a drop and the real clients using this drop would assume that other real clients are using this drop.
 
+In order to complicate drop message forging by a malicious drop server, one could use proof-of-work-techniques. Every drop message would have to comprise a proof-of-work to be valid.
+From a client perspective, such a requirement is no hindrance to generate valid drop messages, because it generates relatively few drop messages.
+From a malicious server perspective, forging valid drop messages would become much more expensive.
 
 ### Confidentiality
 The messages and direct meta data are encrypted.
