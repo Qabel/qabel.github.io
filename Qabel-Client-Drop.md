@@ -53,7 +53,7 @@ A message is packed into JSON containing the following fields:
 | **version** | INT | This key describes the version of the Qabel Drop Message protocol. |
 | **time_stamp** | INT | Date of message generation. |
 | **acknowledge_id** | STR | Acknowledge ID for acknowledging this message |
-| **sender** | INT | The key id of the key of sender. |
+| **sender** | STR | The [key id](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#key-identifier) of sender's public key. |
 | **model_object** | STR | The name of the model object that handles this message. |
 | **data** | JSON object | The payload of the message. |
 
@@ -63,7 +63,7 @@ A message is packed into JSON containing the following fields:
                     'version' : INT,
                     'time_stamp' : INT,
                     'acknowledge_id': STR,
-                    'sender' : INT,
+                    'sender' : STR,
                     'model_object' : STR,
                     'data' : { ... }
                     "}"
