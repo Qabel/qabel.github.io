@@ -31,3 +31,9 @@ The fingerprint of a given public key is calculated using SHA512.
 ### Key Identifier
 Key identifiers (key ids) are derived using the low-order 64 bit of a key's
 fingerprint.
+
+## Key Management
+### Multiple Key-pair Concept
+In asymmetric cryptography applications, it is common practice to use different
+key-pair for encryption and signing in order to reduce the risk of cryptographic attacks.
+Therefore, we use two key-pairs: one for encryption and one for signing.
