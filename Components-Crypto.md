@@ -26,7 +26,7 @@ Append a HMAC to the ciphertext.
 ### Encrypt and Sign
 
 ## Key Fingerprinting
-The fingerprint of a given public key is calculated using SHA-1.
+The fingerprint of a given public key is calculated using SHA512.
 
 ### Key Identifier
 Key identifiers (key ids) are derived using the low-order 64 bit of a key's
