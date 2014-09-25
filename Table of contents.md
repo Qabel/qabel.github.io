@@ -9,6 +9,7 @@
   4. [[Drop|Components-Drop]] ([[API|Components-Drop-API]])
   5. [[Storage|Components-Storage]] ([[API|Components-Storage-API]])
   8. [[Modules|Components-Modules]]
+  9. [[Crypto|Components-Crypto]]
 4. [[Client Data|Qabel-Client-Data]] (this is the internal state and data of the client as seen by core and maybe module developers.)
   2. [[Configuration|Qabel-Client-Configuration]]
   4. [[Contact|Qabel-Client-Contact-Drop-Messages]]
