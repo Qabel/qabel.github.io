@@ -35,5 +35,11 @@ fingerprint.
 ## Key Management
 ### Multiple Key-pair Concept
 In asymmetric cryptography applications, it is common practice to use different
-key-pair for encryption and signing in order to reduce the risk of cryptographic attacks.
-Therefore, we use two key-pairs: one for encryption and one for signing.
+key-pairs for encryption and signing in order to reduce the risk of cryptographic attacks.
+Therefore, Qabel has a multiple key-pair concept, where each key-pair is only used for one
+purpose (encrypting or signing).
+At least three key-pairs are involved:
+* one or more *encryption sub-keys* used for encryption of data,
+* one or more *signing sub-keys* used for digital signing of data,
+* a *primary key* used to cryptographically bundle the sub-keys together and
+  to represent the contact.
