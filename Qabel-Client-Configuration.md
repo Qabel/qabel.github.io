@@ -214,6 +214,8 @@ Summary
 | id | Unique identifier |
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
 | alias | Textual, user-defined label identifying this identity (also to other users) |
+| private_primary_key | Private, secret part of the key pair used signing of sub-keys |
+| public_primary_key | Public part of the key pair used signing of sub-keys |
 | private_enc_key | Private, secret part of the key pair used for (de-)encryption |
 | public_enc_key | Public part of the key pair used for (de-)encryption |
 | private_sign_key | Private, secret part of the key pair used for signing |
@@ -229,6 +231,8 @@ Summary
                         'created': INT,
                         'deleted': INT,
                         'alias' : NAME,
+                        'private_primary_key' : KEY,
+                        'public_primary_key' : KEY,
                         'private_enc_key' : KEY,
                         'public_enc_key' : KEY,
                         'private_sign_key' : KEY,

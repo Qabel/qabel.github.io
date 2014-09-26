@@ -25,6 +25,7 @@ Summary
 
 The following items define a contact item:
 
+* public_primary_key (public key to verify sub-key signatures)
 * public_enc_key (public key to encrypt drop message)
 * public_sign_key (public key to verify drop message signatures)
 * my_identity ([key id](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#key-identifier) of the public key of the identity which owns this contact)
@@ -34,6 +35,7 @@ The following items define a contact item:
 Summary
 
     contact         = "{"
+                    'public_primary_key' : KEY,
                     'public_enc_key' : KEY,
                     'public_sign_key' : KEY,
                     'my_identity' : STR,
