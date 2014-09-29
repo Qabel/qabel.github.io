@@ -112,7 +112,7 @@ The plaintext is encrypted using AES in CTR mode with a random key of 256 bits a
 The AES key is encrypted with RSA OAEP encryption scheme using the recipients public encryption key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)).
 The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the ciphertext.
 For example, with a 2048 bit RSA key the encrypted message looks like this: 
-`RSA_encrypt([256 byte AES key][16 bytes AES IV])[n bytes AES ciphertext]`
+`RSA_encrypt([256 byte AES key])[16 bytes AES IV][n bytes AES ciphertext]`
 
 ### Signature
 
@@ -124,8 +124,8 @@ After applying confidentiality and authenticity mechanisms, the resulting messag
 | Message part | Field | Description | Length (in Byte) |
 | ------------ | ----- | ----------- | ---------------: |
 | **Header** (unencrypted) | Version | Version of the Qabel drop message format | 1 |
-| **Key** (encrypted with the public key of the recipient) | Key | Newly generated key used with the symmetric block cipher to encrypt the data | 32 (256 Bit) |
-|         | Initialisation data | Data to initialize a symmetric block cipher (e.g. an IV) | ? |
+| **Key** | Key (encrypted with the public key of the recipient) | Newly generated key used with the symmetric block cipher to encrypt the data | 32 (256 Bit) |
+|         | Initialisation data (unencrypted) | Data to initialize a symmetric block cipher (e.g. an nonce) | 16 |
 | **Data** (encrypted with symmetric block cipher) | Payload | Original Qabel drop message | *variable* |
 | **Signature** | Signature | Digital signature of Header, Key and Data made with sender's private key | *variable* |
 
