@@ -107,6 +107,10 @@ The following error types:
 ![Sequence diagram receive messages](https://github.com/Qabel/intern-doc/wiki/images/sequencediagram_receive_messages.png)
 
 ### Encryption
+Encryption follows the general encrypt-and-sign scheme described in the [general crypto documentation](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#encrypt-and-sign).
+
+#### Asymmetric encryption. 
+
 The JSON object 'drop_message' is serialized to JSON text (string) without unneeded whitespace characters forming the cryptographic plaintext.
 The plaintext is encrypted using AES in CTR mode with a random key of 256 bits and a random IV as nonce forming the ciphertext.
 The AES key is encrypted with RSA OAEP encryption scheme using the recipients public encryption key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)).
@@ -114,9 +118,9 @@ The encrypted message is created by concatenating three fields without any delim
 For example, with a 2048 bit RSA key the encrypted message looks like this: 
 `RSA_encrypt([256 byte AES key])[16 bytes AES IV][n bytes AES ciphertext]`
 
-### Signature
+#### Signature
 
-A digest of the final encrypted message including header, the encrypted AES key, IV, and the ciphertext is created via the SHA512 hash function. The digest is encrypted with the senders private signing key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)). The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
+A digest of the final encrypted message including header, the encrypted AES key, IV, and the ciphertext is created via the SHA512 hash function. The digest is signed with the senders private signing key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)) using the RSASSA-PSS scheme. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
 
 ### Transport format
 After applying confidentiality and authenticity mechanisms, the resulting message looks like this:
