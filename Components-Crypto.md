@@ -34,7 +34,7 @@ Concatenate the big-endian byte array representations of the key's modulus and e
 Compute the fingerprint as the hash sum of the resulting array.
 
 ### Key Identifier
-Key identifiers (key ids) are the low-order 64 bit of a key's fingerprint.
+Key identifiers (key ids) are the right-most 64 bit of a key's fingerprint.
 
 ## Key Management
 ### Multiple Key-pair Concept
