@@ -1,11 +1,12 @@
 # Crypto Component Specification
 
 ## Algorithms
+If not stated otherwise the Crypto API uses the following primitives.
 
 ### Symmetric Cipher
-For symmetric encryption, we use AES in Counter Mode (CTR)
+For symmetric encryption, we use AES in Counter Mode (CTR).
 The default key size is 256 bit.
-The nonce has 16 bytes.
+We use a random nonce of 16 bytes.
 
 ### Asymmetric Cipher
 For asymmetric, public key encryption we use RSA OAEP.
@@ -15,7 +16,6 @@ The default key size is 2048 bit.
 ### Hash Algorithms
 The default hash algorithm is SHA512.
 
-
 ## Crypto API
 The focus of this API is to prevent misuse of crypto primitives.
 
@@ -24,13 +24,17 @@ Symmetrically encrypt given data with a given key.
 Append a HMAC to the ciphertext.
 
 ### Encrypt and Sign
+Symmetrically encrypt given data with a new secret key.
+Asymmetrically encrypt the symmetric key using the recipients public encryption key.
+Concatenate the encrypted symmetric key, the nonce, and the ciphertext without any delimiter.
+Sign the resulting message using the senders private signing key.
 
-## Key Fingerprinting
-The fingerprint of a given public key is calculated using SHA512.
+## Public-Key Fingerprinting
+Concatenate the big-endian byte array representations of the key's modulus and exponent without any delimiter.
+Compute the fingerprint as the hash sum of the resulting array.
 
 ### Key Identifier
-Key identifiers (key ids) are derived using the low-order 64 bit of a key's
-fingerprint.
+Key identifiers (key ids) are the low-order 64 bit of a key's fingerprint.
 
 ## Key Management
 ### Multiple Key-pair Concept
