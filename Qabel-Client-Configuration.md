@@ -220,7 +220,7 @@ Summary
 | public_enc_key | Public part of the key pair used for (de-)encryption |
 | private_sign_key | Private, secret part of the key pair used for signing |
 | public_sign_key | Public part of the key pair used for signing |
-| inbox | [url](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#url) of the drop where the identity expects to receive messages |
+| drops | List of [urls](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#url) of the drops where the identity expects to receive messages |
 
 
 Summary
@@ -237,7 +237,7 @@ Summary
                         'public_enc_key' : KEY,
                         'private_sign_key' : KEY,
                         'public_sign_key' : KEY,
-                        'inbox' : URL
+                        'drops' : [URL]
                         "}"
 
 #### Module Data
