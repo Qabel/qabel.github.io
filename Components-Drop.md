@@ -174,13 +174,13 @@ This isn't necessarily usable for the key exchange or a first contact of the com
 
 
 ## Flow of Communication
-In order to send someone a message, the sender has to know the recipient's drop (address of the drop server and drop id), which the recipient is checking on a regular basis for new messages.
+In order to send someone a message, the sender has to know one of recipient's drops (address of the drop server and drop id), which the recipient is checking on a regular basis for new messages.
 This contact information, as well as used encryption methods and keys, has been given beforehand to the sender by the recipient.
 To consign a message, the sender encrypts the message and puts the encrypted message (ciphertext) into the drop.
 In addition to his real messages, the sending client generates some fake messages and consigns them
 to randomly chosen drops.
 
-Every now and than, the recipient checks drop in which he expects to receive messages.
+Every now and than, the recipient checks drops in which he expects to receive messages.
 The recipient downloads *all* (new) messages from these drops.
 He sorts out those messages with unknown signatures and tries to decrypt the remaining ones.
 If decryption succeeds the recipient can be sure that the message was actually meant for him.
