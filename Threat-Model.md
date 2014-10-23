@@ -15,6 +15,18 @@ something as stupid as uploading his secret key material onto a public server.
 
 **Question: What changes if a user is using Tor?**
 
+
+## Assumptions
+
+This section lists assumptions about the used techniques, protocols and services.
+
+### TLS
+
+TLS authenticates the server to the client.
+
+
+
+
 ## Threats
 
 ### Local network attacker
