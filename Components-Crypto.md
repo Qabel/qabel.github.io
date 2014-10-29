@@ -6,7 +6,7 @@ If not stated otherwise the Crypto API uses the following primitives.
 ### Symmetric Cipher
 For symmetric encryption, we use AES in Counter Mode (CTR).
 The default key size is 256 bit.
-We use a random nonce of 16 bytes.
+We use an IV consisting of a random nonce of 12 bytes and a counter of 4 bytes.
 
 ### Asymmetric Cipher
 For asymmetric, public key encryption we use RSA OAEP.
