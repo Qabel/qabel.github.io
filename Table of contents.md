@@ -14,6 +14,7 @@
   2. [[Configuration|Qabel-Client-Configuration]]
   4. [[Contact|Qabel-Client-Contact-Drop-Messages]]
   9. [[Qabel-Drop-Message|Qabel-Client-Drop]]
+  10. [[Buffered Data|Qabel-Buffered-Data]]
 6. [[Communication Protocols|Qabel-Server-Protocols]] (this is strictly the "outside" view on communication)
   1. [[Qabel-Drop-Protocol|Qabel-Protocol-Drop]]
   2. [[Qabel-Storage-Protocol|Qabel-Protocol-Storage]]
