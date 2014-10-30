@@ -61,7 +61,7 @@ A message is packed into JSON containing the following fields:
 
     drop_message    = "{"
                     'version' : INT,
-                    'time_stamp' : INT,
+                    'time_stamp' : LONG,
                     'acknowledge_id': STR,
                     'sender' : STR,
                     'model_object' : STR,
