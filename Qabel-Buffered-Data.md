@@ -3,8 +3,7 @@
 ## Abstract
 Notes on buffered data stored on each client.
 
-The buffered data are only saved on local machines.
-
+The buffered data are only saved on local machines and will not synced.
 
 ## Buffered Data
 
@@ -23,7 +22,7 @@ Summary
 
 #### Acknowledge IDs
 
-Tis is a collection of contacts, acknowledge ids and more which waiting for a response from the other side to forward this information to the modules. The modules knows than that their drop message is send correctly and the other side have received it.
+This is a collection of contacts, acknowledge ids and more which waiting for a response from the other side to forward this information to the modules. The modules knows than that their drop message is send correctly and the other side have received it.
 
 The item `acknowledge_ids` includes an collection of acknowledge_id structures
 
@@ -38,7 +37,7 @@ Summary
 
 | Key 			   | Description |
 | --- 			   | ----------- |
-| acknowledge_id   | Acknowledge ID of the sended drop message |
+| acknowledge_id   | Acknowledge ID of the send drop message |
 | contact_sign_key | Public key to verify drop message signatures |
 | time_stamp       | Date of message generation |
 | model_object     | The name of the model object which has to handles the acknowledge|
@@ -55,4 +54,4 @@ Summary
 
 #### Module Data
 
-Each module shall save there configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. We only provide this version of saving the configuration (for example the sync module will only sync this configuration). 
+Each module shall save there buffered data in this area. The key of JSON object have to be the name of the module. The core provides getter and setter method. 
