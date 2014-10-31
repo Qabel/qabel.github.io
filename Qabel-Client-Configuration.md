@@ -87,9 +87,9 @@ Summary
 
         account         = "{"
                         'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
+                        'updated': LONG,
+                        'created': LONG,
+                        'deleted': LONG,
                         'provider' : STR,
                         'user' : STR,
                         'auth' : STR
@@ -119,9 +119,9 @@ Summary
 
         drop_server     = "{"
                         'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
+                        'updated': LONG,
+                        'created': LONG,
+                        'deleted': LONG,
                         'url' : URL,
                         'auth' : STR,
                         'active' : BOOL
@@ -156,9 +156,9 @@ Summary
 
         storage_server    = "{"
                         'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
+                        'updated': LONG,
+                        'created': LONG,
+                        'deleted': LONG,
                         'url' : URL,
                         'auth' : STR
                         "}"
@@ -188,9 +188,9 @@ Summary
 
         storage_volume   = "{"
                         'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
+                        'updated': LONG,
+                        'created': LONG,
+                        'deleted': LONG,
                         'storage_server_id' : INT,
                         'public_identifier' : STR,
                         'token' : STR,
@@ -227,9 +227,9 @@ Summary
 
         identity        = "{"
                         'id': INT,
-                        'updated': INT,
-                        'created': INT,
-                        'deleted': INT,
+                        'updated': LONG,
+                        'created': LONG,
+                        'deleted': LONG,
                         'alias' : NAME,
                         'private_primary_key' : KEY,
                         'public_primary_key' : KEY,
