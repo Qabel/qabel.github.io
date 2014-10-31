@@ -15,7 +15,7 @@ Currently available:
 
 Summary
 
-        Settings        = "{"
+        buffered_data   = "{"
                         'acknowledge_ids' : acknowledge_ids,
                         'module_data' : { KEY : { ... }, ... }
                         "}"
