@@ -3,4 +3,4 @@ qabel-doc
 
 Qabel concepts, design and specifications.
 
-Read the [wiki](https://github.com/Qabel/qabel-doc/wiki).
+If you want to read "the documentation" it is likely you want to read the [wiki](https://github.com/Qabel/qabel-doc/wiki).
