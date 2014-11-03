@@ -37,6 +37,7 @@ Summary
 
 | Key 			   | Description |
 | --- 			   | ----------- |
+| identity_id      | Identity ID |
 | acknowledge_id   | Acknowledge ID of the send drop message |
 | contact_sign_key | Public key to verify drop message signatures |
 | time_stamp       | Date of message generation |
@@ -46,6 +47,7 @@ Summary
 Summary
 
         acknowledge_id  = "{"
+                        'identity_id': INT,
                         'acknowledge_id': STR,
                         'contact_public_sign_key': key,
                         'time_stamp': LONG,
