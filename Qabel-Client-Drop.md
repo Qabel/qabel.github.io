@@ -112,15 +112,15 @@ Encryption follows the general encrypt-and-sign scheme described in the [general
 #### Asymmetric encryption. 
 
 The JSON object 'drop_message' is serialized to JSON text (string) without unneeded whitespace characters forming the cryptographic plaintext.
-The plaintext is encrypted using AES in CTR mode with a random key of 256 bits and a random IV as nonce forming the ciphertext.
+The plaintext is encrypted using AES in CTR mode with a random key of 256 bits and an IV, consisting of a 96 bit random nonce and a 32 bit counter which always starts to count at 1, forming the ciphertext.
 The AES key is encrypted with RSA OAEP encryption scheme using the recipients public encryption key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)).
-The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES IV, and the ciphertext.
+The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES nonce (first 12 bytes of the IV), and the ciphertext.
 For example, with a 2048 bit RSA key the encrypted message looks like this: 
-`RSA_encrypt([256 byte AES key])[16 bytes AES IV][n bytes AES ciphertext]`
+`RSA_encrypt([256 byte AES key])[12 bytes AES nonce][n bytes AES ciphertext]`
 
 #### Signature
 
-A digest of the final encrypted message including header, the encrypted AES key, IV, and the ciphertext is created via the SHA512 hash function. The digest is signed with the senders private signing key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)) using the RSASSA-PSS scheme. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
+A digest of the final encrypted message including header, the encrypted AES key, the AES nonce, and the ciphertext is created via the SHA512 hash function. The digest is signed with the senders private signing key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)) using the RSASSA-PSS scheme. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
 
 ### Transport format
 After applying confidentiality and authenticity mechanisms, the resulting message looks like this:
@@ -129,7 +129,7 @@ After applying confidentiality and authenticity mechanisms, the resulting messag
 | ------------ | ----- | ----------- | ---------------: |
 | **Header** (unencrypted) | Version | Version of the Qabel drop message format | 1 |
 | **Key** | Key (encrypted with the public key of the recipient) | Newly generated key used with the symmetric block cipher to encrypt the data | 32 (256 Bit) |
-|         | Initialisation data (unencrypted) | Data to initialize a symmetric block cipher (e.g. an nonce) | 16 |
+|         | Initialisation data (unencrypted) | Data to initialize a symmetric block cipher (e.g. an nonce) | 12 |
 | **Data** (encrypted with symmetric block cipher) | Payload | Original Qabel drop message | *variable* |
 | **Signature** | Signature | Digital signature of Header, Key and Data made with sender's private key | *variable* |
 
