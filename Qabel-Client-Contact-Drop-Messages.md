@@ -35,9 +35,12 @@ The following items define a contact item:
 Summary
 
     contact         = "{"
-                    'public_primary_key' : KEY,
-                    'public_enc_key' : KEY,
-                    'public_sign_key' : KEY,
+                    'keys' : 
+                             "{"
+                             'public_primary_key' : KEY,
+                             'public_enc_key' : KEY,
+                             'public_sign_key' : KEY
+                             "}",
                     'my_identity' : STR,
                     'drop_urls' : [STR],
                     'module_data' : { STR : { ... }, ... }
