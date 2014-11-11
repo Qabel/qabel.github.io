@@ -231,12 +231,15 @@ Summary
                         'created': LONG,
                         'deleted': LONG,
                         'alias' : NAME,
-                        'private_primary_key' : KEY,
-                        'public_primary_key' : KEY,
-                        'private_enc_key' : KEY,
-                        'public_enc_key' : KEY,
-                        'private_sign_key' : KEY,
-                        'public_sign_key' : KEY,
+                        'keys' :
+                                "{"
+                                'private_primary_key' : KEY,
+                                'public_primary_key' : KEY,
+                                'private_enc_key' : KEY,
+                                'public_enc_key' : KEY,
+                                'private_sign_key' : KEY,
+                                'public_sign_key' : KEY
+                                "}",
                         'drops' : [URL]
                         "}"
 
