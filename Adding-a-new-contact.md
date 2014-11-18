@@ -33,9 +33,9 @@ During the Beta version of Qabel, a fingerprinting will not be needed unconditio
 
 **Contact information in JSON format:**    
 The exact structure of this object will be here soon. Till then, the approximation will be:  
-     {
-       "drop_url" : "http://www.nevergonna.com/give/u/up/06021966.html",
-       "public_key" : "mQINBFPOzTUBEADT1kIEMY1Ix+9DyNfGHE9HPjLSI/Ybnsn/...",
-       "digest" : "GgFPryipXkdLp6LK3Hf-cYu6-EK8VMe8Tm-6-LzAe9TBHeVSJDvvEQxN5red",
-       "signature" : "zggwQ7TxQGQVhzskiugjpwQUdhZ8UU_RAWtVePcwn_3peAoYbooVBcjyJgJE"
-     }
+     {  
+       "drop_url" : "http://www.nevergonna.com/give/u/up/06021966.html",  
+       "public_key" : "mQINBFPOzTUBEADT1kIEMY1Ix+9DyNfGHE9HPjLSI/Ybnsn/...",  
+       "digest" : "GgFPryipXkdLp6LK3Hf-cYu6-EK8VMe8Tm-6-LzAe9TBHeVSJDvvEQxN5red",  
+       "signature" : "zggwQ7TxQGQVhzskiugjpwQUdhZ8UU_RAWtVePcwn_3peAoYbooVBcjyJgJE"  
+     }  
