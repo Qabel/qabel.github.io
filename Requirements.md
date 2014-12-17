@@ -31,9 +31,18 @@ if he/she can't be linked to any received message and if no message can be linke
 It must not be possible to determine who sends Drop messages to whom.
 This property automatically follows, if it is impossible to link messages with a sender or recipient.
 
+#### Current problems
+* Neither drop nor storage communication hides IP addresses
+* drop currently lacks a proper id generation algorithms, which is crucial for anonymity
+
 ### Hiding who accesses or exchanges data on a Storage server
 It must not be possible to determine who exchanges data on a Storage server.
 This property also automatically follows, if it is impossible to link data with a sender or recipient.
+
+#### Current problems
+* Neither drop nor storage communication hides IP addresses
+* storage does not hide any communication relations
+* besides obfuscating file sizes, storage has no anonymity advantages compared to, say, Mega.
 
 ## Usability
 ### Creating new contacts
