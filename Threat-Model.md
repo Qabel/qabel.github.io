@@ -7,7 +7,7 @@ servers.
 
 This document does not list other things an attacker could achieve, like
 blocking access to a Qabel server. It also assumes the user doesn't do
-something as stupid as uploading his secret key material onto a public server.
+something as stupid as uploading the secret key material onto a public server.
 
 > Note: The existing Qabel software doesn't implement these requirements yet,
 > and this document is still in a state of flux. 
