@@ -37,9 +37,11 @@ This property also automatically follows, if it is impossible to link data with 
 
 ## Usability
 ### Creating new contacts
+It should be easy to create a new authenticated Contact with a person given another trusted communication channel. It should also be possible to create a new unauthenticated Contact given another untrusted communication channel.
 
 ## Exemplary use cases
 ### Sending mail to a contact
+It must be easy to use a standard mail client to send messages to a Qabel contact.
 
 ### Sharing files with a contact
 
@@ -56,8 +58,13 @@ but non-repudiation in some other business related module.
 Then, we can't have a single encryption format used by all modules.
 
 ### Forward secrecy
+A real requirement, or maybe later?
 
 ### Forward anonymity
-Can somebody 
+Can somebody link a user to send or received messages if the secret keys of the user are compromised at a later time.
 
-### Hide who is using a Qabel service.
+### Hide the fact that a user is using a Qabel service.
+The [[Abstract|https://github.com/Qabel/qabel-doc/wiki/Abstract]] says that
+> Who [...] uses a Qabel service [...] remains hidden, even from the provider.
+
+Does this means that the identity of a users remains hidden, or that the fact that somebody is using Qabel remains hidden?
