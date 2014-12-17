@@ -2,7 +2,7 @@
 
 > **This is a draft aiming to detail the requirements of Qabel.**
 
-This document should enumerate all requirements related to security, anonymity and basic usability in the Qabel system. For each requirement it should also briefly mention the capabilities of the current architecture and the open problems.
+This document should enumerate all requirements related to security, anonymity and basic usability in the Qabel system. For each requirement it should also briefly mention the capabilities of the current architecture and the open problems. 
 
 ## Security
 ### Confidentiality
@@ -12,9 +12,10 @@ Access to the content exchanged between two Qabel users or stored on a Storage v
 It must be guaranteed that content exchanged between two Qabel users or stored on a Storage volume is not modified in an unauthorized or undetected manner.
 
 ### Authenticity
-It must be guaranteed that content originated from the 
+It must be possible to guaranteed that all parties involved in an exchange of data are who they claim to be, and that all data exchanged is genuine.
 
 ### Don't trust the provider to meet security requirements
+The system must be able to meet the above security requirements even if the provider of the Qabel services can't be trusted.
 
 ## Anonymity and metadata
 ### Hiding who communicates via a Drop server
