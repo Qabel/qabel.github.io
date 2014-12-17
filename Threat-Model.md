@@ -6,15 +6,14 @@ attacker, the threat model also lists the capabilities of Qabel clients and
 servers.
 
 This document does not list other things an attacker could achieve, like
-blocking access to a Qabel server. It also assumes the user doesn't do
+blocking access to a Qabel server. It also assumes that the user doesn't do
 something as stupid as uploading the secret key material onto a public server.
 
 > Note: The existing Qabel software doesn't implement these requirements yet,
-> and this document is still in a state of flux. 
+> and this document is still in a state of flux.
 > Please add and question existing entries.
 
-**Question: What changes if a user is using Tor?**
-
+**TODO: What changes if a user is using Tor?**
 
 ## Assumptions
 
@@ -22,10 +21,7 @@ This section lists assumptions about the used techniques, protocols and services
 
 ### TLS
 
-TLS authenticates the server to the client.
-
-
-
+TLS is used to authenticate the Storage server to the client and for transport encryption between client and Storage server. If TLS or the X.509 PKI is broken, an attacker gains the same capabilities as a Qabel Storage server.
 
 ## Threats
 
@@ -56,7 +52,7 @@ A Storage Server can learn:
 2. A Storage Server learns which IP addresses download a given Storage Blob.
 3. From the used URL a Storage Server learns who most likely uploaded a Storage Blob.
 
-Problem:
+Problems:
 
 * A Storage Server should *not* learn that much about relations between users.
 
