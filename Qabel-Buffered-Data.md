@@ -3,11 +3,11 @@
 ## Abstract
 Notes on buffered data stored on each client.
 
-The buffered data are only saved on local machines and will not synced.
+The buffered data is only saved on local machines and will not be synced.
 
 ## Buffered Data
 
-The buffered data are a collection of data which Qabel core needs to work correctly on the current machine.
+The buffered data is a collection of data which Qabel core needs to work correctly on the current machine.
 
 Currently available:
 
@@ -22,9 +22,9 @@ Summary
 
 #### Acknowledge IDs
 
-This is a collection of contacts, acknowledge ids and more which waiting for a response from the other side to forward this information to the modules. The modules knows than that their drop message is send correctly and the other side have received it.
+This is a collection of contacts, acknowledge ids and more which are waiting for a response from the other side to forward this information to the modules. The modules will know then that their drop message has been sent correctly and the other side has received it.
 
-The item `acknowledge_ids` includes an collection of acknowledge_id structures
+The item `acknowledge_ids` includes a collection of acknowledge_id structures
 
 Summary
 
@@ -39,7 +39,7 @@ Summary
 | --- 			   | ----------- |
 | identity_id      | Identity ID |
 | acknowledge_id   | Acknowledge ID of the send drop message |
-| contact_sign_key | Public key to verify drop message signatures |
+| contact_public_sign_key | Public key to verify drop message signatures |
 | time_stamp       | Date of message generation |
 | model_object     | The name of the model object which has to handles the acknowledge|
 
@@ -56,4 +56,4 @@ Summary
 
 #### Module Data
 
-Each module shall save there buffered data in this area. The key of JSON object have to be the name of the module. The core provides getter and setter method. 
+Each module shall save its buffered data in this area. The key of JSON object has to be the name of the module. The core provides getter and setter methods. 
