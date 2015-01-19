@@ -113,8 +113,8 @@ From a malicious server perspective, forging valid drop messages would become mu
 The messages and direct meta data are encrypted.
 
 The content of the communication should not reach the outside.
-Messages that are exchanged between clients are completely encrypted. Corresponding meta data like lists of recipients, encryption methods and parameter are opaque in the encrypted block.
-The server cannot make assumptions over the structure or even the content.
+Messages that are exchanged between clients are padded to a standard length and completely encrypted. Corresponding meta data like lists of recipients, encryption methods and parameter are opaque in the encrypted block.
+The server cannot make assumptions over the structure, length or even the content.
 A possible authentication of the sender is happening inside of the encrypted message.
 
 
