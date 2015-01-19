@@ -102,7 +102,7 @@ The drop can already contain messages or be empty/unused.
 |:----------------:|------|
 | 200 | message was added |
 | 400 | drop ID is missing or invalid or no message has been submitted at all |
-| 413 | message exceeds the maximum size of (2KB(?)) |
+| 413 | message exceeds the maximum size of (2KB) |
 
 The message has to be transmitted as HTTP body.
 The HTTP body is an encoded 8-bit stream.
