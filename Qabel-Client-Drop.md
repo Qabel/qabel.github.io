@@ -109,13 +109,14 @@ The following error types:
 ### Encryption
 Encryption follows the general encrypt-and-sign scheme described in the [general crypto documentation](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#encrypt-and-sign).
 
-#### Asymmetric encryption. 
+#### Padding
+Prior to encryption, the serialized messages are padded to a fixed size of 2048 byte in order to avoid the metadata content length.
 
-The JSON object 'drop_message' is serialized to JSON text (string) without unneeded whitespace characters. This data-string is padded. Header, encrypted key, initialisation data and data-string with padding have always the length of 2KB. Thus the padding has the length 2KB - &#124;Header&#124; - &#124;enc(Key)&#124; - &#124;Initialisation Data&#124; - &#124;Data&#124;. Data and padding are forming the cryptographic plaintext.
-The plaintext is encrypted using AES in CTR mode with a random key of 256 bits and an IV, consisting of a 96 bit random nonce and a 32 bit counter which always starts to count at 1, forming the ciphertext.
+#### Asymmetric encryption.
+The padded message is encrypted using AES in CTR mode with a random key of 256 bits and an IV, consisting of a 96 bit random nonce and a 32 bit counter which always starts to count at 1, forming the ciphertext.
 The AES key is encrypted with RSA OAEP encryption scheme using the recipients public encryption key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)).
 The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES nonce (first 12 bytes of the IV), and the ciphertext.
-For example, with a 2048 bit RSA key the encrypted message looks like this: 
+For example, with a 2048 bit RSA key the encrypted message looks like this:
 `RSA_encrypt([256 byte AES key])[12 bytes AES nonce][2K-1-2048-12 bytes AES ciphertext]`
 
 #### Signature
@@ -123,19 +124,20 @@ For example, with a 2048 bit RSA key the encrypted message looks like this:
 A digest of the final encrypted message including header, the encrypted AES key, the AES nonce, and the ciphertext is created via the SHA512 hash function. The digest is signed with the senders private signing key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)) using the RSASSA-PSS scheme. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
 
 ### Transport format
-After applying confidentiality and authenticity mechanisms, the resulting message looks like this:
+The following section defines the protocl data unit (PDU) of the Qabel Drop protocol.
+This PDU is transmitted as body of a HTTP request/response.
 
-| Message part | Field | Description | Length (in Byte) |
+The PDU starts with a version byte to indicate the version of PDU format.
+
+#### PDU Version 0
+
+| Message part | Field | Description | Length (in Bytes) |
 | ------------ | ----- | ----------- | ---------------: |
-| **Header** (unencrypted) | Version | Version of the Qabel drop message format | 1 |
-| **Key** | Key (encrypted with the public key of the recipient) | Newly generated key used with the symmetric block cipher to encrypt the data | 32 (256 Bit) |
+| **Header** (unencrypted) | Version | Version of the Qabel Drop PDU format (here 0)| 1 |
+| **Key** | Key (encrypted with the public key of the recipient) | Newly generated key used with the symmetric block cipher to encrypt the data | 256 |
 |         | Initialisation data (unencrypted) | Data to initialize a symmetric block cipher (e.g. an nonce) | 12 |
-| **Data** (encrypted with symmetric block cipher) | Payload + Padding | Original Qabel drop message appended by padding | 2KB - &#124;Header&#124; - &#124;enc(Key)&#124; - &#124;Initialisation Data&#124; |
-| **Signature** | Signature | Digital signature of Header, Key and Data made with sender's private key | *variable* |
-
-#### Header
-The header is unencrypted and consists at least of a one-byte version number indicating
-the version of the binary Qabel Drop message.
+| **Data** (encrypted with symmetric block cipher) | Payload + Padding | Original Qabel drop message appended by padding | 2048 |
+| **Signature** | Signature | Digital signature of Header, Key and Data made with sender's private key | 256 |
 
 ### History / Persistence
 
