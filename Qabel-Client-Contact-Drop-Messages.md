@@ -25,6 +25,8 @@ Summary
 
 The following items define a contact item:
 
+* id (unique identifier)
+* updated, created, deleted (timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
 * public_primary_key (public key to verify sub-key signatures)
 * public_enc_key (public key to encrypt drop message)
 * public_sign_key (public key to verify drop message signatures)
@@ -35,6 +37,10 @@ The following items define a contact item:
 Summary
 
     contact         = "{"
+                    'id': INT,
+                    'updated': LONG,
+                    'created': LONG,
+                    'deleted': LONG,
                     'keys' : 
                              "{"
                              'public_primary_key' : KEY,
@@ -50,6 +56,10 @@ Summary
 
 ```json
 {
+"id": INT,
+"updated": 1422605430969,
+"created": 1422605430969,
+"deleted": 0,
 "public_enc_key" : "asd",
 "public_sign_key" : "yxc",
 "my_identity" : "12794c25db999ab",
