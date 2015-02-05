@@ -114,4 +114,5 @@ No HTTP body gets returned.
 The maximum lifetime of a drop message is 1 week. If the quota for drop messages is full, the globally oldest message of a dropserver will be deleted.
 
 ### Size
-A message is always [padded](https://github.com/Qabel/qabel-doc/wiki/Qabel-Client-Drop#transport-format).
+The total size of a message depends on the used [transport format](https://github.com/Qabel/qabel-doc/wiki/Qabel-Client-Drop#transport-format).
+A drop server must reject messages that are larger than the size of the largest supported transport format.
