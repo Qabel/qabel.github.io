@@ -22,7 +22,7 @@ Summary
 
 #### Acknowledge IDs
 
-This is a collection of contacts, acknowledge ids and more which are waiting for a response from the other side to forward this information to the modules. The modules will know then that their drop message has been sent correctly and the other side has received it.
+This is a collection of contacts, acknowledge ids and more which are waiting for a response from the other side to forward this information to the modules. Upon receiving the response modules will know that their drop message has been sent correctly and the other side received it.
 
 The item `acknowledge_ids` includes a collection of acknowledge_id structures
 
