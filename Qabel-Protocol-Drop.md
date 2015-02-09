@@ -51,14 +51,14 @@ The GET method asks for a complete drop or a defined part of the newest entries.
 |HTTP status code|reason|
 |:----------------:|------|
 | 400 | the drop ID is missing or invalid|
-| 404 | the drop is empty|
+| 204 | the drop is empty|
 | 200 | the drop contains messages|
 
 Optional with if-modified-since header:
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 404 | the drop is empty|
+| 204 | the drop is empty|
 | 304 | the drop doesn't contain any messages since 'if-modified-since'|
 | 200 | the drop contains new messages since 'if-modified-since'|
 
@@ -78,14 +78,14 @@ The HEAD method determines if a drop is filled or if a new message has arrived.
 |HTTP status code|reason|
 |:----------------:|------|
 | 400 | drop ID is missing or invalid |
-| 404 | drop is empty.         |
+| 204 | drop is empty.         |
 | 200 | drop contains messages |
 
 Optional with if-modified-since header:
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 404 | drop is empty |
+| 204 | drop is empty |
 | 304 | drop doesn't contain any messages since 'if-modified-since' |
 | 200 | drop contains new messages since 'if-modified-since' |
 
