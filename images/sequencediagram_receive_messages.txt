@@ -1,44 +1,38 @@
 @startuml
 
 actor Receiver
-Receiver -> MessageClass: receiveMessages()
-activate MessageClass
+Receiver -> DropController: receiveMessages()
+activate DropController
 
-MessageClass -> Inbox: httpGET()
-activate Inbox
-Inbox --> MessageClass: http-OK (200) & Messages
-deactivate Inbox
+DropController -> DropHTTP: receiveMessages(DropURL)
+activate DropHTTP
+DropHTTP --> DropController: http-OK (200) & DropMessages
+deactivate DropHTTP
 
-loop Messages
+loop DropMessages
 
-	MessageClass -> Crypto: decryptMessage(Message)
-	activate Crypto
-	Crypto -> Crypto: verifySignature(Message)
+	DropController -> CryptoUtils: readBox(RcptPrivKey, NoiseBox)
+	activate CryptoUtils
 
-	alt Signature is valid
+	CryptoUtils --> DropController: JSONMessage
+	deactivate CryptoUtils
 
-		Crypto --> MessageClass: DecMessage
-		deactivate Crypto
+	DropController -> GSON: parseMessage(JSONMessage)
+	activate GSON
+	GSON --> DropController: DropMessage
+	deactivate GSON
 
-		MessageClass -> JSON: parseMessage(DecMessage)
-		activate JSON
-		JSON --> MessageClass: ParsedMessage
-		deactivate JSON
-
-		MessageClass -> MessageClass: verifyMessage(ParsedMessage)
-		MessageClass -> MessageClass: handleMessage(ParsedMessage)
-
-	end
+	DropController -> DropController: verifyMessage(DropMessage)
 
 	alt acknowledge_id is not zero
 
-		MessageClass -> MessageClass: acknowledgeMessage(acknowledge_id)
+		DropController -> DropController: acknowledgeMessage(acknowledge_id)
 
 	end
 
 end
 
-MessageClass --> Receiver: messagesReceived
-deactivate MessageClass
+DropController --> Receiver: DropMessages
+deactivate DropController
 
 @enduml
