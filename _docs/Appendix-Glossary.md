@@ -1,3 +1,6 @@
+---
+title: Appendix Glossary
+---
 # Terminology
 * $Foo, $Bar and $Baz (and compositions of Foo, Bar and Baz prefixed with a "$") are used as placeholder. Prefer to use them in the order given here.
 

@@ -1,3 +1,6 @@
+---
+title: Requirements
+---
 # Requirements
 
 > **This is a draft aiming to detail the requirements of Qabel.**

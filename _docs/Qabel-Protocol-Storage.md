@@ -1,3 +1,6 @@
+---
+title: Protocol Storage
+---
 # Storage Specification
 
 ## Abstract

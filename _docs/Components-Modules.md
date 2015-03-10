@@ -1,3 +1,6 @@
+---
+title: "Components: Modules"
+---
 # The module components
 ## Abstract
 

@@ -1,3 +1,6 @@
+---
+title: "Components: Storage API"
+---
 # Storage component API
 
 

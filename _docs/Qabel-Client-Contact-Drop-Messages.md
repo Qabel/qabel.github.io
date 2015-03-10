@@ -1,3 +1,6 @@
+---
+title: Client Contact DropMessages
+---
 # Contact Specification
 
 ## Contacts
@@ -41,7 +44,7 @@ Summary
                     'updated': LONG,
                     'created': LONG,
                     'deleted': LONG,
-                    'keys' : 
+                    'keys' :
                              "{"
                              'public_primary_key' : KEY,
                              'public_enc_key' : KEY,

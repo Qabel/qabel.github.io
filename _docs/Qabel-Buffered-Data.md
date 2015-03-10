@@ -1,3 +1,6 @@
+---
+title: Buffered Data
+---
 # Buffered Data Notes
 
 ## Abstract

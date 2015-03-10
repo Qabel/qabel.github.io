@@ -1,3 +1,6 @@
+---
+title: Threat Model
+---
 ## Scope of the Threat Model
 
 The threat model exhaustively lists what an attacker can learn about a user.

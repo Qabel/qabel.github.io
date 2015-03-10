@@ -1,3 +1,6 @@
+---
+title: Tabel of contents
+---
 * [[Abstract|Abstract]]
 * [[Preamble|Preamble]]
 

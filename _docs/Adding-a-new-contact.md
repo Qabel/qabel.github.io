@@ -1,3 +1,6 @@
+---
+title: Adding a new contact
+---
 # Adding a new User to the contact list
 
 ### Basic principle

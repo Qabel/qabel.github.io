@@ -1,3 +1,6 @@
+---
+title: "Components: Storage"
+---
 # The storage component
 ## Abstract
 The storage component is a core component of Qabel. It provides the functionalities for:

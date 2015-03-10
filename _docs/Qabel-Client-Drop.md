@@ -1,3 +1,6 @@
+---
+title: Client Drop
+---
 # Qabel drop messages
 ## The structure and encryption of Qabel drop messages, transported using the Qabel Drop protocol.
 

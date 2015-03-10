@@ -1,3 +1,6 @@
+---
+title: Client Configuration
+---
 # Settings Client Notes
 
 ## Abstract

@@ -1,3 +1,6 @@
+---
+title: "Components: Drop"
+---
 # The drop component
 ## Abstract
 The drop component is a core component of Qabel. It serves the general communication channel between clients.

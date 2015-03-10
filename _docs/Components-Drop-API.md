@@ -1,3 +1,6 @@
+---
+title: "Components: Drop API"
+---
 # Drop component API
 
 

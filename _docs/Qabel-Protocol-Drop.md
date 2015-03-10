@@ -1,3 +1,6 @@
+---
+title: Protocol Drop
+---
 # Drop Specification
 
 ## Abstract

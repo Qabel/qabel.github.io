@@ -1,3 +1,6 @@
+---
+title: Protocol Browse
+---
 # Browse Specification
 
 ## Abstract

@@ -1,3 +1,6 @@
+---
+title: Protocol Proof of Work
+---
 # Proof Of Work Specification
 
 ## Abstract

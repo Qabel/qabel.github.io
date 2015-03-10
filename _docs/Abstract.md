@@ -1,3 +1,6 @@
+---
+title: Abstract
+---
 Qabel is a software platform that makes communication and data exchange on the Internet as technically safe as currently possible and thus easy to use. It is a free, open-source (not in accordance with the OSI), decentralized and expandable platform, that hides data and metadata from everyone and particularly the provider.
 
 Who communicates, exchanges data, uses a Qabel service when and with whom remains hidden, even from the provider. Qabel does the cryptography completely on the client side and keeps it in the hands of users.

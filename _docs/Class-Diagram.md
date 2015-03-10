@@ -1,3 +1,6 @@
+---
+title: Class diagram
+---
 # Overview
 [![classdiagram_overview.png](images/classdiagram_overview.png)](images/classdiagram_overview.png)
 # Overview with private functions

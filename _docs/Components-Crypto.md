@@ -1,3 +1,6 @@
+---
+title: "Components: Crypto"
+---
 # Crypto Component Specification
 
 ## Algorithms

@@ -1,3 +1,6 @@
+---
+title: Qabel documentation
+---
 Qabel documentation
 ===================
 
