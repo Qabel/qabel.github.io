@@ -1,0 +1,3 @@
+{% assign path=page.collection | prepend:"/" | append:"/" %}
+{% assign item_url = include.param | prepend:path | append:"/" %}
+<a href="{{ item_url }}">{{ include.param }}</a>

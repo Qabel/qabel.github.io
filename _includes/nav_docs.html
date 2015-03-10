@@ -1,0 +1,26 @@
+{% for docs in site.data.docs %}
+  <ul>
+    <p>
+      {{docs.title}}
+    </p>
+    {% for doc in docs.docs %}
+      {% for item in doc %}
+        <li>{% include item_url.html param=item %}</li>
+      {% endfor %}
+    {% endfor %}
+    {% for sub in docs.subs %}
+      <p>
+        {{sub[0]}}
+        {% comment %}
+          {% assign element=sub[0]%}
+          {% include item_url.html param=element %}
+        {% endcomment %}
+      </p>
+      {% for element in sub[1] %}
+        {% for item in element %}
+          <li>{% include item_url.html param=item %}</li>
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+  </ul>
+{% endfor %}

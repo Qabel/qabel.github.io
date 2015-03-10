@@ -1,0 +1,30 @@
+- title: Getting started
+  docs:
+    - Abstract
+    - Preamble
+    - Introduction
+  subs:
+    Components:
+      - Components-Bridgehead
+      - Components-Contacts
+      - Components-Drop
+      - Components-Storage
+      - Components-Modules
+      - Components-Crypto
+    Client Data:
+      - Qabel-Client-Configuration
+      - Qabel-Client-Contact-Drop-Messages
+      - Qabel-Client-Drop
+    Communication Protocols:
+      - Qabel-Protocol-Drop
+      - Qabel-Protocol-Storage
+      - Qabel-Protocol-Browse
+      - Qabel-Protocol-ProofOfWork
+
+- title: Overview
+  docs:
+    - Architectural-Overview
+
+- title: Wording
+  docs:
+    - Appendix-Glossary
