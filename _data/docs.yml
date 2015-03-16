@@ -5,26 +5,26 @@
     - Introduction
   subs:
     Components:
-      - Components-Bridgehead
-      - Components-Contacts
-      - Components-Drop
-      - Components-Storage
-      - Components-Modules
-      - Components-Crypto
+      - Components-Bridgehead: Bridgehead
+      - Components-Contacts: Contacts
+      - Components-Drop: Drop
+      - Components-Storage: Storage
+      - Components-Modules: Modules
+      - Components-Crypto: Crypto
     Client Data:
-      - Qabel-Client-Configuration
-      - Qabel-Client-Contact-Drop-Messages
-      - Qabel-Client-Drop
+      - Qabel-Client-Configuration: Configuration
+      - Qabel-Client-Contact-Drop-Messages: Contact Drop Messages
+      - Qabel-Client-Drop: Drop
     Communication Protocols:
-      - Qabel-Protocol-Drop
-      - Qabel-Protocol-Storage
-      - Qabel-Protocol-Browse
-      - Qabel-Protocol-ProofOfWork
+      - Qabel-Protocol-Drop: Drop Protocol
+      - Qabel-Protocol-Storage: Storage Protocol
+      - Qabel-Protocol-Browse: Browse Protocol
+      - Qabel-Protocol-ProofOfWork: Proof of Work
 
 - title: Overview
   docs:
-    - Architectural-Overview
+    - Architectural-Overview: Architectural Overview
 
 - title: Wording
   docs:
-    - Appendix-Glossary
+    - Appendix-Glossary: Appendix Glossary
