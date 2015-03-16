@@ -10,4 +10,4 @@ defaults:
 collections:
   docs:
     output: true
-    permalink: /docs/:path/
+    permalink: '/:collection/:path/'

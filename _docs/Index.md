@@ -1,5 +1,6 @@
 ---
 title: Qabel documentation
+permalink: /docs/
 ---
 Qabel documentation
 ===================
