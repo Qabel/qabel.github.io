@@ -31,7 +31,7 @@ title: Appendix Glossary
 
 * **Share**: Adapted from the Windows-term 'Share' (German: Freigabe). A shared directory/file/blob that resides on the (Qabel) client(?) so other clients may access it(?) - so the file is not required to be uploaded on to the (Qabel) server yet to be called a Share.
 
-* **Qabel Storage**: Server which provides Services to store data according to the [[Storage Protocol|Qabel-Protocol-Storage]]
+* **Qabel Storage**: Server which provides Services to store data according to the [Storage Protocol](../Qabel-Protocol-Storage/)
 
 * **Qabel Storage Volume** (QSV): A dedicated Volume on a Qabel Storage. It is identified by a public token, provides write access by a secret token and can be deleted by a revoke token.
 

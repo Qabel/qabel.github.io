@@ -33,7 +33,7 @@ The following items define a contact item:
 * public_primary_key (public key to verify sub-key signatures)
 * public_enc_key (public key to encrypt drop message)
 * public_sign_key (public key to verify drop message signatures)
-* my_identity ([key id](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#key-identifier) of the public key of the identity which owns this contact)
+* my_identity ([key id](../Components-Crypto#key-identifier/) of the public key of the identity which owns this contact)
 * drop_urls (array of drop urls)
 * <a name="module_data"> </a> module_data (object of objects of module-defined data structures)
 
@@ -59,14 +59,14 @@ Summary
 
 ```json
 {
-"id": INT,
-"updated": 1422605430969,
-"created": 1422605430969,
-"deleted": 0,
-"public_enc_key" : "asd",
-"public_sign_key" : "yxc",
-"my_identity" : "12794c25db999ab",
-"drop_urls" : ["example.org/jkl"],
-"module_data" : { "person" : { "mail_address" : "example@example.org" } }
+  "id": INT,
+  "updated": 1422605430969,
+  "created": 1422605430969,
+  "deleted": 0,
+  "public_enc_key" : "asd",
+  "public_sign_key" : "yxc",
+  "my_identity" : "12794c25db999ab",
+  "drop_urls" : ["example.org/jkl"],
+  "module_data" : { "person" : { "mail_address" : "example@example.org" } }
 }
 ```

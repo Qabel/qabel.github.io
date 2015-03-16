@@ -2,6 +2,7 @@
 title: "Components: Storage"
 ---
 # The storage component
+
 ## Abstract
 The storage component is a core component of Qabel. It provides the functionalities for:
 
@@ -28,7 +29,7 @@ outside of the storage protocol and is therefore not part of this documentation.
 
 ## Authentication
 
-After [[creating a new Storage Volume|Qabel-Protocol-Storage]], the server provides three different tokens to regulate access:
+After [creating a new Storage Volume](../Qabel-Protocol-Storage/), the server provides three different tokens to regulate access:
 
 * ```public```: A token to identify the Storage Volume on the Storage Server. This data can be safely published as it only allows read access to the encrypted information.
 * ```token```: This token is stored by the server and all clients which are allowed to write to the Storage Volume. The server checks whether the token provided by the client matches the token of a Storage Volume. If both token match, the client is allowed to upload data to the Storage Volume.

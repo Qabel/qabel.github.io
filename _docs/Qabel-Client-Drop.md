@@ -56,7 +56,7 @@ A message is packed into JSON containing the following fields:
 | **version** | INT | This key describes the version of the Qabel Drop Message protocol. |
 | **time_stamp** | INT | Date of message generation. |
 | **acknowledge_id** | STR | Acknowledge ID for acknowledging this message |
-| **sender** | STR | The [key id](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#key-identifier) of sender's public key. |
+| **sender** | STR | The [key id](../Components-Crypto/#key-identifier) of sender's public key. |
 | **model_object** | STR | The name of the model object that handles this message. |
 | **data** | JSON object | The payload of the message. |
 
@@ -104,27 +104,30 @@ The following error types:
 ### Sequence diagrams
 
 #### Send message:
-![Sequence diagram send message](https://github.com/Qabel/intern-doc/wiki/images/sequencediagram_send_messages.png)
+![Sequence diagram send message](../../images/sequencediagram_send_messages.png)
 
 #### Receive messages:
-![Sequence diagram receive messages](https://github.com/Qabel/intern-doc/wiki/images/sequencediagram_receive_messages.png)
+![Sequence diagram receive messages](../../images/sequencediagram_receive_messages.png)
 
 ### Encryption
-Encryption follows the general encrypt-and-sign scheme described in the [general crypto documentation](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#encrypt-and-sign).
+Encryption follows the general encrypt-and-sign scheme described in the [general crypto documentation](../Components-Crypto/#encrypt-and-sign).
 
 #### Padding
 Prior to encryption, the serialized messages are padded to a fixed size of 2048 byte in order to avoid the metadata content length.
 
 #### Asymmetric encryption.
 The padded message is encrypted using AES in CTR mode with a random key of 256 bits and an IV, consisting of a 96 bit random nonce and a 32 bit counter which always starts to count at 1, forming the ciphertext.
-The AES key is encrypted with RSA OAEP encryption scheme using the recipients public encryption key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)).
+The AES key is encrypted with RSA OAEP encryption scheme using the recipients public encryption key (cf. [multiple key-pair concept](../Components-Crypto/#multiple-key-pair-concept)).
 The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES nonce (first 12 bytes of the IV), and the ciphertext.
 For example, with a 2048 bit RSA key the encrypted message looks like this:
-`RSA_encrypt([256 byte AES key])[12 bytes AES nonce][2K-1-2048-12 bytes AES ciphertext]`
+
+```json
+  RSA_encrypt([256 byte AES key])[12 bytes AES nonce][2K-1-2048-12 bytes AES ciphertext]
+```
 
 #### Signature
 
-A digest of the final encrypted message including header, the encrypted AES key, the AES nonce, and the ciphertext is created via the SHA512 hash function. The digest is signed with the senders private signing key (cf. [multiple key-pair concept](https://github.com/Qabel/qabel-doc/wiki/Components-Crypto#multiple-key-pair-concept)) using the RSASSA-PSS scheme. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
+A digest of the final encrypted message including header, the encrypted AES key, the AES nonce, and the ciphertext is created via the SHA512 hash function. The digest is signed with the senders private signing key (cf. [multiple key-pair concept](../Components-Crypto/#multiple-key-pair-concept)) using the RSASSA-PSS scheme. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
 
 ### Transport format
 The following section defines the protocl data unit (PDU) of the Qabel Drop protocol.

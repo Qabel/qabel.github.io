@@ -6,8 +6,8 @@ title: "Components: Bridgehead"
 
 The bridgehead component is a core component of Qabel. It bundles and provides the functionalities of the following components:
 
-* [[Drop component|Components-Drop]]
-* [[Storage component|Components-Storage]]
+* [Drop component](../Components-Drop/)
+* [Storage component](../Components-Storage/)
 * ( Browse component -  not in beta)
 * ( Sync component - not in beta)
 

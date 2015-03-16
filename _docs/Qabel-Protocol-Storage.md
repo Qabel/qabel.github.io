@@ -41,11 +41,11 @@ Example:
 
 This creates a new Qabel Storage Volume with it's own write- and revoke-tokens. These values are returned to the user by a JSON document sent back to this request:
 
-```
+```json
 {
-"public": String,       // public token for read access
-"revoke_token": String, // private token for deleting the storage
-"token": String         // secret token to allow write access
+  "public": String,       // public token for read access
+  "revoke_token": String, // private token for deleting the storage
+  "token": String         // secret token to allow write access
 }
 ```
 The fields are described as follows:

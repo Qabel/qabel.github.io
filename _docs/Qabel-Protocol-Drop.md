@@ -105,7 +105,7 @@ The drop can already contain messages or be empty/unused.
 |:----------------:|------|
 | 200 | message was added |
 | 400 | drop ID is missing or invalid or no message has been submitted at all |
-| 413 | message exceeds the [maximum size](https://github.com/Qabel/qabel-doc/wiki/Qabel-Client-Drop#transport-format) |
+| 413 | message exceeds the [maximum size](../Qabel-Client-Drop/#transport-format) |
 
 The message has to be transmitted as HTTP body.
 The HTTP body is an encoded 8-bit stream.
@@ -117,5 +117,5 @@ No HTTP body gets returned.
 The maximum lifetime of a drop message is 1 week. If the quota for drop messages is full, the globally oldest message of a dropserver will be deleted.
 
 ### Size
-The total size of a message depends on the used [transport format](https://github.com/Qabel/qabel-doc/wiki/Qabel-Client-Drop#transport-format).
+The total size of a message depends on the used [transport format](../Qabel-Client-Drop/#transport-format).
 A drop server must reject messages that are larger than the size of the largest supported transport format.

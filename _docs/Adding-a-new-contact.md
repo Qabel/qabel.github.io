@@ -34,11 +34,14 @@ The next time Alice downloads all the messages from her dead drop, she will decr
 **Directory of the contact information:**   
 During the Beta version of Qabel, a fingerprinting will not be needed unconditionally. But there will be a method soon, which helps the Qabel client to verify that the contact data has not been changed by anyone but the owner of the key, but without giving anyone a chance to identify the owner of the given key.
 
-**Contact information in JSON format:**    
-The exact structure of this object will be here soon. Till then, the approximation will be:  
-     {  
-       "drop_url" : "http://www.nevergonna.com/give/u/up/06021966.html",  
-       "public_key" : "mQINBFPOzTUBEADT1kIEMY1Ix+9DyNfGHE9HPjLSI/Ybnsn/...",  
-       "digest" : "GgFPryipXkdLp6LK3Hf-cYu6-EK8VMe8Tm-6-LzAe9TBHeVSJDvvEQxN5red",  
-       "signature" : "zggwQ7TxQGQVhzskiugjpwQUdhZ8UU_RAWtVePcwn_3peAoYbooVBcjyJgJE"  
-     }  
+**Contact information in JSON format:**
+The exact structure of this object will be here soon. Till then, the approximation will be:
+
+```json
+{
+   "drop_url" : "http://www.nevergonna.com/give/u/up/06021966.html",
+   "public_key" : "mQINBFPOzTUBEADT1kIEMY1Ix+9DyNfGHE9HPjLSI/Ybnsn/...",
+   "digest" : "GgFPryipXkdLp6LK3Hf-cYu6-EK8VMe8Tm-6-LzAe9TBHeVSJDvvEQxN5red",
+   "signature" : "zggwQ7TxQGQVhzskiugjpwQUdhZ8UU_RAWtVePcwn_3peAoYbooVBcjyJgJE"
+}
+```

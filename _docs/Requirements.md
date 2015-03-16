@@ -76,7 +76,7 @@ A real requirement, or maybe later?
 Can somebody link a user to send or received messages if the secret keys of the user are compromised at a later time.
 
 ### Hide the fact that a user is using a Qabel service.
-The [[Abstract|https://github.com/Qabel/qabel-doc/wiki/Abstract]] says that
+The [Abstract](../Abstract/) says that
 > Who [...] uses a Qabel service [...] remains hidden, even from the provider.
 
 Does this means that the identity of a users remains hidden, or that the fact that somebody is using Qabel remains hidden?
