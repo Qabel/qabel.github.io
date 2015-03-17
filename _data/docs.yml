@@ -8,7 +8,9 @@
       - Components-Bridgehead: Bridgehead
       - Components-Contacts: Contacts
       - Components-Drop: Drop
+        Components-Drop-API: API
       - Components-Storage: Storage
+        Components-Storage-API: API
       - Components-Modules: Modules
       - Components-Crypto: Crypto
     Client Data:

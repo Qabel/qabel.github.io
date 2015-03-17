@@ -2,9 +2,15 @@
 {% if include.param[0] %}
   {% assign text=include.param[1] %}
   {% assign link=include.param[0] %}
+  {{include.param[2]}}
+  {% assign link=include.param[0] %}
 {% else %}
   {% assign text=include.param %}
   {% assign link=include.param %}
 {% endif %}
 {% assign item_url = link | prepend:path | append:"/" %}
-<a href="{{ item_url }}">{{ text }}</a>
+{% if include.first %}
+<a href="{{ item_url }}">{{text}}</a>
+{% else %}
+(<a href="{{ item_url }}">{{text}}</a>)
+{% endif %}
