@@ -1,7 +1,7 @@
 ---
 title: Architectural Overview
 ---
-![architectural_overview.png](images/architectural_overview.png)
+![architectural_overview.png](/images/architectural_overview.png)
 
 # Client
 

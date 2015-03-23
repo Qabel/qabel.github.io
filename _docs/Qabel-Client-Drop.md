@@ -104,10 +104,10 @@ The following error types:
 ### Sequence diagrams
 
 #### Send message:
-![Sequence diagram send message](../../images/sequencediagram_send_messages.png)
+![Sequence diagram send message](/images/sequencediagram_send_messages.png)
 
 #### Receive messages:
-![Sequence diagram receive messages](../../images/sequencediagram_receive_messages.png)
+![Sequence diagram receive messages](/images/sequencediagram_receive_messages.png)
 
 ### Encryption
 Encryption follows the general encrypt-and-sign scheme described in the [general crypto documentation](../Components-Crypto/#encrypt-and-sign).
