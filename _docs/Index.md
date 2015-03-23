@@ -6,7 +6,7 @@ redirect_from: "/"
 Qabel documentation
 ===================
 
-Please have a look at the sidebar and get started with the [TOC](/docs/Table-of-contents/).
+Please have a look at the sidebar.
 
 Useful pages are listed there. Draft / WIP / currently deprecated pages etc. can be found [here](/pages/).
 
