@@ -214,3 +214,7 @@ ol ol, ul ol {
     box-sizing: border-box;
     padding-left: 2em;
 }
+
+img {
+  max-width: 800px;
+}
