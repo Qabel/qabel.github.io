@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  {% include head.html %}
+
+  <body>
+    {% include header.html %}
+    <main id="qabel" style="min-height: 444px">
+      <div class="container">
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          {% include nav.html %}
+        </div>
+        <div class="col-xs-12 col-sm-9">
+          {{ content }}
+        </div>
+      </div>
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

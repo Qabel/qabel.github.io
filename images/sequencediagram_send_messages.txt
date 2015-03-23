@@ -1,0 +1,36 @@
+@startuml
+
+actor Sender
+Sender -> MessageClass: sendMessage(Message)
+activate MessageClass
+
+alt acknowledging requested
+
+	MessageClass -> MessageClass: generateAcknowledgeId()
+
+end
+
+MessageClass -> JSON: createJSON(version, time_stamp, sender, model_object, data)
+activate JSON
+JSON --> MessageClass: JSON_Message
+deactivate JSON
+
+MessageClass -> Crypto: encryptMessage(JSON_Message, ReciPubKey)
+activate Crypto
+Crypto --> MessageClass: EncMessage
+deactivate Crypto
+
+MessageClass -> Crypto: signMessage(EncMessage, SenderPrivKey)
+activate Crypto
+Crypto --> MessageClass: EncSignedMessage
+deactivate Crypto
+
+MessageClass -> Inbox: httpPOST(EncSignedMessage)
+activate Inbox
+Inbox --> MessageClass: http-OK (200)
+deactivate Inbox
+
+MessageClass --> Sender: messageSent
+deactivate MessageClass
+
+@enduml

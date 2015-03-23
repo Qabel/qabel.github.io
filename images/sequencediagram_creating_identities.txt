@@ -1,0 +1,18 @@
+@startuml
+actor Alice
+title Creating identities
+group For each identity
+	Alice -> Crypto: createPrivateAndPublicKey()
+	activate Crypto
+	Crypto --> Alice: Private and Public Key
+	deactivate Crypto
+	Alice -> Crypto: encryptForContacting(realDropUrl, public Key)
+	activate Crypto
+	Crypto --> Alice: encrypted contact data
+	deactivate Crypto
+	Alice -> "Browse/\nStorage": uploadContactingData(encrypted contact data)
+	activate "Browse/\nStorage"
+	"Browse/\nStorage" --> Alice: successful
+	deactivate "Browse/\nStorage"
+end
+@enduml

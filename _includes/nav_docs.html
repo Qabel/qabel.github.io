@@ -1,0 +1,39 @@
+<ul class="nav">
+{% for docs in site.data.docs %}
+
+    <p>
+      {{docs.title}}
+    </p>
+    {% for doc in docs.docs %}
+      {% for item in doc %}
+        <li>{% include item_url.html param=item first=true %}</li>
+      {% endfor %}
+    {% endfor %}
+    {% for sub in docs.subs %}
+      <p>
+        {{sub[0]}}
+        {% comment %}
+          {% assign element=sub[0]%}
+          {% include item_url.html param=element first=true %}
+        {% endcomment %}
+      </p>
+      {% for element in sub[1] %}
+        {% if element.size == 1 %}
+          {% for item in element %}
+            <li>{% include item_url.html param=item first=true %}</li>
+          {% endfor %}
+        {% elsif element.size == 2 %}
+          <li>
+            {% for item in element %}
+              {% if forloop.first %}
+              {% include item_url.html param=item first=true %}
+              {% else %}
+              {% include item_url.html param=item first=false %}
+              {% endif %}
+            {% endfor %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+{% endfor %}
+</ul>

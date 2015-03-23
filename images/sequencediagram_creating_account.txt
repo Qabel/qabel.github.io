@@ -1,0 +1,10 @@
+@startuml
+actor Alice
+title Creating Account
+Alice -> SignUp: Create_Account()
+activate SignUp
+SignUp -> SignUp: Creating Storage ..
+SignUp -> SignUp: Creating Drop ..
+SignUp --> Alice: Storage-Url and Drop-Url
+deactivate SignUp
+@enduml

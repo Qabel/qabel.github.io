@@ -1,0 +1,158 @@
+@startuml
+package de.qabel.core.config {
+	class Settings {
+
+	}
+	Settings --- SyncedSettings
+	LocalSettings --- Settings
+	abstract AbstractModuleSettings {
+
+	}
+	abstract LocalModuleSettings {
+
+	}
+	abstract SyncedModuleSettings {
+
+	}
+
+	class LocalSettings {
+		poll_interval : long
+		poll_interval_wlan : long
+		poll_interval_mobile : long
+		last_update : Date
+	}
+	class SyncedSettings {
+		identities : identities
+	}
+
+	LocalSettings *-- LocalModuleSettings
+	SyncedSettings *-- SyncedModuleSettings
+	AbstractModuleSettings <|-- LocalModuleSettings
+	AbstractModuleSettings <|-- SyncedModuleSettings
+
+	class Account {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		provider : String
+		user : String
+		auth : String
+	}
+	class Accounts {
+
+	}
+	Accounts *-- Account
+	SyncedSettings --- Accounts
+
+	class DropServer {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		url : URL
+		auth : String
+		active : bool
+		websockets : bool
+		poll_interval : long
+	}
+	DropServers *-- DropServer
+	SyncedSettings --- DropServers
+
+	class StorageServer {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		server : String
+		port : int
+		path : String
+		auth : String
+	}
+	class StorageServers {
+
+	}
+	StorageServers *-- StorageServer
+	SyncedSettings --- StorageServers
+
+	class StorageVolume {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		storage_server_id : int
+		public : String
+		token : String
+		revoke_token: String
+	}
+	StorageServer <|-- StorageVolume
+	Class StorageVolumes {
+
+	}
+	StorageVolumes *-- StorageVolume
+	SyncedSettings --- StorageVolumes
+
+	class Identity {
+		id: int
+		updated: int
+		created: int
+		deleted: int
+		alias : String
+		private_key : String
+		inbox : String
+	}
+	class Identities {
+
+	}
+	Identities *-- Identity
+	SyncedSettings --- Identities
+}
+package de.qabel.core.drop {
+	class DropController {
+		registerListener(DropData.class, DropListener)
+		unregisterListener(DropListener)
+	}
+	DropController --> DropListener
+	interface DropListener {
+		onDropMessage(DropData)
+	}
+	DropListener --> DropData
+	abstract DropData {
+
+	}
+}
+package de.qabel.core.storage {
+	class StorageController {
+	}
+
+	StorageController --> StorageConnection
+	StorageConnection --> StorageBlob
+	class StorageConnection {
+
+	}
+
+	StorageConnection --> StorageResponseListener
+
+	interface StorageResponseListener {
+		onResponse(StorageConnection, StorageBlob)
+	}
+
+	class StorageBlob {
+
+	}
+}
+package de.qabel.core.module {
+	abstract Module {
+		init()
+	}
+	Module --- LocalModuleSettings
+	Module --- SyncedModuleSettings
+	Module --> DropController
+	Module --> StorageController
+	ModuleManager *-- Module
+	class ModuleManager {
+		load(String)
+		unload(String)
+	}
+}
+@enduml

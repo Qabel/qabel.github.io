@@ -1,0 +1,38 @@
+@startuml
+title Initial Contact
+actor Alice
+actor Bob
+
+Alice -> Util: showQRCode(Identity)
+activate Util
+Util -> Util: genORCode(contact-Url, public Identity-Key, fingerprint)
+Util --> Alice: QR code
+deactivate Util
+Bob -> Contacts: NewContact()
+activate Contacts
+Contacts -> Util: OpenQRCodeScanner()
+Alice <- Util: ScanQRCode()
+Alice --> Util: QRCodeContent
+Util -> Crypto: Validate(QRCodeContent)
+activate Crypto
+Crypto --> Util: valid
+deactivate Crypto
+'Contacts -> Util: contact-Url
+Util -> "Browse/\nStorage": DownloadFrom(contact-Url)
+activate "Browse/\nStorage"
+"Browse/\nStorage" --> Util: content
+deactivate "Browse/\nStorage"
+Util -> Crypto: decrypt(content, public Identity-Key)
+activate Crypto
+Crypto --> Util: decrypted contact data
+deactivate Crypto
+Util --> Contacts: contact data
+Contacts -->  Bob: Shows contact data
+deactivate Contacts
+Bob -> Contacts: SaveContact(Data)
+activate Contacts
+Contacts --> Bob: saved
+deactivate Contacts
+Alice -> Bob: add and verify Bob
+...
+@enduml
