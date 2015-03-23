@@ -11,3 +11,6 @@ collections:
   docs:
     output: true
     permalink: '/:collection/:path/'
+
+gems:
+  - jekyll-redirect-from

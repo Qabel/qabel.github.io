@@ -1,6 +1,7 @@
 ---
 title: Qabel documentation
 permalink: /docs/
+redirect_from: "/"
 ---
 Qabel documentation
 ===================
