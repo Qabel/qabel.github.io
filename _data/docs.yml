@@ -5,6 +5,9 @@
     - Introduction
   subs:
     Components:
+      # - Link/Filename: Displayname
+      #   Link/Filename: Displayname will be displayed in the same line as the
+      #     item above and in ( )
       - Components-Bridgehead: Bridgehead
       - Components-Contacts: Contacts
       - Components-Drop: Drop
