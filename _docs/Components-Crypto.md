@@ -15,6 +15,7 @@ An IV consisting of a random nonce of 12 bytes and a counter of 4 bytes is used.
 
 ## Keys
 Curve25519 private keys are 32 bytes of random data.
+Public keys are the 32 bytes result from the scalar multiplication of the private key with the Curve25519 base point. 
 
 ### Key Management
 Each Qabel identity consists of a Curve25519 key pair. Since Noise uses ephemeral key pairs for each created box, the key management is rather simple and requires no additional keys.
