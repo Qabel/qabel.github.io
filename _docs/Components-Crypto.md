@@ -6,7 +6,7 @@ title: "Components: Crypto"
 ## Encryption
 
 ### Drop messages
-Drop messages are encrypted using Noise boxes with Curve25519 and AES-GCM. See https://github.com/trevp/noise for further details on Noise. 
+Drop messages are encrypted using Noise boxes with Curve25519 and AES256-GCM. See https://github.com/trevp/noise for further details on Noise. 
 
 ### Files
 Files are encrypted with AES in Galois Counter Mode (GCM).
