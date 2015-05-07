@@ -123,11 +123,11 @@ The PDU starts with a version byte to indicate the version of PDU format.
 
 | Message part | Field | Description | Length (in Bytes) |
 | ------------ | ----- | ----------- | ---------------: |
-| **Header** (unencrypted) | Version | Version of the Qabel drop message format | 1 |
+| **Header** (unencrypted) | Version | Version of the Qabel drop message format (here 0)| 1 |
 | **Body** | Noise box | Drop message encrypted into a Noise box | *variable* |
 
 #### Header
-The header is unencrypted and consists at least of a one-byte version number indicating
+The header is unencrypted and consists of a one-byte version number indicating
 the version of the binary Qabel Drop message.
 
 ### History / Persistence
