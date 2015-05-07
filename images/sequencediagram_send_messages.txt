@@ -1,36 +1,31 @@
 @startuml
 
 actor Sender
-Sender -> MessageClass: sendMessage(Message)
-activate MessageClass
+Sender -> DropController: send[andForget](DropMessage, Contact)
+activate DropController
 
-alt acknowledging requested
+alt !andForget
 
-	MessageClass -> MessageClass: generateAcknowledgeId()
+	DropController -> DropController: generateAcknowledgeId()
 
 end
 
-MessageClass -> JSON: createJSON(version, time_stamp, sender, model_object, data)
-activate JSON
-JSON --> MessageClass: JSON_Message
-deactivate JSON
+DropController -> GSON: serialiseMessage(DropMessage)
+activate GSON
+GSON --> DropController: JSONMessage
+deactivate GSON
 
-MessageClass -> Crypto: encryptMessage(JSON_Message, ReciPubKey)
-activate Crypto
-Crypto --> MessageClass: EncMessage
-deactivate Crypto
+DropController -> CryptoUtils: createBox(SendPrivKey, RcptPubKey, JSONMessage)
+activate CryptoUtils
+CryptoUtils --> DropController: NoiseBox
+deactivate CryptoUtils
 
-MessageClass -> Crypto: signMessage(EncMessage, SenderPrivKey)
-activate Crypto
-Crypto --> MessageClass: EncSignedMessage
-deactivate Crypto
+DropController -> DropHTTP: send(DropURL, NoiseBox)
+activate DropHTTP
+DropHTTP --> DropController: http-OK (200)
+deactivate DropHTTP
 
-MessageClass -> Inbox: httpPOST(EncSignedMessage)
-activate Inbox
-Inbox --> MessageClass: http-OK (200)
-deactivate Inbox
-
-MessageClass --> Sender: messageSent
-deactivate MessageClass
+DropController --> Sender: result
+deactivate DropController
 
 @enduml

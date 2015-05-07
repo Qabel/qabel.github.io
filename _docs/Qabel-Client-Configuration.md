@@ -114,8 +114,8 @@ Summary
 | --- | ----------- |
 | id | Unique identifier |
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
-| url | [URL](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#url) of the drop server (excluding the drop id) |
-| auth | Credential for optional, additional [access regulation](https://github.com/Qabel/intern-doc/wiki/Components-Drop#unrestricted-access) (e.g. a group password). |
+| url | [URL](../Qabel-Protocol-Drop#url) of the drop server (excluding the drop id) |
+| auth | Credential for optional, additional [access regulation](../Components-Drop#unrestricted-access) (e.g. a group password). |
 | active | Status flag |
 
 Summary
@@ -151,7 +151,7 @@ Summary
 | --- | ----------- |
 | id | Unique identifier |
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
-| url | URL of the [storage server](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Storage#url), excluding `public` which identifies a single Storage Volume on the server |
+| url | URL of the [storage server](../Qabel-Protocol-Storage#url), excluding `public` which identifies a single Storage Volume on the server |
 | auth | Optional credential (see [drop server](#drop-server)) |
 
 
@@ -217,13 +217,9 @@ Summary
 | id | Unique identifier |
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
 | alias | Textual, user-defined label identifying this identity (also to other users) |
-| private_primary_key | Private, secret part of the key pair used signing of sub-keys |
-| public_primary_key | Public part of the key pair used signing of sub-keys |
-| private_enc_key | Private, secret part of the key pair used for (de-)encryption |
-| public_enc_key | Public part of the key pair used for (de-)encryption |
-| private_sign_key | Private, secret part of the key pair used for signing |
-| public_sign_key | Public part of the key pair used for signing |
-| drops | List of [urls](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#url) of the drops where the identity expects to receive messages |
+| private_key | Private, secret part of the key pair |
+| public_key | Public part of the key pair |
+| drops | List of [urls](../Qabel-Protocol-Drop#url) of the drops where the identity expects to receive messages |
 
 
 Summary
@@ -236,12 +232,8 @@ Summary
                         'alias' : NAME,
                         'keys' :
                                 "{"
-                                'private_primary_key' : KEY,
-                                'public_primary_key' : KEY,
-                                'private_enc_key' : KEY,
-                                'public_enc_key' : KEY,
-                                'private_sign_key' : KEY,
-                                'public_sign_key' : KEY
+                                'private_key' : KEY,
+                                'public_key' : KEY,
                                 "}",
                         'drops' : [URL]
                         "}"

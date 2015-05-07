@@ -30,11 +30,11 @@ Alice (sender) wants to write a message to Bob (recipient). Alice has Bobs addre
 The client will send the message to the server.
 
 **On sending success:**
-The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
+The server will return the specific [response](../Qabel-Protocol-Drop#methods).
 The message will be added to the history if this is wanted.
 
 **On sending failure:**
-The server will return the specific [response](https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
+The server will return the specific [response](../Qabel-Protocol-Drop#methods).
 The user will be informed and/or the client will try to resend the message.
 
 #### Get message
@@ -42,10 +42,10 @@ Alice (receiver) wants to receive new messages. Alice has a private key and an a
 The client will request new messages from the server.
 
 **On receiving success:**
-The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods) including the new messages.
+The server will return a specific [response] (../Qabel-Protocol-Drop#methods) including the new messages.
 
 **On receiving failure:**
-The server will return a specific [response] (https://github.com/Qabel/intern-doc/wiki/Qabel-Protocol-Drop#methods).
+The server will return a specific [response] (../Qabel-Protocol-Drop#methods).
 The user will be informed and/or the client will retry to receive the messages.
 
 ### Format and structure of a message
@@ -57,6 +57,7 @@ A message is packed into JSON containing the following fields:
 | **time_stamp** | INT | Date of message generation. |
 | **acknowledge_id** | STR | Acknowledge ID for acknowledging this message |
 | **sender** | STR | The [key id](../Components-Crypto/#key-identifier) of sender's public key. |
+| **receiver** | STR | The [key id](../Components-Crypto/#key-identifie) of the receiver's public key. |
 | **model_object** | STR | The name of the model object that handles this message. |
 | **data** | JSON object | The payload of the message. |
 
@@ -110,24 +111,7 @@ The following error types:
 ![Sequence diagram receive messages](/images/sequencediagram_receive_messages.png)
 
 ### Encryption
-Encryption follows the general encrypt-and-sign scheme described in the [general crypto documentation](../Components-Crypto/#encrypt-and-sign).
-
-#### Padding
-Prior to encryption, the serialized messages are padded to a fixed size of 2048 byte in order to avoid the metadata content length.
-
-#### Asymmetric encryption.
-The padded message is encrypted using AES in CTR mode with a random key of 256 bits and an IV, consisting of a 96 bit random nonce and a 32 bit counter which always starts to count at 1, forming the ciphertext.
-The AES key is encrypted with RSA OAEP encryption scheme using the recipients public encryption key (cf. [multiple key-pair concept](../Components-Crypto/#multiple-key-pair-concept)).
-The encrypted message is created by concatenating three fields without any delimiter; the encrypted AES key, the AES nonce (first 12 bytes of the IV), and the ciphertext.
-For example, with a 2048 bit RSA key the encrypted message looks like this:
-
-```json
-  RSA_encrypt([256 byte AES key])[12 bytes AES nonce][2K-1-2048-12 bytes AES ciphertext]
-```
-
-#### Signature
-
-A digest of the final encrypted message including header, the encrypted AES key, the AES nonce, and the ciphertext is created via the SHA512 hash function. The digest is signed with the senders private signing key (cf. [multiple key-pair concept](../Components-Crypto/#multiple-key-pair-concept)) using the RSASSA-PSS scheme. The signature is appended to the previously created encrypted message, forming the authenticated encrypted message.
+Drop messages are encrypted into Noise boxes.
 
 ### Transport format
 The following section defines the protocl data unit (PDU) of the Qabel Drop protocol.
@@ -139,11 +123,12 @@ The PDU starts with a version byte to indicate the version of PDU format.
 
 | Message part | Field | Description | Length (in Bytes) |
 | ------------ | ----- | ----------- | ---------------: |
-| **Header** (unencrypted) | Version | Version of the Qabel Drop PDU format (here 0)| 1 |
-| **Key** | Key (encrypted with the public key of the recipient) | Newly generated key used with the symmetric block cipher to encrypt the data | 256 |
-|         | Initialisation data (unencrypted) | Data to initialize a symmetric block cipher (e.g. an nonce) | 12 |
-| **Data** (encrypted with symmetric block cipher) | Payload + Padding | Original Qabel drop message appended by padding | 2048 |
-| **Signature** | Signature | Digital signature of Header, Key and Data made with sender's private key | 256 |
+| **Header** (unencrypted) | Version | Version of the Qabel drop message format (here 0)| 1 |
+| **Body** | Noise box | Drop message encrypted into a Noise box | *variable* |
+
+#### Header
+The header is unencrypted and consists of a one-byte version number indicating
+the version of the binary Qabel Drop message.
 
 ### History / Persistence
 
