@@ -22,7 +22,6 @@
     Communication Protocols:
       - Qabel-Protocol-Drop: Drop Protocol
       - Qabel-Protocol-Storage: Storage Protocol
-      - Qabel-Protocol-Browse: Browse Protocol
       - Qabel-Protocol-ProofOfWork: Proof of Work
 
 - title: Overview
