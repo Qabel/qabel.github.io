@@ -10,8 +10,8 @@ title: "Components: Drop API"
     * sign each message
     * upload messages to the respective drops
     * sender can request [message acknowledgement](../Qabel-Client-Drop/#acknowledging)
-      * public void send(JSON payload, Collection<Contact> recipients)
-      * public void sendAndForget(JSON payload, Collection<Contact> recipients)
+      * send(JSON payload, Collection<Contact> recipients)
+      * sendAndForget(JSON payload, Collection<Contact> recipients)
           * unacknowledged send
 
 ## Used objects
