@@ -30,9 +30,8 @@ The following items define a contact item:
 
 * id (unique identifier)
 * updated, created, deleted (timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
-* public_primary_key (public key to verify sub-key signatures)
-* public_enc_key (public key to encrypt drop message)
-* public_sign_key (public key to verify drop message signatures)
+* alias (alias for the contact)
+* public_key (public key of the contact)
 * my_identity ([key id](../Components-Crypto#key-identifier/) of the public key of the identity which owns this contact)
 * drop_urls (array of drop urls)
 * <a name="module_data"> </a> module_data (object of objects of module-defined data structures)
@@ -44,11 +43,10 @@ Summary
                     'updated': LONG,
                     'created': LONG,
                     'deleted': LONG,
+                    'alias': STR,	
                     'keys' :
                              "{"
-                             'public_primary_key' : KEY,
-                             'public_enc_key' : KEY,
-                             'public_sign_key' : KEY
+                             'public_key' : KEY,
                              "}",
                     'my_identity' : STR,
                     'drop_urls' : [STR],
@@ -63,9 +61,9 @@ Summary
   "updated": 1422605430969,
   "created": 1422605430969,
   "deleted": 0,
-  "public_enc_key" : "asd",
-  "public_sign_key" : "yxc",
-  "my_identity" : "12794c25db999ab",
+  "alias": "Alice",
+  "public_key" : "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
+  "my_identity" : "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a",
   "drop_urls" : ["example.org/jkl"],
   "module_data" : { "person" : { "mail_address" : "example@example.org" } }
 }
