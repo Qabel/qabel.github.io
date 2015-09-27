@@ -19,7 +19,7 @@ The server runs on port 9696 and is started in a thread by the qabel-desktop app
 * HTTP-Method: GET
 * Ressource: `/settings`
 
-Returns the complete settings collection as specified in [client configuration](../Qabel-Client-Configuration)
+Returns the complete local settings collection as specified in [client configuration](../Qabel-Client-Configuration#local-settings)
 
 #### Return values
 
@@ -66,3 +66,57 @@ Substitute the current settings.
 | 400 | Settings contain invalid keys or values |
 | 405 | Settings is not a valid JSON document |
 
+
+## Synced Settings
+
+### Read Settings
+
+* HTTP-Method: GET
+* Ressource: `/synced`
+
+Returns the complete synced settings collection as specified in [client configuration](../Qabel-Client-Configuration#synced-settings)
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 200 | Settings retrieved |
+
+### Update Settings
+
+* HTTP-Method: PUT
+* Ressource: `/synced`
+
+Update a single key
+
+| Key | Description |
+| --- | ----------- |
+| key | Key to update, can be in the form of foo.bar.baz |
+| value | Value to set for the key |
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 200 | Setting updated |
+| 400 | value is not valid for this key |
+| 405 | key is not valid |
+
+#### Substitute Settings
+
+* HTTP-Method: POST
+* Ressource: `/synced`
+
+Substitute the current settings.
+
+| Key | Description |
+| --- | ----------- |
+| settings | JSON document of the settings |
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 200 | Setting updated |
+| 400 | Settings contain invalid keys or values |
+| 405 | Settings is not a valid JSON document |
