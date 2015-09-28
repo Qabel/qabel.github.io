@@ -120,3 +120,58 @@ Substitute the current settings.
 | 200 | Setting updated |
 | 400 | Settings contain invalid keys or values |
 | 405 | Settings is not a valid JSON document |
+
+## Drops
+
+### Retrieve Drops
+
+* HTTP-Method: GET
+* Ressource: `/drop`
+
+Returns a list of all drop messages from all configured DropURLs.
+See: [Client Drop](../Qabel-Client-Drop]
+
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 200 | Drops sent |
+| 204 | No new drops available |
+
+### Check for drops
+
+* HTTP-Method: HEAD
+* Ressource: `/drop`
+
+Same as retrieving drops, but without sending them.
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 200 | Drops available |
+| 204 | No new drops available |
+
+###  Send Drop message
+
+* HTTP-Method: POST
+* Ressource: `/drop`
+
+Send a drop messages to the specified contacts
+
+| Key | Description |
+| --- | ----------- |
+| recipients | JSON list of contact ids |
+| sender | Identity id of the sender |
+| drop_message | [Drop message](../Qabel-Client-Drop#format-and-structure-of-a-message) in JSON format |
+
+
+#### Return values
+
+|HTTP status code|reason|
+|:----------------:|------|
+| 201 | Drop sent |
+| 400 | Invalid drop message, sender or recipients |
+| 404 | Recipients not found |
+| 413 | Drop message too large |
