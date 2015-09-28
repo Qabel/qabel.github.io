@@ -25,7 +25,7 @@ Returns the complete local settings collection as specified in [client configura
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 200 | Settings retrieved |
+| 200 | Settings sent |
 
 ### Update Settings
 
@@ -80,7 +80,7 @@ Returns the complete synced settings collection as specified in [client configur
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 200 | Settings retrieved |
+| 200 | Settings sent |
 
 ### Update Settings
 
