@@ -21,6 +21,8 @@
       - Qabel-Protocol-Drop: Drop Protocol
       - Qabel-Protocol-Storage: Storage Protocol
       - Qabel-Protocol-ProofOfWork: Proof of Work
+    Desktop Client:
+      - Qabel-Desktop-REST: Local REST server
 
 - title: Overview
   docs:
