@@ -1,5 +1,5 @@
 ---
-title: Qabel Desktop REST Server
+title: Local REST Server
 ---
 
 # REST Server
@@ -23,9 +23,9 @@ Returns the complete local settings collection as specified in [client configura
 
 #### Return values
 
-|HTTP status code|reason|
-|:----------------:|------|
-| 200 | Settings sent |
+|HTTP status code|reason|body|
+|:----------------:|------|----|
+| 200 | Ok | Local settings |
 
 ### Update Settings
 
@@ -44,8 +44,8 @@ Update a single key
 |HTTP status code|reason|
 |:----------------:|------|
 | 200 | Setting updated |
-| 400 | value is not valid for this key |
-| 405 | key is not valid |
+| 400 | Value is not valid for this key |
+| 405 | Key is not valid |
 
 #### Substitute Settings
 
@@ -62,7 +62,7 @@ Substitute the current settings.
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 200 | Setting updated |
+| 200 | Settings updated |
 | 400 | Settings contain invalid keys or values |
 | 405 | Settings is not a valid JSON document |
 
@@ -78,9 +78,9 @@ Returns the complete synced settings collection as specified in [client configur
 
 #### Return values
 
-|HTTP status code|reason|
-|:----------------:|------|
-| 200 | Settings sent |
+|HTTP status code|reason|body|
+|:----------------:|------|----|
+| 200 | Ok | Synched settings |
 
 ### Update Settings
 
@@ -99,8 +99,8 @@ Update a single key
 |HTTP status code|reason|
 |:----------------:|------|
 | 200 | Setting updated |
-| 400 | value is not valid for this key |
-| 405 | key is not valid |
+| 400 | Value is not valid for this key |
+| 405 | Key is not valid |
 
 #### Substitute Settings
 
@@ -117,7 +117,7 @@ Substitute the current settings.
 
 |HTTP status code|reason|
 |:----------------:|------|
-| 200 | Setting updated |
+| 200 | Settings updated |
 | 400 | Settings contain invalid keys or values |
 | 405 | Settings is not a valid JSON document |
 
@@ -129,22 +129,22 @@ Substitute the current settings.
 * Ressource: `/drop`
 
 Returns a list of all drop messages from all configured DropURLs.
-See: [Client Drop](../Qabel-Client-Drop]
+See: [Client Drop](../Qabel-Client-Drop)
 
 
 #### Return values
 
-|HTTP status code|reason|
-|:----------------:|------|
-| 200 | Drops sent |
-| 204 | No new drops available |
+|HTTP status code|reason|body|
+|:----------------:|------|---|
+| 200 | New drops available | List of drop messages |
+| 204 | No new drops available | |
 
 ### Check for drops
 
 * HTTP-Method: HEAD
 * Ressource: `/drop`
 
-Same as retrieving drops, but without sending them.
+Same as retrieving drops, but without sending them in the body. Used for checking if new drops are available.
 
 #### Return values
 
