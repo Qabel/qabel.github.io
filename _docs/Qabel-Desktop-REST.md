@@ -6,7 +6,7 @@ title: Local REST Server
 
 ## Abstract
 
-A local webserver which serves as a wrapper around the Qabel-core and provides an API that other applications can use. This provides freedom of choice in regards to the GUI or CLI implementations and allows the local server to run in the background where it can provide a permament process for modules like messaging and file syncing.
+A local web server which serves as a wrapper around the Qabel-core and provides an API that other applications can use. This provides freedom of choice in regards to the GUI or CLI implementations and allows the local server to run in the background where it can provide a permanent process for modules like messaging and file syncing.
 
 # API
 
@@ -17,7 +17,7 @@ The server runs on port 9696 and is started in a thread by the qabel-desktop app
 ### Read Settings
 
 * HTTP-Method: GET
-* Ressource: `/settings`
+* Resource: `/settings`
 
 Returns the complete local settings collection as specified in [client configuration](../Qabel-Client-Configuration#local-settings)
 
@@ -30,7 +30,7 @@ Returns the complete local settings collection as specified in [client configura
 ### Update Settings
 
 * HTTP-Method: PUT
-* Ressource: `/settings`
+* Resource: `/settings`
 
 Update a single key
 
@@ -50,7 +50,7 @@ Update a single key
 #### Substitute Settings
 
 * HTTP-Method: POST
-* Ressource: `/settings`
+* Resource: `/settings`
 
 Substitute the current settings.
 
@@ -72,7 +72,7 @@ Substitute the current settings.
 ### Read Settings
 
 * HTTP-Method: GET
-* Ressource: `/synced`
+* Resource: `/synced`
 
 Returns the complete synced settings collection as specified in [client configuration](../Qabel-Client-Configuration#synced-settings)
 
@@ -80,12 +80,12 @@ Returns the complete synced settings collection as specified in [client configur
 
 |HTTP status code|reason|body|
 |:----------------:|------|----|
-| 200 | Ok | Synched settings |
+| 200 | OK | Synced settings |
 
 ### Update Settings
 
 * HTTP-Method: PUT
-* Ressource: `/synced`
+* Resource: `/synced`
 
 Update a single key
 
@@ -105,7 +105,7 @@ Update a single key
 #### Substitute Settings
 
 * HTTP-Method: POST
-* Ressource: `/synced`
+* Resource: `/synced`
 
 Substitute the current settings.
 
@@ -126,7 +126,7 @@ Substitute the current settings.
 ### Retrieve Drops
 
 * HTTP-Method: GET
-* Ressource: `/drop`
+* Resource: `/drop`
 
 Returns a list of all drop messages from all configured DropURLs.
 See: [Client Drop](../Qabel-Client-Drop)
@@ -142,7 +142,7 @@ See: [Client Drop](../Qabel-Client-Drop)
 ### Check for drops
 
 * HTTP-Method: HEAD
-* Ressource: `/drop`
+* Resource: `/drop`
 
 Same as retrieving drops, but without sending them in the body. Used for checking if new drops are available.
 
@@ -156,7 +156,7 @@ Same as retrieving drops, but without sending them in the body. Used for checkin
 ###  Send Drop message
 
 * HTTP-Method: POST
-* Ressource: `/drop`
+* Resource: `/drop`
 
 Send a drop messages to the specified contacts
 
