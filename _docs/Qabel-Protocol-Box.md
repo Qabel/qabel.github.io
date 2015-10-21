@@ -14,7 +14,7 @@ Qabel Box also directly uses an S3 compatible server to store the blocks and met
 
 ## Structure of a VOLUME
 
-A Volume consists of a metadata file and blocks. Blocks have a blocksize of up to 10mb.
+A Volume consists of metadata files and blocks. Blocks have a block size of up to 10mb. Every VOLUME has a metadata file at VOLUME/index which is the starting point and contains references to other objects.
 
 The metadata file stores information equivalent of this example JSON document, but stored in an SQLite database (the database schema is explained later):
 
@@ -99,3 +99,55 @@ blockno: LONG, // number of the block starting from 0
 path: STR // path to the block file
 },
 ```
+
+## Initialising a new VOLUME
+
+### Task
+
+Intialize a new VOLUME without any objects
+
+### Prerequisites
+
+* Valid federation token with write access to the VOLUME
+* Qabel identity
+
+### Process
+
+1. Create a new symmetric VOLUME key P0
+1. Create an empty metadata file
+	```JSON
+	{
+	path: STR, // prefix of the volume
+	name: "index", // starting point of each VOLUME
+	mtime: LONG, // set to now()
+	objects: []
+	```
+1. Encrypt the file with P0 and upload it to VOLUME/index
+1. Encrypt P0 with your identities public key to PK0
+1. Upload PK0 to VOLUME.key
+
+
+## Uploading a new file
+
+### Task
+
+Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
+
+### Prerequisites
+
+* Valid federation token with write access to the VOLUME
+* The VOLUME is configured with a metadata file at VOLUME/index
+* The VOLUME key P0 is known
+
+### Process
+
+1. Retrieve VOLUME/index and decrypt it with P0
+1. Find the folder "examples" in the index and retrieve and decrypt its metadata file
+1. Decrypt the symmetric folder key P1, stored at VOLUME/<metadata-file>.key
+1. Split up the file in blocks and encrypt each of them with a new symmetric key K0-K<N>
+1. Encrypt the symmetric key with P1
+1. Name the blocks with new UUIDs
+1. Insert the new object into the metadata file, change the mtime and encrypt it again
+1. Upload the blocks to VOLUME/<uuid>
+1. Upload the encrypted keys to VOLUME/<uuid>.key 
+1. Upload the encrypted metadata file
