@@ -16,13 +16,15 @@ Qabel Box also directly uses an S3 compatible server to store the blocks and met
 
 A Volume consists of metadata files and blocks. Blocks have a block size of up to 10mb. Every VOLUME has a metadata file at VOLUME/index which is the starting point and contains references to other objects.
 
+All mtime values are seconds since epoch in UTC.
+
 The metadata file stores information equivalent of this example JSON document, but stored in an SQLite database (the database schema is explained later):
 
 ```JSON
 {
 path: "/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
 name: "index",
-mtime: 1445432325,
+version: 7,
 objects: [
 { name: "foobar.jpg", type: "file", size: 6203434, mtime: 1445432325, blocks: [
 	{blockno: 0, path: "0846C7C6-77F1-11E5-B21E-9CFF64691233"},
@@ -34,10 +36,10 @@ objects: [
 	{blockno: 0, path: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"}
 	]
 },
-{ name: "some folder", type: "folder", mtime: 1445422120,
+{ name: "some folder", type: "folder",
   path: "/users/b5911736-9ace-a799-8e34-dd9c17acff9a/aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
 },
-{ name: "external share", type: "external",mtime: 1445422120,
+{ name: "external share", type: "external",
   path: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
 },
 ```
@@ -48,7 +50,7 @@ objects: [
 {
 path: STR, // whole prefix of the VOLUME
 name: "index", // name of the file itself
-mtime: LONG, // modification time as seconds since epoch
+version: LONG, // metadata version
 objects: // list of objects in this folder
 [ objects* ]
 }
@@ -74,7 +76,6 @@ Folder:
 {
 name: STR // object name,
 type: "folder" // the type of folder objects is always "folder"
-mtime: LONG, // modification time as seconds since epoch
 path: STR // path to the metadata file that contains information about the folder
 },
 ```
@@ -85,7 +86,6 @@ External:
 {
 name: STR, // object name,
 type: "external", // the type of external folders is always "external"
-mtime: LONG, // modification time as seconds since epoch
 path: STR // URL to the metadata file that contains information about the folder
 },
 ```
@@ -119,7 +119,7 @@ Intialize a new VOLUME without any objects
 	{
 	path: STR, // prefix of the volume
 	name: "index", // starting point of each VOLUME
-	mtime: LONG, // set to now()
+	version: 0,
 	objects: []
 	```
 1. Encrypt the file with P0 and upload it to VOLUME/index
@@ -147,7 +147,7 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 1. Split up the file in blocks and encrypt each of them with a new symmetric key K0-K<N>
 1. Encrypt the symmetric key with P1
 1. Name the blocks with new UUIDs
-1. Insert the new object into the metadata file, change the mtime and encrypt it again
-1. Upload the blocks to VOLUME/<uuid>
+1. Upload the blocks to VOLUME/<uuid>, not the "Date" header from the response and use it as mtime
+1. Insert the new object into the metadata file, increment the version and encrypt it again
 1. Upload the encrypted keys to VOLUME/<uuid>.key 
 1. Upload the encrypted metadata file
