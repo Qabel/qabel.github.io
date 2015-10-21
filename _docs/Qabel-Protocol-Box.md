@@ -115,12 +115,14 @@ Intialize a new VOLUME without any objects
 
 1. Create a new symmetric VOLUME key P0
 1. Create an empty metadata file
+
 	```JSON
 	{
 	path: STR, // prefix of the volume
 	name: "index", // starting point of each VOLUME
 	version: 0,
 	objects: []
+	}
 	```
 1. Encrypt the file with P0 and upload it to VOLUME/index
 1. Encrypt P0 with your identities public key to PK0
