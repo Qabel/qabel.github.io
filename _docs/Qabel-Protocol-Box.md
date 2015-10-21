@@ -84,7 +84,7 @@ External:
 ```JSON
 {
 name: STR, // object name,
-type: "external", // the type of external folders is always "file"
+type: "external", // the type of external folders is always "external"
 mtime: LONG, // modification time as seconds since epoch
 path: STR // URL to the metadata file that contains information about the folder
 },
