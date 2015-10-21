@@ -25,7 +25,6 @@ Provide the principal functionality end-users expect of the Qabel client. E.g. M
 
 # Server
 * [Qabel Drop Server](https://github.com/Qabel/qabel-drop/wiki)
-* [Qabel Storage Server](https://github.com/Qabel/qabel-storage/wiki)
 * Browse
   * Will be used to find contacts (similar to PGP keyserver)
 * Sync

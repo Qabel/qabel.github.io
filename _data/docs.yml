@@ -10,7 +10,7 @@
       - Components-Bridgehead: Bridgehead
       - Components-Contacts: Contacts
       - Components-Drop: Drop
-      - Components-Storage: Storage  
+      - Components-Box: Box
       - Components-Modules: Modules
       - Components-Crypto: Crypto
     Client Data:
@@ -19,7 +19,7 @@
       - Qabel-Client-Drop: Drop
     Communication Protocols:
       - Qabel-Protocol-Drop: Drop Protocol
-      - Qabel-Protocol-Storage: Storage Protocol
+      - Qabel-Protocol-Box: Box Protocol
       - Qabel-Protocol-ProofOfWork: Proof of Work
 
 - title: Overview

@@ -11,7 +11,7 @@ title: Adding a new contact
 
 ### Prearrangements
 
-During the initialization of Qabel the user created a public/private key pair, his own storage space to upload data, a dead drop for the contacts to upload messages and an entry in a business card like directory, which can be reached by a short URL. At this URL a JSON formated object is located that contains 3 fields: a dead drop URL, a public key and a signature (composed in the usual way -- a digest and actual signature).
+During the initialization of Qabel the user created a public/private key pair, a dead drop for the contacts to upload messages and an entry in a business card like directory, which can be reached by a short URL. At this URL a JSON formated object is located that contains 3 fields: a dead drop URL, a public key and a signature (composed in the usual way -- a digest and actual signature).
 
 
 ### Procedure
