@@ -22,9 +22,16 @@ The metadata file stores information equivalent of this example JSON document, b
 
 ```JSON
 {
-path: "/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
+root: "https://qabelbox.s3.amazonaws.com/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
 name: "index",
 version: 7,
+owner: "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a"
+shared: [
+	"aa8c3f39-edc5-00b0-ab8b-ba66d05b60db" : { read: [
+		"feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
+		"fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a"
+	]}
+],
 objects: [
 { name: "foobar.jpg", type: "file", size: 6203434, mtime: 1445432325, blocks: [
 	{blockno: 0, path: "0846C7C6-77F1-11E5-B21E-9CFF64691233"},
@@ -37,7 +44,7 @@ objects: [
 	]
 },
 { name: "some folder", type: "folder",
-  path: "/users/b5911736-9ace-a799-8e34-dd9c17acff9a/aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
+  path: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
 },
 { name: "external share", type: "external",
   path: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
@@ -46,15 +53,34 @@ objects: [
 
 ### Metadata file
 
+
 ```JSON
 {
-path: STR, // whole prefix of the VOLUME
+root: STR, // URL of the VOLUME
 name: "index", // name of the file itself
 version: LONG, // metadata version
+owner: STR, // public key of the volume owner
+shared: // description of all shares
+{ shares* },
 objects: // list of objects in this folder
 [ objects* ]
 }
 ```
+
+Note that folders that are not "index" do not have the "shared"-key, as all information about shares in a VOLUME are stored in "index".
+
+
+
+### Shares
+
+The index is the path to the metadata file of the share.
+
+```JSON
+{
+read: [STR] // List of public keys of identities that this folder is read only shared with
+},
+```
+
 
 ### Objects
 
