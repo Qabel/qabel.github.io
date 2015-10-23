@@ -34,20 +34,20 @@ shared: [
 ],
 objects: [
 { name: "foobar.jpg", type: "file", size: 6203434, mtime: 1445432325, blocks: [
-	{blockno: 0, path: "0846C7C6-77F1-11E5-B21E-9CFF64691233"},
-	{blockno: 2, path: "108FD832-77F1-1BF5-A3A4-987BF4696656"},
-	{blockno: 1, path: "24F9611C-77F1-11D2-9423-9CFDFF876656"}
+	{blockno: 0, ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233"},
+	{blockno: 2, ref: "108FD832-77F1-1BF5-A3A4-987BF4696656"},
+	{blockno: 1, ref: "24F9611C-77F1-11D2-9423-9CFDFF876656"}
 	]
 },
 { name: "barfoo.txt", type: "file", size: 4568, mtime: 1445432120, blocks: [
-	{blockno: 0, path: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"}
+	{blockno: 0, ref: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"}
 	]
 },
 { name: "some folder", type: "folder",
-  path: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
+  ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
 },
 { name: "external share", type: "external",
-  path: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
+  url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
 },
 ```
 
@@ -102,7 +102,7 @@ Folder:
 {
 name: STR // object name,
 type: "folder" // the type of folder objects is always "folder"
-path: STR // path to the metadata file that contains information about the folder
+ref: STR // ref of the metadata file that contains information about the folder
 },
 ```
 
@@ -112,7 +112,7 @@ External:
 {
 name: STR, // object name,
 type: "external", // the type of external folders is always "external"
-path: STR // URL to the metadata file that contains information about the folder
+url: STR // URL to the metadata file that contains information about the folder
 },
 ```
 
