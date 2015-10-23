@@ -151,8 +151,8 @@ Intialize a new VOLUME without any objects
 	}
 	```
 1. Encrypt the file with P0 and upload it to VOLUME/index
-1. Encrypt P0 with your identities public key as a noise box and call it PK0
-1. Upload PK0 to VOLUME.key
+1. Encrypt P0 with your identity's public key as a noise box and call it PK0
+1. Upload PK0 to VOLUME/index.key
 
 
 ## Uploading a new file
