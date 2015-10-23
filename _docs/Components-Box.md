@@ -24,7 +24,7 @@ All traffic and load intensive communication is only between the client and S3.
 
 1. The user starts the box desktop application 
 1. The box application downloads the newest metadata of his VOLUME
-1. He browses his share and selects a file for uploading via drag & drop into a folder
+1. He browses his VOLUME and selects a file for uploading via drag & drop into a folder
 1. The box application requests a Federation Token and opens a connection to S3
 1. The box application inserts the information about the file into the local version of the metadata database
 1. The box application uploads the file blocks and the new metadata file

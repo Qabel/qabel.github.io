@@ -5,12 +5,12 @@ title: "Protocol: box"
 
 ## Abstract
 
-A set of protocols to store files and folders on a VOLUME that is on S3 and managed by a third party who doesn't need to be trusted.
+A set of protocols to store files and folders on a VOLUME that is on AWS S3 and managed by a third party who doesn't need to be trusted.
 
 ## Used services
 
-Qabel Box uses an Accounting server which controls the access to S3. Every client who needs write access has to be authenticated by the server and then receives a set of credentials that he can use for direct access to the VOLUME.
-Qabel Box also directly uses an S3 compatible server to store the blocks and metadata.
+Qabel Box uses an Accounting server which controls the access to AWS S3. Every client who needs write access has to be authenticated by the server and then receives a set of credentials that he can use for direct access to the VOLUME.
+Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 
 ## Structure of a VOLUME
 
@@ -151,7 +151,7 @@ Intialize a new VOLUME without any objects
 	}
 	```
 1. Encrypt the file with P0 and upload it to VOLUME/index
-1. Encrypt P0 with your identities public key as a noise box an call it PK0
+1. Encrypt P0 with your identities public key as a noise box and call it PK0
 1. Upload PK0 to VOLUME.key
 
 
@@ -184,7 +184,7 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 
 ### Task
 
-Starting with only a VOLUME path and a qabel identity, let the user browser the whole VOLUME.
+Starting with only a VOLUME path and a qabel identity, let the user browse the whole VOLUME.
 
 ### Prerequisites
 
