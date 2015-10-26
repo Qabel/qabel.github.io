@@ -191,7 +191,7 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 
 ### Prerequisites
 
-* URL to the VOLUME
+* URL of the VOLUME
 
 ### Process
 
@@ -206,3 +206,21 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 	1. Read the symmetric block key that is prefixed to the block and decrypt it with the directory key **dk1** and call it **fk0**
 	1. Decrypt the rest of the block with **fk0**
 
+
+## Deleting a file
+
+### Task
+
+Delete a file on the users VOLUME.
+
+### Prerequisites
+
+* URL of the VOLUME
+* Valid federation token with write access to the VOLUME
+
+### Process
+
+1. Download and decrypt the metadata file
+1. Remove the file object from the metadata file, increment the version
+1. Encrypt the metadata file and upload it, overwriting the old metadata file
+1. Delete the block of the deleted file on S3
