@@ -224,3 +224,25 @@ Delete a file on the users VOLUME.
 1. Remove the file object from the metadata file, increment the version
 1. Encrypt the metadata file and upload it, overwriting the old metadata file
 1. Delete the block of the deleted file on S3
+
+
+## Updating a file
+
+### Task
+
+Update an existing file on the users VOLUME.
+
+### Prerequisites
+
+* URL of the VOLUME
+* Valid federation token with write access to the VOLUME
+
+
+### Process
+
+1. Download and decrypt the metadata file
+1. Upload the file in a new block with a new UUID
+1. Update the file object in the metadata with the new ref, increment the version
+1. Encrypt the metadata file and upload it, overwriting the old metadata file
+1. Delete the old block of the deleted file on S3
+
