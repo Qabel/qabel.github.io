@@ -293,4 +293,5 @@ Remove a share to another identity
     1. Create a new directory key **dk1**
 	1. Encrypt the directory key with each remaining public key that the directory is shared with
 	1. Upload the new directory key file and overwrite the old one **dk0**
+	1. Update the directory key in the parent directory
 
