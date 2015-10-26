@@ -269,3 +269,25 @@ Share a directory recursively to another identity
 1. Upload the new directory key file and overwrite the old one
 1. Insert the share info in the index metadata file, increment the version and upload it
 1. Notify the other identity about the new share with a drop message
+
+
+## Unsharing a directory
+
+### Task
+
+Remove a share to another identity
+
+### Prerequisites
+
+* Path and directory key
+* Valid federation token with write access to the VOLUME
+* Public key pub1 of the other identity
+
+
+### Process
+
+1. Remove the identities public key from the share info of the folder in the index metadata file, increment the version
+1. Encrypt the directory key with pub1 for each remaining public key that the directory is shared with
+1. Upload the new directory key file and overwrite the old one
+1. Upload the new index metadata file
+
