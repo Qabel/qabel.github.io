@@ -24,6 +24,7 @@ The metadata file stores information equivalent of this example JSON document, b
 {
 root: "https://qabelbox.s3.amazonaws.com/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
 name: "index",
+spec_version: 0,
 version: 7,
 owner: "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a"
 shared: [
@@ -54,6 +55,9 @@ objects: [
 {
 root: STR, // URL of the VOLUME
 name: "index", // name of the file itself
+spec_version: INT,  // version of the VOLUME spec
+					// increment if migrations are needed
+					// and/or the files are incompatible between versions
 version: LONG, // metadata version
 shared: // description of all shares
 { shares* },
