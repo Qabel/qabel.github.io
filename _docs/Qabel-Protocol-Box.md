@@ -124,7 +124,7 @@ Stored in <metadata-file>.key a noise box. Each Qabel identity has its own noise
 The noise boxes are concatenated and of a fixed length.
 
 ### fk - File Key
-File keys are encrypted, enclosed enclosed between `---QABEL BOX BLOCK KEY--` and `---QABEL BOX BLOCK KEY END--`.
+File keys are encrypted, enclosed between `---QABEL BOX BLOCK KEY--` and `---QABEL BOX BLOCK KEY END--`.
 The are stored as headers of blocks.
 
 ### Qabel Identities
