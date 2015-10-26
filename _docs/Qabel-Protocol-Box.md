@@ -54,6 +54,7 @@ objects: [
 },
 { name: "external share", type: "external",
   owner: "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
+  key: "d570b7fcf9eda9daa648d5ec18ae04x9bd1f7b8d6acbd8764844df5aaae0ff91",
   url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
 },
 ```
@@ -129,6 +130,7 @@ External:
 {
 name: STR, // object name,
 type: "external", // the type of external folders is always "external"
+key: KEY // symmetric directory key
 owner: STR, // public key of the owner of that VOLUME
 url: STR // URL to the metadata file that contains information about the folder
 },
@@ -137,9 +139,8 @@ url: STR // URL to the metadata file that contains information about the folder
 ## Key names
 
 ### dk - Directory Key
-Stored in \<metadata-file\>.key a noise box. Each Qabel identity has its own noise box.
-The noise boxes are concatenated and of a fixed length.
-The directory key is also stored in the directory object of the parent folder.
+The directory key is stored in the directory object of the parent folder, the index
+file DM is encrypted with the public key of the owner.
 
 ### fk - File Key
 File keys are stored in the directory metadata file
@@ -286,11 +287,8 @@ Share a directory recursively to another identity
 
 ### Process
 
-1. Download the directory key file \<metadata-file\>.key
-1. Encrypt the directory key with pub1 as a noise box and append it to the directory key file
-1. Upload the new directory key file and overwrite the old one
 1. Insert the share info in the index metadata file, increment the version, set the device id and upload it
-1. Notify the other identity about the new share with a drop message
+1. Notify the other identity about the new share with a drop message that includes the directory key
 
 
 ## Unsharing a directory
@@ -309,16 +307,18 @@ Remove a share to another identity
 ### Process
 
 1. Remove the identities public key from the share info of the folder in the index metadata file, set the device id and increment the version
-1. Upload the new index metadata file
-1. For each directory in the share recursively:
-    1. Create a new directory key **dk1**
-	1. Encrypt the directory key with each remaining public key that the directory is shared with
-	1. Upload the new directory key file and overwrite the old one **dk0**
-	1. Update the directory key in the parent directory
+1. Download recursively all DM
+1. Upload an archive of all those DM, encrypted with **dk0**, the root directory key, as a new file to the VOLUME
+1. Insert this file with the share ref+"_backup" as name into the root directory
+1. Delete recursively all DM from the share
+1. Wait 10s
+1. Delete recursively all DM from the share
+1. If any of the responses indicate that the deletion was not succesfull, delete them again and wait again for 10s until all DM are deleted
+1. Create a new **dk\*** for each DM in the share and insert them in their parents
+1. Upload all the new DM, encrypted with their new **dk\***, depth first
+1. Wait 10s
+1. Check every uploaded DM to ensure that no conflicts occured, if any conflicts occured, overwrite them
+1. Insert the new **dk\*** into the parent directory of the share and upload the DM
+1. Remove the backup file from the root directory
+1. Send the new **dk\*** of the share to all remaining identities
 
-
-### Sharing a single file
-
-Share a single file to another identitiy
-
-TODO writeable shares??
