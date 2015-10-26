@@ -14,7 +14,7 @@ Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 
 ## Structure of a VOLUME
 
-A Volume consists of metadata files and blocks. Blocks have a block size of up to 10mb. Every VOLUME has a metadata file at VOLUME/index which is the starting point and contains references to other objects.
+A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/index which is the starting point and contains references to other objects. All file names except for the index file are UUIDs.
 
 All mtime values are seconds since epoch in UTC.
 
@@ -117,33 +117,45 @@ url: STR // URL to the metadata file that contains information about the folder
 },
 ```
 
-## Initialising a new VOLUME
+## Key names
+
+### dk - Directory Key
+Stored in <metadata-file>.key a noise box. Each Qabel identity has its own noise box.
+The noise boxes are concatenated and of a fixed length.
+
+### fk - File Key
+File keys are encrypted, enclosed enclosed between `---QABEL BOX BLOCK KEY--` and `---QABEL BOX BLOCK KEY END--`.
+The are stored as headers of blocks.
+
+### Qabel Identities
+Identities have a public key **pub** and a private key **priv**
+
+## Initializing a new VOLUME
 
 ### Task
 
-Intialize a new VOLUME without any objects
+Initialize a new VOLUME without any objects
 
 ### Prerequisites
 
 * Valid federation token with write access to the VOLUME
-* Qabel identity
 
 ### Process
 
-1. Create a new symmetric VOLUME key P0
+1. Create a new symmetric VOLUME key **dk0**
 1. Create an empty metadata file
 
 	```JSON
 	{
 	path: STR, // prefix of the volume
 	name: "index", // starting point of each VOLUME
+	spec_version: 0,
 	version: 0,
 	objects: []
 	}
 	```
-1. Encrypt the file with P0 and upload it to VOLUME/index
-1. Encrypt P0 with your identity's public key as a noise box and call it PK0
-1. Upload PK0 to VOLUME/index.key
+1. Encrypt the file with **dk0** and upload it to VOLUME/index
+1. Encrypt **dk0** with your identity's public key as a noise box and upload it to VOLUME/index.key
 
 
 ## Uploading a new file
@@ -155,20 +167,20 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 ### Prerequisites
 
 * Valid federation token with write access to the VOLUME
-* The VOLUME is configured with a metadata file at VOLUME/index
-* The VOLUME key P0 is known
 
 ### Process
 
-1. Retrieve VOLUME/index and decrypt it with P0
-1. Find the folder "examples" in the index and retrieve and decrypt its metadata file
-1. Decrypt the symmetric folder key P1, stored at VOLUME/<metadata-file>.key, with your identities private key
-1. Split up the file in chunks and encrypt each of them with a new symmetric key K0-K<N>
-1. Encrypt the symmetric keys with P1. Concatenate each encrypted key with it's chunk and call it a block
-1. Name the blocks with new UUIDs
+1. Download VOLUME/index.key and try to decrypt the noise boxes with your private key k0 until you find yours, the plaintext is the directory key **dk0**
+1. Retrieve VOLUME/index and decrypt it with **dk0**
+1. Find the folder "examples" in the index and retrieve its metadata file and its key file
+1. Decrypt the symmetric folder key **dk1** with your identities private key priv0
+1. Create a new symmetric key **fk0**
+1. Encrypt the file with **fk0**
+1. Concatenate the encrypted fk0 and the encrypted file
+1. Generate a new UUID, this is the ref of the file
 1. Upload the blocks to VOLUME/<uuid>, note the "Date" header from the response and use it as mtime
-1. Insert the new object into the metadata file, including all blocks, settings the mtime to the largest mtime of it's blocks, increment the version
-1. Encrypt the metadata file with P1 and upload it to VOLUME/<metadata-file>
+1. Insert the new object into the metadata file, using the mtime from the response and the original file size in bytes as size
+1. Encrypt the metadata file with **dk1** and upload it to VOLUME/<metadata-file>
 
 
 ## Browsing a share and downloading a file
@@ -179,23 +191,18 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 
 ### Prerequisites
 
-* Qabel identity
 * URL to the VOLUME
 
 ### Process
 
-1. Download VOLUME/index.key
-1. Decrypt all noise boxes with a fixed length of N bytes **TODO** in index.key with your identities private key **PP0** until you find a payload that starts with the token ---QABEL BOX DIRECTORY KEY--- and ends with ---QABEL BOX DIRECTORY KEY END---. The data between these tokens is the _directory key_ **P0**
-1. Download VOLUME/index and decrypt it with **P0**
+1. Download VOLUME/index.key and try to decrypt the noise boxes with your private key k0 until you find yours, the plaintext is the directory key **dk0**
+1. Download VOLUME/index and decrypt it with **dk0**
 1. Open the metadata file and show the directory listing to the user
 1. If the user selects a directory or external share:
 	1. Let the directory path be **$PATH**
-	1. Download ${PATH}.key and decrypt all noises boxes with **PP0** until you find a valid key **P1**
+	1. Download ${PATH}.key and decrypt all noises boxes with **priv0** until you find a valid key **dk1**
 1. If the user selects a file **$name**:
-	1. Sort the blocks of the file by **blockno**
-	1. For each block:
-		1. Download the block
-		1. Read the symmetric block key between the token ---QABEL BOX BLOCK KEY-- and ---QABEL BOX BLOCK KEY END-- and decrypt it with the directory key **P0** and call it **k1**
-		1. Decrypt the rest of the block with **k1**
-	1. Concatenate all blocks and call the file **$name**
+	1. Download the referenced block
+	1. Read the symmetric block key that is prefixed to the block and decrypt it with the directory key **dk1** and call it **fk0**
+	1. Decrypt the rest of the block with **fk0**
 
