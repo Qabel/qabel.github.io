@@ -35,9 +35,11 @@ shared: [
 ],
 objects: [
 { name: "foobar.jpg", type: "file", size: 6203434, mtime: 1445432325,
+  key: "b43feebe528a56bb4f21ef3a8a617714aee2cabc0708c1702a98915ae852ad06",
   ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
 },
 { name: "barfoo.txt", type: "file", size: 4568, mtime: 1445432120,
+  key:"042a77edb0d527816ddb3e74457d92e69302099881b9a3181a514696c0fc39bf",
   ref: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"
 },
 { name: "some folder", type: "folder",
@@ -93,7 +95,8 @@ name: STR, // object name,
 type: "file", // the type of file objects is always "file"
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
-ref: STR // reference in relation to the root of the VOLUME
+key: KEY, // symmetric key for the block
+ref: STR // reference to the block in relation to the root of the VOLUME
 },
 ```
 
@@ -127,8 +130,7 @@ The noise boxes are concatenated and of a fixed length.
 The directory key is also stored in the directory object of the parent folder.
 
 ### fk - File Key
-File keys are encrypted, enclosed between `---QABEL BOX BLOCK KEY--` and `---QABEL BOX BLOCK KEY END--`.
-They are stored as headers of blocks.
+File keys are stored in the directory metadata file
 
 ### Qabel Identities
 Identities have a public key **pub** and a private key **priv**
@@ -178,10 +180,9 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 1. Find the folder "examples" in the index and retrieve its metadata file, decrypt it with the stored directory key dk1
 1. Create a new symmetric key **fk0**
 1. Encrypt the file with **fk0**
-1. Concatenate the encrypted fk0 and the encrypted file
 1. Generate a new UUID, this is the ref of the file
-1. Upload the blocks to VOLUME/\<uuid\>, note the "Date" header from the response and use it as mtime
-1. Insert the new object into the metadata file, using the mtime from the response and the original file size in bytes as size
+1. Upload the block to VOLUME/\<uuid\>, note the "Date" header from the response and use it as mtime
+1. Insert the new object, including its **fk0**, into the metadata file, using the mtime from the response and the original file size in bytes as size
 1. Encrypt the metadata file with **dk1** and upload it to VOLUME/\<metadata-file\>
 
 
@@ -203,10 +204,10 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 1. If the user selects a directory or external share:
     1. Download the directory metadata file and decrypt it with the key stored in the parent folders metadata file
     1. Open the metadata file and show the directory listing to the user
-1. If the user selects a file **$name**:
+1. If the user selects a file:
 	1. Download the referenced block
-	1. Read the symmetric block key that is prefixed to the block and decrypt it with the directory key **dk1** and call it **fk0**
-	1. Decrypt the rest of the block with **fk0**
+	1. Read the symmetric file key **fk0** from the metadata file 
+	1. Decrypt the block with **fk0**
 
 
 ## Deleting a file
@@ -243,8 +244,8 @@ Update an existing file on the users VOLUME.
 ### Process
 
 1. Download and decrypt the metadata file
-1. Upload the file in a new block with a new UUID
-1. Update the file object in the metadata with the new ref, increment the version
+1. Upload the file in a new block with a new UUID and a new key
+1. Update the file object in the metadata with the new ref and key, increment the version
 1. Encrypt the metadata file and upload it, overwriting the old metadata file
 1. Delete the old block of the deleted file on S3
 
@@ -287,7 +288,9 @@ Remove a share to another identity
 ### Process
 
 1. Remove the identities public key from the share info of the folder in the index metadata file, increment the version
-1. Encrypt the directory key with pub1 for each remaining public key that the directory is shared with
-1. Upload the new directory key file and overwrite the old one
 1. Upload the new index metadata file
+1. For each directory in the share recursively:
+    1. Create a new directory key **dk1**
+	1. Encrypt the directory key with each remaining public key that the directory is shared with
+	1. Upload the new directory key file and overwrite the old one **dk0**
 
