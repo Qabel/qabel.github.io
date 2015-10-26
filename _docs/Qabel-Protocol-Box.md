@@ -267,4 +267,5 @@ Share a directory recursively to another identity
 1. Download the directory key file \<metadata-file\>.key
 1. Encrypt the directory key with pub1 as a noise box and append it to the directory key file
 1. Upload the new directory key file and overwrite the old one
+1. Insert the share info in the index metadata file, increment the version and upload it
 1. Notify the other identity about the new share with a drop message
