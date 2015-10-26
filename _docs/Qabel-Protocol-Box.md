@@ -26,20 +26,26 @@ root: "https://qabelbox.s3.amazonaws.com/users/b5911736-9ace-a799-8e34-dd9c17acf
 name: "index",
 spec_version: 0,
 version: 7,
+last_change_by: "487a481f-4d93-cef0-4475-88ee576d37fd",
 owner: "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a"
 shared: [
 	"aa8c3f39-edc5-00b0-ab8b-ba66d05b60db" : { read: [
 		"feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
 		"fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a"
-	]}
+		]},
+	"8f5da4db-02ab-ca96-1824-3ba8d18a85be" : { read: [
+		"fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a"
+		]}
 ],
 objects: [
 { name: "foobar.jpg", type: "file", size: 6203434, mtime: 1445432325,
+  meta: null,
   key: "b43feebe528a56bb4f21ef3a8a617714aee2cabc0708c1702a98915ae852ad06",
   ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
 },
 { name: "barfoo.txt", type: "file", size: 4568, mtime: 1445432120,
-  key:"042a77edb0d527816ddb3e74457d92e69302099881b9a3181a514696c0fc39bf",
+  meta: "a9c6ce30-418b-e292-83bc-769a8c72f600",
+  key: "042a77edb0d527816ddb3e74457d92e69302099881b9a3181a514696c0fc39bf",
   ref: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"
 },
 { name: "some folder", type: "folder",
@@ -52,13 +58,14 @@ objects: [
 },
 ```
 
-### Metadata file
+### Directory Metadata [DM]
 
 
 ```
 {
 root: STR, // URL of the VOLUME
 name: "index", // name of the file itself
+last_change_by: UUID, // ID of the device that made the last change
 spec_version: INT,  // version of the VOLUME spec
 					// increment if migrations are needed
 					// and/or the files are incompatible between versions
@@ -73,7 +80,6 @@ objects: // list of objects in this folder
 Note that folders that are not "index" do not have the "shared"-key, as all information about shares in a VOLUME are stored in "index".
 
 
-
 ### Shares
 
 The index is the path to the metadata file of the share.
@@ -84,6 +90,11 @@ read: [KEY] // List of public keys of identities that this folder is read only s
 },
 ```
 
+### File Metadata [FM]
+
+A file only has its own FM, if it is shared in a single file share.
+The FM is stored in the path referenced as "meta" in the file object and encrypted
+in a noise box with the public key of the recipient.
 
 ### Objects
 
@@ -95,6 +106,7 @@ name: STR, // object name,
 type: "file", // the type of file objects is always "file"
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
+meta: STR|null, // path to the FM, if it exists
 key: KEY, // symmetric key for the block
 ref: STR // reference to the block in relation to the root of the VOLUME
 },
@@ -135,6 +147,9 @@ File keys are stored in the directory metadata file
 ### Qabel Identities
 Identities have a public key **pub** and a private key **priv**
 
+### Device ID
+Each client device has a unique ID which is a random generated UUID **devID**
+
 ## Initializing a new VOLUME
 
 ### Task
@@ -144,6 +159,7 @@ Initialize a new VOLUME without any objects
 ### Prerequisites
 
 * Valid federation token with write access to the VOLUME
+* Device ID **devId0*
 
 ### Process
 
@@ -156,6 +172,7 @@ Initialize a new VOLUME without any objects
 	name: "index", // starting point of each VOLUME
 	spec_version: 0,
 	version: 0,
+	last_change_by: **dk0**
 	objects: []
 	}
 	```
@@ -183,6 +200,7 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 1. Generate a new UUID, this is the ref of the file
 1. Upload the block to VOLUME/\<uuid\>, note the "Date" header from the response and use it as mtime
 1. Insert the new object, including its **fk0**, into the metadata file, using the mtime from the response and the original file size in bytes as size
+1. Set `last_change_by` to your device id
 1. Encrypt the metadata file with **dk1** and upload it to VOLUME/\<metadata-file\>
 
 
@@ -225,8 +243,10 @@ Delete a file on the users VOLUME.
 
 1. Download and decrypt the metadata file
 1. Remove the file object from the metadata file, increment the version
+1. Set `last_change_by` to your device id
 1. Encrypt the metadata file and upload it, overwriting the old metadata file
 1. Delete the block of the deleted file on S3
+1. If the file object has a reference to a FM, delete the FM
 
 
 ## Updating a file
@@ -246,6 +266,7 @@ Update an existing file on the users VOLUME.
 1. Download and decrypt the metadata file
 1. Upload the file in a new block with a new UUID and a new key
 1. Update the file object in the metadata with the new ref and key, increment the version
+1. Set `last_change_by` to your device id
 1. Encrypt the metadata file and upload it, overwriting the old metadata file
 1. Delete the old block of the deleted file on S3
 
@@ -268,7 +289,7 @@ Share a directory recursively to another identity
 1. Download the directory key file \<metadata-file\>.key
 1. Encrypt the directory key with pub1 as a noise box and append it to the directory key file
 1. Upload the new directory key file and overwrite the old one
-1. Insert the share info in the index metadata file, increment the version and upload it
+1. Insert the share info in the index metadata file, increment the version, set the device id and upload it
 1. Notify the other identity about the new share with a drop message
 
 
@@ -287,7 +308,7 @@ Remove a share to another identity
 
 ### Process
 
-1. Remove the identities public key from the share info of the folder in the index metadata file, increment the version
+1. Remove the identities public key from the share info of the folder in the index metadata file, set the device id and increment the version
 1. Upload the new index metadata file
 1. For each directory in the share recursively:
     1. Create a new directory key **dk1**
@@ -295,3 +316,9 @@ Remove a share to another identity
 	1. Upload the new directory key file and overwrite the old one **dk0**
 	1. Update the directory key in the parent directory
 
+
+### Sharing a single file
+
+Share a single file to another identitiy
+
+TODO writeable shares??
