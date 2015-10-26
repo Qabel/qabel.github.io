@@ -41,6 +41,7 @@ objects: [
   ref: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"
 },
 { name: "some folder", type: "folder",
+  key: "fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a",
   ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
 },
 { name: "external share", type: "external",
@@ -77,7 +78,7 @@ The index is the path to the metadata file of the share.
 
 ```
 {
-read: [STR] // List of public keys of identities that this folder is read only shared with
+read: [KEY] // List of public keys of identities that this folder is read only shared with
 },
 ```
 
@@ -102,6 +103,7 @@ Folder:
 {
 name: STR // object name,
 type: "folder" // the type of folder objects is always "folder"
+key: KEY // symmetric directory key
 ref: STR // ref of the metadata file that contains information about the folder
 },
 ```
@@ -120,12 +122,13 @@ url: STR // URL to the metadata file that contains information about the folder
 ## Key names
 
 ### dk - Directory Key
-Stored in <metadata-file>.key a noise box. Each Qabel identity has its own noise box.
+Stored in \<metadata-file\>.key a noise box. Each Qabel identity has its own noise box.
 The noise boxes are concatenated and of a fixed length.
+The directory key is also stored in the directory object of the parent folder.
 
 ### fk - File Key
 File keys are encrypted, enclosed between `---QABEL BOX BLOCK KEY--` and `---QABEL BOX BLOCK KEY END--`.
-The are stored as headers of blocks.
+They are stored as headers of blocks.
 
 ### Qabel Identities
 Identities have a public key **pub** and a private key **priv**
@@ -172,15 +175,14 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 
 1. Download VOLUME/index.key and try to decrypt the noise boxes with your private key k0 until you find yours, the plaintext is the directory key **dk0**
 1. Retrieve VOLUME/index and decrypt it with **dk0**
-1. Find the folder "examples" in the index and retrieve its metadata file and its key file
-1. Decrypt the symmetric folder key **dk1** with your identities private key priv0
+1. Find the folder "examples" in the index and retrieve its metadata file, decrypt it with the stored directory key dk1
 1. Create a new symmetric key **fk0**
 1. Encrypt the file with **fk0**
 1. Concatenate the encrypted fk0 and the encrypted file
 1. Generate a new UUID, this is the ref of the file
-1. Upload the blocks to VOLUME/<uuid>, note the "Date" header from the response and use it as mtime
+1. Upload the blocks to VOLUME/\<uuid\>, note the "Date" header from the response and use it as mtime
 1. Insert the new object into the metadata file, using the mtime from the response and the original file size in bytes as size
-1. Encrypt the metadata file with **dk1** and upload it to VOLUME/<metadata-file>
+1. Encrypt the metadata file with **dk1** and upload it to VOLUME/\<metadata-file\>
 
 
 ## Browsing a share and downloading a file
@@ -199,8 +201,8 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 1. Download VOLUME/index and decrypt it with **dk0**
 1. Open the metadata file and show the directory listing to the user
 1. If the user selects a directory or external share:
-	1. Let the directory path be **$PATH**
-	1. Download ${PATH}.key and decrypt all noises boxes with **priv0** until you find a valid key **dk1**
+    1. Download the directory metadata file and decrypt it with the key stored in the parent folders metadata file
+    1. Open the metadata file and show the directory listing to the user
 1. If the user selects a file **$name**:
 	1. Download the referenced block
 	1. Read the symmetric block key that is prefixed to the block and decrypt it with the directory key **dk1** and call it **fk0**
@@ -246,3 +248,23 @@ Update an existing file on the users VOLUME.
 1. Encrypt the metadata file and upload it, overwriting the old metadata file
 1. Delete the old block of the deleted file on S3
 
+
+## Sharing a directory
+
+### Task
+
+Share a directory recursively to another identity
+
+### Prerequisites
+
+* Path and directory key
+* Valid federation token with write access to the VOLUME
+* Public key pub1 of the other identity
+
+
+### Process
+
+1. Download the directory key file \<metadata-file\>.key
+1. Encrypt the directory key with pub1 as a noise box and append it to the directory key file
+1. Upload the new directory key file and overwrite the old one
+1. Notify the other identity about the new share with a drop message
