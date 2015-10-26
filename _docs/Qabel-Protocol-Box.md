@@ -55,7 +55,6 @@ objects: [
 root: STR, // URL of the VOLUME
 name: "index", // name of the file itself
 version: LONG, // metadata version
-owner: STR, // public key of the volume owner
 shared: // description of all shares
 { shares* },
 objects: // list of objects in this folder
