@@ -44,6 +44,7 @@ objects: [
   ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
 },
 { name: "external share", type: "external",
+  owner: "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
   url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
 },
 ```
@@ -111,6 +112,7 @@ External:
 {
 name: STR, // object name,
 type: "external", // the type of external folders is always "external"
+owner: STR, // public key of the owner of that VOLUME
 url: STR // URL to the metadata file that contains information about the folder
 },
 ```
