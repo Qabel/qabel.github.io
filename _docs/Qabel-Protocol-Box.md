@@ -20,7 +20,7 @@ All mtime values are seconds since epoch in UTC.
 
 The metadata file stores information equivalent of this example JSON document, but stored in an SQLite database (the database schema is explained later):
 
-```JSON
+```
 {
 root: "https://qabelbox.s3.amazonaws.com/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
 name: "index",
@@ -52,7 +52,7 @@ objects: [
 ### Metadata file
 
 
-```JSON
+```
 {
 root: STR, // URL of the VOLUME
 name: "index", // name of the file itself
@@ -75,7 +75,7 @@ Note that folders that are not "index" do not have the "shared"-key, as all info
 
 The index is the path to the metadata file of the share.
 
-```JSON
+```
 {
 read: [STR] // List of public keys of identities that this folder is read only shared with
 },
@@ -86,7 +86,7 @@ read: [STR] // List of public keys of identities that this folder is read only s
 
 File:
 
-```JSON
+```
 {
 name: STR, // object name,
 type: "file", // the type of file objects is always "file"
@@ -98,7 +98,7 @@ ref: STR // reference in relation to the root of the VOLUME
 
 Folder:
 
-```JSON
+```
 {
 name: STR // object name,
 type: "folder" // the type of folder objects is always "folder"
@@ -108,7 +108,7 @@ ref: STR // ref of the metadata file that contains information about the folder
 
 External:
 
-```JSON
+```
 {
 name: STR, // object name,
 type: "external", // the type of external folders is always "external"
@@ -145,7 +145,7 @@ Initialize a new VOLUME without any objects
 1. Create a new symmetric VOLUME key **dk0**
 1. Create an empty metadata file
 
-	```JSON
+	```
 	{
 	path: STR, // prefix of the volume
 	name: "index", // starting point of each VOLUME
