@@ -27,7 +27,6 @@ name: "index",
 spec_version: 0,
 version: 7,
 last_change_by: "487a481f-4d93-cef0-4475-88ee576d37fd",
-owner: "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a"
 shared: [
 	"aa8c3f39-edc5-00b0-ab8b-ba66d05b60db" : { read: [
 		"feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
