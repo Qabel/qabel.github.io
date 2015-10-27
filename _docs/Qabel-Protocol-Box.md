@@ -313,14 +313,11 @@ Remove a share to another identity
 1. Download recursively all DM
 1. Upload an archive of all those DM, encrypted with **dk0**, the root directory key, as a new file to the VOLUME
 1. Insert this file with the share ref+"_backup" as name into the root directory
-1. Delete recursively all DM from the share
-1. Wait 10s
-1. Delete recursively all DM from the share
-1. If any of the responses indicate that the deletion was not succesfull, delete them again and wait again for 10s until all DM are deleted
+1. Delete recursively all DM from the share (See [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html)
+1. Wait until the deletion has propagated, check the progress by issuing HEAD requests for the files.
 1. Create a new **dk\*** for each DM in the share and insert them in their parents
 1. Upload all the new DM, encrypted with their new **dk\***, depth first
-1. Wait 10s
-1. Check every uploaded DM to ensure that no conflicts occured, if any conflicts occured, overwrite them
+1. Check every uploaded DM with HEAD requests to ensure that no conflicts occurred.
 1. Insert the new **dk\*** into the parent directory of the share and upload the DM
 1. Remove the backup file from the root directory
 1. Send the new **dk\*** of the share to all remaining identities
