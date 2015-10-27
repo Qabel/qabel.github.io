@@ -14,7 +14,7 @@ Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 
 ## Structure of a VOLUME
 
-A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/index which is the starting point and contains references to other objects. All file names except for the index file are UUIDs.
+A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/\<index\> which is the starting point and contains references to other objects. All file names except for the index file are UUIDs.
 
 All mtime values are seconds since epoch in UTC.
 
@@ -136,8 +136,6 @@ url: STR // URL to the metadata file that contains information about the folder
 },
 ```
 
-## Key names
-
 ### dk - Directory Key
 The directory key is stored in the directory object of the parent folder, the index
 file DM is encrypted with the public key of the owner.
@@ -150,6 +148,13 @@ Identities have a public key **pub** and a private key **priv**
 
 ### Device ID
 Each client device has a unique ID which is a random generated UUID **devID**
+
+### Path to VOLUME/\<index\>
+\<index\> is calculated from the sha256 of the owners private key. Take the first 128bit of it
+and format them like the canonical form of a UUID.
+This means: 8-4-4-4-12 hexadecimal digits.
+Example: e5cceedc-c222-d549-6211-1b6c684e0b2a
+
 
 ## Initializing a new VOLUME
 
@@ -164,7 +169,6 @@ Initialize a new VOLUME without any objects
 
 ### Process
 
-1. Create a new symmetric VOLUME key **dk0**
 1. Create an empty metadata file
 
 	```
@@ -177,8 +181,7 @@ Initialize a new VOLUME without any objects
 	objects: []
 	}
 	```
-1. Encrypt the file with **dk0** and upload it to VOLUME/index
-1. Encrypt **dk0** with your identity's public key as a noise box and upload it to VOLUME/index.key
+1. Encrypt the file with **priv0** and upload it to VOLUME/\<index\>
 
 
 ## Uploading a new file
