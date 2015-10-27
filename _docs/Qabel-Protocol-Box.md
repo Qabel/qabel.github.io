@@ -156,6 +156,16 @@ This means: 8-4-4-4-12 hexadecimal digits.
 Example: e5cceedc-c222-d549-6211-1b6c684e0b2a
 
 
+### Share notification drop message
+The plaintext of the drop message is a JSON document with the url of the DM and the symmetric key.
+
+```
+{
+	url: STR // url to the DM of the shared folder
+	key: KEY // symmetric directory key
+}
+```
+
 ## Initializing a new VOLUME
 
 ### Task
@@ -285,13 +295,13 @@ Share a directory recursively to another identity
 
 * Path and directory key
 * Valid federation token with write access to the VOLUME
-* Public key pub1 of the other identity
+* Contact info of the other identity
 
 
 ### Process
 
 1. Insert the share info in the index metadata file, increment the version, set the device id and upload it
-1. Notify the other identity about the new share with a drop message that includes the directory key
+1. Notify the other identity about the new share with a drop message.
 
 
 ## Unsharing a directory
