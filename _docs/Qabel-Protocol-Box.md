@@ -25,7 +25,7 @@ The metadata file stores information equivalent of this example JSON document, b
 root: "https://qabelbox.s3.amazonaws.com/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
 name: "index",
 spec_version: 0,
-version: 7,
+version: {version: 7, time:  1445963627},
 last_change_by: "487a481f-4d93-cef0-4475-88ee576d37fd",
 shared: [
 	"aa8c3f39-edc5-00b0-ab8b-ba66d05b60db" : { read: [
@@ -69,7 +69,7 @@ last_change_by: UUID, // ID of the device that made the last change
 spec_version: INT,  // version of the VOLUME spec
 					// increment if migrations are needed
 					// and/or the files are incompatible between versions
-version: LONG, // metadata version
+version: {version: LONG, time: LONG}, // metadata version and time of change, time should not be trusted
 shared: // description of all shares
 { shares* },
 objects: // list of objects in this folder
@@ -331,3 +331,106 @@ Remove a share to another identity
 1. Remove the backup file from the root directory
 1. Send the new **dk\*** of the share to all remaining identities
 
+# SQLite Schema
+
+Schema for the SQLite3 database which is used as a directory metadata file (DM).
+The JSON documents can be directly translated into this schema.
+
+```SQL
+/*
+The meta table includes the values
+ * root (only needed in the index)
+ * name
+ * last_change_by
+*/
+CREATE TABLE meta
+(
+       name             VARCHAR(24) PRIMARY KEY,
+       value            TEXT
+);
+
+/*
+A one row table with only the current qabel-box specification version.
+This version is 0 for now and should be checked everytime the databases is opened.
+*/
+CREATE TABLE spec_version
+(
+       version          INTEGER PRIMARY KEY
+);
+
+/*
+Current version and the current time. The time is only used for displaying,
+it should not be trusted.
+*/
+CREATE TABLE version
+(
+       version          INTEGER PRIMARY KEY,
+       time             INTEGER NOT NULL
+);
+
+/*
+Table of all shares in the VOLUME.
+* 'id' is meaningless and only for record keeping purposes.
+* 'ref' is the name of the metadata file
+* 'recipient' is the public key of the recipient
+* 'type' is 0 for a read only share and 1 for a writable share (not implemented yet)
+*/
+CREATE TABLE shares
+(
+       id               INTEGER PRIMARY KEY,
+       ref              VARCHAR(255) NOT NULL,
+       recipient        BLOB NOT NULL,
+       type             INT NOT NULL
+);
+
+/*
+Table of all file objects in the directory
+* 'id' is meaningless and only for record keeping purposes.
+* 'ref' is the name of the metadata file
+* 'name' is the file name
+* 'size' is the file size in bytes
+* 'mtime' is the modification timestamp
+* 'key' is the symmetric file key
+*/
+CREATE TABLE files
+(
+       id               INTEGER PRIMARY KEY,
+       ref              VARCHAR(255) NOT NULL,
+       name             VARCHAR(255) NOT NULL,
+       size             LONG NOT NULL,
+       mtime            INT NOT NULL,
+       key              BLOB NOT NULL
+);
+
+/*
+Table of all folder objects in the directory
+* 'id' is meaningless and only for record keeping purposes.
+* 'ref' is the name of the metadata file
+* 'name' is the folder name
+* 'key' is the symmetric directory key
+*/
+CREATE TABLE folders
+(
+       id               INTEGER PRIMARY KEY,
+       ref              VARCHAR(255) NOT NULL,
+       name             VARCHAR(255) NOT NULL,
+       key              BLOB NOT NULL
+);
+
+/*
+Table of all external objects in the directory
+* 'id' is meaningless and only for record keeping purposes.
+* 'owner' is the public key of the owner
+* 'name' is the share name
+* 'key' is the symmetric directory key
+* 'url' is the url of the metadata file
+*/
+CREATE TABLE externals
+(
+       id              INTEGER PRIMARY KEY,
+       owner           BLOB NOT NULL,
+       name            VARCHAR(255) NOT NULL,
+       key             BLOB NOT NULL,
+       url             TEXT NOT NULL
+);
+```
