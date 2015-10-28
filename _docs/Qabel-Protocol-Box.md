@@ -101,7 +101,18 @@ read: [KEY] // List of public keys of identities that this folder is read only s
 
 A file only has its own FM, if it is shared in a single file share.
 The FM is stored in the path referenced as "meta" in the file object and encrypted
-in a noise box with the public key of the recipient.
+with a new symmetric key
+
+```
+{
+name: STR, // filename
+spec_version: INT,  // version of the VOLUME spec
+size: LONG, // uncompressed file size
+mtime: LONG, // modification time as seconds since epoch
+key: KEY, // symmetric key for the block
+ref: STR // reference to the block in relation to the root of the VOLUME
+}
+```
 
 ### Objects
 
@@ -112,7 +123,8 @@ File:
 name: STR, // object name,
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
-meta: STR|null, // path to the FM, if it exists
+meta: {ref: STR, // path to the FM, if it exists
+       key: KEY} // symmetric key for the FM
 key: KEY, // symmetric key for the block
 ref: STR // reference to the block in relation to the root of the VOLUME
 },
@@ -283,6 +295,7 @@ Update an existing file on the users VOLUME.
 1. Update the file object in the DM with the new ref and key, increment the version
 1. Set `last_change_by` to your device id
 1. Encrypt the DM and upload it, overwriting the old DM
+1. Update the FM, if one exists
 1. Delete the block of the deleted file on S3
 
 
@@ -333,9 +346,33 @@ Remove a share to another identity
 1. Remove the backup file from the root directory
 1. Send the new **dk\*** of the share to all remaining identities
 
+
+## Sharing a single file
+
+### Task
+
+Share a single file to another identity
+
+### Prerequisites
+
+* Valid federation token with write access to the VOLUME
+* Contact info of the other identity
+* DM of the parent folder
+
+### Process
+
+1. Create a new FM with the information from the DM
+1. Encrypt it with a new directory key **dk1**
+1. Insert the reference to the FM into the DM
+1. Upload the FM and the DM
+1. Insert the share info in the index DM and upload it
+1. Notify the other identity about the new share with a drop message including **dk1**
+
+
 # SQLite Schema
 
-Schema for the SQLite3 database which is used as a directory metadata file (DM).
+Schema for the SQLite3 database which is used as a directory metadata file (DM). The schema for
+an FM will be included later.
 The JSON documents can be directly translated into this schema.
 
 ```SQL
