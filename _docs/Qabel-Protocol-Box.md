@@ -9,7 +9,7 @@ A set of protocols to store files and folders on a VOLUME that is on AWS S3 and 
 
 ## Used services
 
-Qabel Box uses an Accounting server which controls the access to AWS S3. Every client who needs write access has to be authenticated by the server and then receives a set of credentials that he can use for direct access to the VOLUME.
+Qabel Box uses an Accounting server which controls the access to AWS S3. Every client who needs write access has to be authenticated by the server and then receives a set of credentials for direct access to the VOLUME.
 Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 
 ## Structure of a VOLUME
@@ -178,7 +178,7 @@ Initialize a new VOLUME without any objects
 
 ### Process
 
-1. Create an empty metadata file
+1. Create an empty DM
 
 	```
 	{
@@ -205,16 +205,15 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 
 ### Process
 
-1. Download VOLUME/index.key and try to decrypt the noise boxes with your private key k0 until you find yours, the plaintext is the directory key **dk0**
-1. Retrieve VOLUME/index and decrypt it with **dk0**
-1. Find the folder "examples" in the index and retrieve its metadata file, decrypt it with the stored directory key dk1
+1. Download VOLUME/\<index\> decrypt it with the users' private key k0
+1. Find the folder "examples" in the index and retrieve the DM, decrypt it with the stored directory key dk1
 1. Create a new symmetric key **fk0**
 1. Encrypt the file with **fk0**
 1. Generate a new UUID, this is the ref of the file
 1. Upload the block to VOLUME/\<uuid\>, note the "Date" header from the response and use it as mtime
 1. Insert the new object, including its **fk0**, into the metadata file, using the mtime from the response and the original file size in bytes as size
 1. Set `last_change_by` to your device id
-1. Encrypt the metadata file with **dk1** and upload it to VOLUME/\<metadata-file\>
+1. Encrypt the DM with **dk1** and upload it 
 
 
 ## Browsing a share and downloading a file
@@ -229,15 +228,14 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 
 ### Process
 
-1. Download VOLUME/index.key and try to decrypt the noise boxes with your private key k0 until you find yours, the plaintext is the directory key **dk0**
-1. Download VOLUME/index and decrypt it with **dk0**
-1. Open the metadata file and show the directory listing to the user
+1. Download VOLUME/\<index\> and decrypt it with the users private key
+1. Open the DM and show the directory listing to the user
 1. If the user selects a directory or external share:
-    1. Download the directory metadata file and decrypt it with the key stored in the parent folders metadata file
-    1. Open the metadata file and show the directory listing to the user
+    1. Download the DM and decrypt it with the key stored in the parent DM
+    1. Open the DM and show the directory listing to the user
 1. If the user selects a file:
 	1. Download the referenced block
-	1. Read the symmetric file key **fk0** from the metadata file 
+	1. Read the symmetric file key **fk0** from the DM
 	1. Decrypt the block with **fk0**
 
 
@@ -254,10 +252,10 @@ Delete a file on the users VOLUME.
 
 ### Process
 
-1. Download and decrypt the metadata file
-1. Remove the file object from the metadata file, increment the version
+1. Download and decrypt the DM
+1. Remove the file object from the DM, increment the version
 1. Set `last_change_by` to your device id
-1. Encrypt the metadata file and upload it, overwriting the old metadata file
+1. Encrypt the DM and upload it, overwriting the old DM
 1. Delete the block of the deleted file on S3
 1. If the file object has a reference to a FM, delete the FM
 
@@ -276,12 +274,12 @@ Update an existing file on the users VOLUME.
 
 ### Process
 
-1. Download and decrypt the metadata file
+1. Download and decrypt the DM
 1. Upload the file in a new block with a new UUID and a new key
-1. Update the file object in the metadata with the new ref and key, increment the version
+1. Update the file object in the DM with the new ref and key, increment the version
 1. Set `last_change_by` to your device id
-1. Encrypt the metadata file and upload it, overwriting the old metadata file
-1. Delete the old block of the deleted file on S3
+1. Encrypt the DM and upload it, overwriting the old DM
+1. Delete the block of the deleted file on S3
 
 
 ## Sharing a directory
@@ -299,7 +297,7 @@ Share a directory recursively to another identity
 
 ### Process
 
-1. Insert the share info in the index metadata file, increment the version, set the device id and upload it
+1. Insert the share info in the index DM, increment the version, set the device id, encrypt and upload it
 1. Notify the other identity about the new share with a drop message.
 
 
@@ -318,7 +316,7 @@ Remove a share to another identity
 
 ### Process
 
-1. Remove the identities public key from the share info of the folder in the index metadata file, set the device id and increment the version
+1. Remove the identities public key from the share info of the folder in the index DM, set the device id and increment the version
 1. Download recursively all DM
 1. Upload an archive of all those DM, encrypted with **dk0**, the root directory key, as a new file to the VOLUME
 1. Insert this file with the share ref+"_backup" as name into the root directory
