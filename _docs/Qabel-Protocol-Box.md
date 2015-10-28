@@ -14,9 +14,9 @@ Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 
 ## Structure of a VOLUME
 
-A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/\<index\> which is the starting point and contains references to other objects. All file names except for the index file are UUIDs.
+A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/\<index\> which is the starting point and contains references to other objects. All file names on S3 are UUIDs.
 
-All mtime values are seconds since epoch in UTC.
+All mtime values are seconds since epoch in UTC. Blocks are stored at VOLUME/blocks/.
 
 The metadata file stores information equivalent of this example JSON document, but stored in an SQLite database (the database schema is explained later):
 
@@ -110,7 +110,7 @@ spec_version: INT,  // version of the VOLUME spec
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
 key: KEY, // symmetric key for the block
-ref: STR // reference to the block in relation to the root of the VOLUME
+block: STR // path to the block without the prefix \<root\>/blocks/
 }
 ```
 
@@ -126,7 +126,7 @@ mtime: LONG, // modification time as seconds since epoch
 meta: {ref: STR, // path to the FM, if it exists
        key: KEY} // symmetric key for the FM
 key: KEY, // symmetric key for the block
-ref: STR // reference to the block in relation to the root of the VOLUME
+block: STR // path to the block without the prefix \<root\>/blocks/
 },
 ```
 
@@ -169,6 +169,13 @@ Each client device has a unique ID which is a random generated UUID **devID**
 and format them like the canonical form of a UUID.
 This means: 8-4-4-4-12 hexadecimal digits.
 Example: e5cceedc-c222-d549-6211-1b6c684e0b2a
+
+### Quota tracking
+Quota tracking is done by AWS. The S3 service is configured to call an AWS Lambda method for each
+s3:ObjectCreated and s3:ObjectRemoved in VOLUME/blocks. The Lambda method keeps track of the quota
+by incrementing or decrementing the amount of used space saved in DynamoDB. The accounting server
+then regularly requests all quota data and inserts it into his database. Clients can request
+this information for their VOLUME by calling a REST method on the accounting server.
 
 
 ### Share notification drop message
@@ -226,7 +233,7 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 1. Create a new symmetric key **fk0**
 1. Encrypt the file with **fk0**
 1. Generate a new UUID, this is the ref of the file
-1. Upload the block to VOLUME/\<uuid\>, note the "Date" header from the response and use it as mtime
+1. Upload the block to VOLUME/blocks/\<uuid\>, note the "Date" header from the response and use it as mtime
 1. Insert the new object, including its **fk0**, into the metadata file, using the mtime from the response and the original file size in bytes as size
 1. Set `last_change_by` to your device id
 1. Encrypt the DM with **dk1** and upload it 
@@ -425,7 +432,7 @@ CREATE TABLE shares
 /*
 Table of all file objects in the directory
 * 'id' is meaningless and only for record keeping purposes.
-* 'ref' is the name of the metadata file
+* 'block is the name of the block which stores the data
 * 'name' is the file name
 * 'size' is the file size in bytes
 * 'mtime' is the modification timestamp
@@ -434,7 +441,7 @@ Table of all file objects in the directory
 CREATE TABLE files
 (
        id               INTEGER PRIMARY KEY,
-       ref              VARCHAR(255) NOT NULL,
+       block              VARCHAR(255) NOT NULL,
        name             VARCHAR(255) NOT NULL,
        size             LONG NOT NULL,
        mtime            INT NOT NULL,
