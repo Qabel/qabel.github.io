@@ -36,26 +36,29 @@ shared: [
 		"fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a"
 		]}
 ],
-objects: [
-{ name: "foobar.jpg", type: "file", size: 6203434, mtime: 1445432325,
-  meta: null,
-  key: "b43feebe528a56bb4f21ef3a8a617714aee2cabc0708c1702a98915ae852ad06",
-  ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
+files: [
+{ name: "foobar.jpg", size: 6203434, mtime: 1445432325,
+meta: null,
+key: "b43feebe528a56bb4f21ef3a8a617714aee2cabc0708c1702a98915ae852ad06",
+ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
 },
-{ name: "barfoo.txt", type: "file", size: 4568, mtime: 1445432120,
-  meta: "a9c6ce30-418b-e292-83bc-769a8c72f600",
-  key: "042a77edb0d527816ddb3e74457d92e69302099881b9a3181a514696c0fc39bf",
-  ref: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"
-},
-{ name: "some folder", type: "folder",
-  key: "fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a",
-  ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
-},
-{ name: "external share", type: "external",
-  owner: "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
-  key: "d570b7fcf9eda9daa648d5ec18ae04x9bd1f7b8d6acbd8764844df5aaae0ff91",
-  url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
-},
+{ name: "barfoo.txt", size: 4568, mtime: 1445432120,
+meta: "a9c6ce30-418b-e292-83bc-769a8c72f600",
+key: "042a77edb0d527816ddb3e74457d92e69302099881b9a3181a514696c0fc39bf",
+ref: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"
+}],
+folders: [
+{ name: "some folder",
+key: "fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a",
+ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db"
+}],
+externals: [
+{ name: "external share",
+owner: "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
+key: "d570b7fcf9eda9daa648d5ec18ae04x9bd1f7b8d6acbd8764844df5aaae0ff91",
+url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3ff7315/b6e78ecb-176d-031c-d1d4-eed608ae6e12"
+}]
+}
 ```
 
 ### Directory Metadata [DM]
@@ -72,8 +75,12 @@ spec_version: INT,  // version of the VOLUME spec
 version: {version: LONG, time: LONG}, // metadata version and time of change, time should not be trusted
 shared: // description of all shares
 { shares* },
-objects: // list of objects in this folder
-[ objects* ]
+files: // list of files in this folder
+[ file* ]
+folders: // list of folders in this folder
+[ folder* ]
+externals: // list of external shares in this folder
+[ external* ]
 }
 ```
 
@@ -103,7 +110,6 @@ File:
 ```
 {
 name: STR, // object name,
-type: "file", // the type of file objects is always "file"
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
 meta: STR|null, // path to the FM, if it exists
@@ -117,7 +123,6 @@ Folder:
 ```
 {
 name: STR // object name,
-type: "folder" // the type of folder objects is always "folder"
 key: KEY // symmetric directory key
 ref: STR // ref of the metadata file that contains information about the folder
 },
@@ -128,7 +133,6 @@ External:
 ```
 {
 name: STR, // object name,
-type: "external", // the type of external folders is always "external"
 key: KEY // symmetric directory key
 owner: STR, // public key of the owner of that VOLUME
 url: STR // URL to the metadata file that contains information about the folder
