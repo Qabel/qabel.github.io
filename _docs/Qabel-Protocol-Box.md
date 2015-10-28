@@ -17,6 +17,16 @@ Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 The accounting server controls write access to the S3 bucket. Registered users (not identities!) can request temporary credentials for AWS.
 All data is sent as JSON and UTF-8.
 
+### Required permissions for the AWS user
+The accounting server uses an AWS user to create the temporary credentials. He must have the following permissions:
+
+* "sts:GetFederationToken" to generate the credentials
+* "s3:GetObject" for read access
+* "s3:PutObject" for uploading
+* "s3:ListBucket" is used to find unreferenced files (not implemented)
+
+These permissions should only be granted for the Qabel box S3 bucket.
+
 ### Login
 The login method grants a new authentication token.
 
