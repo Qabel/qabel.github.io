@@ -12,6 +12,50 @@ A set of protocols to store files and folders on a VOLUME that is on AWS S3 and 
 Qabel Box uses an Accounting server which controls the access to AWS S3. Every client who needs write access has to be authenticated by the server and then receives a set of credentials for direct access to the VOLUME.
 Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 
+## Accounting server
+
+The accounting server controls write access to the S3 bucket. Registered users (not identities!) can request temporary credentials for AWS.
+All data is sent as JSON and UTF-8.
+
+### Login
+The login method grants a new authentication token.
+
+* Ressource: /api/v0/auth/login
+* Method: POST
+* Request data: `{username: STR, password: STR}`
+* Response data: `{key: STR}`
+
+The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
+
+For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
+
+For every method except login, this authorization header is required.
+
+### Token
+The token ressource controls the federation token.
+
+* Ressource: /api/v0/token
+* Method: POST
+* Request data: None
+* Response data: `{AccessKeyId: STR, SecretAccessKey: STR, SessionToken: STR}`
+
+### Prefix
+The prefix ressource controls all prefixes of the user. All prefixes are fully qualified URLs.
+
+Create a new prefix:
+
+* Ressource: /api/v0/prefix
+* Method: POST
+* Request data: None
+* Response data: `{prefix: STR}`
+
+Get a list of available prefixes
+
+* Ressource: /api/v0/prefix
+* Method: GET
+* Request data: None
+* Response data: `{prefixes: [STR]}`
+
 ## Structure of a VOLUME
 
 A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/\<index\> which is the starting point and contains references to other objects. All file names on S3 are UUIDs.
