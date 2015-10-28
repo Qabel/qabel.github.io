@@ -376,6 +376,38 @@ Share a single file to another identity
 1. Notify the other identity about the new share with a drop message including **dk1**
 
 
+# Handling conflicts
+Conflicts can occour in the small timeframe between checking for changed DM and the
+propagation delay after uploading the updated DM. A client has to check, after a reasonable delay,
+if the changes were overwritten.
+
+1. Download the DM after 10s
+1. Check if the last_change_by and version is the same as in the uploaded file
+1. If a change is detected, repeat the original operation and insert into the DM, set the device, increment the version
+1. Upload the merged DM and repeat.
+
+## Typical scenarios
+
+Client A uploads the DM first, Client B overwrites the DM.
+
+### Non conflicting changes
+
+Scenario: Client A creates a new object and client B creates a new object, the object have different names.
+Solution: Client A inserts the object into the updated DM and uploads it
+
+### Conflicting changes
+
+Scenario: Client A deletes a file, client B changes the file (which uploads a new block)
+Solution: Client A accepts the change from client B
+
+Scenario: Client A changes a file, client B deletes the file
+Solution: Client A inserts the file again
+
+Scenario: Client A changes a file, client B changes the same file
+Solution: Client A inserts the local version of the file with a deconflicted name by adding 'CONFLICT and the date and time as suffix
+Example: foobar.txt and foobar_CONFLICT_2015-10-23_19:33:23.txt
+
+
 # SQLite Schema
 
 Schema for the SQLite3 database which is used as a directory metadata file (DM). The schema for
