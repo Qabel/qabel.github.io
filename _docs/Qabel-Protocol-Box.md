@@ -25,7 +25,8 @@ The metadata file stores information equivalent of this example JSON document, b
 root: "https://qabelbox.s3.amazonaws.com/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
 name: "index",
 spec_version: 0,
-version: {version: 7, time:  1445963627},
+version: {version: "85bc5ead74c52df59c3abd3340ff9d6bd821acd61189950aec4f68c37b773a20",
+          time:  1445963627},
 last_change_by: "487a481f-4d93-cef0-4475-88ee576d37fd",
 shared: [
 	"aa8c3f39-edc5-00b0-ab8b-ba66d05b60db" : { read: [
@@ -72,7 +73,7 @@ last_change_by: UUID, // ID of the device that made the last change
 spec_version: INT,  // version of the VOLUME spec
 					// increment if migrations are needed
 					// and/or the files are incompatible between versions
-version: {version: LONG, time: LONG}, // metadata version and time of change, time should not be trusted
+version: {version: KEY, time: LONG}, // metadata version and time of change, time should not be trusted
 shared: // description of all shares
 { shares* },
 files: // list of files in this folder
@@ -86,6 +87,13 @@ externals: // list of external shares in this folder
 
 Note that folders that are not "index" do not have the "shared"-key, as all information about shares in a VOLUME are stored in "index".
 
+The version is a SHA-256 hash built with the following rule:
+```
+version(0) = SHA-256(0x00 || device-id)
+version(n) = SHA-256(0x01 || version(n-1) || device-id)
+```
+
+The device-id is unique for each client and a 128-bit value.
 
 ### Shares
 
@@ -208,8 +216,8 @@ Initialize a new VOLUME without any objects
 	path: STR, // prefix of the volume
 	name: "index", // starting point of each VOLUME
 	spec_version: 0,
-	version: 0,
-	last_change_by: **dk0**
+	version: SHA-256(0x00 || **devId0**),
+	last_change_by: **devId0**
 	objects: []
 	}
 	```
@@ -382,7 +390,7 @@ propagation delay after uploading the updated DM. A client has to check, after a
 if the changes were overwritten.
 
 1. Download the DM after 10s
-1. Check if the last_change_by and version is the same as in the uploaded file
+1. Check if the version is the same as in the uploaded file
 1. If a change is detected, repeat the original operation and insert into the DM, set the device, increment the version
 1. Upload the merged DM and repeat.
 
@@ -439,10 +447,12 @@ CREATE TABLE spec_version
 /*
 Current version and the current time. The time is only used for displaying,
 it should not be trusted.
+* 'id' is meaningless and only for record keeping purposes.
 */
 CREATE TABLE version
 (
-       version          INTEGER PRIMARY KEY,
+       id               INTEGER PRIMARY KEY,
+       version          BLOB NOT NULL,
        time             INTEGER NOT NULL
 );
 
