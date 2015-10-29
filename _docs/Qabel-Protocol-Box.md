@@ -82,13 +82,15 @@ version: {version: "85bc5ead74c52df59c3abd3340ff9d6bd821acd61189950aec4f68c37b77
           time:  1445963627},
 last_change_by: "487a481f-4d93-cef0-4475-88ee576d37fd",
 shared: [
-	"aa8c3f39-edc5-00b0-ab8b-ba66d05b60db" : { read: [
-		"feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
-		"fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a"
-		]},
-	"8f5da4db-02ab-ca96-1824-3ba8d18a85be" : { read: [
-		"fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a"
-		]}
+{ ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db",
+  recipient: "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
+  type: "READ"},
+{ ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db",
+  recipient: "fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a",
+  type: "READ"},
+{ ref:"8f5da4db-02ab-ca96-1824-3ba8d18a85be",
+  recipient: "fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a",
+  type: "READ"}
 ],
 files: [
 { name: "foobar.jpg", size: 6203434, mtime: 1445432325,
@@ -126,7 +128,7 @@ spec_version: INT,  // version of the VOLUME spec
 					// increment if migrations are needed
 					// and/or the files are incompatible between versions
 version: {version: KEY, time: LONG}, // metadata version and time of change, time should not be trusted
-shared: // description of all shares
+shared: // description of all shares, only in the index file
 { shares* },
 files: // list of files in this folder
 [ file* ]
@@ -153,7 +155,9 @@ The index is the path to the metadata file of the share.
 
 ```
 {
-read: [KEY] // List of public keys of identities that this folder is read only shared with
+ref: STR // ref of the shared metadata file
+recipient: KEY // public key of the recipient contact
+type: "READ" // type is always READ for now
 },
 ```
 
