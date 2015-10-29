@@ -9,6 +9,7 @@ The box component is a core component of Qabel. It serves as a file storage for 
 The files are stored on AWS S3 and encrypted.
 
 Features:
+
 * Uploading single files or recursively uploading folders
 * Downloading single files or folders
 * Sharing read access to single files or folders
