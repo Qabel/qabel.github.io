@@ -317,7 +317,7 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 
 ### Process
 
-1. Download VOLUME/\<index\> and decrypt it with the users private key
+1. Download VOLUME/\<index\> and decrypt it with the users' private key
 1. Open the DM and show the directory listing to the user
 1. If the user selects a directory or external share:
     1. Download the DM and decrypt it with the key stored in the parent DM
@@ -332,7 +332,7 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 
 ### Task
 
-Delete a file on the users VOLUME.
+Delete a file on the user's VOLUME.
 
 ### Prerequisites
 
@@ -406,7 +406,7 @@ Remove a share to another identity
 
 ### Process
 
-1. Remove the identities public key from the share info of the folder in the index DM, set the device id and increment the version
+1. Remove the identities public keys from the share info of the folder in the index DM, set the device id and increment the version
 1. Download recursively all DM
 1. Upload an archive of all those DM, encrypted with **dk0**, the root directory key, as a new file to the VOLUME
 1. Insert this file with the share ref+"_backup" as name into the root directory
