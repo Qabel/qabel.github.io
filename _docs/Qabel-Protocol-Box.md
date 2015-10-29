@@ -194,7 +194,7 @@ block: STR // path to the block without the prefix \<root\>/blocks/
 },
 ```
 
-Folder:
+Folder/Directory:
 
 ```
 {
