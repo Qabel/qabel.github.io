@@ -247,7 +247,7 @@ The plaintext of the drop message is a JSON document with the url of the DM and 
 
 ```
 {
-	url: STR // url to the DM of the shared folder
+	url: STR // url to the DM of the shared folder or the FM of the shared file
 	key: KEY // symmetric directory key
 }
 ```
