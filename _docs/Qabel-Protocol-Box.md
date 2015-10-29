@@ -77,7 +77,6 @@ The metadata file stores information equivalent of this example JSON document, b
 ```
 {
 root: "https://qabelbox.s3.amazonaws.com/users/b5911736-9ace-a799-8e34-dd9c17acff9a/",
-name: "index",
 spec_version: 0,
 version: {version: "85bc5ead74c52df59c3abd3340ff9d6bd821acd61189950aec4f68c37b773a20",
           time:  1445963627},
@@ -121,8 +120,7 @@ url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3
 
 ```
 {
-root: STR, // URL of the VOLUME
-name: "index", // name of the file itself
+root: STR, // URL of the VOLUME, only in the index file
 last_change_by: UUID, // ID of the device that made the last change
 spec_version: INT,  // version of the VOLUME spec
 					// increment if migrations are needed
@@ -139,7 +137,7 @@ externals: // list of external shares in this folder
 }
 ```
 
-Note that folders that are not "index" do not have the "shared"-key, as all information about shares in a VOLUME are stored in "index".
+Note that folders that are not "index" do not have the "shared"-key, as all information about shares in a VOLUME are stored in "index". The index file also has the URL of the VOLUME in the "root" attribute
 
 The version is a SHA-256 hash built with the following rule:
 ```
@@ -480,7 +478,6 @@ The JSON documents can be directly translated into this schema.
 /*
 The meta table includes the values
  * root (only needed in the index)
- * name
  * last_change_by
 */
 CREATE TABLE meta
