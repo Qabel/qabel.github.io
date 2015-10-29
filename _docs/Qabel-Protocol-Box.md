@@ -509,7 +509,7 @@ CREATE TABLE version
 (
        id               INTEGER PRIMARY KEY,
        version          BLOB NOT NULL,
-       time             INTEGER NOT NULL
+       time             LONG NOT NULL
 );
 
 /*
@@ -524,7 +524,7 @@ CREATE TABLE shares
        id               INTEGER PRIMARY KEY,
        ref              VARCHAR(255) NOT NULL,
        recipient        BLOB NOT NULL,
-       type             INT NOT NULL
+       type             INTEGER NOT NULL
 );
 
 /*
@@ -542,7 +542,7 @@ CREATE TABLE files
        block              VARCHAR(255) NOT NULL,
        name             VARCHAR(255) NOT NULL,
        size             LONG NOT NULL,
-       mtime            INT NOT NULL,
+       mtime            LONG NOT NULL,
        key              BLOB NOT NULL
 );
 
