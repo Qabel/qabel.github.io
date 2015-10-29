@@ -376,26 +376,26 @@ Update an existing file on the users VOLUME.
 
 ### Task
 
-Share a directory recursively to another identity
+Share a directory recursively to one or more contacts
 
 ### Prerequisites
 
 * Path and directory key
 * Valid federation token with write access to the VOLUME
-* Contact info of the other identity
+* Contact info of the contacts
 
 
 ### Process
 
 1. Insert the share info in the index DM, increment the version, set the device id, encrypt and upload it
-1. Notify the other identity about the new share with a drop message.
+1. Notify the contacts about the new share with a drop message.
 
 
 ## Unsharing a directory
 
 ### Task
 
-Remove a share to another identity
+Remove a share to one or more contacts
 
 ### Prerequisites
 
@@ -406,7 +406,7 @@ Remove a share to another identity
 
 ### Process
 
-1. Remove the identities public keys from the share info of the folder in the index DM, set the device id and increment the version
+1. Remove the contacts' public keys from the share info of the folder in the index DM, set the device id and increment the version
 1. Download recursively all DM
 1. Upload an archive of all those DM, encrypted with **dk0**, the root directory key, as a new file to the VOLUME
 1. Insert this file with the share ref+"_backup" as name into the root directory
@@ -424,12 +424,12 @@ Remove a share to another identity
 
 ### Task
 
-Share a single file to another identity
+Share a single file to one or more contacts
 
 ### Prerequisites
 
 * Valid federation token with write access to the VOLUME
-* Contact info of the other identity
+* Contact info of the contacts
 * DM of the parent folder
 
 ### Process
@@ -439,7 +439,7 @@ Share a single file to another identity
 1. Insert the reference to the FM into the DM
 1. Upload the FM and the DM
 1. Insert the share info in the index DM and upload it
-1. Notify the other identity about the new share with a drop message including **dk1**
+1. Notify the contacts about the new share with a drop message including **dk1**
 
 
 # Handling conflicts
