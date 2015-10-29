@@ -261,7 +261,7 @@ Initialize a new VOLUME without any objects
 ### Prerequisites
 
 * Valid federation token with write access to the VOLUME
-* Device ID **devId0*
+* Device ID **devId0**
 
 ### Process
 
@@ -294,8 +294,8 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 
 ### Process
 
-1. Download VOLUME/\<index\> decrypt it with the users' private key k0
-1. Find the folder "examples" in the index and retrieve the DM, decrypt it with the stored directory key dk1
+1. Download VOLUME/\<index\> decrypt it with the users' private key **k0**
+1. Find the folder "examples" in the index and retrieve the DM, decrypt it with the stored directory key **dk1**
 1. Create a new symmetric key **fk0**
 1. Encrypt the file with **fk0**
 1. Generate a new UUID, this is the ref of the file
@@ -401,7 +401,7 @@ Remove a share to another identity
 
 * Path and directory key
 * Valid federation token with write access to the VOLUME
-* Public key pub1 of the other identity
+* Public keys **pub1** of the contacts
 
 
 ### Process
@@ -410,14 +410,14 @@ Remove a share to another identity
 1. Download recursively all DM
 1. Upload an archive of all those DM, encrypted with **dk0**, the root directory key, as a new file to the VOLUME
 1. Insert this file with the share ref+"_backup" as name into the root directory
-1. Delete recursively all DM from the share (See [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html)
+1. Delete recursively all DM from the share (See [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html))
 1. Wait until the deletion has propagated, check the progress by issuing HEAD requests for the files.
-1. Create a new **dk\*** for each DM in the share and insert them in their parents
-1. Upload all the new DM, encrypted with their new **dk\***, depth first
+1. Create a new **dk*** for each DM in the share and insert them in their parents
+1. Upload all the new DM, encrypted with their new **dk***, depth first
 1. Check every uploaded DM with HEAD requests to ensure that no conflicts occurred.
-1. Insert the new **dk\*** into the parent directory of the share and upload the DM
+1. Insert the new **dk*** into the parent directory of the share and upload the DM
 1. Remove the backup file from the root directory
-1. Send the new **dk\*** of the share to all remaining identities
+1. Send the new **dk*** of the share to all remaining contacts
 
 
 ## Sharing a single file
@@ -470,7 +470,7 @@ Scenario: Client A changes a file, client B deletes the file
 Solution: Client A inserts the file again
 
 Scenario: Client A changes a file, client B changes the same file
-Solution: Client A inserts the local version of the file with a deconflicted name by adding 'CONFLICT and the date and time as suffix
+Solution: Client A inserts the local version of the file with a deconflicted name by adding 'CONFLICT' and the date and time as suffix
 Example: foobar.txt and foobar_CONFLICT_2015-10-23_19:33:23.txt
 
 
