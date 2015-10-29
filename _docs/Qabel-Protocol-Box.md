@@ -274,7 +274,9 @@ Initialize a new VOLUME without any objects
 	spec_version: 0,
 	version: SHA-256(0x00 || **devId0**),
 	last_change_by: **devId0**
-	objects: []
+	files: []
+	folders: []
+	externals: []
 	}
 	```
 1. Encrypt the file with **priv0** and upload it to VOLUME/\<index\>
