@@ -301,7 +301,7 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 1. Generate a new UUID, this is the ref of the file
 1. Upload the block to VOLUME/blocks/\<uuid\>, note the "Date" header from the response and use it as mtime
 1. Insert the new object, including its **fk0**, into the metadata file, using the mtime from the response and the original file size in bytes as size
-1. Set `last_change_by` to your device id
+1. Set `last_change_by` to the user's device id
 1. Encrypt the DM with **dk1** and upload it 
 
 
@@ -343,7 +343,7 @@ Delete a file on the user's VOLUME.
 
 1. Download and decrypt the DM
 1. Remove the file object from the DM, increment the version
-1. Set `last_change_by` to your device id
+1. Set `last_change_by` to the user's device id
 1. Encrypt the DM and upload it, overwriting the old DM
 1. Delete the block of the deleted file on S3
 1. If the file object has a reference to a FM, delete the FM
@@ -366,7 +366,7 @@ Update an existing file on the users VOLUME.
 1. Download and decrypt the DM
 1. Upload the file in a new block with a new UUID and a new key
 1. Update the file object in the DM with the new ref and key, increment the version
-1. Set `last_change_by` to your device id
+1. Set `last_change_by` to user's device id
 1. Encrypt the DM and upload it, overwriting the old DM
 1. Update the FM, if one exists
 1. Delete the block of the deleted file on S3
