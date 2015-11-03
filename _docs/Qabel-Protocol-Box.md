@@ -23,6 +23,7 @@ The accounting server uses an AWS user to create the temporary credentials. He m
 * "sts:GetFederationToken" to generate the credentials
 * "s3:GetObject" for read access
 * "s3:PutObject" for uploading
+* "s3:DeleteObject" for deleting
 * "s3:ListBucket" is used to find unreferenced files (not implemented)
 
 These permissions should only be granted for the Qabel box S3 bucket.
