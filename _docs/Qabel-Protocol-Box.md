@@ -409,7 +409,7 @@ Remove a share to one or more contacts
 1. Remove the contacts' public keys from the share info of the folder in the index DM, set the device id and increment the version
 1. Download recursively all DM
 1. Upload an archive of all those DM with the name "backup_" + ref in the root directory (as a file object).
-1. Delete recursively all DM from the share (See [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html)
+1. Delete recursively all DM from the share (See [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html) )
 1. Wait until the deletion has propagated, check the progress by issuing HEAD requests for the files.
 1. Create a new **dk*** for each DM in the share and insert them in their parents
 1. Upload all the new DM, encrypted with their new **dk***, depth first
@@ -470,7 +470,7 @@ Solution: Client A inserts the file again
 
 Scenario: Client A changes a file, client B changes the same file
 Solution: Client A inserts the local version of the file with a deconflicted name by adding 'CONFLICT' and the date and time as suffix
-Example: foobar.txt and foobar_CONFLICT_2015-10-23_19:33:23.txt
+Example: foobar.txt and foobar\_CONFLICT\_2015-10-23_19:33:23.txt
 
 
 # SQLite Schema
