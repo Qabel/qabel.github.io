@@ -31,14 +31,8 @@ title: Appendix Glossary
 
 * **Share**: Adapted from the Windows-term 'Share' (German: Freigabe). A shared directory/file/blob that resides on the (Qabel) client(?) so other clients may access it(?) - so the file is not required to be uploaded on to the (Qabel) server yet to be called a Share.
 
-* **Qabel Storage**: Server which provides Services to store data according to the [Storage Protocol](../Qabel-Protocol-Storage/)
-
-* **Qabel Storage Volume** (QSV): A dedicated Volume on a Qabel Storage. It is identified by a public token, provides write access by a secret token and can be deleted by a revoke token.
-
 * **Identity**: Easy: Who am I? An identity is a collection of a label (nickname) and a public and private key pair. It belongs to the local user of Qabel.
 
 * **Contact**: Easy: Which people do I know? A contact is a collection of informations about another user. It contains public keys for encryption and signature verification, the drop URLs and specific data from modules.
 
 * **Person**: Easy: Describes the contact. It saves personal information about a contact like the name and e-mail address(es). Some fixed keys are defined in the person module.
-
-* **Blob**: Binary large object. Name of the objects which get uploaded to a Qabel Storage Volume.

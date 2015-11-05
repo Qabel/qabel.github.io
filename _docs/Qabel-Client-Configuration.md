@@ -45,8 +45,6 @@ The timestamps are in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/
 This settings items has seven sub items
  * accounts
  * drop_servers
- * storage_servers
- * storage_volumes
  * identities
  * module_data
 
@@ -55,8 +53,6 @@ Summary
         Settings        = "{"
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
-                        'storage_servers' : storage_servers,
-                        'storage_volumes' : storage_volumes,
                         'identities' : identities
                         'module_data' : { KEY : { ... }, ... }
                         "}"
@@ -128,76 +124,6 @@ Summary
                         'url' : URL,
                         'auth' : STR,
                         'active' : BOOL
-                        "}"
-
-#### Storage Servers
-
-The item "storage_servers" includes an array of storage server settings
-
-Summary
-
-        storage_servers   = "["
-                        storage_server*
-                        "]"
-
-#### Storage Server
-
- * server: Name of the server
- * port: Port to use
- * path: Path on the server
- * auth: Authentification to use to get or set data
-
-| Key | Description |
-| --- | ----------- |
-| id | Unique identifier |
-| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
-| url | URL of the [storage server](../Qabel-Protocol-Storage#url), excluding `public` which identifies a single Storage Volume on the server |
-| auth | Optional credential (see [drop server](#drop-server)) |
-
-
-Summary
-
-        storage_server    = "{"
-                        'id': INT,
-                        'updated': LONG,
-                        'created': LONG,
-                        'deleted': LONG,
-                        'url' : URL,
-                        'auth' : STR
-                        "}"
-
-#### Storage Volumes
-
-The item `storage_volumes` includes an array of storage volume settings
-
-Summary
-
-        storage_volumes = "["
-                        storage_volumes*
-                        "]"
-
-#### Storage Volume
-
-| Key | Description |
-| --- | ----------- |
-| id | Unique identifier |
-| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
-| storage_server_id | Id of the storage server |
-| public_identifier | identifier of the Storage Volume on the server |
-| token | Credential granting write permission to the Storage Volume |
-| revoke_token | Credential granting the permission to delete the whole Storage Volume |
-
-Summary
-
-        storage_volume   = "{"
-                        'id': INT,
-                        'updated': LONG,
-                        'created': LONG,
-                        'deleted': LONG,
-                        'storage_server_id' : INT,
-                        'public_identifier' : STR,
-                        'token' : STR,
-                        'revoke_token': STR,
                         "}"
 
 #### Identities
