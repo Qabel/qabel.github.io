@@ -36,7 +36,7 @@ In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.o
 
 ## Drop IDs
 
-Drops are identified by 256 bit (32 byte) value as ID. Coding is "URL friendly Base64".
+Drops are identified by a 256 bit (32 byte) value as ID. Coding is "URL friendly Base64".
 See [RFC 4648](http://www.ietf.org/rfc/rfc4648.txt) "Base 64 Encoding with URL and Filename Safe Alphabet".
 
 The client has a setting to trade off anonymity against traffic.
