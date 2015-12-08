@@ -264,6 +264,8 @@ a payload_type `box_message`. The payload itself is a JSON document.
 }
 ```
 
+Chat messages should be persisted on the device to preserve a chat log.
+
 ## Initializing a new VOLUME
 
 ### Task
