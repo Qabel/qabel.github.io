@@ -246,7 +246,7 @@ this information for their VOLUME by calling a REST method on the accounting ser
 
 
 ### Share notification drop message
-The plaintext of the drop message is a JSON document with the url of the DM and the symmetric key.
+The plaintext of the drop message is a JSON document with the url of the DM and the symmetric key. The payload_type for a share notification is `box_share_notification`.
 
 ```
 {
