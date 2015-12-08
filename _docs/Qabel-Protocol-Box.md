@@ -51,21 +51,21 @@ The token ressource controls the federation token.
 * Response data: `{AccessKeyId: STR, SecretAccessKey: STR, SessionToken: STR}`
 
 ### Prefix
-The prefix ressource controls all prefixes of the user. All prefixes are fully qualified URLs.
+The prefix ressource controls all prefixes of the user.
 
 Create a new prefix:
 
 * Ressource: /api/v0/prefix
 * Method: POST
 * Request data: None
-* Response data: `{prefix: STR}`
+* Response data: `STR`
 
 Get a list of available prefixes
 
 * Ressource: /api/v0/prefix
 * Method: GET
 * Request data: None
-* Response data: `{prefixes: [STR]}`
+* Response data: `[STR]`
 
 ## Structure of a VOLUME
 
