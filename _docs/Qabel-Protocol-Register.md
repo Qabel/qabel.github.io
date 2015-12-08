@@ -49,3 +49,17 @@ Search and get a list with identities:
 * Method: POST
 * Request data: `{alias: STR, drop_url: STR, pub_key: STR, email: STR, mobile: STR}`
 * Response data: `{identities: [identity]}`
+
+
+```SQL
+CREATE TABLE identities
+(
+    public_key  BINARY PRIMARY KEY,
+    alias       VARCHAR(255) NOT NULL,
+    drop_url    VARCHAR(200) NOT NULL,
+    mobile      VARCHAR(128),
+    email       VARCHAR(254),
+    created_at  DATE NOT NULL,
+    updated_at  DATE NOT NULL,
+)
+```
