@@ -251,9 +251,14 @@ The plaintext of the drop message is a JSON document with the url of the DM and 
 ```
 {
 	url: STR // url to the DM of the shared folder or the FM of the shared file
-	key: KEY // symmetric directory key
+	key: KEY // symmetric key for the DM or FM
+	msg: STR // optional message for the contact
 }
 ```
+
+### Updating shares
+
+If the directory key of a shared FM or DM changes, the share becomes invalid. A new share notification drop message has to be send.
 
 ## Initializing a new VOLUME
 
@@ -441,7 +446,7 @@ Share a single file to one or more contacts
 1. Insert the reference to the FM into the DM
 1. Upload the FM and the DM
 1. Insert the share info in the index DM and upload it
-1. Notify the contacts about the new share with a drop message including **dk1**
+1. Notify the contacts about the new share with a drop message including **dk1** and the url of the FM
 
 
 # Handling conflicts
