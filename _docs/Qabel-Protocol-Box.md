@@ -256,6 +256,10 @@ The plaintext of the drop message is a JSON document with the url of the DM and 
 }
 ```
 
+### Unreachable shares
+
+If a client cannot reach a share anymore because either the FM or DM does not exist anymore, or the client cannot decrypt the metadata file anymore, the share should be marked as invalid for the session. The user can then decide to delete the share.
+
 ### Updating shares
 
 If the directory key of a shared FM or DM changes, the share becomes invalid. A new share notification drop message has to be send.
@@ -447,6 +451,22 @@ Share a single file to one or more contacts
 1. Upload the FM and the DM
 1. Insert the share info in the index DM and upload it
 1. Notify the contacts about the new share with a drop message including **dk1** and the url of the FM
+
+## Unsharing a single file
+
+### Tasks
+
+Remove a single file share
+
+### Prerequisites
+
+* Valid federation token with write access to the VOLUME
+* DM of the parent folder
+
+### Process
+
+1. Remove the reference to the FM from the DM and upload the DM
+1. Delete the FM
 
 
 # Handling conflicts
