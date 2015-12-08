@@ -40,12 +40,14 @@ Drops are identified by a 256 bit (32 byte) value as ID. Coding is "URL friendly
 See [RFC 4648](http://www.ietf.org/rfc/rfc4648.txt) "Base 64 Encoding with URL and Filename Safe Alphabet".
 
 The client has a setting to trade off anonymity against traffic.
-The setting is a percentage value and expresses how much of the available drop box range should be used. Let this value p (0<p<=1).
+Let the setting be a percentage value *p* (0<p<=1) which expresses how much of the available drop box range should be used.
 Then the drop id is calculated the following:
-    id := random_pick_from_range(0, (2^id_length * p) - 1)
+
+`id := random_pick_from_range(0, (2^id_length * p) - 1)`
+
 The corner cases are:
-    p=1: The complete range of drop ids is used, thus collisions are unlikely.
-    p -> 0: Very few drop ids are used, collisions are very likely and drop boxes are heavily used.
+* **p=1**: The complete range of drop ids is used, thus collisions are unlikely.
+* **p -> 0**: Very few drop ids are used, collisions are very likely and drop boxes are heavily used.
 
 ## Methods
 
