@@ -539,9 +539,8 @@ Table of all file objects in the directory
 */
 CREATE TABLE files
 (
-       id               INTEGER PRIMARY KEY,
-       block              VARCHAR(255) NOT NULL,
-       name             VARCHAR(255) NOT NULL,
+       block            VARCHAR(255) NOT NULL,
+       name             VARCHAR(255) PRIMARY KEY,
        size             LONG NOT NULL,
        mtime            LONG NOT NULL,
        key              BLOB NOT NULL
@@ -556,9 +555,8 @@ Table of all folder objects in the directory
 */
 CREATE TABLE folders
 (
-       id               INTEGER PRIMARY KEY,
        ref              VARCHAR(255) NOT NULL,
-       name             VARCHAR(255) NOT NULL,
+       name             VARCHAR(255) PRIMARY KEY,
        key              BLOB NOT NULL
 );
 
@@ -572,9 +570,8 @@ Table of all external objects in the directory
 */
 CREATE TABLE externals
 (
-       id              INTEGER PRIMARY KEY,
        owner           BLOB NOT NULL,
-       name            VARCHAR(255) NOT NULL,
+       name            VARCHAR(255) PRIMARY KEY,
        key             BLOB NOT NULL,
        url             TEXT NOT NULL
 );
