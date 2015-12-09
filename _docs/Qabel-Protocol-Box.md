@@ -89,7 +89,7 @@ shared: [
 { ref: "aa8c3f39-edc5-00b0-ab8b-ba66d05b60db",
   recipient: "fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a",
   type: "READ"},
-{ ref:"a9c6ce30-418b-e292-83bc-769a8c72f600"",
+{ ref:"a9c6ce30-418b-e292-83bc-769a8c72f600",
   recipient: "fgah28991273814c9123987124f009893043ef75a0dbf3f4eba4a98eaa9b4e6a",
   type: "READ"}
 ],
@@ -262,7 +262,7 @@ If a client cannot reach a share anymore because either the FM or DM does not ex
 
 ### Updating shares
 
-If the directory key of a shared FM or DM changes, the share becomes invalid. A new share notification drop message has to be send.
+If the directory key of a shared FM or DM changes, the share becomes invalid. A new share notification drop message has to be sent.
 
 ## Initializing a new VOLUME
 
@@ -565,7 +565,7 @@ Table of all file objects in the directory
 * 'mtime' is the modification timestamp
 * 'key' is the symmetric file key
 * 'meta is the ref of the FM, if one exists
-* 'key' is the symmetric key of the FM, if one exists
+* 'metakey' is the symmetric key of the FM, if one exists
 */
 CREATE TABLE files
 (
