@@ -51,21 +51,21 @@ The token ressource controls the federation token.
 * Response data: `{AccessKeyId: STR, SecretAccessKey: STR, SessionToken: STR}`
 
 ### Prefix
-The prefix ressource controls all prefixes of the user. All prefixes are fully qualified URLs.
+The prefix ressource controls all prefixes of the user.
 
 Create a new prefix:
 
 * Ressource: /api/v0/prefix
 * Method: POST
 * Request data: None
-* Response data: `{prefix: STR}`
+* Response data: `STR`
 
 Get a list of available prefixes
 
 * Ressource: /api/v0/prefix
 * Method: GET
 * Request data: None
-* Response data: `{prefixes: [STR]}`
+* Response data: `[STR]`
 
 ## Structure of a VOLUME
 
@@ -569,9 +569,8 @@ Table of all file objects in the directory
 */
 CREATE TABLE files
 (
-       id               INTEGER PRIMARY KEY,
        block            VARCHAR(255) NOT NULL,
-       name             VARCHAR(255) NOT NULL,
+       name             VARCHAR(255) PRIMARY KEY,
        size             LONG NOT NULL,
        mtime            LONG NOT NULL,
        key              BLOB NOT NULL,
@@ -588,9 +587,8 @@ Table of all folder objects in the directory
 */
 CREATE TABLE folders
 (
-       id               INTEGER PRIMARY KEY,
        ref              VARCHAR(255) NOT NULL,
-       name             VARCHAR(255) NOT NULL,
+       name             VARCHAR(255) PRIMARY KEY,
        key              BLOB NOT NULL
 );
 
@@ -604,9 +602,8 @@ Table of all external objects in the directory
 */
 CREATE TABLE externals
 (
-       id              INTEGER PRIMARY KEY,
        owner           BLOB NOT NULL,
-       name            VARCHAR(255) NOT NULL,
+       name            VARCHAR(255) PRIMARY KEY,
        key             BLOB NOT NULL,
        url             TEXT NOT NULL
 );
