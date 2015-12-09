@@ -254,7 +254,7 @@ The plaintext of the drop message is a JSON document with the url of the DM and 
 ```
 
 ### User to user messaging
-Users can send chat messages to their contacts. Those messages are send as drop messages with
+Users can send chat messages to their contacts. Those messages are sent as drop messages with
 a payload_type `box_message`. The payload itself is a JSON document.
 
 
