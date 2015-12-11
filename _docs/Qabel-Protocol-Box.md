@@ -253,6 +253,19 @@ The plaintext of the drop message is a JSON document with the url of the DM and 
 }
 ```
 
+### User to user messaging
+Users can send chat messages to their contacts. Those messages are sent as drop messages with
+a payload_type `box_message`. The payload itself is a JSON document.
+
+
+```
+{
+	msg: STR // chat message
+}
+```
+
+Chat messages should be persisted on the device to preserve a chat log.
+
 ## Initializing a new VOLUME
 
 ### Task
