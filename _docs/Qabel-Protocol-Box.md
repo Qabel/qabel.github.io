@@ -313,8 +313,8 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 1. Create a new symmetric key **fk0**
 1. Encrypt the file with **fk0**
 1. Generate a new UUID, this is the ref of the file
-1. Upload the block to VOLUME/blocks/\<uuid\>, note the "Date" header from the response and use it as mtime
-1. Insert the new object, including its **fk0**, into the metadata file, using the mtime from the response and the original file size in bytes as size
+1. Upload the block to VOLUME/blocks/\<uuid\>, use the current device time in UTC as mtime
+1. Insert the new object, including its **fk0**, into the metadata file, using current device time in UTC as mtime and the original file size in bytes as size
 1. Set `last_change_by` to the user's device id
 1. Encrypt the DM with **dk1** and upload it 
 
