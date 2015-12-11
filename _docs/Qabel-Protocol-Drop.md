@@ -36,9 +36,18 @@ In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.o
 
 ## Drop IDs
 
-Drops are identified by a bit value of a certain length as ID. Coding is "URL friendly Base64".
+Drops are identified by a 256 bit (32 byte) value as ID. Coding is "URL friendly Base64".
 See [RFC 4648](http://www.ietf.org/rfc/rfc4648.txt) "Base 64 Encoding with URL and Filename Safe Alphabet".
-Proposed is 256 bit (32 byte) secure random number. (This is on par with 43 ASCII bytes.)
+
+The client has a setting to trade off anonymity against traffic.
+Let the setting be a percentage value *p* (0<p<=1) which expresses how much of the available drop box range should be used.
+Then the drop id is calculated the following:
+
+`id := random_pick_from_range(0, (2^id_length * p) - 1)`
+
+The corner cases are:
+* **p=1**: The complete range of drop ids is used, thus collisions are unlikely.
+* **p -> 0**: Very few drop ids are used, collisions are very likely and drop boxes are heavily used.
 
 ## Methods
 
