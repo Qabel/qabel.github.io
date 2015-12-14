@@ -232,7 +232,7 @@ Identities have a public key **pub** and a private key **priv**
 Each client device has a unique ID which is a random generated UUID **devID**
 
 ### Path to VOLUME/\<index\>
-\<index\> is calculated from the sha256 of the owners private key. Take the first 128bit of it
+\<index\> is calculated from the sha256 of the prefix as salt and the owners private key `<index>=SHA-256(prefix||privK_A)`. Take the first 128bit of it
 and format them like the canonical form of a UUID.
 This means: 8-4-4-4-12 hexadecimal digits.
 Example: e5cceedc-c222-d549-6211-1b6c684e0b2a
