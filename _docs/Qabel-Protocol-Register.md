@@ -33,7 +33,7 @@ Update an identity:
 
 * Resource: /api/v0/update
 * Method: POST
-* Request data: `signed{alias: STR, drop_url: STR, pub_key: STR[, email: STR, mobile: STR]}`
+* Request data: `signed{pub_key: STR[, email: STR, mobile: STR, alias: STR, drop_url: STR]}`
 * Response data: `None`
 
 Delete an identity:
