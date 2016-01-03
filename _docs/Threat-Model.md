@@ -27,6 +27,8 @@ We distinguish between four attacker types:
   3. Outside attacker who can eavesdrop traffic of a Qabel storage server, 
   4. Outside attacker who can eavesdrop traffic of the public Internet (e.g., *DE-CIX Frankfurt*).
 
+![Attacker Types](/images/attackerTypes.png)
+
 ##Capabilities of Attackers
 ###0. Everyone
 The stored encrypted data is publicly available. Thus everybody knows the number and sizes of all files and the estimated number of all folders of every prefix.
