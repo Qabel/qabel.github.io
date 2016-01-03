@@ -61,7 +61,7 @@ Since only size and IP of requests to Qabel servers is observable an Internet ea
 ###Worst Case Scenario
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes. *O* can observe which IPs download files from *As* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *As* drop ID is only a minor advantage to *O* since random users (can) write to *As* drop ID. An attacker could statistically guess which IPs *A* communicates with by matching the IPs of downloaders from *As* prefixes and senders of drop messages to *As* drop ID.
 
-####Worst Case Scenario under usage of *Tor*
+####Worst Case Scenario under Usage of *Tor*
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes.
 
 Thus as far as all users additionally use *Tor* no information on relations between them is revealed.
