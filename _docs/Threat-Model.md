@@ -1,3 +1,6 @@
+---
+title: Threat Model
+---
 #Threat Model
 This model shall provide an overview on the system architecture regarding security. It shall list all attackers and their capabilities. It also shall outline the targeted security goals by describing how they are reached.
 
