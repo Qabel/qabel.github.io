@@ -2,7 +2,7 @@
 This model shall provide an overview on the system architecture regarding security. It shall list all attackers and their capabilities. It also shall outline the targeted security goals by describing how they are reached.
 
 ##Security Goals
-The main targeted goal of Qabel is to require no trust in any entity in order to achieve *confidentiality*, *integrity*, *authenticity* and partly *anonymity*. The first three goals are reached by Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user.
+The main targeted goal of Qabel is to require no trust in any entity in order to achieve **confidentiality**, **integrity**, **authenticity** and partly **anonymity**. The first three goals are reached by Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user.
 
 ###Restrictions to Freedom of Trust
 The mentioned main goal is limited by unavoidable restrictions like the trust in proper storage of data on the server and possible malware on the client. Hence following trust relationships are required to achieve the mentioned security goals:
@@ -25,7 +25,7 @@ We distinguish between four attacker types:
   1. Outside attacker who can eavesdrop traffic of the client,
   2. Outside attacker who can eavesdrop traffic of a Qabel drop server,
   3. Outside attacker who can eavesdrop traffic of a Qabel storage server, 
-  4. Outside attacker who can eavesdrop traffic of the public Internet (e.g., DE-CIX Frankfurt).
+  4. Outside attacker who can eavesdrop traffic of the public Internet (e.g., *DE-CIX Frankfurt*).
 
 ##Capabilities of Attackers
 ###0. Everyone
@@ -56,8 +56,10 @@ Since only size and IP of requests to Qabel servers is observable an Internet ea
 ###Worst Case Scenario
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes. *O* can observe which IPs download files from *As* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *As* drop ID is only a minor advantage to *O* since random users (can) write to *As* drop ID. An attacker could statistically guess with which IPs *A* communicates by matching the IPs of downloaders from *As* prefixes and senders of drop messages to *As* drop ID.
 
-####Worst Case Scenario under usage of Tor
+####Worst Case Scenario under usage of *Tor*
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes.
+
+Thus as far as all users additionally use *Tor* no information on relations between them is revealed.
 
 ### Further Attacker Scenarios
 
@@ -66,14 +68,14 @@ Qabel neither detects nor prevents blocking of traffic. Currently writing to dro
 
 ####Private Key Disclosure
 If an attacker gets in possession of a private key this private key cannot be trusted anymore. (If the user gets to know about this it can broadcast an emergency message, that its key was stolen.)
-The attacker can decrypt all files of the user and all received drop messages. It cannot decrypt sent drop messages due to the properties of noise.
+The attacker can decrypt all files of the user and all received drop messages. It cannot decrypt sent drop messages due to the properties of *noise*.
 
 ##Improvements to reduce Attacker Capabilities
 
 * Fixed block size for storage files to hide file sizes.
 * Certificate pinning of trusted Qabel certificates.
-* Usage of Tor/proxy to hide user relations by hiding the IP.
+* Usage of [*Tor*](https://www.torproject.org/)/proxy to hide user relations by hiding the IP.
 * Non-Repudiation by signing messages or files before encrypting. Encrypt-then-sign is not target because it reveals the used key pair.
 * Proof of concept for drop upload to reduce DDoS against drop server and uphold anonymity of users.
-* Implementation of axolotl (or other asymmetric forward secrecy protocols) for drop messages to gain full (not only sender-) forward secrecy.
+* Implementation of [*axolotl*](https://github.com/trevp/axolotl/wiki) (or other asymmetric forward secrecy protocols) for drop messages to gain full (not only sender-) forward secrecy.
 * Usage of post quantum cryptography.
