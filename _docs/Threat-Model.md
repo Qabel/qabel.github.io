@@ -17,14 +17,15 @@ TLS certificates of Qabel servers are not forged by trusted CAs.
 
 ###Attacker Types
 We distinguish between four attacker types:
+
 1. Contacts of the user,
 2. Qabel users which are not connected to the user,
 3. Qabel servers (=AWS),
 4. Outside attackers:
-	4.a. Outside attacker who can eavesdrop traffic of the client,
-	4.b.i. Outside attacker who can eavesdrop traffic of a Qabel drop server,
-	4.b.ii. Outside attacker who can eavesdrop traffic of a Qabel storage server, 
-	4.c. Outside attacker who can eavesdrop traffic of the public Internet (e.g., DE-CIX Frankfurt).
+  1. Outside attacker who can eavesdrop traffic of the client,
+  2. Outside attacker who can eavesdrop traffic of a Qabel drop server,
+  3. Outside attacker who can eavesdrop traffic of a Qabel storage server, 
+  4. Outside attacker who can eavesdrop traffic of the public Internet (e.g., DE-CIX Frankfurt).
 
 ##Capabilities of Attackers
 ###0. Everyone
@@ -39,17 +40,17 @@ An attacker has no advanced capabilities regarding security by being a Qabel use
 ###3. Qabel Servers
 Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each identity. Due to this it is able to monitor all file writes and can match them to the registered user.
 
-###4.a. Client Eavesdropper
+###4.i. Client Eavesdropper
 A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server a user uses but it cannot guess the specific drop ID.
 
-###4.b.i. Drop Eavesdropper
+###4.ii. Drop Eavesdropper
 As far as a drop eavesdropper only observes one drop server it cannot conclude which user uses the drop server randomly and which uses it to communicate.
 If a drop eavesdropper observes many drop servers a user *A* uses, it might statistically guess which one is used to receive messages.
 
-###4.b.ii. Storage Eavesdropper
+###4.iii. Storage Eavesdropper
 A storage eavesdropper can observe which prefixes are written by which IPs. Additionally it can guess by the file size which files are downloaded by which IPs.
 
-###4.c. Internet Eavesdropper
+###4.iv. Internet Eavesdropper
 Since only size and IP of requests to Qabel servers is observable an Internet eavesdropper can observe which IPs request which Qabel servers if it knows the IPs of Qabel servers (the request size is not fixed and thus not characteristic). By observing a great number of requests it might statistically guess which IPs communicate and share files among each other.
 
 ###Worst Case Scenario
