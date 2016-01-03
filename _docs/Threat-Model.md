@@ -1,70 +1,78 @@
----
-title: Threat Model
----
-## Scope of the Threat Model
+#Threat Model
+This model shall provide an overview on the system architecture regarding security. It shall list all attackers and their capabilities. It also shall outline the targeted security goals by describing how they are reached.
 
-The threat model exhaustively lists what an attacker can learn about a user.
-As the computers running a Qabel client or server could be compromised by an
-attacker, the threat model also lists the capabilities of Qabel clients and
-servers.
+##Security Goals
+The main targeted goal of Qabel is to require no trust in any entity in order to achieve *confidentiality*, *integrity*, *authenticity* and partly *anonymity*. The first three goals are reached by Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user.
 
-This document does not list other things an attacker could achieve, like
-blocking access to a Qabel server. It also assumes that the user doesn't do
-something as stupid as uploading the secret key material onto a public server.
+###Restrictions to Freedom of Trust
+The mentioned main goal is limited by unavoidable restrictions like the trust in proper storage of data on the server and possible malware on the client. Hence following trust relationships are required to achieve the mentioned security goals:
+* Trust in the client device: the newest original Qabel client software is installed, no malware is installed.
+* Trust in the Qabel servers: all sent data is stored properly i.e.: drop messages are stored for sufficient duration on the specified drop server, files are stored permanently (until they are deleted by the client) in the specified directory.
+* Trivial assumptions: users keep their credentials and keys secret.
 
-> Note: The existing Qabel software doesn't implement these requirements yet,
-> and this document is still in a state of flux.
-> Please add and question existing entries.
+####Further Assumptions
+TLS certificates of Qabel servers are not forged by trusted CAs.
 
-**TODO: What changes if a user is using Tor?**
+##System Overview
 
-## Assumptions
+###Attacker Types
+We distinguish between four attacker types:
+1. Contacts of the user,
+2. Qabel users which are not connected to the user,
+3. Qabel servers (=AWS),
+4. Outside attackers:
+	4.a. Outside attacker who can eavesdrop traffic of the client,
+	4.b.i. Outside attacker who can eavesdrop traffic of a Qabel drop server,
+	4.b.ii. Outside attacker who can eavesdrop traffic of a Qabel storage server, 
+	4.c. Outside attacker who can eavesdrop traffic of the public Internet (e.g., DE-CIX Frankfurt).
 
-This section lists assumptions about the used techniques, protocols and services.
+##Capabilities of Attackers
+###0. Everyone
+The stored encrypted data is publicly available. Thus everybody knows the number and sizes of all files and the estimated number of all folders of every prefix.
 
-### TLS
+###1. Contact
+A user B learns one identity (drop ID, public key and alias) of a user A during the contact. When receiving a share user B learns the directory structure of the shared directory and its files or the shared file. This implies that B learns the name of As prefix the share is stored in.
 
-TLS is used to authenticate the Storage server to the client and for transport encryption between client and Storage server. If TLS or the X.509 PKI is broken, an attacker gains the same capabilities as a Qabel Storage server.
+###2. Qabel User 
+An attacker has no advanced capabilities regarding security by being a Qabel user.
 
-## Threats
+###3. Qabel Servers
+Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each identity. Due to this it is able to monitor all file writes and can match them to the registered user.
 
-### Local network attacker
+###4.a. Client Eavesdropper
+A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server a user uses but it cannot guess the specific drop ID.
 
-A local network attacker can learn:
+###4.b.i. Drop Eavesdropper
+As far as a drop eavesdropper only observes one drop server it cannot conclude which user uses the drop server randomly and which uses it to communicate.
+If a drop eavesdropper observes many drop servers a user *A* uses, it might statistically guess which one is used to receive messages.
 
-1. From the characteristic package sizes, an attacker can learn, that a user is using a Qabel Storage Server.
-2. An attacker can learn, that a user communicates with a Qabel Drop Server.
-3. By trying all public keys known to him an attacker can learn which user signed a given Drop Message.
+###4.b.ii. Storage Eavesdropper
+A storage eavesdropper can observe which prefixes are written by which IPs. Additionally it can guess by the file size which files are downloaded by which IPs.
 
-Questions:
+###4.c. Internet Eavesdropper
+Since only size and IP of requests to Qabel servers is observable an Internet eavesdropper can observe which IPs request which Qabel servers if it knows the IPs of Qabel servers (the request size is not fixed and thus not characteristic). By observing a great number of requests it might statistically guess which IPs communicate and share files among each other.
 
-* How much can an attacker learn from correlating different connections to a Qabel Storage server? 
-  Without proper transport encryption there is no protection at all.
+###Worst Case Scenario
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes. *O* can observe which IPs download files from *As* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *As* drop ID is only a minor advantage to *O* since random users (can) write to *As* drop ID. An attacker could statistically guess with which IPs *A* communicates by matching the IPs of downloaders from *As* prefixes and senders of drop messages to *As* drop ID.
 
-### Qabel Drop Server
+####Worst Case Scenario under usage of Tor
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes.
 
-A Drop Server can learn:
+### Further Attacker Scenarios
 
-1. A Drop Server learns how many distinct clients are using the server.
+####Denial of Service
+Qabel neither detects nor prevents blocking of traffic. Currently writing to drop servers is not restricted, this can be enhanced by a proof of concept (see Improvements to reduce Attacker Capabilities).
 
-### Qabel Storage Server
+####Private Key Disclosure
+If an attacker gets in possession of a private key this private key cannot be trusted anymore. (If the user gets to know about this it can broadcast an emergency message, that its key was stolen.)
+The attacker can decrypt all files of the user and all received drop messages. It cannot decrypt sent drop messages due to the properties of noise.
 
-A Storage Server can learn:
+##Improvements to reduce Attacker Capabilities
 
-1. A Storage Server learns who owns a given Storage Volume.
-2. A Storage Server learns which IP addresses download a given Storage Blob.
-3. From the used URL a Storage Server learns who most likely uploaded a Storage Blob.
-
-Problems:
-
-* A Storage Server should *not* learn that much about relations between users.
-
-### A users Qabel Client
-
-A client knows everything about the user including all plaintext and all secret key material.
-
-### Contacts
-
-A Contact can learn:
-
-1. A contact learns a users public keys (signing and encryption key).
+* Fixed block size for storage files to hide file sizes.
+* Certificate pinning of trusted Qabel certificates.
+* Usage of Tor/proxy to hide user relations by hiding the IP.
+* Non-Repudiation by signing messages or files before encrypting. Encrypt-then-sign is not target because it reveals the used key pair.
+* Proof of concept for drop upload to reduce DDoS against drop server and uphold anonymity of users.
+* Implementation of axolotl (or other asymmetric forward secrecy protocols) for drop messages to gain full (not only sender-) forward secrecy.
+* Usage of post quantum cryptography.
