@@ -2,7 +2,7 @@
 This model shall provide an overview on the system architecture regarding security. It shall list all attackers and their capabilities. It also shall outline the targeted security goals by describing how they are reached.
 
 ##Security Goals
-The main targeted goal of Qabel is to require no trust in any entity in order to achieve **confidentiality**, **integrity**, **authenticity** and partly **anonymity**. The first three goals are reached by Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user.
+The main targeted goal of Qabel is to require no trust in any entity in order to achieve **confidentiality**, **integrity**, **authenticity** and partly **anonymity**. The first three goals are reached by using Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user.
 
 ###Restrictions to Freedom of Trust
 The mentioned main goal is limited by unavoidable restrictions like the trust in proper storage of data on the server and possible malware on the client. Hence following trust relationships are required to achieve the mentioned security goals:
@@ -34,7 +34,7 @@ We distinguish between four attacker types:
 The stored encrypted data is publicly available. Thus everybody knows the number and sizes of all files and the estimated number of all folders of every prefix.
 
 ###1. Contact
-A user B learns one identity (drop ID, public key and alias) of a user A during the contact. When receiving a share user B learns the directory structure of the shared directory and its files or the shared file. This implies that B learns the name of As prefix the share is stored in.
+A user *B* learns one identity (drop ID, public key and alias) of a user *A* during the contact. When receiving a share user *B* learns the directory structure of the shared directory and its files or the shared file. This implies that *B* learns the name of *As* prefix the share is stored in.
 
 ###2. Qabel User 
 An attacker has no advanced capabilities regarding security by being a Qabel user.
@@ -43,20 +43,20 @@ An attacker has no advanced capabilities regarding security by being a Qabel use
 Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each identity. Due to this it is able to monitor all file writes and can match them to the registered user.
 
 ###4.i. Client Eavesdropper
-A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server a user uses but it cannot guess the specific drop ID.
+A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server*s* a user uses to receive message (most requested drop server*s*) but it cannot guess the specific drop ID.
 
 ###4.ii. Drop Eavesdropper
 As far as a drop eavesdropper only observes one drop server it cannot conclude which user uses the drop server randomly and which uses it to communicate.
 If a drop eavesdropper observes many drop servers a user *A* uses, it might statistically guess which one is used to receive messages.
 
 ###4.iii. Storage Eavesdropper
-A storage eavesdropper can observe which prefixes are written by which IPs. Additionally it can guess by the file size which files are downloaded by which IPs.
+A storage eavesdropper can observe which prefixes are written by which IPs. Additionally it can guess by file size which files are downloaded by which IPs.
 
 ###4.iv. Internet Eavesdropper
 Since only size and IP of requests to Qabel servers is observable an Internet eavesdropper can observe which IPs request which Qabel servers if it knows the IPs of Qabel servers (the request size is not fixed and thus not characteristic). By observing a great number of requests it might statistically guess which IPs communicate and share files among each other.
 
 ###Worst Case Scenario
-Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes. *O* can observe which IPs download files from *As* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *As* drop ID is only a minor advantage to *O* since random users (can) write to *As* drop ID. An attacker could statistically guess with which IPs *A* communicates by matching the IPs of downloaders from *As* prefixes and senders of drop messages to *As* drop ID.
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes. *O* can observe which IPs download files from *As* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *As* drop ID is only a minor advantage to *O* since random users (can) write to *As* drop ID. An attacker could statistically guess which IPs *A* communicates with by matching the IPs of downloaders from *As* prefixes and senders of drop messages to *As* drop ID.
 
 ####Worst Case Scenario under usage of *Tor*
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes.
