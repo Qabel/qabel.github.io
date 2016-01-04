@@ -37,7 +37,7 @@ We distinguish between four attacker types:
 The stored encrypted data is publicly available. Thus everybody knows the number and sizes of all files and the estimated number of all folders of every prefix.
 
 ###1. Contact
-A user *B* learns one identity (drop ID, public key and alias) of a user *A* during the contact. When receiving a share user *B* learns the directory structure of the shared directory and its files or the shared file. This implies that *B* learns the name of *As* prefix the share is stored in.
+A user *B* learns one identity (drop ID, public key and alias) of a user *A* during the contact. When receiving a share user *B* learns the directory structure of the shared directory and its files or the shared file. This implies that *B* learns the name of *A's* prefix the share is stored in.
 
 ###2. Qabel User 
 An attacker has no advanced capabilities regarding security by being a Qabel user.
@@ -59,12 +59,40 @@ A storage eavesdropper can observe which prefixes are written by which IPs. Addi
 Since only size and IP of requests to Qabel servers is observable an Internet eavesdropper can observe which IPs request which Qabel servers if it knows the IPs of Qabel servers (the request size is not fixed and thus not characteristic). By observing a great number of requests it might statistically guess which IPs communicate and share files among each other.
 
 ###Worst Case Scenario
-Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes. *O* can observe which IPs download files from *As* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *As* drop ID is only a minor advantage to *O* since random users (can) write to *As* drop ID. An attacker could statistically guess which IPs *A* communicates with by matching the IPs of downloaders from *As* prefixes and senders of drop messages to *As* drop ID.
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses.
+
+This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *A's* prefixes. *O* can observe which IPs download files from *A's* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker could statistically guess which IPs *A* communicates with by matching the IPs of downloaders from *A's* prefixes and senders of drop messages to *A's* drop ID.
+
+Visible Information:
+
+**Storage**
+* *A* <-> *A's* prefixes
+* Number and size of *A's* files
+* Estimated number of *A's* folders
+* Upload / modification time of *A's* files (and folders)
+* Time and IP of downloads of *A's* files
+* Time, size, server IP and thereby possibly the prefix of *A's* downloads
+
+**Drop**
+* *A* -> Drop ID *A* listens
+* Time, size and sender IP of a drop messages sent to *A's* drop ID
+* Time, size and drop server IP of a drop messages *A* sends
 
 ####Worst Case Scenario under Usage of *Tor*
-Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *As* prefixes.
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *A's* prefixes.
 
-Thus as far as all users additionally use *Tor* no information on relations between them is revealed.
+Thus as far as all users additionally use *Tor* no information on relations between them is revealed:
+
+**Storage**
+* *A* <-> *A's* prefixes
+* Number and size of *A's* files
+* Estimated number of *A's* folders
+* Upload / modification time of *A's* files (and folders)
+* Time of downloads of *A's* files
+
+**Drop**
+* *A* -> Drop ID *A* listens
+* Time and size of a drop messages sent to *A's* drop ID
 
 ### Further Attacker Scenarios
 
