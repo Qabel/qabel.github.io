@@ -75,8 +75,8 @@ Visible Information:
 
 **Drop**
 * *A* -> Drop ID *A* listens
-* Time, size and sender IP of a drop messages sent to *A's* drop ID
-* Time, size and drop server IP of a drop messages *A* sends
+* Time, size and sender IP of drop messages sent to *A's* drop ID
+* Time, size and drop server IP of drop messages *A* sends
 
 ####Worst Case Scenario under Usage of *Tor*
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *A's* prefixes.
@@ -92,7 +92,7 @@ Thus as far as all users additionally use *Tor* no information on relations betw
 
 **Drop**
 * *A* -> Drop ID *A* listens
-* Time and size of a drop messages sent to *A's* drop ID
+* Time and size of drop messages sent to *A's* drop ID
 
 ### Further Attacker Scenarios
 
