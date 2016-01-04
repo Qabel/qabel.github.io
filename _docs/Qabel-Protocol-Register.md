@@ -39,7 +39,7 @@ Update an identity:
 Delete an identity:
 
 * Resource: /api/v0/delete
-* Method: DELETE
+* Method: POST
 * Request data: `signed{pub_key: STR}`
 * Response data: `None`
 
