@@ -468,8 +468,7 @@ Share a single file to one or more contacts
 ## Unsharing a single file
 
 ### Tasks
-
-Remove a single file share
+Remove a single file share to one or more contacts
 
 ### Prerequisites
 
@@ -478,8 +477,16 @@ Remove a single file share
 
 ### Process
 
-1. Remove the reference to the FM from the DM and upload the DM
-1. Delete the FM
+1. Update the share info in the index DM and upload it
+1. Update or remove the FM:
+  * If one or more other permitted user is left
+    1. Encrypt the FM with a new **dk***
+    1. Insert the new **dk*** into the DM
+    1. Upload the FM and the DM
+    1. Send the new **dk*** of the FM to all remaining contacts
+  * If no other permitted user is left
+    1. Remove the reference to the FM from the DM and upload the DM
+    1. Delete the FM
 
 
 # Handling conflicts
