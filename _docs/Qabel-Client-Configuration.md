@@ -143,6 +143,8 @@ Summary
 | id | Unique identifier |
 | updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
 | alias | Textual, user-defined label identifying this identity (also to other users) |
+| email | Email address of the user owning this identity (optional) |
+| phone | Phone number of the user owning this identity (optional) |
 | private_key | Private, secret part of the key pair |
 | public_key | Public part of the key pair |
 | drops | List of [urls](../Qabel-Protocol-Drop#url) of the drops where the identity expects to receive messages |
@@ -156,6 +158,8 @@ Summary
                         'created': LONG,
                         'deleted': LONG,
                         'alias' : NAME,
+                        'email': STR,
+                        'phone': STR,
                         'keys' :
                                 "{"
                                 'private_key' : KEY,
