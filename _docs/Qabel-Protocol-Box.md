@@ -28,6 +28,13 @@ The accounting server uses an AWS user to create the temporary credentials. He m
 
 These permissions should only be granted for the Qabel box S3 bucket.
 
+### Registration
+
+* Resource: /api/v0/auth/registration
+* Method: POST
+* Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
+* Response data: ``
+
 ### Login
 The login method grants a new authentication token.
 
