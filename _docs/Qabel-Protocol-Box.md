@@ -38,7 +38,7 @@ These permissions should only be granted for the Qabel box S3 bucket.
 ### Login
 The login method grants a new authentication token.
 
-* Ressource: /api/v0/auth/login
+* Resource: /api/v0/auth/login
 * Method: POST
 * Request data: `{username: STR, password: STR}`
 * Response data: `{key: STR}`
@@ -50,26 +50,26 @@ For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
 For every method except login, this authorization header is required.
 
 ### Token
-The token ressource controls the federation token.
+The token resource controls the federation token.
 
-* Ressource: /api/v0/token
+* Resource: /api/v0/token
 * Method: POST
 * Request data: None
 * Response data: `{AccessKeyId: STR, SecretAccessKey: STR, SessionToken: STR}`
 
 ### Prefix
-The prefix ressource controls all prefixes of the user.
+The prefix resource controls all prefixes of the user.
 
 Create a new prefix:
 
-* Ressource: /api/v0/prefix
+* Resource: /api/v0/prefix
 * Method: POST
 * Request data: None
 * Response data: `STR`
 
 Get a list of available prefixes
 
-* Ressource: /api/v0/prefix
+* Resource: /api/v0/prefix
 * Method: GET
 * Request data: None
 * Response data: `[STR]`
