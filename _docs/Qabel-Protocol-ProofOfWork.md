@@ -33,7 +33,7 @@ It is not planned to be implemented for the BETA.
 
 * **X** variable number of leading zeros to dynamically adapt the work
 * **drop ID** to bind a PoW hash to a certain drop ID and to reduce IV collisions
-* **IV** to prevent drop message resending during the smallest time unit (e.g., 1 second);
+* **IV** to prevent reusing of drop messages during the smallest time unit (e.g., 1 second);
   using a server generated IV could lead to an overflow (e.g., see [SYN flood](https://en.wikipedia.org/wiki/SYN_flood));
   storing a fix number of IVs could lead to an overflow (100 IVs: `IV_1=IV_101, IV_2=IV_102, ...` => client can resend messages during the smallest time unit)
 * **time** to prevent reusing of drop messages
