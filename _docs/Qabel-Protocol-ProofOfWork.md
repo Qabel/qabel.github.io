@@ -18,8 +18,8 @@ It is not planned to be implemented for the BETA.
 
 1. The client requests the number of leading zeros `X` of a proper request
 1. The server responses this information
-1. The client generates a random IV
-1. The client iterates the counter to find `hash(drop ID || IV || time || hash(m) || counter) = "000..."` with X leading zeros
+1. The client generates a random `IV`
+1. The client iterates the `counter` to find `hash(drop ID || IV || time || hash(m) || counter) = "000..."` with `X` leading zeros
 1. The client sends `drop ID || IV || time || hash(m) || counter || hash(drop ID || IV || time || hash(m) || counter) || m`
 1. The server verifies
   1. that the proof of work hash begins with `X` zeros
@@ -35,7 +35,7 @@ It is not planned to be implemented for the BETA.
 * **drop ID** to bind a PoW hash to a certain drop ID and to reduce IV collisions
 * **IV** to prevent drop message resending during the smallest time unit (e.g., 1 second);
   using a server generated IV could lead to an overflow (e.g., see [SYN flood](https://en.wikipedia.org/wiki/SYN_flood));
-  storing a fix number of IVs could lead to an overflow (100 IVs: IV_1=IV_101, IV_2=IV_102, ... => client can resend messages during the smallest time unit)
+  storing a fix number of IVs could lead to an overflow (100 IVs: `IV_1=IV_101, IV_2=IV_102, ...` => client can resend messages during the smallest time unit)
 * **time** to prevent reusing of drop messages
 * **hash(m)** to bind a PoW hash to a certain message
 * **counter** to find a well formated hash
