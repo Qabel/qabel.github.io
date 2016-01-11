@@ -22,11 +22,11 @@ It is not planned to be implemented for the BETA.
 1. The client iterates the counter to find `hash(drop ID || IV || time || hash(m) || counter) = "000..."` with X leading zeros
 1. The client sends `drop ID || IV || time || hash(m) || counter || hash(drop ID || IV || time || hash(m) || counter) || m`
 1. The server verifies
-  1. that (drop ID, time, IV) is unique and thus not stored yet
+  1. that `(drop ID, time, IV)` is unique and thus not stored yet
   1. that requested time does not differ more than a certain time period from current time (e.g., 1 minute)
   1. proof of work hash
   1. message hash
-1. On successful verification server accepts the message and stores `drop ID, time, IV` for the smallest time unit (e.g., 1 second), else server rejects the message
+1. On successful verification server accepts the message and stores `(drop ID, time, IV)` for a certain time period (e.g., 1 minute), else server rejects the message
 
 ### Parameters
 
