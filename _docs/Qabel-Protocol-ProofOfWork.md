@@ -16,12 +16,13 @@ It is not planned to be implemented for the BETA.
 
 ##  Protocol
 
-1. The client requests the number of leading zeros (X) of a proper request
+1. The client requests the number of leading zeros `X` of a proper request
 1. The server responses this information
 1. The client generates a random IV
 1. The client iterates the counter to find `hash(drop ID || IV || time || hash(m) || counter) = "000..."` with X leading zeros
 1. The client sends `drop ID || IV || time || hash(m) || counter || hash(drop ID || IV || time || hash(m) || counter) || m`
 1. The server verifies
+  1. that the proof of work hash begins with `X` zeros
   1. that `(drop ID, time, IV)` is unique and thus not stored yet
   1. that requested time does not differ more than a certain time period from current time (e.g., 1 minute)
   1. proof of work hash
@@ -30,6 +31,7 @@ It is not planned to be implemented for the BETA.
 
 ### Parameters
 
+* **X** variable number of leading zeros to dynamically adapt the work
 * **drop ID** to bind a PoW hash to a certain drop ID and to reduce IV collisions
 * **IV** to prevent drop message resending during the smallest time unit (e.g., 1 second);
   using a server generated IV could lead to an overflow (e.g., see [SYN flood](https://en.wikipedia.org/wiki/SYN_flood));
