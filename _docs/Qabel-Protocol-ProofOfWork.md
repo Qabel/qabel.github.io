@@ -31,7 +31,7 @@ It is not planned to be implemented for the BETA.
 
 ### Parameters
 
-* **X** variable number of leading zeros to dynamically adapt the work
+* **X** variable number of leading zeros to dynamically adapt the workload
 * **drop ID** to bind a PoW hash to a certain drop ID and to reduce IV collisions
 * **IV** to prevent reusing of drop messages during the smallest time unit (e.g., 1 second);
   using a server generated IV could lead to an overflow (e.g., see [SYN flood](https://en.wikipedia.org/wiki/SYN_flood));
