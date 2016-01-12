@@ -7,11 +7,11 @@
       # - Link/Filename: Displayname
       #   Link/Filename: Displayname will be displayed in the same line as the
       #     item above and in ( )
-      - Components-Platform-Interface: Platform
+      - Components-Platform-Interface: *Platform*
       - Components-Contacts: Contacts
       - Components-Drop: Drop
       - Components-Box: Box
-      - Components-Modules: Modules
+      - Components-Modules: *Modules*
       - Components-Crypto: Crypto
     Client Data:
       - Qabel-Client-Configuration: Configuration
@@ -20,7 +20,7 @@
     Communication Protocols:
       - Qabel-Protocol-Drop: Drop Protocol
       - Qabel-Protocol-Box: Box Protocol
-      - Qabel-Protocol-ProofOfWork: Proof of Work
+      - Qabel-Protocol-ProofOfWork: *Proof of Work*
 
 - title: Overview
   docs:

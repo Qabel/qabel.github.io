@@ -65,18 +65,6 @@ Summary
 #### Account **[TODO]**
 
 
-#### Drop Servers
-
-The item `drop_servers` includes an array of drop server settings structures
-
-Summary
-
-        drop_servers    = "["
-                        drop_server*
-                        "]"
-
-#### Drop Server **[TODO]**
-
 #### Identities
 
 The item `identities` includes an array of identity settings structures
@@ -105,9 +93,6 @@ Summary
 
         identity        = "{"
                         'id': INT,
-                        'updated': LONG,
-                        'created': LONG,
-                        'deleted': LONG,
                         'alias' : NAME,
                         'email': STR,
                         'phone': STR,

@@ -41,9 +41,6 @@ Summary
 
     contact         = "{"
                     'id': INT,
-                    'updated': LONG,
-                    'created': LONG,
-                    'deleted': LONG,
                     'alias': NAME,
                     'email': STR,
                     'phone': STR,
