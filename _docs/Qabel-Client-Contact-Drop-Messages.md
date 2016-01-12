@@ -1,12 +1,11 @@
 ---
 title: Client Contact DropMessages
 ---
-# Contact Specification
+# Contact Specification **[To be reviewed]**
 
 ## Contacts
 
 The item has one sub item
-* contacts
 
 Summary
 

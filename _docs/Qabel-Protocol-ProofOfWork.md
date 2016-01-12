@@ -1,7 +1,7 @@
 ---
 title: Protocol Proof of Work
 ---
-# Proof Of Work Specification
+# Proof Of Work Specification **[TODO with Drop]**
 
 ## Abstract
 

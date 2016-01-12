@@ -7,7 +7,7 @@
       # - Link/Filename: Displayname
       #   Link/Filename: Displayname will be displayed in the same line as the
       #     item above and in ( )
-      - Components-Bridgehead: Bridgehead
+      - Components-Platform-Interface: Platform
       - Components-Contacts: Contacts
       - Components-Drop: Drop
       - Components-Box: Box

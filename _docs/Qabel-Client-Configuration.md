@@ -6,29 +6,22 @@ title: Client Configuration
 ## Abstract
 Notes on configuration settings stored on each client.
 
-The configuration has two parts. The first part is configuration data which is the same across all clients of this user. This configuration data will be synchronized later (in beta only basic sync). The other part is for the local machine only. E.g. polling time, window sizes and alike. These two parts are stored in individual files.
-
 ## Local settings
 
-The preferences are a collection of settings which describes some common settings
-for the library and the UI.
+The preferences are a collection of settings which describe some common settings
+for the library, the UI and for the communication with the Qabel servers.
 
- with the qabel server
- default: true
- * poll_interval: This setting describes the default polling interval on
- desktop machine
- * drop_last_update : when the core asked the last time messages from the drop servers. It save the time stamp string as received from the Drop Message
- * module_data : Each module shall save there local configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. 
+default: true
+
+* poll_interval: default polling interval
+* drop_last_update: time of last drop message request; time stamp of the received drop message is used
 
 Summary
 
         preferences     = "{"
                         'poll_interval' : NUM,
                         'drop_last_update' : STR,
-                        'module_data' : { KEY : { ... }, ... }
                         "}"
-
-## Synced settings
 
 ### Common Settings
 
@@ -42,11 +35,11 @@ The timestamps are in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/
 
 ### Settings
 
-This settings items has seven sub items
+A device stores three types of settings:
+
  * accounts
  * drop_servers
  * identities
- * module_data
 
 Summary
 
@@ -54,13 +47,11 @@ Summary
                         'accounts' : accounts,
                         'drop_servers' : drop_servers,
                         'identities' : identities
-                        'module_data' : { KEY : { ... }, ... }
                         "}"
 
 #### Accounts
 
 Accounts are meant for paid service accounting.
-Accounts are not part of the Qabel Client's beta release.
 
 The item `accounts` includes an array of account settings structures
 
@@ -71,28 +62,8 @@ Summary
                         "]"
 
 
-#### Account
+#### Account **[TODO]**
 
-| Key | Description |
-| --- | ----------- |
-| id | Unique identifier |
-| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
-| provider | TODO |
-| user | TODO |
-| auth | TODO |
-
-
-Summary
-
-        account         = "{"
-                        'id': INT,
-                        'updated': LONG,
-                        'created': LONG,
-                        'deleted': LONG,
-                        'provider' : STR,
-                        'user' : STR,
-                        'auth' : STR
-                        "}"
 
 #### Drop Servers
 
@@ -104,27 +75,7 @@ Summary
                         drop_server*
                         "]"
 
-#### Drop Server
-
-| Key | Description |
-| --- | ----------- |
-| id | Unique identifier |
-| updated, created, deleted | timestamp in [seconds since epoc](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15) |
-| url | [URL](../Qabel-Protocol-Drop#url) of the drop server (excluding the drop id) |
-| auth | Credential for optional, additional [access regulation](../Components-Drop#unrestricted-access) (e.g. a group password). |
-| active | Status flag |
-
-Summary
-
-        drop_server     = "{"
-                        'id': INT,
-                        'updated': LONG,
-                        'created': LONG,
-                        'deleted': LONG,
-                        'url' : URL,
-                        'auth' : STR,
-                        'active' : BOOL
-                        "}"
+#### Drop Server **[TODO]**
 
 #### Identities
 
@@ -136,7 +87,7 @@ Summary
                         identity*
                         "]"
 
-#### Identity
+#### Identity **[To be reviewed]**
 
 | Key | Description |
 | --- | ----------- |
@@ -167,7 +118,3 @@ Summary
                                 "}",
                         'drops' : [URL]
                         "}"
-
-#### Module Data
-
-Each module shall save there configuration in this area. The key of JSON Object have to be the name of the module. The core provides getter and setter method. We only provide this version of saving the configuration (for example the sync module will only sync this configuration). 

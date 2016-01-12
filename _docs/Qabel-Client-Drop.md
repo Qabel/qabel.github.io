@@ -1,7 +1,7 @@
 ---
 title: Client Drop
 ---
-# Qabel drop messages
+# Qabel drop messages **[TODO]**
 ## The structure and encryption of Qabel drop messages, transported using the Qabel Drop protocol.
 
 ### Terminology
