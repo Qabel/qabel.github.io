@@ -16,25 +16,28 @@ It is not planned to be implemented for the BETA.
 
 ##  Protocol
 
-1. The client requests the number of leading zeros `X` of a proper request
-1. The server responses this information
-1. The client generates a random `IV`
-1. The client iterates the `counter` to find `hash(drop ID || IV || time || hash(m) || counter) = "000..."` with `X` leading zeros
-1. The client sends `drop ID || IV || time || hash(m) || counter || hash(drop ID || IV || time || hash(m) || counter) || m`
+- The *smallest time unit* could be 1 second
+- A certain *time period* could be 1 minute
+
+1. The client requests the number of leading zeros `X` of a proper request and the current `IVserver`
+1. The server responses `X` and `IVserver` if it was generated for this *time period* already, else it generates `IVserver` and stores it for a *time period*
+1. The client generates a random `IVclient`
+1. The client iterates the `counter` to find `hash(IVserver || IVclient || time || hash(m) || counter) = "000..."` with `X` leading zeros
+1. The client sends `IVserver || IVclient || time || hash(m) || counter || hash(IVserver || IVclient || time || hash(m) || counter) || m`
 1. The server verifies
   1. that the proof of work hash begins with `X` zeros
-  1. that `(drop ID, time, IV)` is unique and thus not stored yet
-  1. that requested time does not differ more than a certain time period from current time (e.g., 1 minute)
+  1. that `(time, IVserver, IVclient)` is unique and thus not stored yet
+  1. that requested time does not differ more than a *time period* from current time
   1. proof of work hash
   1. message hash
-1. On successful verification server accepts the message and stores `(drop ID, time, IV)` for a certain time period (e.g., 1 minute), else server rejects the message
+1. On successful verification server accepts the message and stores `(time, IVclient)` for a *time period*, else server rejects the message
 
 ### Parameters
 
 * **X** variable number of leading zeros to dynamically adapt the workload
-* **drop ID** to bind a PoW hash to a certain drop ID and to reduce IV collisions
-* **IV** to prevent reusing of drop messages during the smallest time unit (e.g., 1 second);
-  using a server generated IV could lead to an overflow (e.g., see [SYN flood](https://en.wikipedia.org/wiki/SYN_flood));
+* **IVserver** is generated, stored and used for a *time period* to prevent precomputation of PoW hashes
+* **IVclient** to prevent reusing of drop messages during the *smallest time unit*;
+  using a server generated unique IV could lead to an overflow (e.g., see [SYN flood](https://en.wikipedia.org/wiki/SYN_flood));
   storing a fix number of IVs could lead to an overflow (100 IVs: `IV_1=IV_101, IV_2=IV_102, ...` => client can resend messages during the smallest time unit)
 * **time** to prevent reusing of drop messages
 * **hash(m)** to bind a PoW hash to a certain message
