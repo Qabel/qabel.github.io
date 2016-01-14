@@ -16,7 +16,6 @@
     Client Data:
       - Qabel-Client-Local-Data: Local
       - Qabel-Client-Remote-Data: Remote
-      - Qabel-Client-Drop: Drop
     Communication Protocols:
       - Qabel-Protocol-Drop: Drop Protocol
       - Qabel-Protocol-Box: Box Protocol
