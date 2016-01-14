@@ -63,7 +63,7 @@ The server stores data on its state and on previous drop messages:
                         "}"
 
         clientIVs     = "["
-                        clientIV
+                        clientIV*
                         "]"
 
         clientIV      = "{"
