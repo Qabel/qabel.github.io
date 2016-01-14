@@ -14,8 +14,8 @@
       - Components-Modules: *Modules*
       - Components-Crypto: Crypto
     Client Data:
-      - Qabel-Client-Configuration: Configuration
-      - Qabel-Client-Contact-Drop-Messages: Contact Drop Messages
+      - Qabel-Client-Local-Data: Local
+      - Qabel-Client-Remote-Data: Remote
       - Qabel-Client-Drop: Drop
     Communication Protocols:
       - Qabel-Protocol-Drop: Drop Protocol
