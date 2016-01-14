@@ -13,6 +13,7 @@ It is not planned to be implemented for the BETA.
 
 * Run a Flood Control using stochastical techniques or if the server detects a suspicious connection.
 * Additionally the client could send a calculation based on parameters and date/time with each query.
+** Inspired by [Hashcash](https://en.wikipedia.org/wiki/Hashcash)
 
 ##  Protocol
 
@@ -25,11 +26,11 @@ It is not planned to be implemented for the BETA.
 1. The client iterates the `counter` to find `hash(IVserver || IVclient || time || hash(m) || counter) = "000..."` with `X` leading zeros
 1. The client sends `IVserver || IVclient || time || hash(m) || counter || hash(IVserver || IVclient || time || hash(m) || counter) || m`
 1. The server verifies
-  1. that the proof of work hash begins with `X` zeros
-  1. that `(time, IVserver, IVclient)` is unique and thus not stored yet
-  1. that requested time does not differ more than a *time period* from current time
-  1. proof of work hash
-  1. message hash
+    1. that the proof of work hash begins with `X` zeros
+    1. that `(time, IVserver, IVclient)` is unique and thus not stored yet
+    1. that requested time does not differ more than a *time period* from current time
+    1. proof of work hash
+    1. message hash
 1. On successful verification server accepts the message and stores `(time, IVclient)` for a *time period*, else server rejects the message
 
 ### Parameters
