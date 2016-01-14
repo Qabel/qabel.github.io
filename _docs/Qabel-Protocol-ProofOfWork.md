@@ -13,7 +13,7 @@ It is not planned to be implemented for the BETA.
 
 * Run a Flood Control using stochastical techniques or if the server detects a suspicious connection.
 * Additionally the client could send a calculation based on parameters and date/time with each query.
-** Inspired by [Hashcash](https://en.wikipedia.org/wiki/Hashcash)
+    * Inspired by [Hashcash](https://en.wikipedia.org/wiki/Hashcash)
 
 ##  Protocol
 
