@@ -28,7 +28,7 @@ It is not planned to be implemented for the BETA.
 1. The server verifies
     1. that the proof of work hash begins with `X` zeros
     1. that `(time, IVserver, IVclient)` is unique and thus not stored yet
-    1. that requested time does not differ more than a *time period* from current time
+    1. that requested time does not differ more than a *time period* from current time and `IVserver` matches the *time period*
     1. proof of work hash
     1. message hash
 1. On successful verification server accepts the message and stores `(time, IVclient)` for a *time period*, else server rejects the message
@@ -43,3 +43,30 @@ It is not planned to be implemented for the BETA.
 * **time** to prevent reusing of drop messages
 * **hash(m)** to bind a PoW hash to a certain message
 * **counter** to find a well formated hash
+
+### Remote Data
+
+The server stores data on its state and on previous drop messages:
+
+        powConfig     = "{"
+                        'timePeriod' : NUM,
+                        'leadingZeros' : NUM,
+                        "}"
+
+        serverIVs     = "["
+                        serverIV*
+                        "]"
+
+        serverIV      = "{"
+                        'periodStartTime' : DATE,
+                        'IV' : STR,
+                        "}"
+
+        clientIVs     = "["
+                        clientIV
+                        "]"
+
+        clientIV      = "{"
+                        'transmissionTime' : DATE,
+                        'IV' : STR,
+                        "}"
