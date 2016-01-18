@@ -33,7 +33,33 @@ These permissions should only be granted for the Qabel box S3 bucket.
 * Resource: /api/v0/auth/registration
 * Method: POST
 * Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
-* Response data: ``
+* Response data: `{}`
+
+### Confirm password
+
+* Resource: /api/v0/auth/registration/verify-email
+* Method: POST
+* Request data: `{key: STR}`
+* Response data: `{}`
+
+### Reset password
+* Resource: /api/v0/auth/password/reset
+* Method: POST
+* Request data: `{email: STR}`
+* Response data: `{}`
+
+### Confirm password reset
+* Resource: /api/v0/auth/password/reset/confirm
+* Method: POST
+* Request data: `{uid: STR, token: STR, new_password1: STR,
+new_password2: STR }`
+* Response data: `{}`
+
+### Change password:
+* Resource: /api/v0/auth/password/change
+* Method: POST
+* Request data: `{new_password1: STR, new_password2: STR, old_password: STR}`
+* Response data: `{}`
 
 ### Login
 The login method grants a new authentication token.
@@ -46,6 +72,12 @@ The login method grants a new authentication token.
 The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
 
 For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
+
+### Logout:
+* Resource: /api/v0/auth/logout
+* Method: POST
+* Request data: `{}`
+* Response data: `{}`
 
 For every method except login, this authorization header is required.
 
