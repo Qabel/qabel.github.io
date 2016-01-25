@@ -23,7 +23,7 @@ We distinguish between four attacker types:
 
 1. Contacts of the user,
 2. Qabel users which are not connected to the user,
-3. Qabel servers (=AWS),
+3. Qabel servers,
 4. Outside attackers:
   1. Outside attacker who can eavesdrop traffic of the client,
   2. Outside attacker who can eavesdrop traffic of a Qabel drop server,
@@ -103,8 +103,8 @@ Qabel neither detects nor prevents blocking of traffic. Currently writing to dro
 If an attacker gets in possession of a private key this private key cannot be trusted anymore. (If the user gets to know about this it can broadcast an emergency message, that its key was stolen.)
 The attacker can decrypt all files of the user and all received drop messages. It cannot decrypt sent drop messages due to the properties of *noise*.
 
-####Disclosure of AWS Credentials
-The disclosure of the AWS credentials has no effect on the confidentiality nor integrity of stored files and sent and received messages. An attacker which possesses the credentials can learn the prefixes the user can write to. It can also create new prefixes for the user and can write and delete files to/from the storage.
+####Disclosure of Credentials
+The disclosure of the box storage credentials has no effect on the confidentiality nor integrity of stored files and sent and received messages. An attacker which possesses the credentials can learn the prefixes the user can write to. It can also create new prefixes for the user and can write and delete files to/from the storage.
 
 ##Improvements to reduce Attacker Capabilities
 
