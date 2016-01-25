@@ -117,7 +117,7 @@ The disclosure of the box storage credentials has no effect on the confidentiali
 
 * Fixed block size for storage files to hide file sizes.
 * Downloading all meta files at once to hide that a user downloads them in the order of the directory tree [issue](https://github.com/Qabel/qabel.github.io/issues/125).
-* Sending fake drop messages to hide user relations [issue](https://github.com/Qabel/qabel.github.io/issues/124).
+* Sending fake drop messages to hide user relations [issue](https://github.com/Qabel/qabel.github.io/issues/124), [issue](https://github.com/Qabel/qabel-core/issues/313), [issue](https://github.com/Qabel/qabel-core/issues/314).
 * Certificate pinning of trusted Qabel certificates.
 * Usage of [*Tor*](https://www.torproject.org/)/proxy to hide user relations by hiding the IP.
 * Non-Repudiation by signing messages or files before encrypting. Encrypt-then-sign is not target because it reveals the used key pair.
