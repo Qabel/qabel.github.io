@@ -43,10 +43,12 @@ A user *B* learns one identity (drop ID, public key and alias) of a user *A* dur
 An attacker has no advanced capabilities regarding security by being a Qabel user.
 
 ###3. Qabel Servers
-Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each identity. Due to this it is able to monitor all file writes and can match them to the registered user.
+Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each identity. Due to this it is able to monitor all file writes and can match them to the registered user. During the creation of a folder it can observe in which parent folder it is created. Thereby it can reconstruct the directory tree of *A*. As soon as a user requests (meta) files in the order of the (sub-)directory tree, *O* can assume that *A* shared the (sub-)directory with the user.
 
 ###4.i. Client Eavesdropper
-A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server*s* a user uses to receive message (most requested drop server*s*) but it cannot guess the specific drop ID.
+A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server*s* a user uses to receive message (most requested drop server*s*) but it cannot guess the specific drop ID (since the message lengths should be similar and thus indistinguishable). 
+
+The user messages are distinguishable by the number, size and destination of requests (see (this issue)[https://github.com/Qabel/qabel.github.io/issues/124]). Hence the client eavesdropper can observer which actions are performed by the user.
 
 ###4.ii. Drop Eavesdropper
 As far as a drop eavesdropper only observes one drop server it cannot conclude which user uses the drop server randomly and which uses it to communicate.
@@ -61,15 +63,18 @@ Since only size and IP of requests to Qabel servers is observable an Internet ea
 ###Worst Case Scenario
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses.
 
-This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *A's* prefixes. *O* can observe which IPs download files from *A's* prefixes. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker could statistically guess which IPs *A* communicates with by matching the IPs of downloaders from *A's* prefixes and senders of drop messages to *A's* drop ID.
+This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes. *O* can observe which IPs download files from *A's* prefixes and can guess which downloaders own the respective key. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker could statistically guess which IPs *A* communicates with by matching the IPs of downloaders from *A's* prefixes and senders of drop messages to *A's* drop ID.
 
 Visible Information:
 
 **Storage**
 * *A* <-> *A's* prefixes
 * Number and size of *A's* files
-* Estimated number of *A's* folders
-* Upload / modification time of *A's* files (and folders)
+* Directory tree of *A's* folders
+* Actions (e.g., create file, share file, ...) *A* performs with respective
+    * Files and folders
+    * Time
+    * *IP(s) of destination drop server(s)*
 * Time and IP of downloads of *A's* files
 * Time, size, server IP and thereby possibly the prefix of *A's* downloads
 
@@ -79,15 +84,17 @@ Visible Information:
 * Time, size and drop server IP of drop messages *A* sends
 
 ####Worst Case Scenario under Usage of *Tor*
-Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number and size of the files, the estimated number of folders and the upload time on *A's* prefixes.
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes.
 
 Thus as far as all users additionally use *Tor* no information on relations between them is revealed:
 
 **Storage**
 * *A* <-> *A's* prefixes
 * Number and size of *A's* files
-* Estimated number of *A's* folders
-* Upload / modification time of *A's* files (and folders)
+* Directory tree of *A's* folders
+* Actions (e.g., create file, share file, ...) *A* performs with respective
+    * Files and folders
+    * Time
 * Time of downloads of *A's* files
 
 **Drop**
@@ -97,7 +104,7 @@ Thus as far as all users additionally use *Tor* no information on relations betw
 ### Further Attacker Scenarios
 
 ####Denial of Service
-Qabel neither detects nor prevents blocking of traffic. Currently writing to drop servers is not restricted, this can be enhanced by a proof of concept (see Improvements to reduce Attacker Capabilities).
+Qabel neither detects nor prevents blocking of traffic. Currently writing to drop servers is not restricted, this can be enhanced by a proof of work (see Improvements to reduce Attacker Capabilities).
 
 ####Private Key Disclosure
 If an attacker gets in possession of a private key this private key cannot be trusted anymore. (If the user gets to know about this it can broadcast an emergency message, that its key was stolen.)
@@ -109,9 +116,11 @@ The disclosure of the box storage credentials has no effect on the confidentiali
 ##Improvements to reduce Attacker Capabilities
 
 * Fixed block size for storage files to hide file sizes.
+* Downloading all meta files at once to hide that a user downloads them in the order of the directory tree (issue)[https://github.com/Qabel/qabel.github.io/issues/125].
+* Sending fake drop messages to hide user relations (issue)[https://github.com/Qabel/qabel.github.io/issues/124].
 * Certificate pinning of trusted Qabel certificates.
 * Usage of [*Tor*](https://www.torproject.org/)/proxy to hide user relations by hiding the IP.
 * Non-Repudiation by signing messages or files before encrypting. Encrypt-then-sign is not target because it reveals the used key pair.
-* Proof of concept for drop upload to reduce DDoS against drop server and uphold anonymity of users.
-* Implementation of [*axolotl*](https://github.com/trevp/axolotl/wiki) (or other asymmetric forward secrecy protocols) for drop messages to gain full (not only sender-) forward secrecy.
+* Proof of work for drop upload to reduce DDoS against drop server and uphold anonymity of users (issue)[https://github.com/Qabel/qabel.github.io/issues/68].
+* Implementation of [*axolotl*](https://github.com/trevp/axolotl/wiki) (or other asymmetric forward secrecy protocols) for drop messages to gain full (not only sender-) forward secrecy (issue)[https://github.com/Qabel/qabel.github.io/issues/127].
 * Usage of post quantum cryptography.
