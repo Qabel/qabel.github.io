@@ -48,7 +48,7 @@ Since a user has to be authenticated to be able to upload files on the server th
 ###4.i. Client Eavesdropper
 A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server*s* a user uses to receive message (most requested drop server*s*) but it cannot guess the specific drop ID (since the message lengths should be similar and thus indistinguishable). 
 
-The user messages are distinguishable by the number, size and destination of requests (see (this issue)[https://github.com/Qabel/qabel.github.io/issues/124]). Hence the client eavesdropper can observer which actions are performed by the user.
+The user messages are distinguishable by the number, size and destination of requests (see [this issue](https://github.com/Qabel/qabel.github.io/issues/124)). Hence the client eavesdropper can observer which actions are performed by the user.
 
 ###4.ii. Drop Eavesdropper
 As far as a drop eavesdropper only observes one drop server it cannot conclude which user uses the drop server randomly and which uses it to communicate.
@@ -116,11 +116,11 @@ The disclosure of the box storage credentials has no effect on the confidentiali
 ##Improvements to reduce Attacker Capabilities
 
 * Fixed block size for storage files to hide file sizes.
-* Downloading all meta files at once to hide that a user downloads them in the order of the directory tree (issue)[https://github.com/Qabel/qabel.github.io/issues/125].
-* Sending fake drop messages to hide user relations (issue)[https://github.com/Qabel/qabel.github.io/issues/124].
+* Downloading all meta files at once to hide that a user downloads them in the order of the directory tree [issue](https://github.com/Qabel/qabel.github.io/issues/125).
+* Sending fake drop messages to hide user relations [issue](https://github.com/Qabel/qabel.github.io/issues/124).
 * Certificate pinning of trusted Qabel certificates.
 * Usage of [*Tor*](https://www.torproject.org/)/proxy to hide user relations by hiding the IP.
 * Non-Repudiation by signing messages or files before encrypting. Encrypt-then-sign is not target because it reveals the used key pair.
-* Proof of work for drop upload to reduce DDoS against drop server and uphold anonymity of users (issue)[https://github.com/Qabel/qabel.github.io/issues/68].
-* Implementation of [*axolotl*](https://github.com/trevp/axolotl/wiki) (or other asymmetric forward secrecy protocols) for drop messages to gain full (not only sender-) forward secrecy (issue)[https://github.com/Qabel/qabel.github.io/issues/127].
+* Proof of work for drop upload to reduce DDoS against drop server and uphold anonymity of users [issue](https://github.com/Qabel/qabel.github.io/issues/68).
+* Implementation of [*axolotl*](https://github.com/trevp/axolotl/wiki) (or other asymmetric forward secrecy protocols) for drop messages to gain full (not only sender-) forward secrecy [issue](https://github.com/Qabel/qabel.github.io/issues/127).
 * Usage of post quantum cryptography.
