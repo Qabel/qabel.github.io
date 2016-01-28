@@ -2,7 +2,7 @@
 title: Threat Model
 ---
 #Threat Model
-This model shall provide an overview on the system architecture regarding security. It shall list all attackers and their capabilities. It also shall outline the targeted security goals by describing how they are reached.
+This model shall provide an overview on the system architecture regarding security. It shall list the attackers and threats Qabel opposes and their capabilities as well as security assumptions. It also shall outline the targeted security goals by describing how they are reached.
 
 ##Security Goals
 The main targeted goal of Qabel is to require no trust in any entity in order to achieve **confidentiality**, **integrity**, **authenticity** and partly **anonymity**. The first three goals are reached by using Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user.
