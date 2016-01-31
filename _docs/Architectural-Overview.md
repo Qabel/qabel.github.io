@@ -1,13 +1,13 @@
 ---
 title: Architectural Overview
 ---
-# **[To be replaced by stack description]**
+# **TODO** stack diagram
 
 # Client
 
 ## Core
-* [Platform Interface](../Components-Platform-Interface/)
-  * Interface between modules and Qabel servers.
+* Platform Interface
+  * Interface between client and servers which speaks the Qabel protocols.
 * Util
   * Utility functions (which do not need network), e.g. encoding / decoding messages.
 * Config
@@ -15,15 +15,12 @@ title: Architectural Overview
 * [Contacts](../Components-Contacts/)
   * Access to the Qabel client users address book.
 
-## Modules
-Will provide additionally functionality after BETA. E.g. Mail, XMPP chat, CalDAV.
-
 # Server
 
 * [Drop Server](../Qabel-Protocol-Drop/) and
 * [Box Server](../Qabel-Protocol-Box/)
-* *Accounting Server*
-* *Register Server*
+* **TODO** [Accounting Server]()
+* **TODO** [Register Server]()
 
 # Further reading
 For a detailed description of the components see the sidebar.
