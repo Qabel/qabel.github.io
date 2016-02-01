@@ -1,11 +1,13 @@
 ---
 title: Protocol Proof of Work
 ---
-# Proof Of Work Specification
+# Proof Of Work Specification **[To be defined]**
 
 ## Abstract
 
 A Spam and Denial of Service countermeasure. Reduce the capability of each single clients to flood the server with messages.
+
+It is not planned to be implemented for the BETA.
 
 ## Scheme
 
@@ -16,9 +18,4 @@ A Spam and Denial of Service countermeasure. Reduce the capability of each singl
 
 * The server sends "X-Proof-Of-Work-Required" header with a list of supported methods and parameters.
 * The client calculates the Hash back to Collision and makes a new request with the result as "X-Proof-Of-Work" header
-
-## Current Implemention
-
-* Method is PBKDF2.
-** Algorithm is simple. For example based on SHA1.
 ** Similar to "Hashcash":https://en.wikipedia.org/wiki/Hashcash in Bitcoin
