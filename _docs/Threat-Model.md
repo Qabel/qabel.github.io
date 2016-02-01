@@ -5,7 +5,7 @@ title: Threat Model
 This model shall provide an overview on the system architecture regarding security. It shall list the attackers and threats Qabel opposes and their capabilities as well as security assumptions. It also shall outline the targeted security goals by describing how they are reached.
 
 ##Security Goals
-The main targeted goal of Qabel is to require no trust in any entity in order to achieve **confidentiality**, **integrity**, **authenticity** and partly **anonymity**. The first three goals are reached by using Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user.
+The main targeted goal of Qabel is to require no trust in any entity in order to achieve **confidentiality**, **integrity**, **authenticity** and partly **anonymity**. The first three goals are reached by using Authenticated end-to-end Encryption. The fourth goal cannot fully be reached due to for example storage write access restriction to the authenticated user who pays for the storage. Thus quota is tracked per user. Additionally Qabel does not hide IP addresses (see [Worst Case Scenario](#Worst Case Scenario)).
 
 ###Restrictions to Freedom of Trust
 The mentioned main goal is limited by unavoidable restrictions like the trust in proper storage of data on the server and possible malware on the client. Hence following trust relationships are required to achieve the mentioned security goals:
@@ -14,7 +14,7 @@ The mentioned main goal is limited by unavoidable restrictions like the trust in
 * Trivial assumptions: users keep their credentials and keys secret.
 
 ####Further Assumptions
-TLS certificates of Qabel servers are not forged by trusted CAs.
+TLS certificates of Qabel servers are not forged by trusted CAs. Else the box storage credentials would be revealed (see [Disclosure of Credentials](#Disclosure of Credentials))
 
 ##System Overview
 
