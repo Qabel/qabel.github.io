@@ -89,11 +89,8 @@ Summary
                         'alias' : NAME,
                         'email': STR,
                         'phone': STR,
-                        'keys' :
-                                "{"
-                                'private_key' : KEY,
-                                'public_key' : KEY,
-                                "}",
+                        'private_key' : KEY,
+                        'prefixes': [STR],
                         'dropUrls' : [URL]
                         "}"
 
