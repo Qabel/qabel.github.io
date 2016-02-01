@@ -19,7 +19,7 @@
       - Qabel-Protocol-Drop: Drop Protocol
       - Qabel-Protocol-Box: Box Protocol
       - Qabel-Protocol-ProofOfWork: Proof of Work
-
+      - Threat-Model: Threat Model
 - title: Wording
   docs:
     - Appendix-Glossary: Appendix Glossary
