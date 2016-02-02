@@ -24,8 +24,8 @@ In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.o
 
 `dropurl ::= protocol "://" serviceaddress servicepath "/" dropid`
 
-1. protocol ::= "https" | "http"
-1. serveraddress ::= IPv4 | IPv6 | DNSName
+1. protocol ::= "https" \| "http"
+1. serveraddress ::= IPv4 \| IPv6 \| DNSName
 1. serverport ::= "1" - "65535"
 1. serviceaddress ::= serveraddress ( ":" serverport ) ?
 1. servicepath ::= "/" [ URLChars, "/" ] *
