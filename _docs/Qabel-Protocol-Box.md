@@ -81,14 +81,6 @@ For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
 
 For every method except login, this authorization header is required.
 
-### Token
-The token resource controls the federation token.
-
-* Resource: /api/v0/token
-* Method: POST
-* Request data: None
-* Response data: `{AccessKeyId: STR, SecretAccessKey: STR, SessionToken: STR}`
-
 ### Prefix
 The prefix resource controls all prefixes of the user.
 
@@ -105,6 +97,38 @@ Get a list of available prefixes
 * Method: GET
 * Request data: None
 * Response data: `[STR]`
+
+### Authentication
+The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
+
+* Resource: /api/v0/auth/<prefix>/<path>
+* Method: GET|POST|DELETE
+* Request data: None
+* Response data: None
+
+Any request that the block server receives for its files-resource should be followed by a similar request to the
+auth resource. If the block server receives an Authentication header, the block server should use this header in
+the request to the auth resource. If the request is authorized, the accounting server returns a status code of 204,
+if it is not authorized, it returns a status code of 403.
+
+### File transfer
+The block server has a REST resource for files which is used for uploads, downloads and deletes on the storage backend.
+Authentication is handled exactly like on the accounting server, with the Authentication header.
+
+* Resource: /v0/files/<prefix>/<path>
+* Method: GET|POST|DELETE
+* Request data: None for GET and DELETE, the file itself for POST
+* Response data: None for Post and Delete, the file itself for GET
+
+A Reponse will have a status code of 204 or 200 if successfull,
+404 if the file for a GET was not found and 403 if the request was not
+authorized.
+
+The server sends an ETag header on GET and POST and respects the 'If-None-Match'
+header. If the ETag in the 'If-None-Match' header matches, a 304 with an empty body
+is returned.
+
+
 
 ## Structure of a VOLUME
 
