@@ -113,15 +113,22 @@ if it is not authorized, it returns a status code of 403.
 
 ### File transfer
 The block server has a REST resource for files which is used for uploads, downloads and deletes on the storage backend.
+Authentication is handled exactly like on the accounting server, with the Authentication header.
 
 * Resource: /v0/files/<prefix>/<path>
 * Method: GET|POST|DELETE
 * Request data: None for GET and DELETE, the file itself for POST
 * Response data: None for Post and Delete, the file itself for GET
 
-A Repons will have a status code of 204 or 200 if successfull,
+A Reponse will have a status code of 204 or 200 if successfull,
 404 if the file for a GET was not found and 403 if the request was not
 authorized.
+
+The server sends an ETag header on GET and POST and respects the 'If-None-Match'
+header. If the ETag in the 'If-None-Match' header matches, a 304 with an empty body
+is returned.
+
+
 
 ## Structure of a VOLUME
 
