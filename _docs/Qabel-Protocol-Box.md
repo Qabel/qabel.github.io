@@ -101,7 +101,7 @@ Get a list of available prefixes
 ### Authentication
 The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
 
-* Resource: /api/v0/auth/<prefix>/<path>
+* Resource: /api/v0/auth/\<prefix\>/\<path\>
 * Method: GET|POST|DELETE
 * Request data: None
 * Response data: None
@@ -115,7 +115,7 @@ if it is not authorized, it returns a status code of 403.
 The block server has a REST resource for files which is used for uploads, downloads and deletes on the storage backend.
 Authentication is handled exactly like on the accounting server, with the Authentication header.
 
-* Resource: /v0/files/<prefix>/<path>
+* Resource: /v0/files/\<prefix\>/\<path\>
 * Method: GET|POST|DELETE
 * Request data: None for GET and DELETE, the file itself for POST
 * Response data: None for Post and Delete, the file itself for GET
