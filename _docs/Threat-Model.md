@@ -43,9 +43,9 @@ A user *B* learns one identity (drop ID, public key and alias) of a user *A* dur
 An attacker has no advanced capabilities regarding security by being a Qabel user.
 
 ###3. Qabel Servers
-Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each identity. Due to this it is able to monitor all file writes and can match them to the registered user. During the creation of a folder it can observe in which parent folder it is created. Thereby it can reconstruct the directory tree of *A*. As soon as a user requests (meta) files in the order of the (sub-)directory tree, *O* can assume that *A* shared the (sub-)directory with the user.
+Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each account. Due to this it is able to monitor all file writes and can match them to the registered user. During the creation of a folder it can observe in which parent folder it is created. Thereby it can reconstruct the directory tree of *A*. As soon as a user requests (meta) files in the order of the (sub-)directory tree, *O* can assume that *A* shared the (sub-)directory with the user.
 
-To prevent Qabel from being used as an illegal file distribution platform currently a user also needs to be authenticated for downloading a file. Thus the identities of uploaders and downloaders can be linked. Since downloading of files can be conducted without possessing the respective file key this link can be faked.
+To prevent Qabel from being used as an illegal file distribution platform currently a user also needs to be authenticated for downloading a file. Thus the accounts of uploaders and downloaders can be linked. Since downloading of files can be conducted without possessing the respective file key this link can be faked.
 
 ###4.i. Client Eavesdropper
 A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server*s* a user uses to receive message (most requested drop server*s*) but it cannot guess the specific drop ID (since the message lengths should be similar and thus indistinguishable). 
@@ -65,19 +65,20 @@ Since only size and IP of requests to Qabel servers is observable an Internet ea
 ###Worst Case Scenario
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses.
 
-This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes. *O* can observe which identities download files from *A's* prefixes and can guess which downloaders own the respective key. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker can statistically guess which identities *A* communicates with by matching the IPs of downloading identities from *A's* prefixes with the sender IPs of drop messages to *A's* drop ID.
+This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes. *O* can observe which accounts download files from *A's* prefixes and can guess which downloaders own the respective key. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker can statistically guess which accounts *A* communicates with by matching the IPs of downloading accounts from *A's* prefixes with the sender IPs of drop messages to *A's* drop ID.
 
 Visible Information:
 
 **Storage**
-* *A* <-> *A's* prefixes
+* *A's* account <-> *A's* account's prefixes
+* *A's* account <-> *A's* identity
 * Number and size of *A's* files
 * Directory tree of *A's* folders
 * Actions (e.g., create file, share file, ...) *A* performs with respective
     * Files and folders
     * Time
     * *IP(s) of destination drop server(s)*
-* Time, identity and IP of downloads of *A's* files
+* Time, account and IP of downloads of *A's* files
 * Time, size, server IP and thereby possibly the prefix of *A's* downloads
 
 **Drop**
@@ -86,16 +87,17 @@ Visible Information:
 * Time, size and drop server IP of drop messages *A* sends
 
 ####Worst Case Scenario under Usage of *Tor*
-Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size, modification time and downloading identities of the files, and the directory tree of *A's* prefixes.
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size, modification time and downloading accounts of the files, and the directory tree of *A's* prefixes.
 
 **Storage**
-* *A* <-> *A's* prefixes
+* *A's* account <-> *A's* account's prefixes
+* *A's* account <-> *A's* identity
 * Number and size of *A's* files
 * Directory tree of *A's* folders
 * Actions (e.g., create file, share file, ...) *A* performs with respective
     * Files and folders
     * Time
-* Time and identity of downloads of *A's* files
+* Time and account of downloads of *A's* files
 
 **Drop**
 * *A* -> Drop ID *A* listens
