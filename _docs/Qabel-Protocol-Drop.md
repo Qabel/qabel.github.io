@@ -117,7 +117,7 @@ The drop can already contain messages or be empty/unused.
 |:----------------:|------|
 | 200 | message was added |
 | 400 | drop ID is missing or invalid or no message has been submitted at all |
-| 413 | message exceeds the [maximum size](../Qabel-Client-Drop/#transport-format) |
+| 413 | message exceeds the [maximum size](#transport-format) |
 
 The message has to be transmitted as HTTP body.
 The HTTP body is an encoded 8-bit stream.
@@ -181,7 +181,7 @@ A message is packed into JSON containing the following fields:
                     'data' : { ... }
                     "}"
 
-####### Acknowledging
+###### Acknowledging
 The drop client automatically acknowledges each incoming drop message.
 In order to acknowledge message `N`, the client generates a drop messages where
 `acknowledge_id` is `N`. The `data` field of an acknowledge message is undefined.
@@ -228,7 +228,7 @@ Bob receives drop messages from his drop ID. Therefor he only requests new messa
         1. Server responses the new drop messages with the HTTP status code 200
         1. Client tries to decrypt the drop messages with Bob's private key
             - The successful decrypted messages are processed
-                1. If the sender requested an acknowledgment, the message is acknowledged by sending a new drop message (see http://qabel.github.io/docs/Qabel-Protocol-Drop#Acknowledging)
+                1. If the sender requested an acknowledgment, the message is acknowledged by sending a new drop message (see [Acknowledging](#Acknowledging))
             - All other messages are discarded
     - Else
         1. Server responses with a HTTP status code x04 (see above)
