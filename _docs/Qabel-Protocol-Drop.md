@@ -228,7 +228,7 @@ Bob receives drop messages from his drop ID. Therefor he only requests new messa
         1. Server responses the new drop messages with the HTTP status code 200
         1. Client tries to decrypt the drop messages with Bob's private key
             - The successful decrypted messages are processed
-                1. If the sender requested an acknowledgment, the message is acknowledged by sending a new drop message (see [Acknowledging](#Acknowledging))
+                1. If the sender requested an acknowledgment, the message is acknowledged by sending a new drop message (see [Acknowledging](#acknowledging))
             - All other messages are discarded
     - Else
         1. Server responses with a HTTP status code x04 (see above)
