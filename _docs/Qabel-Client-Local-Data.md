@@ -79,7 +79,7 @@ Summary
 | email | Email address of the user owning this identity (optional) |
 | phone | Phone number of the user owning this identity (optional) |
 | private_key | Private, secret part of the key pair |
-| public_key | Public part of the key pair |
+| prefixes | List of [prefixes](../Qabel-Protocol-Box#prefix) this identity owns |
 | dropUrls | List of [urls](../Qabel-Protocol-Drop#url) of the drops where the identity expects to receive messages |
 
 
