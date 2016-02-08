@@ -1,7 +1,7 @@
 ---
 title: Protocol Proof of Work
 ---
-# Proof Of Work Specification **[To be defined]**
+# Proof Of Work Specification
 
 ## Abstract
 
@@ -46,7 +46,7 @@ It is not planned to be implemented for the BETA.
 
 ### Remote Data
 
-The server stores data on its state and on previous drop messages:
+The server stores its state and information on previous drop messages:
 
         powConfig     = "{"
                         'timePeriod' : NUM,
