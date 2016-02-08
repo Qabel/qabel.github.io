@@ -11,7 +11,7 @@ title: Appendix Glossary
 
 * **Qabel-$Foo-Client**: Can also be (Qabel) $Foo client. It means the $Foo component in the client - the thing which has to be implemented. The thing which communicates with the $Foo server _iff_ there is a $Foo server.
 
-* **(Qabel) component**: Anything is a component. Anything in the client - whether it belongs to the core or it is a module - is a component. The client itself, the $Foo server and a Qabel app also is a component. **TODO**: Decide whether or not the $Foo protocol is also a component.
+* **(Qabel) component**: Anything is a component. Anything in the client - whether it belongs to the core or it is a module - is a component. The client itself, the $Foo server and a Qabel app also is a component.
 
 * **(Qabel) module**: A (Qabel) module is a client-component which does not belong to the core and which is not a Qabel app.
 
