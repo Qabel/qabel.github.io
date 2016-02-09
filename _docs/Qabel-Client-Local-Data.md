@@ -13,10 +13,10 @@ The types and format of data which is exchanged or can be exported and imported 
 | --- | --- |
 | INT | 32-bit signed two's complement integer  |
 | LONG | 64-bit signed two's complement integer |
-| STR | UTF-8 encoded and (if applicable) null terminated|
+| STR | UTF-8 encoded and (if applicable) null terminated |
 | KEY | Hex-String with ASCII encoding. Every byte of data is converted into the corresponding 2-digit hex representation. The returned bytes object is therefore twice as long as the length of data.|
 | URL | ASCII encoded URIs according to [RFC 3986](http://tools.ietf.org/html/rfc3986)), for Drop URL see [here](../Qabel-Protocol-Drop#url) |
-| UUID | Universally Unique IDentifier according to [RFC 4122](http://tools.ietf.org/html/rfc4122) |
+| UUID | 128 bit random number ASCII encoded Universally Unique IDentifier according to [RFC 4122](http://tools.ietf.org/html/rfc4122) |
 
 ## Local settings
 
