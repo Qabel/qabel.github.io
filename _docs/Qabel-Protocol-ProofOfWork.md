@@ -49,8 +49,8 @@ It is not planned to be implemented for the BETA.
 The server stores its state and information on previous drop messages:
 
         powConfig     = "{"
-                        'timePeriod' : NUM,
-                        'leadingZeros' : NUM,
+                        'timePeriod' : INT,
+                        'leadingZeros' : INT,
                         "}"
 
         serverIVs     = "["
@@ -58,7 +58,7 @@ The server stores its state and information on previous drop messages:
                         "]"
 
         serverIV      = "{"
-                        'periodStartTime' : DATE,
+                        'periodStartTime' : LONG, //time stamp 
                         'IV' : STR,
                         "}"
 
@@ -67,6 +67,6 @@ The server stores its state and information on previous drop messages:
                         "]"
 
         clientIV      = "{"
-                        'transmissionTime' : DATE,
+                        'transmissionTime' : LONG, //time stamp
                         'IV' : STR,
                         "}"
