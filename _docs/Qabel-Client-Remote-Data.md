@@ -3,6 +3,8 @@ title: Remote Data
 ---
 # Client Data on Qabel Servers
 
+Data types are defined [here](../Qabel-Client-Local-Data#data-types).
+
 ## Account
 Account data is also stored on the accounting server for authenticating the user:
 
@@ -28,7 +30,7 @@ A user can upload its identity information to the [register server](http://qabel
 Information on alias, email and phone are optional.
 
         identity        = "{"
-                        'alias' : NAME,
+                        'alias' : STR,
                         'email': STR,
                         'phone': STR,
                         'public_key' : KEY,
