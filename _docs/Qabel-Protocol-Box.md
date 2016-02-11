@@ -203,6 +203,9 @@ folders: // list of folders in this folder
 externals: // list of external shares in this folder
 [ external* ]
 }
+externalFiles: // list of external file shares in this folder
+[ externalFile* ]
+}
 ```
 
 Note that folders that are not "index" do not have the "shared"-key, as all information about shares in a VOLUME are stored in "index". The index file also has the URL of the VOLUME in the "root" attribute
@@ -278,6 +281,19 @@ name: STR, // object name,
 key: KEY // symmetric directory key
 owner: STR, // public key of the owner of that VOLUME
 url: STR // URL to the metadata file that contains information about the folder
+},
+```
+
+ExternalFile:
+
+```
+{
+owner: STR, // public key of the owner of that File
+name: STR, // object name,
+size: LONG, // uncompressed file size
+mtime: LONG, // modification time as seconds since epoch
+meta: STR // ref of the FM, if it exists
+block: STR // path to the block without the prefix \<root\>/blocks/
 },
 ```
 
@@ -365,6 +381,7 @@ Initialize a new VOLUME without any objects
 	files: []
 	folders: []
 	externals: []
+	externalFiles: []
 	}
 	```
 1. Encrypt the file with **priv0** and upload it to VOLUME/\<index\>
@@ -689,6 +706,25 @@ CREATE TABLE externals
        name            VARCHAR(255) PRIMARY KEY,
        key             BLOB NOT NULL,
        url             TEXT NOT NULL
+);
+
+Table of all external file objects in the directory
+* 'id' is meaningless and only for record keeping purposes.
+* 'owner' is the public key of the owner
+* 'block is the name of the block which stores the data
+* 'name' is the file name
+* 'size' is the file size in bytes
+* 'mtime' is the modification timestamp
+* 'key' is the symmetric file key
+*/
+CREATE TABLE externals
+(
+       owner           BLOB NOT NULL,
+       block           VARCHAR(255) NOT NULL,
+       name            VARCHAR(255) PRIMARY KEY,
+       size            LONG NOT NULL,
+       mtime           LONG NOT NULL,
+       key             BLOB NOT NULL,
 );
 ```
 
