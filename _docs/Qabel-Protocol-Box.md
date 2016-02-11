@@ -238,6 +238,7 @@ with a new symmetric key
 
 ```
 {
+owner: STR, // owner of the file
 name: STR, // filename
 spec_version: INT,  // version of the VOLUME spec
 size: LONG, // uncompressed file size
@@ -745,6 +746,7 @@ CREATE TABLE spec_version
 /*
 Table for the file information
 * 'id' is meaningless and only for record keeping purposes.
+* 'owner' is the public key of the owner
 * 'block is the name of the block which stores the data
 * 'name' is the file name
 * 'size' is the file size in bytes
@@ -754,6 +756,7 @@ Table for the file information
 CREATE TABLE files
 (
        id               INTEGER PRIMARY KEY,
+       owner            BLOB NOT NULL,
        block            VARCHAR(255) NOT NULL,
        name             VARCHAR(255) NOT NULL,
        size             LONG NOT NULL,
