@@ -91,14 +91,14 @@ Create a new prefix:
 * Resource: /api/v0/prefix
 * Method: POST
 * Request data: None
-* Response data: `STR`
+* Response data: `{prefix: STR}`
 
 Get a list of available prefixes
 
 * Resource: /api/v0/prefix
 * Method: GET
 * Request data: None
-* Response data: `[STR]`
+* Response data: `{prefixes: [STR]}`
 
 ### Authentication
 The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
