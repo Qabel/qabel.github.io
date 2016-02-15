@@ -166,7 +166,7 @@ key: "b43feebe528a56bb4f21ef3a8a617714aee2cabc0708c1702a98915ae852ad06",
 ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
 },
 { name: "barfoo.txt", size: 4568, mtime: 1445432120,
-meta: "a9c6ce30-418b-e292-83bc-769a8c72f600",
+meta: "a7c19151-b2cc-47d8-82e5-636d5c7ac00a/a9c6ce30-418b-e292-83bc-769a8c72f600",
 metakey: "fbeaf7cc5560b5e38b5a37e5d8e104x38daa59a6ef97c0a868a3a193f2c089b9",
 key: "042a77edb0d527816ddb3e74457d92e69302099881b9a3181a514696c0fc39bf",
 ref: "8f5da4db-02ab-ca96-1824-3ba8d18a85be"
@@ -237,6 +237,7 @@ with a new symmetric key
 
 ```
 {
+owner: STR, // owner of the file
 name: STR, // filename
 spec_version: INT,  // version of the VOLUME spec
 size: LONG, // uncompressed file size
@@ -255,7 +256,7 @@ File:
 name: STR, // object name,
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
-meta: STR // ref of the FM, if it exists
+meta: STR // ref of the FM, if it exists in the format prefix/block
 metakey: KEY // symmetric key of the FM, if it exists
 key: KEY, // symmetric key for the block
 block: STR // path to the block without the prefix \<root\>/blocks/
@@ -276,6 +277,7 @@ External:
 
 ```
 {
+is_folder: BOOL, // indicates if external is a folder or a file
 name: STR, // object name,
 key: KEY // symmetric directory key
 owner: STR, // public key of the owner of that VOLUME
@@ -680,6 +682,7 @@ CREATE TABLE folders
 /*
 Table of all external objects in the directory
 * 'id' is meaningless and only for record keeping purposes.
+* 'is_folder' indicates if external is a folder or a file
 * 'owner' is the public key of the owner
 * 'name' is the share name
 * 'key' is the symmetric directory key
@@ -687,11 +690,13 @@ Table of all external objects in the directory
 */
 CREATE TABLE externals
 (
+       is_folder       BOOLEAN NOT NULL,
        owner           BLOB NOT NULL,
        name            VARCHAR(255) PRIMARY KEY,
        key             BLOB NOT NULL,
        url             TEXT NOT NULL
 );
+
 ```
 
 ## File Metadata
@@ -711,6 +716,7 @@ CREATE TABLE spec_version
 /*
 Table for the file information
 * 'id' is meaningless and only for record keeping purposes.
+* 'owner' is the public key of the owner
 * 'block is the name of the block which stores the data
 * 'name' is the file name
 * 'size' is the file size in bytes
@@ -720,6 +726,7 @@ Table for the file information
 CREATE TABLE files
 (
        id               INTEGER PRIMARY KEY,
+       owner            BLOB NOT NULL,
        block            VARCHAR(255) NOT NULL,
        name             VARCHAR(255) NOT NULL,
        size             LONG NOT NULL,

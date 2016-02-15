@@ -11,6 +11,7 @@ The types and format of data which is exchanged or can be exported and imported 
 
 | Data type | Definition |
 | --- | --- |
+| BOOL | Boolean value  |
 | INT | 32-bit signed two's complement integer  |
 | LONG | 64-bit signed two's complement integer |
 | STR | UTF-8 encoded and (if applicable) null terminated |
