@@ -9,6 +9,8 @@ A protocol to write and read from a Qabel drop server.
 
 ## Protocol
 
+Data types are defined below and [here](../Qabel-Client-Local-Data#data-types).
+
 ### Structure of the Endpoint URL
 The URL to access a drop on a qabel drop server can be split into four parts, protocol, server address (incl. port), service path and drop ID:
 
@@ -161,22 +163,22 @@ Drop messages are encrypted into Noise boxes.
 ###### Format **[To be reviewed]**
 A message is packed into JSON containing the following fields:
 
-| Key | Type | Description |
-| --- | ---- | ----------- |
-| **version** | INT | This key describes the version of the Qabel Drop Message protocol. |
-| **time_stamp** | INT | Date of message generation. |
-| **acknowledge_id** | STR | Acknowledge ID for acknowledging this message |
-| **sender** | STR | Sender's public key. |
-| **receiver** | STR | Receiver's public key. |
-| **model_object** | STR | The name of the model object that handles this message. |
-| **data** | JSON object | The payload of the message. |
+| Key | Description |
+| --- | ----------- |
+| **version** | This key describes the version of the Qabel Drop Message protocol. |
+| **time_stamp** | Date of message generation. |
+| **acknowledge_id** | Acknowledge ID for acknowledging this message |
+| **sender** | Sender's public key. |
+| **receiver** | Receiver's public key. |
+| **model_object** | The name of the model object that handles this message. |
+| **data** | The payload of the message. |
 
     drop_message    = "{"
                     'version' : INT,
                     'time_stamp' : LONG,
                     'acknowledge_id': STR,
-                    'sender' : STR,
-                    'receiver' : STR,
+                    'sender' : KEY,
+                    'receiver' : KEY,
                     'model_object' : STR,
                     'data' : { ... }
                     "}"

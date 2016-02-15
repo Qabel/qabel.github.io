@@ -17,6 +17,8 @@ Qabel Box also directly uses AWS S3 to store the blocks and metadata.
 The accounting server controls write access to the S3 bucket. Registered users (not identities!) can request temporary credentials for AWS.
 All data is sent as JSON and UTF-8.
 
+Data types are defined [here](../Qabel-Client-Local-Data#data-types).
+
 ### Required permissions for the AWS user
 The accounting server uses an AWS user to create the temporary credentials. He must have the following permissions:
 
@@ -89,14 +91,14 @@ Create a new prefix:
 * Resource: /api/v0/prefix
 * Method: POST
 * Request data: None
-* Response data: `STR`
+* Response data: `{prefix: STR}`
 
 Get a list of available prefixes
 
 * Resource: /api/v0/prefix
 * Method: GET
 * Request data: None
-* Response data: `[STR]`
+* Response data: `{prefixes: [STR]}`
 
 ### Authentication
 The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
@@ -188,7 +190,7 @@ url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3
 
 ```
 {
-root: STR, // URL of the VOLUME, only in the index file
+root: URL, // URL of the VOLUME, only in the index file
 last_change_by: UUID, // ID of the device that made the last change
 spec_version: INT,  // version of the VOLUME spec
 					// increment if migrations are needed
@@ -279,7 +281,7 @@ is_folder: BOOL, // indicates if external is a folder or a file
 name: STR, // object name,
 key: KEY // symmetric directory key
 owner: STR, // public key of the owner of that VOLUME
-url: STR // URL to the metadata file that contains information about the folder
+url: URL // URL to the metadata file that contains information about the folder
 },
 ```
 
@@ -315,7 +317,7 @@ The plaintext of the drop message is a JSON document with the url of the DM and 
 
 ```
 {
-	url: STR // url to the DM of the shared folder or the FM of the shared file
+	url: URL // url to the DM of the shared folder or the FM of the shared file
 	key: KEY // symmetric key for the DM or FM
 	msg: STR // optional message for the contact
 }
