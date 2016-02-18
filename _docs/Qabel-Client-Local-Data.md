@@ -106,6 +106,9 @@ Summary
                         'dropUrls' : [URL]
                         "}"
 
+#### Export
+The name of an exported identity file is "identity-*[identityName]*.qid" where *[identityName]* is replaced by the name of the respective identity.
+
 ## Contact Data
 
 Additionally to the data on the user itself information on its contacts can be stored on the device.
@@ -149,7 +152,7 @@ Summary
                     'dropUrls' : [URL],
                     "}"
 
-### Example
+#### Example
 
 ```json
 {
@@ -161,3 +164,6 @@ Summary
   "dropUrls" : ["example.org/jkl"],
 }
 ```
+
+#### Export
+The name of an exported contact file is "contact-*[contactName]*.qco" where *[contactName]* is replaced by the name of the respective contact.
