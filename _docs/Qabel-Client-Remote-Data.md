@@ -34,5 +34,5 @@ Information on alias, email and phone are optional.
                         'email': STR,
                         'phone': STR,
                         'public_key' : KEY,
-                        'dropUrls' : [URL]
+                        'drop_urls' : [URL]
                         "}"
