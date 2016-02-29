@@ -122,6 +122,7 @@ The drop can already contain messages or be empty/unused.
 | 413 | message exceeds the [maximum size](#transport-format) |
 
 The message has to be transmitted as HTTP body.
+The Authorization header has to be "Client Qabel".
 The HTTP body is an encoded 8-bit stream.
 No HTTP body gets returned.
 
