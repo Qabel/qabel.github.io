@@ -2,6 +2,7 @@
 title: "Components: Drop"
 ---
 # The drop component
+
 ## Abstract
 The drop component is a core component of Qabel. It serves the general communication channel between clients.
 
@@ -144,7 +145,9 @@ It is to bear in mind that additional meta data accumulates during the communica
 
 
 ### Server and Protocol Design
+
 #### Paradigm
+
 * Servers are universal and lightweight.
 * Simple server via HTTP/REST.
 
