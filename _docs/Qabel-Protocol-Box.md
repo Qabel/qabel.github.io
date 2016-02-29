@@ -5,22 +5,20 @@ title: "Protocol: box"
 
 ## Abstract
 
-A set of protocols to store files and folders on a VOLUME that is on AWS S3 and managed by a third party who doesn't need to be trusted.
+A set of protocols to store files and folders on a VOLUME that is (currently) stored on AWS S3 and managed by a third party who doesn't need to be trusted.
 
 ## Used services
 
-Qabel Box uses an Accounting server which controls the access to AWS S3. Every client who needs write access has to be authenticated by the server and then receives a set of credentials for direct access to the VOLUME.
-Qabel Box also directly uses AWS S3 to store the blocks and metadata.
+Qabel Box uses an Accounting server which controls the access to the Qabel Block server which directly accesses the files on AWS S3. Every client who needs write access has to be authenticated by the Accounting server and then receives an authentication token for this indirect access to the VOLUME.
+Qabel Box also uses the Block server to store the blocks and metadata.
 
 ## Accounting server
 
-The accounting server controls write access to the S3 bucket. Registered users (not identities!) can request temporary credentials for AWS.
-All data is sent as JSON and UTF-8.
-
-Data types are defined [here](../Qabel-Client-Local-Data#data-types).
+The accounting server controls write access to the Block server. Registered users ( = accounts != identities) can request temporary authentication tokens for the access.
+All data is sent as JSON and UTF-8. All data types are defined [here](../Qabel-Client-Local-Data#data-types).
 
 ### Required permissions for the AWS user
-The accounting server uses an AWS user to create the temporary credentials. He must have the following permissions:
+The accounting server uses an AWS user to create the temporary tokens. He must have the following permissions:
 
 * "sts:GetFederationToken" to generate the credentials
 * "s3:GetObject" for read access
@@ -149,6 +147,8 @@ A Volume consists of metadata files and blocks. Every VOLUME has a metadata file
 
 All mtime values are seconds since epoch in UTC. Blocks are stored at VOLUME/blocks/.
 
+![Qabel Storage Structure](/images/qabelStorageStructure.png)
+
 The metadata file stores information equivalent of this example JSON document, but stored in an SQLite database (the database schema is explained later):
 
 ```
@@ -197,6 +197,8 @@ url: "https://other_bucket.s3.amazonaws.com/users/a3fdc333-a143-85aa-edbf-43adf3
 ```
 
 ### Directory Metadata [DM]
+
+![Qabel File System Key Distribution](/images/qabelFileSystemKeyDistribution.png)
 
 
 ```
@@ -363,7 +365,7 @@ Initialize a new VOLUME without any objects
 
 ### Prerequisites
 
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 * Device ID **devId0**
 
 ### Process
@@ -393,7 +395,7 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 
 ### Prerequisites
 
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 
 ### Process
 
@@ -417,6 +419,7 @@ Starting with only a VOLUME path and a qabel identity, let the user browse the w
 ### Prerequisites
 
 * URL of the VOLUME
+* Valid authentication token with read access to the VOLUME
 
 ### Process
 
@@ -440,7 +443,7 @@ Delete a file on the user's VOLUME.
 ### Prerequisites
 
 * URL of the VOLUME
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 
 ### Process
 
@@ -448,7 +451,7 @@ Delete a file on the user's VOLUME.
 1. Remove the file object from the DM, increment the version
 1. Set `last_change_by` to the user's device id
 1. Encrypt the DM and upload it, overwriting the old DM
-1. Delete the block of the deleted file on S3
+1. Let the block server delete the block of the deleted file
 1. If the file object has a reference to a FM, delete the FM
 
 
@@ -461,7 +464,7 @@ Update an existing file on the users VOLUME.
 ### Prerequisites
 
 * URL of the VOLUME
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 
 
 ### Process
@@ -472,7 +475,7 @@ Update an existing file on the users VOLUME.
 1. Set `last_change_by` to user's device id
 1. Encrypt the DM and upload it, overwriting the old DM
 1. Update the FM, if one exists
-1. Delete the block of the deleted file on S3
+1. Let the block server delete the block of the deleted file
 
 
 ## Sharing a directory
@@ -484,7 +487,7 @@ Share a directory recursively to one or more contacts
 ### Prerequisites
 
 * Path and directory key
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 * Contact info of the contacts
 
 
@@ -503,7 +506,7 @@ Remove a share to one or more contacts
 ### Prerequisites
 
 * Path and directory key
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 * Public keys **pub1** of the contacts
 
 
@@ -512,7 +515,7 @@ Remove a share to one or more contacts
 1. Remove the contacts' public keys from the share info of the folder in the index DM, set the device id and increment the version
 1. Download recursively all DM
 1. Upload an archive of all those DM with the name "backup_" + ref in the root directory (as a file object).
-1. Delete recursively all DM from the share (See [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html) )
+1. Let the block server recursively delete all DM from the share
 1. Wait until the deletion has propagated, check the progress by issuing HEAD requests for the files.
 1. Create a new **dk*** for each DM in the share and insert them in their parents
 1. Upload all the new DM, encrypted with their new **dk***, depth first
@@ -530,7 +533,7 @@ Share a single file to one or more contacts
 
 ### Prerequisites
 
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 * Contact info of the contacts
 * DM of the parent folder
 
@@ -550,7 +553,7 @@ Remove a single file share to one or more contacts
 
 ### Prerequisites
 
-* Valid federation token with write access to the VOLUME
+* Valid authentication token with write access to the VOLUME
 * DM of the parent folder
 
 ### Process
