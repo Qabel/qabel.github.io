@@ -145,7 +145,6 @@ The following items define a contact item:
 Summary
 
     contact         = "{"
-                    'id': INT,
                     'alias': STR,
                     'email': STR,
                     'phone': STR,
@@ -157,7 +156,6 @@ Summary
 
 ```json
 {
-  "id": INT,
   "alias": "Alice",
   "email": "alice@example.org",
   "phone": "+49123456789012",
