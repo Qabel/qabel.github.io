@@ -17,9 +17,11 @@ title: Architectural Overview
 
 # Server
 
-* [Drop Server](../Qabel-Protocol-Drop/) and
-* [Box Server](../Qabel-Protocol-Box/)
-* **TODO** [Accounting Server]()
+![Architectural Overview](/images/architecturalOverview.png)
+
+* [Drop Server](../Qabel-Protocol-Drop/)
+* [Block Server](../Qabel-Protocol-Box/)
+* [Accounting Server](../Qabel-Protocol-Box/)
 * **TODO** [Register Server]()
 
 # Further reading
