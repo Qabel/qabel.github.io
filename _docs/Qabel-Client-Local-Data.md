@@ -93,7 +93,7 @@ Summary
 | phone | Phone number of the user owning this identity (optional) |
 | private_key | Private, secret part of the key pair |
 | prefixes | List of [prefixes](../Qabel-Protocol-Box#prefix) this identity owns |
-| dropUrls | List of [urls](../Qabel-Protocol-Drop#url) of the drops where the identity expects to receive messages |
+| drop_urls | List of [urls](../Qabel-Protocol-Drop#url) of the drops where the identity expects to receive messages |
 
 
 Summary
@@ -104,7 +104,7 @@ Summary
                         'phone': STR,
                         'private_key' : KEY,
                         'prefixes': [STR],
-                        'dropUrls' : [URL]
+                        'drop_urls' : [URL]
                         "}"
 
 #### Export
@@ -140,7 +140,7 @@ The following items define a contact item:
 | email | Email address for the contact (optional) |
 | phone | Phone number for the contact (optional) |
 | public_key | Public key of the contact |
-| dropUrls | Array of drop Urls |
+| drop_urls | Array of drop Urls |
 
 Summary
 
@@ -149,7 +149,7 @@ Summary
                     'email': STR,
                     'phone': STR,
                     'public_key' : KEY,
-                    'dropUrls' : [URL],
+                    'drop_urls' : [URL],
                     "}"
 
 #### Example
@@ -160,7 +160,7 @@ Summary
   "email": "alice@example.org",
   "phone": "+49123456789012",
   "public_key" : "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308",
-  "dropUrls" : ["example.org/jkl"],
+  "drop_urls" : ["example.org/jkl"],
 }
 ```
 
