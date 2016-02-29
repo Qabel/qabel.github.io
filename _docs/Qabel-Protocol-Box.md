@@ -35,7 +35,7 @@ These permissions should only be granted for the Qabel box S3 bucket.
 * Resource: /api/v0/auth/registration
 * Method: POST
 * Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
-* Response data: `{}`
+* Response data: `{key: STR}`
 
 ### Profile information
 
