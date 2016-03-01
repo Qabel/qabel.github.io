@@ -35,7 +35,21 @@ These permissions should only be granted for the Qabel box S3 bucket.
 * Resource: /api/v0/auth/registration
 * Method: POST
 * Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
-* Response data: `{}`
+* Response data: `{key: STR}`
+
+The response data is equal to the login response data, both return an authentication token.
+
+### Login
+The login method grants a new authentication token.
+
+* Resource: /api/v0/auth/login
+* Method: POST
+* Request data: `{username: STR, password: STR}`
+* Response data: `{key: STR}`
+
+The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
+
+For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
 
 ### Profile information
 
@@ -69,18 +83,6 @@ new_password2: STR }`
 * Method: POST
 * Request data: `{new_password1: STR, new_password2: STR, old_password: STR}`
 * Response data: `{}`
-
-### Login
-The login method grants a new authentication token.
-
-* Resource: /api/v0/auth/login
-* Method: POST
-* Request data: `{username: STR, password: STR}`
-* Response data: `{key: STR}`
-
-The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
-
-For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
 
 ### Logout:
 * Resource: /api/v0/auth/logout
