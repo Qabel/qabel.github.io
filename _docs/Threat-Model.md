@@ -15,7 +15,7 @@ The mentioned main goal is limited by unavoidable restrictions like the trust in
 * Trivial assumptions: users keep their credentials and keys secret.
 
 #### Further Assumptions
-TLS certificates of Qabel servers are not forged by trusted CAs. Else the box storage credentials would be revealed (see [Disclosure of Credentials](#disclosure-of-credentials))
+TLS certificates of Qabel servers are not forged by trusted CAs. Else the Qabel credentials or tokens would be revealed (see [Disclosure of Credentials](#disclosure-of-credentials))
 
 ## System Overview
 
@@ -27,38 +27,38 @@ We distinguish between four attacker types:
 3. Qabel servers,
 4. Outside attackers:
   1. Outside attacker who can eavesdrop traffic of the client,
-  2. Outside attacker who can eavesdrop traffic of a Qabel drop server,
-  3. Outside attacker who can eavesdrop traffic of a Qabel storage server, 
+  2. Outside attacker who can eavesdrop traffic of a Qabel Drop server,
+  3. Outside attacker who can eavesdrop traffic of a Qabel Block server, 
   4. Outside attacker who can eavesdrop traffic of the public Internet (e.g., *DE-CIX Frankfurt*).
 
 ![Attacker Types](/images/attackerTypes.png)
 
 ## Capabilities of Attackers
 ### 0. Everyone
-The stored encrypted data is publicly available. Thus everybody knows the number and sizes of all files and the estimated number of all folders of every prefix.
+Writing and reading of drop messages is not restricted. Currently downloading from the Qabel Block server is restricted to authenticated accounts.
 
 ### 1. Contact
 A user *B* learns one identity (drop ID, public key and alias) of a user *A* during the contact. When receiving a share user *B* learns the directory structure of the shared directory and its files or the shared file. This implies that *B* learns the name of *A's* prefix the share is stored in.
 
 ### 2. Qabel User 
-An attacker has no advanced capabilities regarding security by being a Qabel user.
+The stored encrypted data is accessible for all Qabel accounts. Thus every user knows the number and sizes of all files and the estimated number of all folders of every prefix.
 
 ### 3. Qabel Servers
-Since a user has to be authenticated to be able to upload files on the server the provider knows the prefixes of each account. Due to this it is able to monitor all file writes and can match them to the registered user. During the creation of a folder it can observe in which parent folder it is created. Thereby it can reconstruct the directory tree of *A*. As soon as a user requests (meta) files in the order of the (sub-)directory tree, *O* can assume that *A* shared the (sub-)directory with the user.
+Since a user has to be authenticated to be able to upload files to the server the provider knows the prefixes of each account. Due to this it is able to monitor all file writes and can match them to the registered account. During the creation of a folder it can observe in which parent folder it is created. Thereby it can reconstruct the directory tree of *A*. As soon as an account requests (meta) files in the order of the (sub-)directory tree, *O* can assume that *A* shared the (sub-)directory with the an identity connected to this account.
 
-To prevent Qabel from being used as an illegal file distribution platform currently a user also needs to be authenticated for downloading a file. Thus the accounts of uploaders and downloaders can be linked. Since downloading of files can be conducted without possessing the respective file key this link can be faked.
+To prevent Qabel from being used as an illegal file distribution platform currently an account also needs to be authenticated for downloading a file. Thus the accounts of uploaders and downloaders can be linked. Since downloading of files can be conducted without possessing the respective file key this link can be forged.
 
 ### 4.i. Client Eavesdropper
-A client eavesdropper can observe which storage server a user writes to and which storage servers it reads from. It can guess which drop server*s* a user uses to receive message (most requested drop server*s*) but it cannot guess the specific drop ID (since the message lengths should be similar and thus indistinguishable). 
+A client eavesdropper can observe which Block server a device writes to and which Block servers it reads from. It can guess which Drop server*s* a user uses to receive message (most requested Drop server*s*) but it cannot guess the specific drop ID (since the message lengths should be similar and thus indistinguishable). 
 
 The user messages are distinguishable by the number, size and destination of requests (see [this issue](https://github.com/Qabel/qabel.github.io/issues/124)). Hence the client eavesdropper can observer which actions are performed by the user.
 
 ### 4.ii. Drop Eavesdropper
-As far as a drop eavesdropper only observes one drop server it cannot conclude which user uses the drop server randomly and which uses it to communicate.
-If a drop eavesdropper observes many drop servers a user *A* uses, it might statistically guess which one is used to receive messages.
+As far as a drop eavesdropper only observes one Drop server it cannot conclude which user uses the Drop server randomly and which uses it to communicate.
+If a drop eavesdropper observes many Drop servers a user *A* uses, it might statistically guess which one is used to receive messages.
 
-### 4.iii. Storage Eavesdropper
-A storage eavesdropper can observe which prefixes are written by which IPs. Additionally it can guess by file size which files are downloaded by which IPs.
+### 4.iii. Block Eavesdropper
+A Block eavesdropper can observe which prefixes are written from which IPs. Additionally it can guess by file size which files are downloaded from which IPs.
 
 ### 4.iv. Internet Eavesdropper
 Since only size and IP of requests to Qabel servers is observable an Internet eavesdropper can observe which IPs request which Qabel servers if it knows the IPs of Qabel servers (the request size is not fixed and thus not characteristic). By observing a great number of requests it might statistically guess which IPs communicate and share files among each other.
@@ -66,11 +66,11 @@ Since only size and IP of requests to Qabel servers is observable an Internet ea
 ### Worst Case Scenario
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses.
 
-This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes. *O* can observe which accounts download files from *A's* prefixes and can guess which downloaders own the respective key. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker can statistically guess which accounts *A* communicates with by matching the IPs of downloading accounts from *A's* prefixes with the sender IPs of drop messages to *A's* drop ID.
+This implies that *O* knows which Block server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes. *O* can observe which accounts download files from *A's* prefixes and can guess which downloaders own the respective key. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker can statistically guess which accounts *A* communicates with by matching the IPs of downloading accounts from *A's* prefixes with the sender IPs of drop messages to *A's* drop ID.
 
 Visible Information:
 
-**Storage**
+**Block**
 
 * *A's* account <-> *A's* account's prefixes
 * *A's* account <-> *A's* identity
@@ -90,9 +90,9 @@ Visible Information:
 * Time, size and drop server IP of drop messages *A* sends
 
 #### Worst Case Scenario under Usage of *Tor*
-Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which storage server prefixes *A* uses. It also knows the number, size, modification time and downloading accounts of the files, and the directory tree of *A's* prefixes.
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which Block server prefixes *A* uses. It also knows the number, size, modification time and downloading accounts of the files, and the directory tree of *A's* prefixes.
 
-**Storage**
+**Block**
 
 * *A's* account <-> *A's* account's prefixes
 * *A's* account <-> *A's* identity
@@ -118,7 +118,9 @@ If an attacker gets in possession of a private key this private key cannot be tr
 The attacker can decrypt all files of the user and all received drop messages. It cannot decrypt sent drop messages due to the properties of *noise*.
 
 #### Disclosure of Credentials
-The disclosure of the box storage credentials has no effect on the confidentiality nor integrity of stored files and sent and received messages. An attacker which possesses the credentials can learn the prefixes the user can write to. It can also create new prefixes for the user and can write and delete files to/from the storage.
+The disclosure of the Qabel credentials has no effect on the confidentiality nor integrity of stored files and sent and received messages. An attacker which possesses the credentials can learn the prefixes the account can write to. It can also create new prefixes for the account and can write and delete files to/from the storage.
+
+In case an attacker learns an authentication token for the Qabel Block server, the permissions associated to this token can be misused for a fixed duration.
 
 ## Improvements to reduce Attacker Capabilities
 
