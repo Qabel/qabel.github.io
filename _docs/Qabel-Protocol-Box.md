@@ -34,7 +34,7 @@ These permissions should only be granted for the Qabel box S3 bucket.
 
 * Resource: /api/v0/auth/registration
 * Method: POST
-* Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
+* Request data: `{username: STR, password1: STR, password2: STR, email: STR}` (See [Password Policy](#password-policy))
 * Response data: `{key: STR}`
 
 The response data is equal to the login response data, both return an authentication token.
@@ -47,9 +47,11 @@ The login method grants a new authentication token.
 * Request data: `{username: STR, password: STR}`
 * Response data: `{key: STR}`
 
-The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
+Number of login attempts is restricted to five per minute. The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
 
 For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
+
+For every method except login and registration, this authorization header is required.
 
 ### Profile information
 
@@ -75,13 +77,13 @@ For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
 * Resource: /api/v0/auth/password/reset/confirm
 * Method: POST
 * Request data: `{uid: STR, token: STR, new_password1: STR,
-new_password2: STR }`
+new_password2: STR }` (See [Password Policy](#password-policy))
 * Response data: `{}`
 
 ### Change password:
 * Resource: /api/v0/auth/password/change
 * Method: POST
-* Request data: `{new_password1: STR, new_password2: STR, old_password: STR}`
+* Request data: `{new_password1: STR, new_password2: STR, old_password: STR}` (See [Password Policy](#password-policy))
 * Response data: `{}`
 
 ### Logout:
@@ -90,7 +92,10 @@ new_password2: STR }`
 * Request data: `{}`
 * Response data: `{}`
 
-For every method except login, this authorization header is required.
+### Password Policy
+
+* Minimum characters: 8
+* No common passwords, no user name as password, no numeric only passwords
 
 ### Prefix
 The prefix resource controls all prefixes of the user.
