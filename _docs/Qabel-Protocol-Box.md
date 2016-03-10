@@ -34,8 +34,10 @@ These permissions should only be granted for the Qabel box S3 bucket.
 
 * Resource: /api/v0/auth/registration
 * Method: POST
-* Request data: `{username: STR, password1: STR, password2: STR, email: STR}` (See [Password Policy](#password-policy))
+* Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
 * Response data: `{key: STR}`
+
+If the password does not accord to the password policy it is rejected.
 
 The response data is equal to the login response data, both return an authentication token.
 
@@ -47,7 +49,7 @@ The login method grants a new authentication token.
 * Request data: `{username: STR, password: STR}`
 * Response data: `{key: STR}`
 
-Number of login attempts is restricted to five per minute. The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
+After a certain number of failed login attempts during a short period of time the login is blocked. The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
 
 For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
 
@@ -77,13 +79,13 @@ For every method except login and registration, this authorization header is req
 * Resource: /api/v0/auth/password/reset/confirm
 * Method: POST
 * Request data: `{uid: STR, token: STR, new_password1: STR,
-new_password2: STR }` (See [Password Policy](#password-policy))
+new_password2: STR }`
 * Response data: `{}`
 
 ### Change password:
 * Resource: /api/v0/auth/password/change
 * Method: POST
-* Request data: `{new_password1: STR, new_password2: STR, old_password: STR}` (See [Password Policy](#password-policy))
+* Request data: `{new_password1: STR, new_password2: STR, old_password: STR}`
 * Response data: `{}`
 
 ### Logout:
@@ -91,11 +93,6 @@ new_password2: STR }` (See [Password Policy](#password-policy))
 * Method: POST
 * Request data: `{}`
 * Response data: `{}`
-
-### Password Policy
-
-* Minimum characters: 8
-* No common passwords, no user name as password, no numeric only passwords
 
 ### Prefix
 The prefix resource controls all prefixes of the user.
