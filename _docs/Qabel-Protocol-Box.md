@@ -37,6 +37,8 @@ These permissions should only be granted for the Qabel box S3 bucket.
 * Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
 * Response data: `{key: STR}`
 
+If the password does not accord to the password policy it is rejected.
+
 The response data is equal to the login response data, both return an authentication token.
 
 ### Login
@@ -47,9 +49,11 @@ The login method grants a new authentication token.
 * Request data: `{username: STR, password: STR}`
 * Response data: `{key: STR}`
 
-The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
+After a certain number of failed login attempts during a short period of time the login is blocked. The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
 
 For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
+
+For every method except login and registration, this authorization header is required.
 
 ### Profile information
 
@@ -89,8 +93,6 @@ new_password2: STR }`
 * Method: POST
 * Request data: `{}`
 * Response data: `{}`
-
-For every method except login, this authorization header is required.
 
 ### Prefix
 The prefix resource controls all prefixes of the user.
