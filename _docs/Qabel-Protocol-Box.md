@@ -477,54 +477,6 @@ Update an existing file on the users VOLUME.
 1. Update the FM, if one exists
 1. Let the block server delete the block of the deleted file
 
-
-## **[Not in BETA]** Sharing a directory
-
-### Task
-
-Share a directory recursively to one or more contacts
-
-### Prerequisites
-
-* Path and directory key
-* Valid authentication token with write access to the VOLUME
-* Contact info of the contacts
-
-
-### Process
-
-1. Insert the share info in the index DM, increment the version, set the device id, encrypt and upload it
-1. Notify the contacts about the new share with a drop message.
-
-
-## **[Not in BETA]** Unsharing a directory
-
-### Task
-
-Remove a share to one or more contacts
-
-### Prerequisites
-
-* Path and directory key
-* Valid authentication token with write access to the VOLUME
-* Public keys **pub1** of the contacts
-
-
-### Process
-
-1. Remove the contacts' public keys from the share info of the folder in the index DM, set the device id and increment the version
-1. Download recursively all DM
-1. Upload an archive of all those DM with the name "backup_" + ref in the root directory (as a file object).
-1. Let the block server recursively delete all DM from the share
-1. Wait until the deletion has propagated, check the progress by issuing HEAD requests for the files.
-1. Create a new **dk*** for each DM in the share and insert them in their parents
-1. Upload all the new DM, encrypted with their new **dk***, depth first
-1. Check every uploaded DM with HEAD requests to ensure that no conflicts occurred.
-1. Insert the new **dk*** into the parent directory of the share and upload the DM
-1. Remove the backup file from the root directory
-1. Send the new **dk*** of the share to all remaining contacts
-
-
 ## Sharing a single file
 
 ### Task
@@ -560,14 +512,8 @@ Remove a single file share to one or more contacts
 
 1. Update the share info in the index DM and upload it
 1. Update or remove the FM:
-    * Always *(If no other permitted user is left)*
-        1. Remove the reference to the FM from the DM and upload the DM
-        1. Delete the FM
-    * **[Not in BETA]** If one or more other permitted user is left
-        1. Encrypt the FM with a new **dk***
-        1. Insert the new **dk*** into the DM
-        1. Upload the FM and the DM
-        1. Send the new **dk*** of the FM to all remaining contacts
+    1. Remove the reference to the FM from the DM and upload the DM
+    1. Delete the FM
 
 
 # Handling conflicts
