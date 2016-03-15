@@ -9,7 +9,7 @@ A set of protocols to store files and folders on a VOLUME that is (currently) st
 
 ## Used services
 
-Qabel Box uses an Accounting server that controls the access to the Qabel Block server which directly accesses the files on AWS S3. Every client which needs write access has to be authenticated by the Accounting server and then receives an authentication token for this indirect access to the VOLUME.
+Qabel Box uses an Accounting server that controls the access to the Qabel Block server which directly accesses the files on AWS S3. Every client which needs write access has to be authenticated by the Accounting server and then receives an authentication token for the indirect access to the VOLUME.
 Qabel Box also uses the Block server to store the blocks and metadata.
 
 ## Accounting server
@@ -18,7 +18,7 @@ The accounting server controls write access to the Block server. Registered user
 All data is sent as JSON and UTF-8. All data types are defined [here](../Qabel-Client-Local-Data#data-types).
 
 ### Required permissions for the AWS user
-The accounting server uses an AWS user to create the temporary tokens. He must have the following permissions:
+The accounting server uses an AWS user to create the temporary tokens. The block server uses an AWS user which has the following permissions:
 
 * "sts:GetFederationToken" to generate the credentials
 * "s3:GetObject" for read access
@@ -478,7 +478,7 @@ Update an existing file on the users VOLUME.
 1. Let the block server delete the block of the deleted file
 
 
-## Sharing a directory
+## **[Not in BETA]** Sharing a directory
 
 ### Task
 
@@ -497,7 +497,7 @@ Share a directory recursively to one or more contacts
 1. Notify the contacts about the new share with a drop message.
 
 
-## Unsharing a directory
+## **[Not in BETA]** Unsharing a directory
 
 ### Task
 
@@ -560,14 +560,14 @@ Remove a single file share to one or more contacts
 
 1. Update the share info in the index DM and upload it
 1. Update or remove the FM:
-    * If one or more other permitted user is left
+    * Always *(If no other permitted user is left)*
+        1. Remove the reference to the FM from the DM and upload the DM
+        1. Delete the FM
+    * **[Not in BETA]** If one or more other permitted user is left
         1. Encrypt the FM with a new **dk***
         1. Insert the new **dk*** into the DM
         1. Upload the FM and the DM
         1. Send the new **dk*** of the FM to all remaining contacts
-    * If no other permitted user is left
-        1. Remove the reference to the FM from the DM and upload the DM
-        1. Delete the FM
 
 
 # Handling conflicts

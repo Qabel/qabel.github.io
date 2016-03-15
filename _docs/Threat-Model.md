@@ -35,18 +35,18 @@ We distinguish between four attacker types:
 
 ## Capabilities of Attackers
 ### 0. Everyone
-Writing and reading of drop messages is not restricted. Currently downloading from the Qabel Block server is restricted to authenticated accounts.
+Writing and reading of drop messages is not restricted.
 
 ### 1. Contact
 A user *B* learns one identity (drop ID, public key and alias) of a user *A* during the contact. When receiving a share user *B* learns the directory structure of the shared directory and its files or the shared file. This implies that *B* learns the name of *A's* prefix the share is stored in.
 
 ### 2. Qabel User 
-The stored encrypted data is accessible for all Qabel accounts. Thus every user knows the number and sizes of all files and the estimated number of all folders of every prefix.
+The stored encrypted data is accessible for all Qabel accounts.
 
 ### 3. Qabel Servers
 Since a user has to be authenticated to be able to upload files to the server the provider knows the prefixes of each account. Due to this it is able to monitor all file writes and can match them to the registered account. During the creation of a folder it can observe in which parent folder it is created. Thereby it can reconstruct the directory tree of *A*. As soon as an account requests (meta) files in the order of the (sub-)directory tree, *O* can assume that *A* shared the (sub-)directory with the an identity connected to this account.
 
-To prevent Qabel from being used as an illegal file distribution platform currently an account also needs to be authenticated for downloading a file. Thus the accounts of uploaders and downloaders can be linked. Since downloading of files can be conducted without possessing the respective file key this link can be forged.
+To prevent Qabel from being used as an illegal file distribution platform the download traffic is accounted to the owner of the prefix.
 
 ### 4.i. Client Eavesdropper
 A client eavesdropper can observe which Block server a device writes to and which Block servers it reads from. It can guess which Drop server*s* a user uses to receive message (most requested Drop server*s*) but it cannot guess the specific drop ID (since the message lengths should be similar and thus indistinguishable). 
