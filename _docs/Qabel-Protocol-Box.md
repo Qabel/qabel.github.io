@@ -9,16 +9,13 @@ A set of protocols to store files and folders on a VOLUME that is (currently) st
 
 ## Used services
 
-Qabel Box uses an Accounting server that controls the access to the Qabel Block server which directly accesses the files on AWS S3. Every client which needs write access has to be authenticated by the Accounting server and then receives an authentication token for the indirect access to the VOLUME.
-Qabel Box also uses the Block server to store the blocks and metadata.
+Qabel Box uses an Accounting server that controls the access to the Qabel Block server which directly accesses the files on AWS S3. Every client which needs write access, has to be authenticated by the Accounting server and then receives an authentication token for the communication with the Block server. The Block server enforces the permissions that are connected to the authentication tokens.
+Qabel Box uses the Block server to store the blocks and metadata.
 
 ## Accounting server
 
 The accounting server controls write access to the Block server. Registered users ( = accounts != identities) can request temporary authentication tokens for the access.
 All data is sent as JSON and UTF-8. All data types are defined [here](../Qabel-Client-Local-Data#data-types).
-
-### Required permissions for the AWS user
-The accounting server uses an AWS user to create the temporary tokens. The block server uses another AWS user to process the requested file operations on the Qabel box S3 bucket.
 
 ### Registration
 
