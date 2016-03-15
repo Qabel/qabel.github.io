@@ -66,7 +66,7 @@ Since only size and IP of requests to Qabel servers is observable an Internet ea
 ### Worst Case Scenario
 Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses.
 
-This implies that *O* knows which Block server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes. *O* can observe which accounts download files from *A's* prefixes and can guess which downloaders own the respective key. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker can statistically guess which accounts *A* communicates with by matching the IPs of downloading accounts from *A's* prefixes with the sender IPs of drop messages to *A's* drop ID.
+This implies that *O* knows which Block server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes. *O* can guess which downloaders own the respective key. Additionally *O* can observe from which prefixes *A* downloads which files by matching the file size of the request and the stored files. The knowledge of *A's* drop ID is only a minor advantage to *O* since random users (can) write to *A's* drop ID. An attacker can statistically guess which accounts *A* communicates with by matching the IPs of downloading accounts from *A's* prefixes with the sender IPs of drop messages to *A's* drop ID.
 
 Visible Information:
 
@@ -80,7 +80,7 @@ Visible Information:
     * Files and folders
     * Time
     * *IP(s) of destination drop server(s)*
-* Time, account and IP of downloads of *A's* files
+* Time and IP of downloads of *A's* files
 * Time, size, server IP and thereby possibly the prefix of *A's* downloads
 
 **Drop**
@@ -90,7 +90,7 @@ Visible Information:
 * Time, size and drop server IP of drop messages *A* sends
 
 #### Worst Case Scenario under Usage of *Tor*
-Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which Block server prefixes *A* uses. It also knows the number, size, modification time and downloading accounts of the files, and the directory tree of *A's* prefixes.
+Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A* and has full access to the Qabel servers *A* uses. This implies that *O* knows which Block server prefixes *A* uses. It also knows the number, size and modification time of the files, and the directory tree of *A's* prefixes.
 
 **Block**
 
@@ -101,7 +101,7 @@ Attacker *O* is contact of user *A*, can eavesdrop traffic at clients of user *A
 * Actions (e.g., create file, share file, ...) *A* performs with respective
     * Files and folders
     * Time
-* Time and account of downloads of *A's* files
+* Time of downloads of *A's* files
 
 **Drop**
 
@@ -124,7 +124,6 @@ In case an attacker learns an authentication token for the Qabel Block server, t
 
 ## Improvements to reduce Attacker Capabilities
 
-* Allowing unauthenticated file downloads to gain unlinkability.
 * Fixed block size for storage files to hide file sizes.
 * Downloading all meta files at once to hide that a user downloads them in the order of the directory tree [issue](https://github.com/Qabel/qabel.github.io/issues/125).
 * Sending fake drop messages to hide user relations [issue](https://github.com/Qabel/qabel.github.io/issues/124), [issue](https://github.com/Qabel/qabel-core/issues/313), [issue](https://github.com/Qabel/qabel-core/issues/314).
