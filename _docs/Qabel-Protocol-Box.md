@@ -18,15 +18,7 @@ The accounting server controls write access to the Block server. Registered user
 All data is sent as JSON and UTF-8. All data types are defined [here](../Qabel-Client-Local-Data#data-types).
 
 ### Required permissions for the AWS user
-The accounting server uses an AWS user to create the temporary tokens. The block server uses an AWS user which has the following permissions:
-
-* "sts:GetFederationToken" to generate the credentials
-* "s3:GetObject" for read access
-* "s3:PutObject" for uploading
-* "s3:DeleteObject" for deleting
-* "s3:ListBucket" is used to find unreferenced files (not implemented)
-
-These permissions should only be granted for the Qabel box S3 bucket.
+The accounting server uses an AWS user to create the temporary tokens. The block server uses another AWS user to process the requested file operations on the Qabel box S3 bucket.
 
 ### Registration
 
