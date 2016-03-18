@@ -163,7 +163,8 @@ files: [
 meta: null,
 metakey: null,
 key: "b43feebe528a56bb4f21ef3a8a617714aee2cabc0708c1702a98915ae852ad06",
-ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
+prefix: "a3fdc333-a143-85aa-edbf-43adf3ff7315",
+block: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
 },
 { name: "barfoo.txt", size: 4568, mtime: 1445432120,
 meta: "a7c19151-b2cc-47d8-82e5-636d5c7ac00a/a9c6ce30-418b-e292-83bc-769a8c72f600",
@@ -245,6 +246,7 @@ spec_version: INT,  // version of the VOLUME spec
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
 key: KEY, // symmetric key for the block
+prefix: STR // prefix of the block
 block: STR // path to the block without the prefix \<root\>/blocks/
 }
 ```
@@ -258,9 +260,10 @@ File:
 name: STR, // object name,
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
-meta: STR // ref of the FM, if it exists in the format prefix/block
+meta: STR // ref of the FM, if it exists in the format block
 metakey: KEY // symmetric key of the FM, if it exists
 key: KEY, // symmetric key for the block
+prefix: STR // prefix to the block and meta file
 block: STR // path to the block without the prefix \<root\>/blocks/
 },
 ```
@@ -595,6 +598,7 @@ CREATE TABLE shares
 /*
 Table of all file objects in the directory
 * 'id' is meaningless and only for record keeping purposes.
+* 'prefix is the the prefix to the block
 * 'block is the name of the block which stores the data
 * 'name' is the file name
 * 'size' is the file size in bytes
@@ -605,6 +609,7 @@ Table of all file objects in the directory
 */
 CREATE TABLE files
 (
+       prefix           VARCHAR(255) NOT NULL,
        block            VARCHAR(255) NOT NULL,
        name             VARCHAR(255) PRIMARY KEY,
        size             LONG NOT NULL,
@@ -666,6 +671,7 @@ CREATE TABLE spec_version
 Table for the file information
 * 'id' is meaningless and only for record keeping purposes.
 * 'owner' is the public key of the owner
+* 'prefix is the the prefix to the block
 * 'block is the name of the block which stores the data
 * 'name' is the file name
 * 'size' is the file size in bytes
@@ -676,6 +682,7 @@ CREATE TABLE files
 (
        id               INTEGER PRIMARY KEY,
        owner            BLOB NOT NULL,
+       prefix           VARCHAR(255) NOT NULL,
        block            VARCHAR(255) NOT NULL,
        name             VARCHAR(255) NOT NULL,
        size             LONG NOT NULL,
