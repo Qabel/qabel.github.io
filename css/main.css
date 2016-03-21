@@ -1,218 +1,134 @@
-@font-face { font-family: 'OpenSans'; src: url(../fonts/OpenSans-Regular.ttf); }
-@font-face { font-family: 'OpenSans'; src: url(../fonts/OpenSans-Bold.ttf); font-weight: bold; }
-@font-face { font-family: 'Art Post'; src: url(../fonts/ArtPost.ttf); }
+@font-face {
+  font-family: 'source_sans_pro';
+  src: url('../fonts/ssp/ssp.eot');
+  src: url('../fonts/ssp/ssp.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ssp/ssp.woff2') format('woff2'),
+    url('../fonts/ssp/ssp.woff') format('woff'),
+    url('../fonts/ssp/ssp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'source_sans_pro';
+  src: url('../fonts/ssp/ssp-i.eot');
+  src: url('../fonts/ssp/ssp-i.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ssp/ssp-i.woff2') format('woff2'),
+    url('../fonts/ssp/ssp-i.woff') format('woff'),
+    url('../fonts/ssp/ssp-i.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'source_sans_pro';
+  src: url('../fonts/ssp/ssp-b.eot');
+  src: url('../fonts/ssp/ssp-b.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ssp/ssp-b.woff2') format('woff2'),
+    url('../fonts/ssp/ssp-b.woff') format('woff'),
+    url('../fonts/ssp/ssp-b.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'source_sans_pro';
+  src: url('../fonts/ssp/ssp-b-i.eot');
+  src: url('../fonts/ssp/ssp-b-i.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ssp/ssp-b-i.woff2') format('woff2'),
+    url('../fonts/ssp/ssp-b-i.woff') format('woff'),
+    url('../fonts/ssp/ssp-b-i.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
 
-* {
-  padding: 0;
-  margin: 0;
+html {
+  background-color: #222;
 }
 
 body {
-  font: normal normal normal 14px/20px 'OpenSans', sans, sans-serif;
-  color: rgb(74, 70, 74);
-
-  background-color: rgb(255, 105, 15);
+  font-family: 'source_sans_pro';
+  font-size: 15px;
+  background-color: #222;
 }
 
-header {
-  z-index: 1337;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-
-  background-image: url('https://qabel.de/img/menu-border2.png');
-  background-position: bottom center;
-  background-repeat: repeat-x;
-
-  padding-bottom: 17px;
+h1, h2, h3, h4,
+.h1, .h2, .h3 {
+  font-weight: bold;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 20px;
+a {
+  color: rgb(255,105,15);
 }
-
-h1, h2 {
-
-  margin-bottom: 40px;
-}
-
-h1 {
-  font-size: 1.8em;
-}
-
-h1, a {
-  text-decoration: none;
-
-  color: rgb(255, 105, 15);
-}
-
-h4 {
-  color: #fefefe;
-
-  margin-bottom: 10px;
-}
-
 a:hover {
-  text-decoration: underline;
+  color: rgb(255,105,15);
 }
 
-p,
-ol {
-  padding-bottom: 1em;
+.navbar {
+  margin-bottom: 0;
+  padding-bottom: 9px;
+  border: 0;
 }
 
-header > div {
-  background-color: rgb(255, 105, 15);
-  width: 100%;
+.navbar-brand {
+  padding: 0;
+  margin: 9px !important;
 }
 
-#alpha {
-  position: absolute;
-
-  top: 18px;
-  left: -10px;
-
-  -moz-transform: rotate(-30deg);
-  -ms-transform: rotate(-30deg);
-  -o-transform: rotate(-30deg);
-  -webkit-transform: rotate(-30deg);
-
-  transform: rotate(-30deg);
-}
-
-#logo-main {
-  display: inline-block;
-  height: 160px;
-}
-
+#logo-main,
 #logo-main img {
-  height: 160px;
+  display: inline-block;
+  height: 82px;
 }
 
 #nav-main {
-  position: relative;
-  max-width: 960px;
-  min-width: 640px;
-  margin: 0 auto;
-  padding: 16px 0;
-}
-
-#nav-main ul {
   position: absolute;
-  bottom: 26px;
-  right: 0;
-  list-style: none;
+  bottom: 0;
+  right: 15px;
+}
+#nav-main li,
+#nav-main li a {
+  background: none !important;
+}
+#nav-main a:link,
+#nav-main a:visited {
+  color: rgb(255,105,15) !important;
+}
+#nav-main a:hover,
+#nav-main a:active {
+  color: #fff !important;
 }
 
-#nav-main li {
-  display: inline-block;
-
-  padding: 0 15px;
-
-  border-left: 1px solid rgb(243, 243, 243);
-
-  vertical-align: middle;
-}
-
-#nav-main li:first-child {
-  border-left: none;
-}
-
-#nav-main a {
-  font-weight: bold;
-  font-size: 17px;
-
-  color: rgb(243, 243, 243);
-
-  text-shadow: #000 1px 1px 1px;
-}
-
-#nav-main a:hover {
-  color: rgb(74, 70, 74);
-
-  text-shadow: none;
-}
-
-#qabel {
-  overflow: hidden;
-  padding-top: 220px;
+main {
+  padding-top: 30px;
+  padding-bottom: 60px;
+  background: #fff;
 }
 
 footer {
-  position: relative;
-  width: 100%;
-
-  z-index: 1337;
-
-  margin-top: -19px;
-
-  padding-top: 17px;
-
-  background-image: url('https://qabel.de/img/footer-border.png');
-  background-position: top center;
-  background-repeat: repeat-x;
-}
-
-footer > div {
-  width: 100%;
-  height: 100%;
-
-  padding-top: 17px;
-
   background-color: rgb(255, 105, 15);
+  padding: 8px 0 5px;
 }
 
-footer p {
-  text-align: center;
+footer strong {
+  font-size: 22px;
+  color: #fff;
   margin: 0;
-  color: rgb(243, 243, 243);
 }
 
-#sidebar {
-  height: 100%;
-  padding-right: 0;
-  padding-bottom: 20px;
-}
-#sidebar .nav {
-  width: 95%;
-}
-#sidebar li {
-  border-bottom-width:1px;
+#sidebar li a {
+  padding: 2px 15px;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
+  color: #333;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 th, td {
-    border: 1px solid gray;
-    padding-left: 15px;
-    padding-right: 15px;
-    text-align: middle;
-}
-ul, ol {
-  padding-left: 2em;
-}
-ul.nav > p {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-ul.nav > li {
-  line-height: 1.5em;
-  position: relative;
-  display: block;
-  padding-right: 10px;
+  border: 1px solid #ccc;
   padding-left: 15px;
-}
-
-ol ol, ul ol {
-    list-style-type: lower-roman;
-    box-sizing: border-box;
-    padding-left: 2em;
+  padding-right: 15px;
+  text-align: middle;
 }
 
 img {
