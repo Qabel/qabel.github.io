@@ -134,7 +134,10 @@ is returned.
 
 A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/\<index\> which is the starting point and contains references to other objects. All file names on S3 are UUIDs.
 
-All mtime values are seconds since epoch in UTC. Blocks are stored at VOLUME/blocks/.
+All mtime and ctime values are seconds since epoch in UTC. Blocks are stored at VOLUME/blocks/.
+For files, the mtime is the mtime of the original file to be restored on download / sync
+and the ctime is time (defined by the server) when the file block was uploaded.
+For directories, the ctime is the time (defined by the server) when the Directory Metadata of this directory has been uploaded.
 
 ![Qabel Storage Structure](/images/qabelStorageStructure.png)
 
@@ -159,13 +162,13 @@ shared: [
   type: "READ"}
 ],
 files: [
-{ name: "foobar.jpg", size: 6203434, mtime: 1445432325,
+{ name: "foobar.jpg", size: 6203434, mtime: 1445432325, ctime: 1445432326,
 meta: null,
 metakey: null,
 key: "b43feebe528a56bb4f21ef3a8a617714aee2cabc0708c1702a98915ae852ad06",
 ref: "0846C7C6-77F1-11E5-B21E-9CFF64691233",
 },
-{ name: "barfoo.txt", size: 4568, mtime: 1445432120,
+{ name: "barfoo.txt", size: 4568, mtime: 1445432120, ctime 1445432122,
 meta: "a7c19151-b2cc-47d8-82e5-636d5c7ac00a/a9c6ce30-418b-e292-83bc-769a8c72f600",
 metakey: "fbeaf7cc5560b5e38b5a37e5d8e104x38daa59a6ef97c0a868a3a193f2c089b9",
 key: "042a77edb0d527816ddb3e74457d92e69302099881b9a3181a514696c0fc39bf",
@@ -244,6 +247,7 @@ name: STR, // filename
 spec_version: INT,  // version of the VOLUME spec
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
+ctime: LONG, // change time as seconds since epoch
 key: KEY, // symmetric key for the block
 block: STR // path to the block without the prefix \<root\>/blocks/
 }
@@ -258,8 +262,9 @@ File:
 name: STR, // object name,
 size: LONG, // uncompressed file size
 mtime: LONG, // modification time as seconds since epoch
-meta: STR // ref of the FM, if it exists in the format prefix/block
-metakey: KEY // symmetric key of the FM, if it exists
+ctime: LONG, // change time as seconds since epoch
+meta: STR, // ref of the FM, if it exists in the format prefix/block
+metakey: KEY, // symmetric key of the FM, if it exists
 key: KEY, // symmetric key for the block
 block: STR // path to the block without the prefix \<root\>/blocks/
 },
@@ -269,9 +274,10 @@ Folder/Directory:
 
 ```
 {
-name: STR // object name,
-key: KEY // symmetric directory key
-ref: STR // ref of the metadata file that contains information about the folder
+name: STR, // object name
+key: KEY, // symmetric directory key
+ref: STR, // ref of the metadata file that contains information about the folder
+ctime: LONG // change time as seconds since epoch
 },
 ```
 
@@ -281,9 +287,9 @@ External:
 {
 is_folder: BOOL, // indicates if external is a folder or a file
 name: STR, // object name,
-key: KEY // symmetric directory key
+key: KEY, // symmetric directory key
 owner: STR, // public key of the owner of that VOLUME
-url: URL // URL to the metadata file that contains information about the folder
+url: URL, // URL to the metadata file that contains information about the folder
 },
 ```
 
@@ -393,8 +399,8 @@ Upload a new file "example.jpg" from the client to the folder VOLUME/examples/.
 1. Create a new symmetric key **fk0**
 1. Encrypt the file with **fk0**
 1. Generate a new UUID, this is the ref of the file
-1. Upload the block to VOLUME/blocks/\<uuid\>, use the current device time in UTC as mtime
-1. Insert the new object, including its **fk0**, into the metadata file, using current device time in UTC as mtime and the original file size in bytes as size
+1. Upload the block to VOLUME/blocks/\<uuid\>, use the time from the server response as ctime
+1. Insert the new object, including its **fk0**, into the metadata file, using the original file mtime in UTC as mtime, the original file size in bytes as size and the upload time as ctime
 1. Set `last_change_by` to the user's device id
 1. Encrypt the DM with **dk1** and upload it 
 
@@ -599,6 +605,7 @@ Table of all file objects in the directory
 * 'name' is the file name
 * 'size' is the file size in bytes
 * 'mtime' is the modification timestamp
+* 'ctime' is the change timestamp
 * 'key' is the symmetric file key
 * 'meta is the ref of the FM, if one exists
 * 'metakey' is the symmetric key of the FM, if one exists
@@ -609,6 +616,7 @@ CREATE TABLE files
        name             VARCHAR(255) PRIMARY KEY,
        size             LONG NOT NULL,
        mtime            LONG NOT NULL,
+       ctime            LONG NOT NULL,
        key              BLOB NOT NULL,
        meta             VARCHAR(255),
        metakey          BLOB
@@ -619,13 +627,15 @@ Table of all folder objects in the directory
 * 'id' is meaningless and only for record keeping purposes.
 * 'ref' is the name of the metadata file
 * 'name' is the folder name
+* 'ctime' is the change timestamp
 * 'key' is the symmetric directory key
 */
 CREATE TABLE folders
 (
        ref              VARCHAR(255) NOT NULL,
        name             VARCHAR(255) PRIMARY KEY,
-       key              BLOB NOT NULL
+       key              BLOB NOT NULL,
+       ctime            LONG NOT NULL
 );
 
 /*
@@ -670,6 +680,7 @@ Table for the file information
 * 'name' is the file name
 * 'size' is the file size in bytes
 * 'mtime' is the modification timestamp
+* 'ctime' is the change timestamp
 * 'key' is the symmetric file key
 */
 CREATE TABLE files
@@ -680,6 +691,7 @@ CREATE TABLE files
        name             VARCHAR(255) NOT NULL,
        size             LONG NOT NULL,
        mtime            LONG NOT NULL,
+       ctime            LONG NOT NULL,
        key              BLOB NOT NULL,
 );
 
