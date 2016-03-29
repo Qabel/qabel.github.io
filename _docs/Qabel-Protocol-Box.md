@@ -287,7 +287,7 @@ External:
 {
 is_folder: BOOL, // indicates if external is a folder or a file
 name: STR, // object name,
-key: KEY // symmetric directory key
+key: KEY, // symmetric directory key
 owner: STR, // public key of the owner of that VOLUME
 url: URL, // URL to the metadata file that contains information about the folder
 },
