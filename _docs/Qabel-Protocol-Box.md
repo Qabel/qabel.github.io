@@ -103,7 +103,7 @@ The auth resource is only used by the block server and should only be exposed to
 
 * Resource: /api/v0/auth/\<path\>
 * Method: GET|POST|DELETE
-* Request data: {auth: authentication token}	// See [Login](#login)
+* Request data: `{auth: authentication token}`	// See [Login](#login)
 * Response data: `{user_id: STR, active: BOOL}`
 
 Any request that the block server receives for its files-resource should be followed by a similar request to the
