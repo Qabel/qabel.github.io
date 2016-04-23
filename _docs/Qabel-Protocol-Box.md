@@ -102,7 +102,7 @@ Get a list of available prefixes
 The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
 
 * Resource: /api/v0/auth/
-* Method: GET|POST|DELETE
+* Method: POST
 * Request data: `{auth: authorization header}`	// See [Login](#login)
 * Response data: `{user_id: STR, active: BOOL}`
 
