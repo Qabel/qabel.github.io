@@ -101,15 +101,14 @@ Get a list of available prefixes
 ### Authentication
 The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
 
-* Resource: /api/v0/auth/\<prefix\>/\<path\>
-* Method: GET|POST|DELETE
-* Request data: None
-* Response data: None
+* Resource: /api/v0/auth/
+* Method: POST
+* Request data: `{auth: authorization header}`	// See [Login](#login)
+* Response data: `{user_id: STR, active: BOOL}`
 
 Any request that the block server receives for its files-resource should be followed by a similar request to the
-auth resource. If the block server receives an Authentication header, the block server should use this header in
-the request to the auth resource. If the request is authorized, the accounting server returns a status code of 204,
-if it is not authorized, it returns a status code of 403.
+auth resource. The authorization header, which is part of the request to the block server is forwarded to the auth resource. If the request is authorized, the accounting server returns the user ID and the user status as part of an HTTP response with status code 200.
+If it is not authorized, it returns a status code of 40X.
 
 ### File transfer
 The block server has a REST resource for files which is used for uploads, downloads and deletes on the storage backend.
