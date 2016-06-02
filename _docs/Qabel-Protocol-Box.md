@@ -9,77 +9,22 @@ A set of protocols to store files and folders on a VOLUME that is (currently) st
 
 ## Used services
 
-Qabel Box uses an Accounting server that controls the access to the Qabel Block server which directly accesses the files on AWS S3. Every client which needs write access, has to be authenticated by the Accounting server and then receives an authentication token for the communication with the Block server. The Block server enforces the permissions that are connected to the authentication tokens.
-Qabel Box uses the Block server to store the blocks and metadata.
+Qabel Box uses the [Accounting server](../Qabel-Accounting) that
+controls the access to the Qabel Block server which directly accesses
+the files on AWS S3. Every client which needs write access, has to be
+authenticated by the Accounting server and then receives an
+authentication token for the communication with the Block server. The
+Block server enforces the permissions that are connected to the
+authentication tokens.  Qabel Box uses the Block server to store the
+blocks and metadata.
 
-## Accounting server
+## Block server
 
-The accounting server controls write access to the Block server. Registered users ( = accounts != identities) can request temporary authentication tokens for the access.
-All data is sent as JSON and UTF-8. All data types are defined [here](../Qabel-Client-Local-Data#data-types).
-
-### Registration
-
-* Resource: /api/v0/auth/registration
-* Method: POST
-* Request data: `{username: STR, password1: STR, password2: STR, email: STR}`
-* Response data: `{key: STR}`
-
-If the password does not accord to the password policy it is rejected.
-
-The response data is equal to the login response data, both return an authentication token.
-
-### Login
-The login method grants a new authentication token.
-
-* Resource: /api/v0/auth/login
-* Method: POST
-* Request data: `{username: STR, password: STR}`
-* Response data: `{key: STR}`
-
-After a certain number of failed login attempts during a short period of time the login is blocked. The authentication token is used by including the header "Authorization" with the value "Token " concatenated with the key.
-
-For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
-
-For every method except login and registration, this authorization header is required.
 
 ### Profile information
-
-* Resource: /api/v0/profile
 * Method: GET
 * Request data: `{}`
 * Response data: `{bucket: STR, used_storage: STR, quota: STR}`
-
-### Confirm email
-
-* Resource: /api/v0/auth/registration/verify-email
-* Method: POST
-* Request data: `{key: STR}`
-* Response data: `{}`
-
-### Reset password
-* Resource: /api/v0/auth/password/reset
-* Method: POST
-* Request data: `{email: STR}`
-* Response data: `{}`
-
-### Confirm password reset
-* Resource: /api/v0/auth/password/reset/confirm
-* Method: POST
-* Request data: `{uid: STR, token: STR, new_password1: STR,
-new_password2: STR }`
-* Response data: `{}`
-
-### Change password:
-* Resource: /api/v0/auth/password/change
-* Method: POST
-* Request data: `{new_password1: STR, new_password2: STR, old_password: STR}`
-* Response data: `{}`
-
-### Logout:
-* Resource: /api/v0/auth/logout
-* Method: POST
-* Request data: `{}`
-* Response data: `{}`
 
 ### Prefix
 The prefix resource controls all prefixes of the user.
@@ -98,19 +43,8 @@ Get a list of available prefixes
 * Request data: None
 * Response data: `{prefixes: [STR]}`
 
-### Authentication
-The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
-
-* Resource: /api/v0/auth/
-* Method: POST
-* Request data: `{auth: authorization header}`	// See [Login](#login)
-* Response data: `{user_id: STR, active: BOOL}`
-
-Any request that the block server receives for its files-resource should be followed by a similar request to the
-auth resource. The authorization header, which is part of the request to the block server is forwarded to the auth resource. If the request is authorized, the accounting server returns the user ID and the user status as part of an HTTP response with status code 200.
-If it is not authorized, it returns a status code of 40X.
-
 ### File transfer
+
 The block server has a REST resource for files which is used for uploads, downloads and deletes on the storage backend.
 Authentication is handled exactly like on the accounting server, with the Authentication header.
 
