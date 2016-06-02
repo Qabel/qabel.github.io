@@ -40,13 +40,6 @@ For example: `Authorization: Token 70373def6f3766ab1782700cba4404`
 
 For every method except login and registration, this authorization header is required.
 
-### Profile information
-
-* Resource: /api/v0/profile
-* Method: GET
-* Request data: `{}`
-* Response data: `{bucket: STR, used_storage: STR, quota: STR}`
-
 ### Confirm email
 
 * Resource: /api/v0/auth/registration/verify-email
