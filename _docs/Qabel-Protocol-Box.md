@@ -20,7 +20,7 @@ blocks and metadata.
 
 ## Block server
 
-When the blocks server receives a request that requires authorization
+When the block server receives a request that requires authorization
 it forwards the `Authorization` header to the
 [authentication API](../Qabel-Accounting#authentication) to verify the
 authorization token.

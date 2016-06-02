@@ -7,7 +7,7 @@ title: "Account management"
 
 The accounting server keeps track of registered users (=accounts !=
 identities) and authorizes them to other services by creating
-temporary authorization tokens.
+authorization tokens.
 
 All data is sent as JSON and UTF-8. All data types are defined
 [here](../Qabel-Client-Local-Data#data-types).
