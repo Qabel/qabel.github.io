@@ -84,5 +84,7 @@ The auth resource is only used by the block server and should only be exposed to
 
 * Resource: /api/v0/auth/
 * Method: POST
-* Request data: `{auth: authorization header}`	// See [Login](#login)
-* Response data: `{user_id: STR, active: BOOL}`
+* Request data:
+  * `{auth: authorization header}`	// See [Login](#login)
+  * `{user_id: numerical_user_id}`
+* Response data: `{user_id: STR, active: BOOL, block_quota: LONG, monthly_traffic_quota: LONG}`
