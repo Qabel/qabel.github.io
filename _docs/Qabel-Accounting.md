@@ -79,23 +79,6 @@ new_password2: STR }`
 * Request data: `{}`
 * Response data: `{}`
 
-### Prefix
-The prefix resource controls all prefixes of the user.
-
-Create a new prefix:
-
-* Resource: /api/v0/prefix
-* Method: POST
-* Request data: None
-* Response data: `{prefix: STR}`
-
-Get a list of available prefixes
-
-* Resource: /api/v0/prefix
-* Method: GET
-* Request data: None
-* Response data: `{prefixes: [STR]}`
-
 ### Authentication
 The auth resource is only used by the block server and should only be exposed to internal servers (e.g. localhost)
 

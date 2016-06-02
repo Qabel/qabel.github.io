@@ -20,11 +20,15 @@ blocks and metadata.
 
 ## Block server
 
+### Quota information
 
-### Profile information
+* Resource: /api/v0/quota
 * Method: GET
+* Requires valid `Authorization` header
 * Request data: `{}`
-* Response data: `{bucket: STR, used_storage: STR, quota: STR}`
+* Response data: `{quota: LONG, size: LONG}`
+  * `quota`: available storage quota
+  * `size`: used storage
 
 ### Prefix
 The prefix resource controls all prefixes of the user.
@@ -33,6 +37,7 @@ Create a new prefix:
 
 * Resource: /api/v0/prefix
 * Method: POST
+* Requires valid `Authorization` header
 * Request data: None
 * Response data: `{prefix: STR}`
 
@@ -40,6 +45,7 @@ Get a list of available prefixes
 
 * Resource: /api/v0/prefix
 * Method: GET
+* Requires valid `Authorization` header
 * Request data: None
 * Response data: `{prefixes: [STR]}`
 
@@ -61,7 +67,7 @@ The server sends an ETag header on GET and POST and respects the 'If-None-Match'
 header. If the ETag in the 'If-None-Match' header matches, a 304 with an empty body
 is returned.
 
-
+POST and DELETE require a valid `Authorization` header, while GET does not.
 
 ## Structure of a VOLUME
 
