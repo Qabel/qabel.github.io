@@ -20,6 +20,14 @@ blocks and metadata.
 
 ## Block server
 
+Any request that the block server receives for its files-resource
+should be followed by a similar request to the accounting servers'
+auth resource. The authorization header, which is part of the request
+to the block server, is forwarded to it. If the request is authorized,
+the accounting server returns the user ID and the user status as part
+of an HTTP response with status code 200. If it is not authorized, it
+returns a status code of 40X.
+
 ### Quota information
 
 * Resource: /api/v0/quota
