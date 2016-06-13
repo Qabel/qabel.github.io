@@ -48,7 +48,7 @@ phone
 * Resource: /api/v0/search/
 * Method: GET
 * Request data: field-value pairs (`field=value[&field=value...]`)
-* Response data: `[identity, ...]`
+* Response data: `{"identities": [identity, ...]}`
 
 When multiple field-value pairs are specified only identities matching
 all pairs will be returned.
