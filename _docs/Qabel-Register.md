@@ -26,9 +26,9 @@ alias). The association of a particular field with an identity is an
 An identity is always represented using this JSON structure:
 
     {
-        "public_key": "hex of 32-byte public key",
-        "drop_url": "drop protocol URL",
-        "alias": "user-specified alias"
+        "public_key": KEY,
+        "drop_url": URL,
+        "alias": STR
     }
 
 ### Fields
@@ -84,9 +84,9 @@ Atomically create or delete entries (therefore also update entries).
     Update item:
 
       {
-          "action": "create" or "delete",
-          "field": field name,
-          "value": field value
+          "action": STR ("create" or "delete"),
+          "field": STR (field name),
+          "value": STR (field value)
       }
 
 * Response data: None
@@ -110,4 +110,4 @@ Encrypt noise boxes for the update API with this key as the recipient.
 * Resource: /api/v0/key/
 * Method: GET
 * Request data: None
-* Response data: `{"public_key": "hex of 32-byte public key"}`
+* Response data: `{"public_key": STR}`
