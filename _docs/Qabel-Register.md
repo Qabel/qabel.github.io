@@ -70,9 +70,14 @@ Atomically create or delete entries (therefore also update entries).
     request*. This is only valid for requests purely made of
     *deletes*.
 
-    If the content is a noise box, then that noise box must be
-    encrypted for the servers [ephemeral key](#key) and it's signature
-    must be made by the key pair the update request refers to.
+    If the content is a noise box, then that noise box must be created
+    by the key pair the update request refers to and it must be
+    encrypted for the servers [ephemeral key](#key).
+
+    (Note: A valid noise box can only be computed by calculating the
+    Diffie-Hellman of the requesting key pair and the servers
+    ephemeral key. Forging a noise box would be as hard as breaking
+    the CDH-Problem.)
 
     Any update request containing a *create* cannot be executed
     immediately, since they require explicit confirmation by the
