@@ -70,7 +70,9 @@ authorized.
 
 The server sends an ETag header on GET and POST and respects the 'If-None-Match'
 header. If the ETag in the 'If-None-Match' header matches, a 304 with an empty body
-is returned.
+is returned. Additionally an 'If-Match' header can be specified for POST requests,
+which only executes the POST if the ETag in the header matches the current ETag
+of the file. If this check fails HTTP 412 (Precondition failed) is returned.
 
 POST and DELETE require a valid `Authorization` header, while GET does not.
 
