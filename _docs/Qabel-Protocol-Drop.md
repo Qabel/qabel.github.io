@@ -58,6 +58,10 @@ Available are the REST methods GET, HEAD and POST.
 
 To reduce Spam and Denial of Service attacks a proof of work protocol could additionally be implemented (see [Proof of Work](http://qabel.github.io/docs/Qabel-Protocol-ProofOfWork/))
 
+Both GET and HEAD return a Last-Modified and a X-Qabel-Latest header. X-Qabel-Latest
+essentially is an opaque value (treat it like an ETag) that orders drops. This value can
+be used with X-Qabel-New-Since for race-free and precise semantics.
+
 #### GET
 
 The GET method asks for a complete drop or a defined part of the newest entries.
@@ -71,13 +75,13 @@ The GET method asks for a complete drop or a defined part of the newest entries.
 | 204 | the drop is empty|
 | 200 | the drop contains messages|
 
-Optional with if-modified-since header:
+Optional with If-Modified-Since/X-Qabel-New-Since header:
 
 |HTTP status code|reason|
 |:----------------:|------|
 | 204 | the drop is empty|
-| 304 | the drop doesn't contain any messages since 'if-modified-since'|
-| 200 | the drop contains new messages since 'if-modified-since'|
+| 304 | the drop doesn't contain any new messages|
+| 200 | the drop contains new messages|
 
 The HTTP body gets returned as MIME multipart of the single messages.
 
@@ -98,13 +102,13 @@ The HEAD method determines if a drop is filled or if a new message has arrived.
 | 204 | drop is empty.         |
 | 200 | drop contains messages |
 
-Optional with if-modified-since header:
+Optional with If-Modified-Since/X-Qabel-New-Since header:
 
 |HTTP status code|reason|
 |:----------------:|------|
 | 204 | drop is empty |
-| 304 | drop doesn't contain any messages since 'if-modified-since' |
-| 200 | drop contains new messages since 'if-modified-since' |
+| 304 | drop doesn't contain any new messages |
+| 200 | drop contains new messages |
 
 No HTTP body gets returned.
 
