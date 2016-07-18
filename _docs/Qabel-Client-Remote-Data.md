@@ -21,7 +21,7 @@ Account data is also stored on the accounting server for authenticating the user
 
 ## Identity
 
-A user can upload its identity information to the [register server](../Qabel-Protocol-Register):
+A user can upload its identity information to the [index server](../Qabel-Index):
 
         identities      = "["
                         identity*

@@ -6,7 +6,7 @@ title: "Identity directory"
 ## Abstract
 
 Identities can be publicly shared in an identity directory provided by the
-register server.
+index server.
 
 All data is sent as JSON (encoded in UTF-8). All data types are defined
 [here](../Qabel-Client-Local-Data#data-types).
@@ -14,7 +14,7 @@ All data is sent as JSON (encoded in UTF-8). All data types are defined
 ## Concept & structures
 
 The identity directory can be queried using private data (*fields*),
-e.g. an email address or phone number. The register server then
+e.g. an email address or phone number. The index server then
 returns matching identites to the requester.
 
 Changes to the directory are submitted as *update requests*. An update

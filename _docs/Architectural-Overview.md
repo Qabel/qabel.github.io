@@ -22,7 +22,7 @@ title: Architectural Overview
 * [Drop Server](../Qabel-Protocol-Drop/)
 * [Block Server](../Qabel-Protocol-Box/)
 * [Accounting Server](../Qabel-Protocol-Box/)
-* **TODO** [Register Server]()
+* [Index Server](../Qabel-Index/)
 
 # Further reading
 For a detailed description of the components see the sidebar.

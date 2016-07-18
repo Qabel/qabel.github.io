@@ -20,7 +20,7 @@
       - Qabel-Protocol-Box: Box Protocol
       - Qabel-Protocol-ProofOfWork: Proof of Work
       - Qabel-Accounting: Account management
-      - Qabel-Register: Identity directory
+      - Qabel-Index: Identity directory
       - Threat-Model: Threat Model
 - title: Wording
   docs:
