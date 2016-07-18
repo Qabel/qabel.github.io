@@ -62,7 +62,7 @@ Both GET and HEAD return a Last-Modified and a X-Qabel-Latest header. X-Qabel-La
 is an opaque value (treat it like an ETag) that orders drops. This value can
 be used with X-Qabel-New-Since for race-free and precise "new since last request"
 semantics, unlike Last-Modified and If-Modified-Since, which only provide one second
-resolution.
+resolution (RFC 2616 sections 3.3.1 and 14.29).
 
 #### GET
 
