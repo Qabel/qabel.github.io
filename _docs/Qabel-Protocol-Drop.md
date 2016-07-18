@@ -59,8 +59,10 @@ Available are the REST methods GET, HEAD and POST.
 To reduce Spam and Denial of Service attacks a proof of work protocol could additionally be implemented (see [Proof of Work](http://qabel.github.io/docs/Qabel-Protocol-ProofOfWork/))
 
 Both GET and HEAD return a Last-Modified and a X-Qabel-Latest header. X-Qabel-Latest
-essentially is an opaque value (treat it like an ETag) that orders drops. This value can
-be used with X-Qabel-New-Since for race-free and precise semantics.
+is an opaque value (treat it like an ETag) that orders drops. This value can
+be used with X-Qabel-New-Since for race-free and precise "new since last request"
+semantics, unlike Last-Modified and If-Modified-Since, which only provide one second
+resolution.
 
 #### GET
 
