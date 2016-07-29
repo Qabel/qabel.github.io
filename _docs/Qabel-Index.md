@@ -100,10 +100,9 @@ Atomically create or delete entries (therefore also update entries).
     * 202: accepted request, will be executed when user confirms it
     * 204: request executed
     * 400: malformed request
-    * 401: cryptography failure, signing key does not match update request public_key,
-    * 415: incorrect content type
+    * 401: cryptography failure, sender key does not match update request public_key
 
-* When receiving a 415 re-fetch the public key and retry: the server
+* When receiving a 400 while submitting an encrypted request, re-fetch the public key and retry: the server
   may have been restarted.
 
 ### Key
