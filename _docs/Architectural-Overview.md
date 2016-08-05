@@ -1,28 +1,30 @@
 ---
 title: Architectural Overview
 ---
-# **TODO** stack diagram
+# Stack diagram
+
+![Architectural Overview](/images/architectual_overview.png)
 
 # Client
 
-## Core
-* Platform Interface
-  * Interface between client and servers which speaks the Qabel protocols.
-* Util
-  * Utility functions (which do not need network), e.g. encoding / decoding messages.
-* Config
-  * Access to the Qabel client configuration, e.g. various user settings.
-* [Contacts](../Components-Contacts/)
-  * Access to the Qabel client users address book.
+![Architectural Overview](/images/client_pyramide.png)
+
+# Core-API
+
+It is the platform interface between client and servers which speaks the Qabel protocols.
 
 # Server
 
-![Architectural Overview](/images/architecturalOverview.png)
+![Architectural Overview](/images/server_architecture.png)
 
 * [Drop Server](../Qabel-Protocol-Drop/)
 * [Block Server](../Qabel-Protocol-Box/)
-* [Accounting Server](../Qabel-Protocol-Box/)
+* Accounting Server
+  * Managing Qabel accounts.
 * [Index Server](../Qabel-Index/)
+* Billing
+  * Specific interface between an external shop system to the quota API from the accounting server.
 
 # Further reading
+
 For a detailed description of the components see the sidebar.
