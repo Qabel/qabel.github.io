@@ -1,7 +1,7 @@
 ---
-title: "Protocol: box"
+title: "Protocol: block & box"
 ---
-# Box Specification
+# Block & Box Specification
 
 ## Abstract
 
