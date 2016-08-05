@@ -1,11 +1,11 @@
 ---
-title: "Components: Box"
+title: "Components: Block & Box"
 ---
-# The box component
+# The block and box component
 
 ## Abstract
 
-The box component is a core component of Qabel. It serves as a file storage for multiple clients and allows clients to share access to stored files.
+This component is a core component of Qabel. It serves as a file storage for multiple clients and allows clients to share access to stored files.
 The files are encrypted and afterwards stored by the Qabel Block server on AWS S3.
 
 Features:

@@ -10,14 +10,14 @@
       #     item above and in ( )
       - Components-Contacts: Contacts
       - Components-Drop: Drop
-      - Components-Box: Box
+      - Components-Box: Block & Box
       - Components-Crypto: Crypto
     Client Data:
       - Qabel-Client-Local-Data: Local
       - Qabel-Client-Remote-Data: Remote
     Communication Protocols:
       - Qabel-Protocol-Drop: Drop Protocol
-      - Qabel-Protocol-Box: Box Protocol
+      - Qabel-Protocol-Box: Block & Box Protocol
       - Qabel-Protocol-ProofOfWork: Proof of Work
       - Qabel-Accounting: Account management
       - Qabel-Index: Identity directory
