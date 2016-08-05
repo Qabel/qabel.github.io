@@ -17,7 +17,7 @@
       - Qabel-Client-Remote-Data: Remote
     Communication Protocols:
       - Qabel-Protocol-Drop: Drop Protocol
-      - Qabel-Protocol-Box: Bloxk & Box Protocol
+      - Qabel-Protocol-Box: Block & Box Protocol
       - Qabel-Protocol-ProofOfWork: Proof of Work
       - Qabel-Accounting: Account management
       - Qabel-Index: Identity directory
