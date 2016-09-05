@@ -122,7 +122,7 @@ Often this will be accessed by the user directly (so ignore any body
 returned), but in some cases it's useful to access this
 programmatically.
 
-* Resource: /<id>/<action>/
+* Resource: /\<id>/\<action>/
 * Method: GET
 * Request data: None
 * Response data: Ignore
