@@ -115,3 +115,30 @@ Encrypt noise boxes for the update API with this key as the recipient.
 * Method: GET
 * Request data: None
 * Response data: `{"public_key": STR}`
+
+### Verification confirmation
+
+Often this will be accessed by the user directly (so ignore any body
+returned), but in some cases it's useful to access this
+programmatically.
+
+This is part of the verification performed by the index server to ensure that
+published identities connected to emails or phone numbers actually belong to
+the email/phone number owner.
+
+For example, when an update request is received which publishes a phone number,
+then a SMS is sent to that phone number. Client applications can then offer
+an input dialog to make the process quicker for the user (by not having to navigate
+to a web page and enter a code, but rather just enter it straight away in the client).
+
+* Resource: /\<id>/\<action>/
+* Method: GET
+* Request data: None
+* Response data: Ignore
+* `<action>` is either `confirm` or `deny`
+* `<id>` is a string sent to the user
+* HTTP statuses:
+
+    - 200: ok
+    - 400: invalid or expired `<id>`
+    - 404: `<id>` doesn't exist or was already acted on
