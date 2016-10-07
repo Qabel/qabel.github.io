@@ -39,21 +39,40 @@ email
 : E-Mail address
 
 phone
-: Phone number (must be capable of receiving SMS)
+: Phone number (must be capable of receiving SMS). Incoming phone
+numbers are normalized to ITU-T E.164 according to the specified
+locale (via HTTP Accept-Language), if they are not already. It is
+recommended to normalize phone numbers on the client.
 
 ## APIs
+
+An index server may require authorization from clients for API
+calls. This is a configuration setting of the server.
+
+When the server receives a request that requires authorization it
+forwards the `Authorization` header to the
+[authentication API](../Qabel-Accounting#authentication) to verify the
+authorization token.
+
+Requests with no or invalid authorization supplied result in a HTTP
+403 response.
 
 ### Search
 
 * Resource: /api/v0/search/
-* Method: GET
-* Request data: field-value pairs (`field=value[&field=value...]`)
+* Methods: GET, POST
+* Request data (GET): field-value pairs (`field=value[&field=value...]`)
+* Request data (POST): JSON `{"query": [{"field": STR, "value": STR}, ...]}`
 * Response data: `{"identities": [identity, ...]}`
 
-When multiple field-value pairs are specified only identities matching
-all pairs will be returned.
+When multiple field-value pairs are specified all identities matching any criteria
+are returned.
 
-At least one field-value pair must be specified.
+At least one field-value pair must be specified. A field can be specified multiple times
+(even in the GET query string, assuming the HTTP client library supports that).
+
+The returned `identity` structures have an additional key `matches` with a list of
+field-value pairs that matched it (= `[{"field": STR, "value": STR}, ...]`).
 
 ### Update
 
