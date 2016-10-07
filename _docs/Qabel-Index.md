@@ -44,6 +44,9 @@ numbers are normalized to ITU-T E.164 according to the specified
 locale (via HTTP Accept-Language), if they are not already. It is
 recommended to normalize phone numbers on the client.
 
+: The server might reject phone numbers due to blacklisting of their
+country code.
+
 ## APIs
 
 An index server may require authorization from clients for API
