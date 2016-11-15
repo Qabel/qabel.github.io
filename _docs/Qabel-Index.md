@@ -45,7 +45,7 @@ locale (via HTTP Accept-Language), if they are not already. It is
 recommended to normalize phone numbers on the client.
 
 : The server might reject phone numbers due to blacklisting of their
-country code.
+country code. This results in a HTTP 400 Bad Request status.
 
 ## APIs
 
@@ -75,7 +75,26 @@ At least one field-value pair must be specified. A field can be specified multip
 (even in the GET query string, assuming the HTTP client library supports that).
 
 The returned `identity` structures have an additional key `matches` with a list of
-field-value pairs that matched it (= `[{"field": STR, "value": STR}, ...]`).
+field-value pairs that matched it (= `[{"field": STR, "value": STR}, ...]`):
+
+
+```json
+{
+    "identities": [
+        {
+            "alias": "qabel_user",
+            "public_key": "12...34",
+            "drop_url": "https://example.net/...",
+            "matches": [
+                {
+                    "field": "email",
+                    "value": "foo@example.net"
+                }
+            ]
+        }
+    ]
+}
+```
 
 ### Update
 
@@ -99,7 +118,7 @@ Atomically create or delete entries (therefore also update entries).
     (Note: A valid noise box can only be computed by calculating the
     Diffie-Hellman of the requesting key pair and the servers
     ephemeral key. Forging a noise box would be as hard as breaking
-    the CDH-Problem.)
+    the CDH problem.)
 
     Any update request containing a *create* cannot be executed
     immediately, since they require explicit confirmation by the
@@ -124,8 +143,81 @@ Atomically create or delete entries (therefore also update entries).
     * 400: malformed request
     * 401: cryptography failure, sender key does not match update request public_key
 
-* When receiving a 400 while submitting an encrypted request, re-fetch the public key and retry: the server
-  may have been restarted.
+* When receiving a 400 while submitting an encrypted request, re-fetch
+  the public key and retry: the server may have been restarted.
+
+* Update items are not required. If no update items are given then the identity
+  on the index server is updated with the drop URL and alias provided. This is only
+  valid if the request was encrypted.
+
+### Identity status
+
+Retrieve the statuses of the entries associated with an identity.
+
+* Resource: /api/v0/status/
+* Method: POST
+* Content type: application/vnd.qabel.noisebox+json
+* Request data: `{"api": "status", "timestamp": INT}`
+
+    The "timestamp" is an integer timestamp counting the seconds
+    since the POSIX epoch (00:00:00 Coordinated Universal Time (UTC),
+    Thursday, 1 January 1970; leap seconds don't count).
+
+    If "timestamp" is older than two days the request is rejected (HTTP 400).
+
+    If "api" is not "status" the request is rejected (HTTP 400).
+
+* Response data:
+
+    ```
+    {
+        "identity": identity,
+        "entries": [entry, ...]
+    }
+    ```
+
+    If no identity with the public key of the noisebox is known,
+    no entries are returned and `identity` will be `null`.
+
+    The `entry` structure is defined as follows:
+
+    ```
+    {
+        "status": "confirmed"|"unconfirmed"|"deletion-pending",
+        "field": STR (field name),
+        "value": STR (field value)
+    }
+    ```
+
+    The "confirmed" status means that this is publicly available data,
+    while "unconfirmed" means that the server is awaiting confirmation
+    from the user and the entry is not yet visible. "deletion-pending"
+    is analogous, but for entries which are currently public and will
+    be deleted when confirmation is received.
+
+    The latter only happens in response to unencrypted delete requests.
+
+### Delete identity
+
+Delete all data associated with an identity.
+
+* Resource: /api/v0/delete-identity/
+* Method: POST
+* Content type: application/vnd.qabel.noisebox+json
+* Request data: `{"api": "delete-identity", "timestamp": INT}`
+
+    The "timestamp" is an integer timestamp counting the seconds
+    since the POSIX epoch (00:00:00 Coordinated Universal Time (UTC),
+    Thursday, 1 January 1970; leap seconds don't count).
+
+    If "timestamp" is older than two days the request is rejected (HTTP 400).
+
+    If "api" is not "delete-identity" the request is rejected (HTTP 400).
+
+* Response data: None (HTTP 204)
+
+* If no identity with the public key of the noisebox is known,
+  HTTP 404 is returned and no action is taken.
 
 ### Key
 
