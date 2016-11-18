@@ -76,6 +76,43 @@ of the file. If this check fails HTTP 412 (Precondition failed) is returned.
 
 POST and DELETE require a valid `Authorization` header, while GET does not.
 
+
+### Push / WebSockets
+
+* Resource: /api/v0/webscoket/\<prefix\>
+* Protocol: WebSocket
+* Subprotocol: v0.ws.block.qabel.de
+* Requires valid `Authorization` header for \<prefix\>.
+
+This pushes all changes of a prefix to the client, not including
+paths containing the string "blocks".
+
+* Resource: /api/v0/websocket/\<prefix\>/\<file\>
+* Protocol: WebSocket
+* Subprotocol: v0.ws.block.qabel.de
+* Does not require an `Authorization` header
+
+This pushes changes of \<file\> in \<prefix\> to the client. Paths
+containing the string "blocks" are not eligible and will result
+in termination of the WebSocket handshake with a HTTP 405 status.
+
+Both endpoints use the same protocol.
+
+One JSON object per WebSocket message. Messages are sent via **text** frames.
+Every JSON object describes one update of a file:
+
+```
+{
+    "operation": STR in ("POST", "DELETE"),
+    "prefix": STR,
+    "path": STR,
+    ["etag": STR -- optional, new etag when operation is POST],
+}
+```
+
+The server will ignore messages sent from the client to the server
+via the `v0.ws.block.qabel.de` protocol.
+
 ## Structure of a VOLUME
 
 A Volume consists of metadata files and blocks. Every VOLUME has a metadata file at VOLUME/\<index\> which is the starting point and contains references to other objects. All file names on S3 are UUIDs.
