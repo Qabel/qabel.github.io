@@ -32,6 +32,12 @@ In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.o
 1. friendlybase64char ::= [ "A" - "Z", "a" - "z", "0" - "9", "-", "_" ]
 1. dropid ::= <43>*friendlybase64char
 
+Note that `DNSName` should not be a relative DNS name, but an absolute
+(also called fully-qualified) name, (cf. RFC 1034 § 3.1 for the
+difference) since this is an URL. This also means that so-called
+"loose hostnames" as in `http://horst/...` are not valid drop
+URLs. `localhost` is a special case intended for testing.
+
 **Example:**
 
 `http://d.example:1234/tools/drop/1234567890123456789012345678901234567890123`
