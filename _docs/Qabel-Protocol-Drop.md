@@ -43,13 +43,17 @@ system.
 **Example:**
 
 `http://d.example:1234/tools/drop/1234567890123456789012345678901234567890123`
+
 `http://some-machine.local:1234/1234567890123456789012345678901234567890123`
 
 **Invalid** examples:
 
 `http://some-machine/1234567890123456789012345678901234567890123` (not a qualified name and not `localhost`)
+
 `http://d.example:1234/123456789012` (incorrect length of drop ID)
+
 `http://d.example:1234/tools/drop/1234567890123456789012345678901234567890123/` (trailing slash)
+
 `http://d.example:1234/tools/drop1234567890123456789012345678901234567890123` (missing separator between `servicepath` and `dropid`)
 
 #### Drop IDs
