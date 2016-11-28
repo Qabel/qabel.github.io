@@ -34,13 +34,23 @@ In [BNF](http://www.w3.org/Addressing/URL/5_BNF.html) [notation](http://www.w3.o
 
 Note that `DNSName` should not be a relative DNS name, but an absolute
 (also called fully-qualified) name, (cf. RFC 1034 § 3.1 for the
-difference) since this is an URL. This also means that so-called
-"loose hostnames" as in `http://horst/...` are not valid drop
-URLs. `localhost` is a special case intended for testing.
+difference) since this is an URL. This also means that simple
+hostnames as in `http://horst/...` are not valid drop
+URLs. `localhost` is a special case accepted by most systems, and is
+intended solely for testing. It should not be used in any production
+system.
 
 **Example:**
 
 `http://d.example:1234/tools/drop/1234567890123456789012345678901234567890123`
+`http://some-machine.local:1234/1234567890123456789012345678901234567890123`
+
+**Invalid** examples:
+
+`http://some-machine/1234567890123456789012345678901234567890123` (not a qualified name and not `localhost`)
+`http://d.example:1234/123456789012` (incorrect length of drop ID)
+`http://d.example:1234/tools/drop/1234567890123456789012345678901234567890123/` (trailing slash)
+`http://d.example:1234/tools/drop1234567890123456789012345678901234567890123` (missing separator between `servicepath` and `dropid`)
 
 #### Drop IDs
 
