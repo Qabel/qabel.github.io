@@ -74,7 +74,7 @@ The corner cases are:
 
 ### Communication with Server
 
-Available are the REST methods GET, HEAD and POST.
+Available are the REST methods GET, HEAD and POST, and one-way WebSockets.
 
 To reduce Spam and Denial of Service attacks a proof of work protocol could additionally be implemented (see [Proof of Work](http://qabel.github.io/docs/Qabel-Protocol-ProofOfWork/))
 
@@ -151,6 +151,50 @@ The message has to be transmitted as HTTP body.
 The Authorization header has to be "Client Qabel".
 The HTTP body is an encoded 8-bit stream.
 No HTTP body gets returned.
+
+#### Push / WebSockets
+
+A drop server also supports WebSockets. While it would be possible to
+implement these on the exact same endpoint path as the regular REST
+methods (requests can be distinguished by their `Connection: Upgrade`
+and `Sec-WebSocket-Key` headers), we choose not to as most frameworks
+presuppose path-based routing, and cannot support header-based routing
+out-of-the-box.
+
+Therefore WebSockets are available at `<endpoint path>/ws` (note the
+absence of a trailing slash, just like the REST endpoint). The WebSocket
+subprotocol is `v0.ws.drop.qabel.de`.
+
+The server ignores messages sent by the client.
+
+The server sends one binary frame for each drop message received. It
+does not send drop messages that were received before the WebSocket
+connection was opened.
+
+Each frame is divided into a header and the actual drop
+message. Header and drop message are separated by the first two new
+lines (`0x0a 0x0a`) in the frame.
+
+The header consists of UTF-8 encoded HTTP headers which can be sent to
+the REST API to receive all drop messages *since* this drop. In other
+words, these are the `Last-Modified` and `X-Qabel-Latest` headers that
+would be sent if the drop message was the last (most recent) drop
+message in a GET response of the REST API (however, the exact layout
+is not guaranteed and clients should not make unsafe assumptions about
+the layout of these headers. Instead, use standard HTTP header parsing
+methods).
+
+To avoid race conditions in opening a WebSocket connection clients
+should follow this recipe:
+
+1. Open the WebSocket connection
+2. Poll the REST API for changes once (using `Last-Modified` or
+   `X-Qabel-Latest` headers stored from previous interactions, eg.
+   the last HEAD or GET, but also from WebSocket frame headers.)
+
+This way a client won't miss drop messages received by the server
+during opening the WebSocket connection, or between connections, if
+the client mainly relies on WebSockets.
 
 ### Messages
 
